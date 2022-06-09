@@ -1,0 +1,98 @@
+/*                KEY POSITIONS
+
+  ╭────────────────────╮ ╭────────╮ ╭────────────────────╮
+  │  0   1   2   3   4 │ │  5   6 │ │  7   8   9  10  11 │
+  │ 12  13  14  15  16 │ │ 17  18 │ │ 19  20  21  22  23 │
+  │ 24  25  26  27  28 │ │ 29  30 │ │ 31  32  33  34  35 │
+  │ 36  37  38  39  40 │ │ 41  42 │ │ 43  44  45  46  47 │
+  ╰────────────────────╯ ╰────────╯ ╰────────────────────╯ */
+
+compatible = "zmk,combos";
+
+#define COMBO(NAME, BINDINGS, KEYPOS, LAYERS, TERM) \
+  combo_##NAME { \
+    timeout-ms = <TERM>; \
+    bindings = <BINDINGS>; \
+    key-positions = <KEYPOS>; \
+    layers = <LAYERS>; \
+  };
+
+#define COMBO_TERM_H 30
+#define COMBO_TERM_V 40
+
+#define LT0  0
+#define LT1  1
+#define LT2  2
+#define LT3  3
+#define LT4  4
+#define RT0  7
+#define RT1  8
+#define RT2  9
+#define RT3 10
+#define RT4 11
+
+#define LM0 12
+#define LM1 13
+#define LM2 14
+#define LM3 15
+#define LM4 16
+#define RM0 19
+#define RM1 20
+#define RM2 21
+#define RM3 22
+#define RM4 23
+
+#define LB0 24
+#define LB1 25
+#define LB2 26
+#define LB3 27
+#define LB4 28
+#define RB0 31
+#define RB1 32
+#define RB2 33
+#define RB3 34
+#define RB4 35
+
+/* Capsword */
+COMBO(cpwrd, &caps_word,    LM3 RM1, DEF NUM, COMBO_TERM_H)
+
+/* Punctuation (horizontal left hand) */
+COMBO(all,   &kp LC(A),     LT1 LT2, DEF NUM, COMBO_TERM_H)
+COMBO(app,   &kp LG(SPACE), LT2 LT3, DEF NUM, COMBO_TERM_H)
+
+COMBO(excl,  &kp EXCL,      LM1 LM2, DEF NUM, COMBO_TERM_H)
+COMBO(qmark, &kp QMARK,     LM2 LM3, DEF NUM, COMBO_TERM_H)
+
+COMBO(cut,   &kp LC(X),     RB1 RB3, DEF NUM, COMBO_TERM_H)
+COMBO(copy,  &kp LC(INS),   RB1 RB2, DEF NUM, COMBO_TERM_H)
+COMBO(paste, &kp LS(INS),   RB2 RB3, DEF NUM, COMBO_TERM_H)
+
+/* Brackets (horizontal right hand) */
+COMBO(lbrc,  &kp LBRC,      RT1 RT2, DEF NUM, COMBO_TERM_H)
+COMBO(rbrc,  &kp RBRC,      RT2 RT3, DEF NUM, COMBO_TERM_H)
+COMBO(lpar,  &kp LPAR,      RM1 RM2, DEF NUM, COMBO_TERM_H)
+COMBO(rpar,  &kp RPAR,      RM2 RM3, DEF NUM, COMBO_TERM_H)
+COMBO(lbrk,  &kp LBKT,      RB1 RB2, DEF NUM, COMBO_TERM_H)
+COMBO(rbrk,  &kp RBKT,      RB2 RB3, DEF NUM, COMBO_TERM_H)
+
+/* Other symbols (vertical combos) */
+COMBO(at,    &kp AT,        LT1 LM1, DEF NUM, COMBO_TERM_V)
+COMBO(hash,  &kp HASH,      LT2 LM2, DEF NUM, COMBO_TERM_V)
+COMBO(dllr,  &kp DLLR,      LT3 LM3, DEF NUM, COMBO_TERM_V)
+COMBO(prcnt, &kp PRCNT,     LT4 LM4, DEF NUM, COMBO_TERM_V)
+
+COMBO(caret, &kp CARET,     RT0 RM0, DEF NUM, COMBO_TERM_V)
+COMBO(plus,  &kp PLUS,      RT1 RM1, DEF NUM, COMBO_TERM_V)
+COMBO(star,  &kp STAR,      RT2 RM2, DEF NUM, COMBO_TERM_V)
+COMBO(amps,  &kp AMPS,      RT3 RM3, DEF NUM, COMBO_TERM_V)
+
+COMBO(grave, &kp GRAVE,     LM1 LB1, DEF NUM, COMBO_TERM_V)
+COMBO(bslh,  &kp BSLH,      LM2 LB2, DEF NUM, COMBO_TERM_V)
+COMBO(tilde, &kp TILDE,     LM3 LB3, DEF NUM, COMBO_TERM_V)
+COMBO(equal, &kp EQUAL,     LM4 LB4, DEF NUM, COMBO_TERM_V)
+
+COMBO(under, &kp UNDER,     RM0 RB0, DEF NUM, COMBO_TERM_V)
+COMBO(minus, &kp MINUS,     RM1 RB1, DEF NUM, COMBO_TERM_V)
+COMBO(fslh,  &kp FSLH,      RM2 RB2, DEF NUM, COMBO_TERM_V)
+COMBO(pipe,  &kp PIPE,      RM3 RB3, DEF NUM, COMBO_TERM_V)
+
