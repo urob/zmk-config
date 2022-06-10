@@ -25,6 +25,7 @@ compatible = "zmk,combos";
 COMBO(cpwrd, &caps_word,    LM3 RM1, DEF NUM, COMBO_TERM_H)
 
 /* Punctuation (horizontal left hand) */
+COMBO(num,   &tog NUM,      LT1 LT3, DEF NUM, COMBO_TERM_H)
 COMBO(all,   &kp LC(A),     LT1 LT2, DEF NUM, COMBO_TERM_H)
 COMBO(app,   &kp LG(SPACE), LT2 LT3, DEF NUM, COMBO_TERM_H)
 
