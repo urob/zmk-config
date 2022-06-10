@@ -53,6 +53,11 @@
 #define RH1 44
 #define RH2 45
 
+/* extra keys */
+#define EXTRA_MID   &none    &none
+#define EXTRA_BOT_L &none    &kp LGUI
+#define EXTRA_BOT_R &kp DOWN &kp UP
+
 /* source the main keymap */
 #include "base.keymap"
 
