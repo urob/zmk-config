@@ -32,13 +32,13 @@
 // * add unicode layer, trigger with mod-tap on D and H
 // * set up repeat key
 // * combos with global-quick-tab?
-// * debug mod-taps
+// * debug mod-taps, see #986
 // * why does &bootloader not work?
 // * fix flashing issue: "Invalid DFU suffix signature"
 // * workaoround shift-del bug https://github.com/zmkfirmware/zmk/issues/683
 // * better timing for mod-taps on thumbs
 // * allow for double backspace hold --> repeated backspace
-// * sleep not working
+// * sleep not working, can use macro LG(X), U, S
 // * mouse wheel
 
 
@@ -155,7 +155,7 @@
         sys_layer {
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &kp LG(GRAVE) ___           ___           ___           &bootloader       XXX           XXX               ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &kp C_SLEEP
+     &kp LG(GRAVE) ___           ___           ___           &bootloader       XXX           XXX               ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &kp C_SLEEP_MODE
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      ___           ___           ___           ___           ___               XXX           XXX               ___           DSK_PREV      &kp C_VOL_DN  DSK_NEXT      ___
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
