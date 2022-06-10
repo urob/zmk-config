@@ -18,7 +18,7 @@ compatible = "zmk,combos";
   };
 
 #define COMBO_TERM_H 30
-#define COMBO_TERM_V 40
+#define COMBO_TERM_V 30
 
 #define LT0  0
 #define LT1  1
