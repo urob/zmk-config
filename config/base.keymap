@@ -1,0 +1,198 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define XXX &none
+#define ___ &trans
+#define DSK_PREV &kp LG(LC(LEFT))
+#define DSK_NEXT &kp LG(LC(RIGHT))
+
+#define DEF 0
+#define NAV 1
+#define SYS 2
+#define NUM 3
+#define FUN 4
+#define GRK 5
+
+/* hold-trigger-key-positions */
+#define LHK LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
+#define RHK RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right-hand keys
+#define THK LH0 LH1 LH2 RH0 RH1 RH2                                      // thumb keys
+
+/ {
+
+    combos {
+        #include "combos.dtsi"
+    };
+
+    macros {
+        //
+    };
+
+// TODO:
+// * add unicode layer, trigger with mod-tap on D and H
+// * set up repeat key
+// * combos with global-quick-tab?
+// * debug mod-taps
+// * why does &bootloader not work?
+// * fix flashing issue: "Invalid DFU suffix signature"
+// * workaoround shift-del bug https://github.com/zmkfirmware/zmk/issues/683
+// * better timing for mod-taps on thumbs
+// * allow for double backspace hold --> repeated backspace
+// * sleep not working
+// * mouse wheel
+
+
+    behaviors {
+
+        // HRM left hand
+        hml: left_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LEFT_POSITIONAL_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <180>;
+            quick-tap-ms = <125>;
+            global-quick-tap;
+            bindings = <&kp>, <&kp>;
+        //    hold-trigger-key-positions = <RHK THK>;
+        };
+
+        // HRM right hand
+        hmr: right_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "RIGHT_POSITIONAL_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <180>;
+            quick-tap-ms = <125>;
+            global-quick-tap;
+            bindings = <&kp>, <&kp>;
+        //    hold-trigger-key-positions = <LHK THK>;
+        };
+
+        // Layer on Hold + sticky tap on tap --- currently not used 
+        lst: layer_sticky_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_STICKY_TAP";
+            #binding-cells = <2>;
+            tapping-term-ms = <175>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&sk>;
+        };
+
+        // mod-morph shift + backspace into delete
+        bsdel: backspace_del {
+            compatible = "zmk,behavior-mod-morph";
+            label = "BSPC_DEL";
+            #binding-cells = <0>;
+            bindings = <&kp BSPC>, <&kp DEL>;
+            mods = <MOD_LSFT>;
+        };
+
+        // Layer change + backspace/del key
+        lt_bspc: layer_tap_backspace_del {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_BT";
+            #binding-cells = <2>;  // TODO: can we get rid of superfluous 2nd arg?
+            tapping-term-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&bsdel>;
+        };
+
+        // sticky key with quick release (fixes double capitalization when rolling keys)
+        skq: sticky_key_quick_release {
+            compatible = "zmk,behavior-sticky-key";
+            label = "STICKY_KEY_QUICK_RELEASE";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <1000>;
+            quick-release;
+        };
+
+        // sticky shift, double tap activates caps word
+        ss_cw: sticky_shift_capsword {
+            compatible = "zmk,behavior-tap-dance";
+            label = "STICKY_SHIFT_CAPSWORD";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&skq LSHFT>, <&caps_word>, <&none>;
+        };
+
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     &kp Q         &kp W         &kp F         &kp P         &kp B             XXX           XXX               &kp J         &kp L         &kp U         &kp Y         &kp SQT
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &hml LGUI A  &hml LALT R    &hml LCTRL S  &hml LSHFT T  &kp G             XXX           XXX               &kp M         &hmr LSHFT N  &hmr LCTRL E  &hmr LALT I   &hmr LGUI O
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &kp Z         &kp X         &kp C         &kp D         &kp V             XXX           XXX               &kp K         &kp H         &kp COMMA     &kp DOT       &kp SEMI
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXX           &kp LGUI      &lt SYS ESC   &lt NAV SPACE &kp TAB           XXX           XXX               &lt NUM RET   &ss_cw        &lt_bspc FUN 0 &kp DOWN     &kp UP
+// ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+            >;
+        };
+
+        nav_layer {
+            bindings = <
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     ___           ___           ___           ___           ___               &tog NUM      XXX               &kp PG_UP     &kp HOME      &kp UP        &kp END       &kp INS
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               XXX           XXX               &kp PG_DN     &kp LEFT      &kp DOWN      &kp RIGHT     &kp DEL
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___           ___           ___           ___           ___               XXX           XXX               ___           ___           ___           ___           ___
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___           ___           ___           ___           ___               XXX           XXX               ___           ___           ___           ___           ___
+// ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+            >;
+        };
+
+        sys_layer {
+            bindings = <
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     &kp LG(GRAVE) ___           ___           ___           &bootloader       XXX           XXX               ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &kp C_SLEEP
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___           ___           ___           ___           ___               XXX           XXX               ___           DSK_PREV      &kp C_VOL_DN  DSK_NEXT      ___
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___           ___           ___           ___           ___               XXX           XXX               ___           ___           ___           ___           ___
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___           ___           ___           ___           ___               XXX           XXX               &kp C_MUTE    &kp C_PP      ___           ___           ___
+// ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+            >;
+        };
+
+        num_layer {
+            bindings = <
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     &kp ESC       &kp N7        &kp N8        &kp N9        &kp STAR          &tog NUM      XXX               ___           ___           ___           ___           ___
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &kp RET       &kp N4        &kp N5        &kp N6        &kp PLUS          XXX           XXX               ___           &sk LSHFT     &sk LCTRL     &sk LALT      &sk LGUI
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &kp TAB       &kp N1        &kp N2        &kp N3        &kp FSLH          XXX           XXX               ___           ___           ___           ___           ___
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___           ___           &kp DOT       &kp N0        &kp MINUS         XXX           XXX               ___           ___           ___           ___           ___
+// ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+            >;
+        };
+
+        fun_layer {
+            bindings = <
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     &kp F12       &kp F7        &kp F8        &kp F9        ___               XXX           XXX               ___           ___           ___           ___           ___
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &kp F11       &kp F4        &kp F5        &kp F6        ___               XXX           XXX               ___           &sk LSHFT     &sk LCTRL     &sk LALT      &sk LGUI
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &kp F10       &kp F1        &kp F2        &kp F3        ___               XXX           XXX               ___           ___           ___           ___           ___
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___           ___           &kp F10       &kp F11       &kp F12           XXX           XXX               ___           ___           ___           ___           ___
+// ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+            >;
+        };
+
+    };
+};
