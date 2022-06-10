@@ -63,9 +63,9 @@ COMBO(app,   &kp LG(SPACE), LT2 LT3, DEF NUM, COMBO_TERM_H)
 COMBO(excl,  &kp EXCL,      LM1 LM2, DEF NUM, COMBO_TERM_H)
 COMBO(qmark, &kp QMARK,     LM2 LM3, DEF NUM, COMBO_TERM_H)
 
-COMBO(cut,   &kp LC(X),     RB1 RB3, DEF NUM, COMBO_TERM_H)
-COMBO(copy,  &kp LC(INS),   RB1 RB2, DEF NUM, COMBO_TERM_H)
-COMBO(paste, &kp LS(INS),   RB2 RB3, DEF NUM, COMBO_TERM_H)
+COMBO(cut,   &kp LC(X),     LB1 LB3, DEF NUM, COMBO_TERM_H)
+COMBO(copy,  &kp LC(INS),   LB1 LB2, DEF NUM, COMBO_TERM_H)
+COMBO(paste, &kp LS(INS),   LB2 LB3, DEF NUM, COMBO_TERM_H)
 
 /* Brackets (horizontal right hand) */
 COMBO(lbrc,  &kp LBRC,      RT1 RT2, DEF NUM, COMBO_TERM_H)
