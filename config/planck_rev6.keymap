@@ -34,6 +34,11 @@
 // * debug mod-taps
 // * why does &bootloader not work?
 // * fix flashing issue: "Invalid DFU suffix signature"
+// * workaoround shift-del bug https://github.com/zmkfirmware/zmk/issues/683
+// * better timing for mod-taps on thumbs
+// * allow for double backspace hold --> repeated backspace
+// * sleep not working
+// * mouse wheel
 
 
     behaviors {
