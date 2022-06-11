@@ -62,31 +62,6 @@ TODO and ISSUES
         #include "combos.dtsi"
     };
 
-    macros {
-        // testing unicode
-        #define OS_LEAD  &kp RALT &kp U  // OS specific sequence to initialize UTF code
-        #define OS_TRAIL &kp RET         // OS specific sequence to terminate UTF code
-
-        ae: ae {
-            wait-ms = <5>;
-            tap-ms = <5>;
-            compatible = "zmk,behavior-macro";
-            label = "UTF_AE";
-            #binding-cells = <0>;
-            bindings = <OS_LEAD &kp N0 &kp N0 &kp N0 &kp E &kp N4 OS_TRAIL>;
-        };
-
-        ae_cap: ae_cap {
-            wait-ms = <5>;
-            tap-ms = <5>;
-            compatible = "zmk,behavior-macro";
-            label = "UTF_AE_CAP";
-            #binding-cells = <0>;
-            bindings = <OS_LEAD &kp N0 &kp N0 &kp N0 &kp C &kp N4 OS_TRAIL>;
-        };
-    };
-
-
     behaviors {
 
         /* Homerow mods */
@@ -137,15 +112,6 @@ TODO and ISSUES
             bindings = <&sk LSHFT>, <&caps_word>, <&none>;
         };
 
-        // utf ae
-        utf_ae: utf_ae {
-            compatible = "zmk,behavior-mod-morph";
-            label = "UTF_AE";
-            #binding-cells = <0>;
-            bindings = <&ae>, <&ae_cap>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
     };
 
     keymap {
@@ -154,7 +120,7 @@ TODO and ISSUES
         default_layer {
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &kp Q         &kp W         &kp F         &kp P         &kp B             &kp RALT &utf_ae         &kp J         &kp L         &kp U         &kp Y         &kp SQT
+     &kp Q         &kp W         &kp F         &kp P         &kp B             EXRTA_MID         &kp J         &kp L         &kp U         &kp Y         &kp SQT
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &hml LGUI A   &hml LALT R   &hml LCTRL S  &hml LSHFT T  &kp G             EXTRA_MID         &kp M         &hmr LSHFT N  &hmr LCTRL E  &hmr LALT I   &hmr LGUI O
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
