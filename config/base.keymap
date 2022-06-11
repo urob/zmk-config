@@ -92,23 +92,13 @@
             bindings = <&mo>, <&sk>;
         };
 
-        // mod-morph shift + backspace into delete
-        bsdel: backspace_del {
+        // tap: backspace, shift-tap: delete, hold: switch layer
+        bs_del_lt: backspace_del {
             compatible = "zmk,behavior-mod-morph";
             label = "BSPC_DEL";
             #binding-cells = <0>;
-            bindings = <&kp BSPC>, <&kp DEL>;
+            bindings = <&lt FUN BSPC>, <&kp DEL>;
             mods = <MOD_LSFT>;
-        };
-
-        // Layer change + backspace/del key
-        lt_bspc: layer_tap_backspace_del {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LT_BT";
-            #binding-cells = <2>;  // TODO: can we get rid of superfluous 2nd arg?
-            tapping-term-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&mo>, <&bsdel>;
         };
 
         // sticky key with quick release (fixes double capitalization when rolling keys)
@@ -144,7 +134,7 @@
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &kp Z         &kp X         &kp C         &kp D         &kp V             EXTRA_MID         &kp K         &kp H         &kp COMMA     &kp DOT       &kp SEMI
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     EXTRA_BOT_L                 &lt SYS ESC   &lt NAV SPACE &kp TAB           EXTRA_MID         &lt NUM RET   &ss_cw        &lt_bspc FUN 0              EXTRA_BOT_R
+     EXTRA_BOT_L                 &lt SYS ESC   &lt NAV SPACE &kp TAB           EXTRA_MID         &lt NUM RET   &ss_cw        &bs_del_lt                  EXTRA_BOT_R
 // ╰─────────────╯             ╰─────────────┴──── ────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
             >;
         };
