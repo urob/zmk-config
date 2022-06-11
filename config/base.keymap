@@ -29,18 +29,18 @@
     #define EXTRA_BOT_R
 #endif
 
-// TODO:
-// * add unicode layer, trigger with mod-tap on D and H
-// * set up repeat key
-// * combos with global-quick-tab?
-// * debug mod-taps, see #986
-// * why does &bootloader not work?
-// * fix flashing issue: "Invalid DFU suffix signature"
-// * workaoround shift-del bug https://github.com/zmkfirmware/zmk/issues/683
-// * better timing for mod-taps on thumbs
-// * allow for double backspace hold --> repeated backspace
-// * sleep not working, can use macro LG(X), U, S
-// * mouse wheel
+/*
+TODO and ISSUES
+ * add repeat key
+ * unicode not officially supported (#232), implement with macro (tri-lt on D and H)
+ * tap-only combos not yet possible (#544), combos not working with global-quick-tap
+ * mod-taps getting stuck with heterogenous combo-terms (#986, #905)
+ * &bootloader doesn't work with Planck_rev6 (#1086)
+ * mod-morph doesn't swallow mod (#686), PR https://github.com/zmkfirmware/zmk/pull/1114
+ * sleep key doesn't work with windows (#1077), workaround: macro LG(X), U, S
+ * mouse wheel not implemented yet (#319)
+ * Invalid DFU suffix signature warning when flashing with dfu-util
+*/
 
 /* sticky key config */
 &sk {
@@ -153,7 +153,7 @@
         sys_layer {
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &kp LG(GRAVE) ___           ___           ___           &bootloader       EXTRA_MID         ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &kp C_SLEEP_MODE
+     &kp LG(GRAVE) ___           ___           ___           &bootloader       EXTRA_MID         ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &kp K_SLEEP
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      ___           ___           ___           ___           ___               EXTRA_MID         ___           DSK_PREV      &kp C_VOL_DN  DSK_NEXT      ___
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
