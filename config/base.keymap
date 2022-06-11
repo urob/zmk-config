@@ -11,7 +11,7 @@
 #define SYS 2
 #define NUM 3
 #define FUN 4
-#define GRK 5
+#define UTF 5
 
 /* hold-trigger-key-positions */
 #define LHK LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
@@ -29,16 +29,6 @@
     #define EXTRA_BOT_R
 #endif
 
-/ {
-
-    combos {
-        #include "combos.dtsi"
-    };
-
-    macros {
-        //
-    };
-
 // TODO:
 // * add unicode layer, trigger with mod-tap on D and H
 // * set up repeat key
@@ -52,8 +42,34 @@
 // * sleep not working, can use macro LG(X), U, S
 // * mouse wheel
 
+/* sticky key config */
+&sk {
+    release-after-ms = <500>;  // release after 0.5s
+    quick-release;             // fix double capitalization when rolling keys
+};
+
+/* layer tap config */
+&lt {
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <125>;
+    global-quick-tap;
+};
+
+/ {
+
+    combos {
+        #include "combos.dtsi"
+    };
+
+    macros {
+        //
+    };
+
 
     behaviors {
+
+        /* Homerow mods */
 
         // HRM left hand
         hml: left_hand_positional_hold_tap {
@@ -81,19 +97,10 @@
         //    hold-trigger-key-positions = <LHK THK>;
         };
 
-        // Layer on Hold + sticky tap on tap --- currently not used 
-        lst: layer_sticky_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_STICKY_TAP";
-            #binding-cells = <2>;
-            tapping-term-ms = <175>;
-            quick_tap_ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&mo>, <&sk>;
-        };
+        /* custom keys */
 
-        // tap: backspace, shift-tap: delete, hold: switch layer
-        bs_del_lt: backspace_del {
+        // tap: backspace, shift-tap: delete, hold: switch to fn layer
+        bs_del_fn: backspace_del {
             compatible = "zmk,behavior-mod-morph";
             label = "BSPC_DEL";
             #binding-cells = <0>;
@@ -101,23 +108,13 @@
             mods = <MOD_LSFT>;
         };
 
-        // sticky key with quick release (fixes double capitalization when rolling keys)
-        skq: sticky_key_quick_release {
-            compatible = "zmk,behavior-sticky-key";
-            label = "STICKY_KEY_QUICK_RELEASE";
-            #binding-cells = <1>;
-            bindings = <&kp>;
-            release-after-ms = <1000>;
-            quick-release;
-        };
-
-        // sticky shift, double tap activates caps word
+        // tap: sticky shift, double tap: capsword
         ss_cw: sticky_shift_capsword {
             compatible = "zmk,behavior-tap-dance";
             label = "STICKY_SHIFT_CAPSWORD";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&skq LSHFT>, <&caps_word>, <&none>;
+            bindings = <&sk LSHFT>, <&caps_word>, <&none>;
         };
 
     };
@@ -134,7 +131,7 @@
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &kp Z         &kp X         &kp C         &kp D         &kp V             EXTRA_MID         &kp K         &kp H         &kp COMMA     &kp DOT       &kp SEMI
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     EXTRA_BOT_L                 &lt SYS ESC   &lt NAV SPACE &kp TAB           EXTRA_MID         &lt NUM RET   &ss_cw        &bs_del_lt                  EXTRA_BOT_R
+     EXTRA_BOT_L                 &lt SYS ESC   &lt NAV SPACE &kp TAB           EXTRA_MID         &lt NUM RET   &ss_cw        &bs_del_fn                  EXTRA_BOT_R
 // ╰─────────────╯             ╰─────────────┴──── ────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
             >;
         };
@@ -181,7 +178,7 @@
             >;
         };
 
-        fun_layer {
+        fn_layer {
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
      &kp F12       &kp F7        &kp F8        &kp F9        ___               EXTRA_MID         ___           ___           ___           ___           ___
@@ -197,3 +194,4 @@
 
     };
 };
+
