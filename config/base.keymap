@@ -37,7 +37,7 @@ TODO and ISSUES
  * mod-taps getting stuck with heterogenous combo-terms (#986, #905)
  * &bootloader doesn't work with Planck_rev6 (#1086)
  * mod-morph doesn't swallow mod (#686), PR https://github.com/zmkfirmware/zmk/pull/1114
- * sleep key doesn't work with windows (#1077), workaround: macro LG(X), U, S
+ * native sleep key doesn't work with windows (#1077), workaround implemented below
  * mouse wheel not implemented yet (#319)
  * Invalid DFU suffix signature warning when flashing with dfu-util
 */
@@ -60,6 +60,18 @@ TODO and ISSUES
 
     combos {
         #include "combos.dtsi"
+    };
+
+    macros {
+        // Windows sleep key
+        win_sleep: win_sleep {
+            wait-ms = <5>;
+            tap-ms = <5>;
+            compatible = "zmk,behavior-macro";
+            label = "WIN_SLEEP_KEY";
+            #binding-cells = <0>;
+            bindings = <&kp LG(X) &kp U &kp S>;
+        };
     };
 
     behaviors {
@@ -120,7 +132,7 @@ TODO and ISSUES
         default_layer {
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &kp Q         &kp W         &kp F         &kp P         &kp B             EXRTA_MID         &kp J         &kp L         &kp U         &kp Y         &kp SQT
+     &kp Q         &kp W         &kp F         &kp P         &kp B             EXTRA_MID         &kp J         &kp L         &kp U         &kp Y         &kp SQT
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &hml LGUI A   &hml LALT R   &hml LCTRL S  &hml LSHFT T  &kp G             EXTRA_MID         &kp M         &hmr LSHFT N  &hmr LCTRL E  &hmr LALT I   &hmr LGUI O
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
@@ -148,7 +160,7 @@ TODO and ISSUES
         sys_layer {
             bindings = <
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &kp LG(GRAVE) ___           ___           ___           &bootloader       EXTRA_MID         ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &kp K_SLEEP
+     &kp LG(GRAVE) ___           ___           ___           &bootloader       EXTRA_MID         ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      ___           ___           ___           ___           ___               EXTRA_MID         ___           DSK_PREV      &kp C_VOL_DN  DSK_NEXT      ___
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
