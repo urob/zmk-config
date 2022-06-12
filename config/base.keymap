@@ -105,6 +105,18 @@ TODO and ISSUES
             hold-trigger-key-positions = <RHM LHK THK>;
         };
 
+        /* custom behaviors */
+
+        // sticky hold
+        sh: sticky_hold {
+            compatible = "zmk,behavior-hold-tap";
+            label = "STICKY_HOLD";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;  // release mod immediately if hold longer than term
+            bindings = <&kp>, <&sk>;
+        };
+
         /* custom keys */
 
         // tap: backspace | shift + tap: delete | hold: activate fn layer
@@ -122,7 +134,7 @@ TODO and ISSUES
             label = "STICKY_SHIFT_CAPSWORD";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&sk LSHFT>, <&caps_word>, <&none>;
+            bindings = <&sh LSHFT LSHFT>, <&caps_word>, <&none>;
         };
 
     };
