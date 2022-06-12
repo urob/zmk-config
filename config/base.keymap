@@ -13,11 +13,6 @@
 #define FUN 4
 #define UTF 5
 
-/* hold-trigger-key-positions */
-#define LHK LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
-#define RHK RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right-hand keys
-#define THK LH0 LH1 LH2 RH0 RH1 RH2                                      // thumb keys
-
 /* empty place holder if not on planck */
 #if !defined EXTRA_MID
     #define EXTRA_MID
@@ -65,7 +60,7 @@ TODO and ISSUES
     macros {
         // Windows sleep key
         win_sleep: win_sleep {
-            wait-ms = <5>;
+            wait-ms = <50>;
             tap-ms = <5>;
             compatible = "zmk,behavior-macro";
             label = "WIN_SLEEP_KEY";
@@ -76,7 +71,13 @@ TODO and ISSUES
 
     behaviors {
 
-        /* Homerow mods */
+        /* homerow mods */
+
+        #define LHR LM0 LM1 LM2 LM3  // left-hand homerow mods
+        #define RHR RM1 RM2 RM3 RM4  // right-hand homerow mods
+        #define LHK LT0 LT1 LT2 LT3 LT4 LHR LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
+        #define RHK RT0 RT1 RT2 RT3 RT4 RM0 RHR RB0 RB1 RB2 RB3 RB4  // right-hand keys
+        #define THK LH0 LH1 LH2 RH0 RH1 RH2                          // thumb keys
 
         // HRM left hand
         hml: left_hand_positional_hold_tap {
@@ -84,11 +85,11 @@ TODO and ISSUES
             label = "LEFT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <180>;
+            tapping-term-ms = <280>;
             quick-tap-ms = <125>;
             global-quick-tap;
             bindings = <&kp>, <&kp>;
-        //    hold-trigger-key-positions = <RHK THK>;
+            hold-trigger-key-positions = <LHR RHK THK>;
         };
 
         // HRM right hand
@@ -97,11 +98,11 @@ TODO and ISSUES
             label = "RIGHT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <180>;
+            tapping-term-ms = <280>;
             quick-tap-ms = <125>;
             global-quick-tap;
             bindings = <&kp>, <&kp>;
-        //    hold-trigger-key-positions = <LHK THK>;
+            hold-trigger-key-positions = <RHR LHK THK>;
         };
 
         /* custom keys */
