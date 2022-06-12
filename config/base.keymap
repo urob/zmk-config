@@ -10,8 +10,8 @@
 #define NAV 1
 #define SYS 2
 #define NUM 3
-#define FUN 4
-#define UTF 5
+#define FN 4
+#define UC 5
 
 /* empty place holder if not on planck */
 #if !defined EXTRA_MID
@@ -73,50 +73,50 @@ TODO and ISSUES
 
         /* homerow mods */
 
-        #define LHR LM0 LM1 LM2 LM3  // left-hand homerow mods
-        #define RHR RM1 RM2 RM3 RM4  // right-hand homerow mods
-        #define LHK LT0 LT1 LT2 LT3 LT4 LHR LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
-        #define RHK RT0 RT1 RT2 RT3 RT4 RM0 RHR RB0 RB1 RB2 RB3 RB4  // right-hand keys
+        #define LHM LM0 LM1 LM2 LM3  // left-hand homerow mods
+        #define RHM RM1 RM2 RM3 RM4  // right-hand homerow mods
+        #define LHK LT0 LT1 LT2 LT3 LT4 LHM LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
+        #define RHK RT0 RT1 RT2 RT3 RT4 RM0 RHM RB0 RB1 RB2 RB3 RB4  // right-hand keys
         #define THK LH0 LH1 LH2 RH0 RH1 RH2                          // thumb keys
 
-        // HRM left hand
-        hml: left_hand_positional_hold_tap {
+        // left-hand homerow mods
+        hml: left_hand_home_row_mods {
             compatible = "zmk,behavior-hold-tap";
-            label = "LEFT_POSITIONAL_HOLD_TAP";
+            label = "LEFT_HOME_ROW_MODS";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <125>;
             global-quick-tap;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <LHR RHK THK>;
+            hold-trigger-key-positions = <LHM RHK THK>;
         };
 
-        // HRM right hand
-        hmr: right_hand_positional_hold_tap {
+        // right-hand homerow mods
+        hmr: right_hand_home_row_mods {
             compatible = "zmk,behavior-hold-tap";
-            label = "RIGHT_POSITIONAL_HOLD_TAP";
+            label = "RIGHT_HOME_ROW_MODS";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <125>;
             global-quick-tap;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <RHR LHK THK>;
+            hold-trigger-key-positions = <RHM LHK THK>;
         };
 
         /* custom keys */
 
-        // tap: backspace, shift-tap: delete, hold: switch to fn layer
+        // tap: backspace | shift + tap: delete | hold: activate fn layer
         bs_del_fn: backspace_del {
             compatible = "zmk,behavior-mod-morph";
             label = "BSPC_DEL";
             #binding-cells = <0>;
-            bindings = <&lt FUN BSPC>, <&kp DEL>;
+            bindings = <&lt FN BSPC>, <&kp DEL>;
             mods = <MOD_LSFT>;
         };
 
-        // tap: sticky shift, double tap: capsword
+        // tap: sticky shift | double tap: capsword
         ss_cw: sticky_shift_capsword {
             compatible = "zmk,behavior-tap-dance";
             label = "STICKY_SHIFT_CAPSWORD";
