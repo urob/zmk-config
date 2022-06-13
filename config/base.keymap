@@ -26,7 +26,6 @@
 
 /*
 TODO and ISSUES
- * add repeat key
  * unicode not officially supported (#232), implement with macro (tri-lt on D and H)
  * tap-only combos not yet possible (#544), combos not working with global-quick-tap
  * mod-taps getting stuck with heterogenous combo-terms (#986, #905)
@@ -34,12 +33,13 @@ TODO and ISSUES
  * mod-morph doesn't swallow mod (#686), PR https://github.com/zmkfirmware/zmk/pull/1114
  * native sleep key doesn't work with windows (#1077), workaround implemented below
  * mouse wheel not implemented yet (#319)
+ * sticky hold swallows os shift when typing quickly
  * Invalid DFU suffix signature warning when flashing with dfu-util
 */
 
 /* sticky key config */
 &sk {
-    release-after-ms = <500>;  // release after 0.5s
+    release-after-ms = <550>;  // release after 0.5s
     quick-release;             // fix double capitalization when rolling keys
 };
 
@@ -107,12 +107,12 @@ TODO and ISSUES
 
         /* custom keys */
 
-        // tap: backspace | shift + tap: delete | hold: activate fn layer
-        bs_del_fn: backspace_del {
+        // tap: backspace | shift + tap: delete | hold: num layer
+        bs_del_num: backspace_del_num {
             compatible = "zmk,behavior-mod-morph";
-            label = "BSPC_DEL";
+            label = "BSPC_DEL_NUM";
             #binding-cells = <0>;
-            bindings = <&lt FN BSPC>, <&kp DEL>;
+            bindings = <&lt NUM BSPC>, <&kp DEL>;
             mods = <MOD_LSFT>;
         };
 
@@ -123,6 +123,18 @@ TODO and ISSUES
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&sk LSHFT>, <&caps_word>, <&none>;
+        };
+
+        // tap: repeat | hold: switch layer  -- unused
+        repeat: repeat_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "REPEAT_LAYER_TAP";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            //global-quick-tap;
+            bindings = <&mo>, <&key_repeat>;
         };
 
     };
@@ -139,7 +151,7 @@ TODO and ISSUES
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &kp Z         &kp X         &kp C         &kp D         &kp V             EXTRA_MID         &kp K         &kp H         &kp COMMA     &kp DOT       &kp SEMI
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     EXTRA_BOT_L                 &lt SYS ESC   &lt NAV SPACE &kp TAB           EXTRA_MID         &ss_cw        &lt NUM RET   &bs_del_fn                  EXTRA_BOT_R
+     EXTRA_BOT_L                 &lt SYS ESC   &lt NAV SPACE &kp TAB           EXTRA_MID         &lt FN RET    &bs_del_num   &ss_cw                      EXTRA_BOT_R
 // ╰─────────────╯             ╰─────────────┴──── ────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
             >;
         };
@@ -151,9 +163,9 @@ TODO and ISSUES
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               EXTRA_MID         &kp PG_DN     &kp LEFT      &kp DOWN      &kp RIGHT     &kp DEL
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     ___           ___           ___           ___           ___               EXTRA_MID         ___           ___           ___           ___           ___
+     ___           ___           ___           ___           ___               EXTRA_MID         ___           &kp LC(X)     &kp LC(INS)   &kp LS(INS)   ___
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     EXTRA_BOT_L                 ___           ___           ___               EXTRA_MID         ___           ___           ___                         EXTRA_BOT_R
+     EXTRA_BOT_L                 ___           ___           ___               EXTRA_MID         ___           &kp TAB       ___                         EXTRA_BOT_R
 // ╰─────────────╯             ╰─────────────┴──── ────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
             >;
         };
