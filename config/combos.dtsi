@@ -22,7 +22,7 @@ compatible = "zmk,combos";
   };
 
 /* Capsword */
-COMBO(cpwrd, &caps_word,    LM3 RM1, DEF NUM, COMBO_TERM_H)
+// COMBO(cpwrd, &caps_word,    LM3 RM1, DEF NUM, COMBO_TERM_V)
 
 /* Punctuation (horizontal left hand) */
 COMBO(num,   &tog NUM,      LT1 LT3, DEF NUM, COMBO_TERM_H)
