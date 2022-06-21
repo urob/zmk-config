@@ -114,6 +114,7 @@ TODOs and ISSUES
             #binding-cells = <0>;
             bindings = <&lt NUM BSPC>, <&kp DEL>;
             mods = <MOD_LSFT>;
+            masked_mods = <MOD_LSFT>;  // requires PR 1114
         };
 
         // tap: sticky shift | double tap: capsword
