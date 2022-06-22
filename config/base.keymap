@@ -53,9 +53,8 @@ TODOs and ISSUES
 
 / {
 
-    combos {
-        #include "combos.dtsi"
-    };
+    #include "unicode.dtsi"
+    #include "combos.dtsi"
 
     macros {
         // Windows sleep key
