@@ -1,0 +1,41 @@
+#define OS_LEAD  &kp RALT &kp U  // OS specific sequence to initialize unicode
+#define OS_TRAIL &kp RET         // OS specific sequence to terminate unicode
+
+#define UNICODE_MACRO(NAME, UNICODE_BINDING) \
+    NAME: NAME { \
+        wait-ms = <1>; \
+        tap-ms = <5>; \
+        compatible = "zmk,behavior-macro"; \
+        label = "NAME"; \
+        #binding-cells = <0>; \
+        bindings = <OS_LEAD UNICODE_BINDING OS_TRAIL>; \
+    };
+
+#define UNI_ONE(NAME, U0, U1, U2, U3) \
+    macros { \
+        UNICODE_MACRO(uc_##NAME, &kp U0 &kp U1 &kp U2 &kp U3) \
+    }; 
+
+#define UNI_TWO(NAME, U0, U1, U2, U3, S0, S1, S2, S3) \
+    macros { \
+        UNICODE_MACRO(uc_0_##NAME, &kp U0 &kp U1 &kp U2 &kp U3) \
+        UNICODE_MACRO(uc_1_##NAME, &kp S0 &kp S1 &kp S2 &kp S3) \
+    }; \
+    behaviors { \
+        uc_##NAME: uc_##NAME { \
+            compatible = "zmk,behavior-mod-morph"; \
+            label = "uc_##NAME"; \
+            #binding-cells = <0>; \
+            bindings = <&uc_0_##NAME>, <&uc_1_##NAME>; \
+            mods = <MOD_LSFT|MOD_RSFT>; \
+            masked_mods = <MOD_LSFT|MOD_RSFT>; \
+        }; \
+    };
+
+
+// add some definitions here
+
+UNI_ONE(alpha,  N0, N3,  B, N1)
+
+UNI_TWO(ae,     N0, N0,  E, N4,     N0, N0,  C, N4)
+
