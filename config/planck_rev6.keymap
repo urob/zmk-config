@@ -54,9 +54,9 @@
 #define RH2 45
 
 /* extra keys */
-#define EXTRA_MID   &none    &none
-#define EXTRA_BOT_L &none    &kp LGUI
-#define EXTRA_BOT_R &kp DOWN &kp UP
+#define EXTRA_MID   &none            &none
+#define EXTRA_BOT_L &none            &kp LGUI
+#define EXTRA_BOT_R &mwh SCROLL_DOWN &mwh SCROLL_UP
 
 /* source the main keymap */
 #include "base.keymap"
