@@ -13,7 +13,7 @@
 #define FN 4
 #define UC 5
 
-/* empty place holder if not on planck */
+/* create stubs if undefined */
 #if !defined EXTRA_MID
     #define EXTRA_MID
 #endif
@@ -26,15 +26,16 @@
 
 /*
 TODOs and ISSUES
- * unicode not officially supported (#232), implement with macro (tri-lt on D and H)
- * tap-only combos not yet possible (#544), combos not working with global-quick-tap
- * mod-taps getting stuck with heterogenous combo-terms (#986, #905)
+ * invalid DFU suffix signature warning when flashing with dfu-util
+ * tap-only combos not yet possible (#544), prevents rapid chaining of HRMs
  * &bootloader doesn't work with Planck_rev6 (#1086)
- * mod-morph doesn't swallow mod (#686), PR https://github.com/zmkfirmware/zmk/pull/1114
- * native sleep key doesn't work with windows (#1077), using macro instead below
- * mouse wheel keys not implemented yet (#319), using up/down instead below
- * sticky hold swallows OS shift when typing quickly
- * Invalid DFU suffix signature warning when flashing with dfu-util
+ * no global-quick-tap for combos
+ * mouse wheel keys not yet implemented (#319), using up/down for now
+ * mod-taps getting stuck with heterogenous combo-terms (#986, #905)
+ * sticky-hold swallows OS shift when typing quickly, using sticky-tap for now
+ * native sleep key doesn't work with windows (#1077), using sleep-macro for now
+ * no native unicode support (#232), using preprocessor workaround instead
+ * mod-morph doesn't swallow mod (#686), using masked-mod PR #1114
 */
 
 /* sticky key config */
@@ -51,6 +52,7 @@ TODOs and ISSUES
 //    global-quick-tap;
 };
 
+/* root node */
 / {
 
     #include "unicode.dtsi"
@@ -72,13 +74,12 @@ TODOs and ISSUES
 
         /* homerow mods */
 
-        #define LHM LM0 LM1 LM2 LM3  // left-hand homerow mods
-        #define RHM RM1 RM2 RM3 RM4  // right-hand homerow mods
+        #define LHM LM0 LM1 LM2 LM3                                  // left-hand HRMs
+        #define RHM RM1 RM2 RM3 RM4                                  // right-hand HRMs
         #define LHK LT0 LT1 LT2 LT3 LT4 LHM LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
         #define RHK RT0 RT1 RT2 RT3 RT4 RM0 RHM RB0 RB1 RB2 RB3 RB4  // right-hand keys
         #define THK LH0 LH1 LH2 RH0 RH1 RH2                          // thumb keys
 
-        // left-hand homerow mods
         hml: left_hand_home_row_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "LEFT_HOME_ROW_MODS";
@@ -88,10 +89,9 @@ TODOs and ISSUES
             quick-tap-ms = <125>;
             global-quick-tap;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <LHM RHK THK>;  // add left-hand HRMs for chaining
+            hold-trigger-key-positions = <LHM RHK THK>;  // include left-hand HRMs for mod-chaining
         };
 
-        // right-hand homerow mods
         hmr: right_hand_home_row_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "RIGHT_HOME_ROW_MODS";
@@ -101,7 +101,7 @@ TODOs and ISSUES
             quick-tap-ms = <125>;
             global-quick-tap;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <RHM LHK THK>;  // add right-hand HRMs for chaining
+            hold-trigger-key-positions = <RHM LHK THK>;  // include right-hand HRMs for mod-chaining
         };
 
         /* custom keys */
@@ -113,7 +113,7 @@ TODOs and ISSUES
             #binding-cells = <0>;
             bindings = <&lt NUM BSPC>, <&kp DEL>;
             mods = <MOD_LSFT>;
-            masked_mods = <MOD_LSFT>;  // requires PR 1114
+            masked_mods = <MOD_LSFT>;  // requires PR #1114
         };
 
         // tap: sticky shift | double tap: capsword
