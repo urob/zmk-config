@@ -38,32 +38,35 @@
     UC_MODMORPH(uc_ ## NAME, &uc_lower_ ## NAME, &uc_upper_ ## NAME)
 
 /* User definitions */
-UNICODE_SINGLE( alpha,   N0, N3,  B, N1)
-UNICODE_SINGLE( beta,    N0, N3,  B, N2)
-UNICODE_PAIR(   gamma,   N0, N3,  B, N3,    N0, N3, N9, N3)
-UNICODE_PAIR(   delta,   N0, N3,  B, N4,    N0, N3, N9, N4)
-UNICODE_SINGLE( epsilon, N0, N3,  F, N5)                      // varepsilon = 03B5
-UNICODE_SINGLE( zeta,    N0, N3,  B, N6)
-UNICODE_SINGLE( eta,     N0, N3,  B, N7)
-UNICODE_PAIR(   theta,   N0, N3,  B, N8,    N0, N3, N9, N8)
-UNICODE_SINGLE( iota,    N0, N3,  B, N9)
-UNICODE_SINGLE( kappa,   N0, N3,  B,  A)
-UNICODE_PAIR(   lambda,  N0, N3,  B,  B,    N0, N3, N9,  B)
-UNICODE_SINGLE( mu,      N0, N3,  B,  C)
-UNICODE_SINGLE( nu,      N0, N3,  B,  D)
-UNICODE_PAIR(   xi,      N0, N3,  B,  E,    N0, N3, N9,  E)
-UNICODE_PAIR(   pi,      N0, N3,  C, N0,    N0, N3,  A, N0)
-UNICODE_SINGLE( rho,     N0, N3,  C, N1)
-UNICODE_PAIR(   sigma,   N0, N3,  C, N3,    N0, N3,  A, N3)
-UNICODE_SINGLE( tau,     N0, N3,  C, N4)
-UNICODE_PAIR(   upsilon, N0, N3,  C, N5,    N0, N3,  A, N5)
-UNICODE_PAIR(   phi,     N0, N3,  C, N6,    N0, N3,  A, N6)  // varphi = 03C6
-UNICODE_SINGLE( chi,     N0, N3,  C, N7)
-UNICODE_PAIR(   psi,     N0, N3,  C, N8,    N0, N3,  A, N8)
-UNICODE_PAIR(   omega,   N0, N3,  C, N9,    N0, N3,  A, N9)
+/ {
 
-UNICODE_PAIR(   ae,      N0, N0,  E, N4,    N0, N0,  C, N4)
-UNICODE_PAIR(   oe,      N0, N0,  F, N6,    N0, N0,  D, N6)
-UNICODE_PAIR(   ue,      N0, N0,  F,  C,    N0, N0,  D,  C)
-UNICODE_SINGLE( eszett,  N0, N0,  D,  F)
+    UNICODE_SINGLE( alpha,   N0, N3,  B, N1)
+    UNICODE_SINGLE( beta,    N0, N3,  B, N2)
+    UNICODE_PAIR(   gamma,   N0, N3,  B, N3,    N0, N3, N9, N3)
+    UNICODE_PAIR(   delta,   N0, N3,  B, N4,    N0, N3, N9, N4)
+    UNICODE_SINGLE( epsilon, N0, N3,  F, N5)                      // varepsilon = 03B5
+    UNICODE_SINGLE( zeta,    N0, N3,  B, N6)
+    UNICODE_SINGLE( eta,     N0, N3,  B, N7)
+    UNICODE_PAIR(   theta,   N0, N3,  B, N8,    N0, N3, N9, N8)
+    UNICODE_SINGLE( iota,    N0, N3,  B, N9)
+    UNICODE_SINGLE( kappa,   N0, N3,  B,  A)
+    UNICODE_PAIR(   lambda,  N0, N3,  B,  B,    N0, N3, N9,  B)
+    UNICODE_SINGLE( mu,      N0, N3,  B,  C)
+    UNICODE_SINGLE( nu,      N0, N3,  B,  D)
+    UNICODE_PAIR(   xi,      N0, N3,  B,  E,    N0, N3, N9,  E)
+    UNICODE_PAIR(   pi,      N0, N3,  C, N0,    N0, N3,  A, N0)
+    UNICODE_SINGLE( rho,     N0, N3,  C, N1)
+    UNICODE_PAIR(   sigma,   N0, N3,  C, N3,    N0, N3,  A, N3)
+    UNICODE_SINGLE( tau,     N0, N3,  C, N4)
+    UNICODE_PAIR(   upsilon, N0, N3,  C, N5,    N0, N3,  A, N5)
+    UNICODE_PAIR(   phi,     N0, N3,  C, N6,    N0, N3,  A, N6)  // varphi = 03C6
+    UNICODE_SINGLE( chi,     N0, N3,  C, N7)
+    UNICODE_PAIR(   psi,     N0, N3,  C, N8,    N0, N3,  A, N8)
+    UNICODE_PAIR(   omega,   N0, N3,  C, N9,    N0, N3,  A, N9)
 
+    UNICODE_PAIR(   ae,      N0, N0,  E, N4,    N0, N0,  C, N4)
+    UNICODE_PAIR(   oe,      N0, N0,  F, N6,    N0, N0,  D, N6)
+    UNICODE_PAIR(   ue,      N0, N0,  F,  C,    N0, N0,  D,  C)
+    UNICODE_SINGLE( eszett,  N0, N0,  D,  F)
+
+};
