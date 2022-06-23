@@ -1,46 +1,69 @@
-#define OS_LEAD  &kp RALT &kp U  // OS specific sequence to initialize unicode
-#define OS_TRAIL &kp RET         // OS specific sequence to terminate unicode
+/* OS specific sequence to initialize/end unicode input */
+#define OS_LEAD  &kp RALT &kp U  // Windows (requires WinCompose)
+#define OS_TRAIL &kp RET
 
-#define str(s) #s
-
-#define UNICODE_MACRO(NAME, UNICODE_BINDING) \
-    NAME: NAME { \
-        wait-ms = <1>; \
-        tap-ms = <5>; \
-        compatible = "zmk,behavior-macro"; \
-        label = #NAME; \
-        #binding-cells = <0>; \
-        bindings = <OS_LEAD UNICODE_BINDING OS_TRAIL>; \
+/* Preprocessor macros */
+#define STRINGIFY(s) #s
+#define UC_MACRO(NAME, UNICODE_BINDING) \
+    macros { \
+        NAME: NAME { \
+            wait-ms = <0>; \
+            tap-ms = <1>; \
+            compatible = "zmk,behavior-macro"; \
+            label = STRINGIFY(ZM_ ## NAME); \
+            #binding-cells = <0>; \
+            bindings = <OS_LEAD UNICODE_BINDING OS_TRAIL>; \
+        }; \
     };
 
-#define UNI_ONE(NAME, U0, U1, U2, U3) \
-    macros { \
-        UNICODE_MACRO(uc_##NAME, &kp U0 &kp U1 &kp U2 &kp U3) \
-    }; 
-
-#define UNI_TWO(NAME, U0, U1, U2, U3, S0, S1, S2, S3) \
-    macros { \
-        UNICODE_MACRO(uc_0_##NAME, &kp U0 &kp U1 &kp U2 &kp U3) \
-        UNICODE_MACRO(uc_1_##NAME, &kp S0 &kp S1 &kp S2 &kp S3) \
-    }; \
+#define UC_MODMORPH(NAME, BINDING, SHIFTED_BINDING) \
     behaviors { \
-        uc_##NAME: uc_##NAME { \
+        NAME: NAME { \
             compatible = "zmk,behavior-mod-morph"; \
-            label = str(uc_##NAME); \
+            label = STRINGIFY(MM_ ## NAME); \
             #binding-cells = <0>; \
-            bindings = <&uc_0_##NAME>, <&uc_1_##NAME>; \
+            bindings = <BINDING>, <SHIFTED_BINDING>; \
             mods = <(MOD_LSFT|MOD_RSFT)>; \
             masked_mods = <(MOD_LSFT|MOD_RSFT)>; \
         }; \
     };
 
+#define UNICODE_LOWER(NAME, L0, L1, L2, L3) \
+    UC_MACRO(uc_lower_ ## NAME, &kp L0 &kp L1 &kp L2 &kp L3) \
+    UC_MODMORPH(uc_ ## NAME, &uc_lower_ ## NAME, &trans)
 
-// add some definitions here
+#define UNICODE_UPPER(NAME, L0, L1, L2, L3, U0, U1, U2, U3) \
+    UC_MACRO(uc_lower_ ## NAME, &kp L0 &kp L1 &kp L2 &kp L3) \
+    UC_MACRO(uc_upper_ ## NAME, &kp U0 &kp U1 &kp U2 &kp U3) \
+    UC_MODMORPH(uc_ ## NAME, &uc_lower_ ## NAME, &uc_upper_ ## NAME)
 
-UNI_ONE(alpha,  N0, N3,  B, N1)
+/* User definitions */
+UNICODE_LOWER(alpha,  N0, N3,  B, N1)
+UNICODE_LOWER(beta,   N0, N3,  B, N2)
+UNICODE_UPPER(gamma,  N0, N3,  B, N3,     N0, N3, N9, N3)
+UNICODE_UPPER(delta,  N0, N3,  B, N4,     N0, N3, N9, N4)
+UNICODE_LOWER(epsilon,N0, N3,  F, N5)                      // varepsilon = 03B5
+UNICODE_LOWER(zeta,   N0, N3,  B, N6)
+UNICODE_LOWER(eta,    N0, N3,  B, N7)
+UNICODE_UPPER(theta,  N0, N3,  B, N8,     N0, N3, N9, N8)
+UNICODE_LOWER(iota,   N0, N3,  B, N9)
+UNICODE_LOWER(kappa,  N0, N3,  B,  A)
+UNICODE_UPPER(lambda, N0, N3,  B,  B,     N0, N3, N9,  B)
+UNICODE_LOWER(mu,     N0, N3,  B,  C)
+UNICODE_LOWER(nu,     N0, N3,  B,  D)
+UNICODE_UPPER(xi,     N0, N3,  B,  E,     N0, N3, N9,  E)
+UNICODE_UPPER(pi,     N0, N3,  C, N0,     N0, N3,  A, N0)
+UNICODE_LOWER(rho,    N0, N3,  C, N1)
+UNICODE_UPPER(sigma,  N0, N3,  C, N3,     N0, N3,  A, N3)
+UNICODE_LOWER(tau,    N0, N3,  C, N4)
+UNICODE_UPPER(upsilon,N0, N3,  C, N5,     N0, N3,  A, N5)
+UNICODE_UPPER(phi,    N0, N3,  C, N6,     N0, N3,  A, N6)  // varphi = 03C6
+UNICODE_LOWER(chi,    N0, N3,  C, N7)
+UNICODE_UPPER(psi,    N0, N3,  C, N8,     N0, N3,  A, N8)
+UNICODE_UPPER(omega,  N0, N3,  C, N9,     N0, N3,  A, N9)
 
-UNI_TWO(ae,     N0, N0,  E, N4,     N0, N0,  C, N4)
-UNI_TWO(oe,     N0, N0,  F, N6,     N0, N0,  D, N6)
-UNI_TWO(ue,     N0, N0,  F,  C,     N0, N0,  D,  C)
-UNI_ONE(esszet, N0, N0,  D,  F)
+UNICODE_UPPER(ae,     N0, N0,  E, N4,     N0, N0,  C, N4)
+UNICODE_UPPER(oe,     N0, N0,  F, N6,     N0, N0,  D, N6)
+UNICODE_UPPER(ue,     N0, N0,  F,  C,     N0, N0,  D,  C)
+UNICODE_LOWER(eszett, N0, N0,  D,  F)
 
