@@ -72,8 +72,8 @@ TODOs and ISSUES
         };
 
         // Make sticky shift cancel capsword. Alternatively: mod-morph ss_cw into DUMMY
-        // to cancel capsword with triggering sticky-shift when capsword is active.
-        ss_cancel: ss_cancel {
+        // to cancel capsword without triggering sticky-shift when capsword is active.
+        sticky_shift: sticky_shift {
             wait-ms = <0>;
             tap-ms = <1>;
             compatible = "zmk,behavior-macro";
@@ -138,7 +138,7 @@ TODOs and ISSUES
             label = "STICKY_SHIFT_CAPSWORD";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&ss_cancel>, <&caps_word>, <DUMMY>;
+            bindings = <&sticky_shift>, <&caps_word>, <DUMMY>;
         };
 
     };
