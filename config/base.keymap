@@ -5,7 +5,7 @@
 #define ___ &trans
 #define DSK_PREV &kp LG(LC(LEFT))
 #define DSK_NEXT &kp LG(LC(RIGHT))
-#define DUMMY &kp K_CANCEL  // cancels caps_word and does nothing else
+#define CANCEL &kp K_CANCEL  // cancels caps_word and does nothing else
 
 #define DEF 0
 #define NAV 1
@@ -71,7 +71,7 @@ TODOs and ISSUES
             bindings = <&kp LG(X) &kp U &kp S>;
         };
 
-        // Make sticky shift cancel capsword. Alternatively: mod-morph ss_cw into DUMMY
+        // Make sticky shift cancel capsword. Alternatively: mod-morph ss_cw into CANCEL
         // to cancel capsword without triggering sticky-shift when capsword is active.
         sticky_shift: sticky_shift {
             wait-ms = <0>;
@@ -79,7 +79,7 @@ TODOs and ISSUES
             compatible = "zmk,behavior-macro";
             label = "STICKY_SHIFT_CANCEL_CAPSWORD";
             #binding-cells = <0>;
-            bindings = <&macro_tap DUMMY>          // cancel caps_word;
+            bindings = <&macro_tap CANCEL>         // cancel caps_word;
                      , <&macro_press &sk LSHFT>    // then tap sticky-shift and hold
                      , <&macro_pause_for_release>  // until key release to enable
                      , <&macro_release &sk LSHFT>; // holding shift
@@ -138,7 +138,7 @@ TODOs and ISSUES
             label = "STICKY_SHIFT_CAPSWORD";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&sticky_shift>, <&caps_word>, <DUMMY>;
+            bindings = <&sticky_shift>, <&caps_word>, <CANCEL>;
         };
 
     };
