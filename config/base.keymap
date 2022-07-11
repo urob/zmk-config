@@ -60,32 +60,6 @@ TODOs and ISSUES
 /* root node */
 / {
 
-    macros {
-        // Windows sleep key
-        win_sleep: win_sleep_macro {
-            wait-ms = <50>;
-            tap-ms = <5>;
-            compatible = "zmk,behavior-macro";
-            label = "WIN_SLEEP_MACRO";
-            #binding-cells = <0>;
-            bindings = <&kp LG(X) &kp U &kp S>;
-        };
-
-        // Make sticky shift cancel capsword. Alternatively: mod-morph ss_cw into CANCEL
-        // to cancel capsword without triggering sticky-shift when capsword is active.
-        sticky_shift: sticky_shift_cancel_capsword_macro {
-            wait-ms = <0>;
-            tap-ms = <1>;
-            compatible = "zmk,behavior-macro";
-            label = "STICKY_SHIFT_CANCEL_CAPSWORD_MACRO";
-            #binding-cells = <0>;
-            bindings = <&macro_tap CANCEL>         // cancel caps_word;
-                     , <&macro_press &sk LSHFT>    // then tap sticky-shift and hold
-                     , <&macro_pause_for_release>  // until key release to enable
-                     , <&macro_release &sk LSHFT>; // holding shift
-        };
-    };
-
     behaviors {
 
         /* homerow mods */
@@ -99,11 +73,11 @@ TODOs and ISSUES
         hml: left_hand_home_row_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "LEFT_HAND_HOME_ROW_MODS";
-            #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <125>;
             global-quick-tap;
+            #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <LHM RHK THK>;  // include left-hand HRMs for mod-chaining
         };
@@ -111,16 +85,39 @@ TODOs and ISSUES
         hmr: right_hand_home_row_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "RIGHT_HAND_HOME_ROW_MODS";
-            #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <125>;
             global-quick-tap;
+            #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <RHM LHK THK>;  // include right-hand HRMs for mod-chaining
         };
 
-        /* custom keys */
+        /* custom keys and macros */
+
+        // sticky-shift that cancels capsword (used in ss_cw below). Alternatively: mod-morph ss_cw into CANCEL to swallow sticky-shift when capsword is active
+        sticky_shift: sticky_shift_cancel_capsword_macro {
+            compatible = "zmk,behavior-macro";
+            label = "STICKY_SHIFT_CANCEL_CAPSWORD_MACRO";
+            wait-ms = <0>;
+            tap-ms = <1>;
+            #binding-cells = <0>;
+            bindings = <&macro_tap CANCEL>         // cancel caps_word;
+                     , <&macro_press &sk LSHFT>    // then tap sticky-shift and hold
+                     , <&macro_pause_for_release>  // until key release to enable
+                     , <&macro_release &sk LSHFT>; // holding shift
+        };
+
+        // tap: sticky shift | double tap: capsword | triple tap: cancel capsword
+        ss_cw: sticky_shift_capsword_key {
+            compatible = "zmk,behavior-tap-dance";
+            label = "STICKY_SHIFT_CAPSWORD_KEY";
+            tapping-term-ms = <200>;
+            #binding-cells = <0>;
+            // bindings = <&sticky_shift>, <&caps_word>, <CANCEL>;
+            bindings = <&sk LSHFT>, <&caps_word>, <CANCEL>;
+        };
 
         // tap: backspace | lshft + tap: delete | rshft + tap: shift-delete | hold: num layer
         bs_del_num: backspace_del_num_key {
@@ -132,14 +129,14 @@ TODOs and ISSUES
             masked_mods = <MOD_LSFT>;  // requires PR #1114
         };
 
-        // tap: sticky shift | double tap: capsword | triple tap: cancel capsword
-        ss_cw: sticky_shift_capsword_key {
-            compatible = "zmk,behavior-tap-dance";
-            label = "STICKY_SHIFT_CAPSWORD_KEY";
+        // Windows sleep key
+        win_sleep: win_sleep_macro {
+            compatible = "zmk,behavior-macro";
+            label = "WIN_SLEEP_MACRO";
+            wait-ms = <50>;
+            tap-ms = <5>;
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            // bindings = <&sticky_shift>, <&caps_word>, <CANCEL>;
-            bindings = <&sk LSHFT>, <&caps_word>, <CANCEL>;
+            bindings = <&kp LG(X) &kp U &kp S>;
         };
 
     };
