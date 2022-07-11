@@ -138,7 +138,8 @@ TODOs and ISSUES
             label = "STICKY_SHIFT_CAPSWORD";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&sticky_shift>, <&caps_word>, <CANCEL>;
+            // bindings = <&sticky_shift>, <&caps_word>, <CANCEL>;
+            bindings = <&sk LSHFT>, <&caps_word>, <CANCEL>;
         };
 
     };
