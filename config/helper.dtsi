@@ -1,0 +1,35 @@
+/* helper.dtsi: convenience macros for a streamlined user keymap file
+ * ZMK_BEHAVIOR creates a new behavior, ZMK_KEYMAP creates a new keymap layer
+ * see minimal.keymap for examples
+ */
+
+#define ZMK_HELPER_CORE_caps_word   compatible = "zmk,behavior-caps-word";  #binding-cells = <0>
+#define ZMK_HELPER_CORE_hold_tap    compatible = "zmk,behavior-hold-tap";   #binding-cells = <2>
+#define ZMK_HELPER_CORE_key_repeat  compatible = "zmk,behavior-key-repeat"; #binding-cells = <0>
+#define ZMK_HELPER_CORE_macro       compatible = "zmk,behavior-macro";      #binding-cells = <0>
+#define ZMK_HELPER_CORE_mod_morph   compatible = "zmk,behavior-mod-morph";  #binding-cells = <0>
+#define ZMK_HELPER_CORE_sticky_key  compatible = "zmk,behavior-sticky-key"; #binding-cells = <1>
+#define ZMK_HELPER_CORE_tap_dance   compatible = "zmk,behavior-tap-dance";  #binding-cells = <0>
+
+#define ZMK_BEHAVIOR_STRINGIFY(x) #x
+#define ZMK_BEHAVIOR(name, type, ...) \
+    / { \
+        behaviors { \
+            name: name { \
+                label = ZMK_BEHAVIOR_STRINGIFY(ZB_ ## name); \
+                ZMK_HELPER_CORE_ ## type; \
+                __VA_ARGS__ \
+            }; \
+        }; \
+    };
+
+#define ZMK_KEYMAP(name, layout) \
+    / { \
+        keymap { \
+            compatible = "zmk,keymap"; \
+            name { \
+                bindings = <layout>; \
+            }; \
+        }; \
+    };
+
