@@ -1,25 +1,24 @@
+/*
+ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
+ * tap-only combos not yet possible (#544), prevents rapid chording of HRMs
+ * no chording with positional hold-taps (#1363)
+ * &bootloader doesn't work with Planck_rev6 (#1086)
+ * no global-quick-tap for combos yet
+ * mod-taps getting stuck with heterogenous combo-terms (#986, #905)
+ * sticky-hold swallows OS shift when typing quickly, using sticky-tap for now
+ * native sleep key doesn't work with windows (#1077), using sleep-macro for now
+ * no native unicode support (#232), using preprocessor workaround instead
+ * no native mouse keys (#319), using mouse PR #778
+ * mod-morph doesn't swallow mod (#686), using masked-mod PR #1114
+ * invalid DFU suffix signature warning when flashing with dfu-util
+*/
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include "mouse.dtsi"
 #include "../zmk-nodefree-config/helper.dtsi"
 
-#define XXX &none
-#define ___ &trans
-#define DSK_PREV &kp LG(LC(LEFT))
-#define DSK_NEXT &kp LG(LC(RIGHT))
-#define CANCEL &kp K_CANCEL  // cancels caps_word and does nothing else
-
-#define DEF 0
-#define NAV 1
-#define SYS 2
-#define NUM 3
-#define FN 4
-#define UC 5
-
-#include "unicode.dtsi"
-#include "combos.dtsi"
-
-/* create stubs if undefined */
+// make a 36 keys layout unless EXTRA-keys are defined in parent .keymap file
 #if !defined EXTRA_MID
     #define EXTRA_MID
 #endif
@@ -30,27 +29,30 @@
     #define EXTRA_BOT_R
 #endif
 
-/*
-TODOs and ISSUES
- * invalid DFU suffix signature warning when flashing with dfu-util
- * tap-only combos not yet possible (#544), prevents rapid chaining of HRMs
- * &bootloader doesn't work with Planck_rev6 (#1086)
- * no global-quick-tap for combos
- * mod-taps getting stuck with heterogenous combo-terms (#986, #905)
- * sticky-hold swallows OS shift when typing quickly, using sticky-tap for now
- * native sleep key doesn't work with windows (#1077), using sleep-macro for now
- * no native unicode support (#232), using preprocessor workaround instead
- * no native mouse keys (#319), using mouse PR #778
- * mod-morph doesn't swallow mod (#686), using masked-mod PR #1114
-*/
+#define XXX &none
+#define ___ &trans
+#define DSK_PREV &kp LG(LC(LEFT))   // previous desktop on windows
+#define DSK_NEXT &kp LG(LC(RIGHT))  // next     "       "  "
+#define CANCEL &kp K_CANCEL         // cancels caps-word and does nothing else
 
-/* sticky key config */
+#define DEF 0
+#define NAV 1
+#define SYS 2
+#define NUM 3
+#define FN 4
+#define UC 5
+
+// personal combos and unicode setup, must come after layer shortcuts
+#include "combos.dtsi"
+#include "unicode.dtsi"
+
+// sticky key config
 &sk {
     release-after-ms = <550>;  // release after 0.55s
     quick-release;             // no double capitalization when rolling keys
 };
 
-/* layer tap config */
+// layer tap config
 &lt {
     flavor = "balanced";
     tapping-term-ms = <200>;
@@ -72,7 +74,7 @@ ZMK_BEHAVIOR(hml, hold_tap,
     quick-tap-ms = <125>;
     global-quick-tap;
     bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <LHM RHK THK>;  // include left-hand HRMs for mod-chaining
+    hold-trigger-key-positions = <LHM RHK THK>;  // include left-hand HRMs for mod-chording
 )
 
 ZMK_BEHAVIOR(hmr, hold_tap,
@@ -81,7 +83,7 @@ ZMK_BEHAVIOR(hmr, hold_tap,
     quick-tap-ms = <125>;
     global-quick-tap;
     bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <RHM LHK THK>;  // include right-hand HRMs for mod-chaining
+    hold-trigger-key-positions = <RHM LHK THK>;  // include right-hand HRMs for mod-chording
 )
 
 /* custom keys and macros */
@@ -118,6 +120,7 @@ ZMK_BEHAVIOR(win_sleep, macro,
 )
 
 /* keymap */
+
 ZMK_LAYER(default_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
           &kp Q         &kp W         &kp F         &kp P         &kp B             EXTRA_MID         &kp J         &kp L         &kp U         &kp Y         &kp SQT
