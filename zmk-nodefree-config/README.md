@@ -14,12 +14,11 @@ streamlined syntax. Check out [example.keymap](example.keymap) to see it in acti
    private zmk-config repository
 2. Source `helper.dtsi` near the top of your `.keymap` file:
     ```C++
-    #include <behaviors.dtsi>
-    #include <dt-bindings/zmk/keys.h>
     #include "helper.dtsi"
     ```
-3. Customize your keyboard's `.keymap` file. See [example.keymap](example.keymap) for a
-   complete example and read the documentation below for details.
+3. Customize your keyboard's `.keymap` file. See [example.keymap](example.keymap) or [my
+   personal zmk-config](https://github.com/urob/zmk-config/blob/main/config/base.keymap)
+   for a complete configuration, and read the documentation below for details.
 
 ## Usage details
 
