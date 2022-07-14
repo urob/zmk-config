@@ -6,8 +6,10 @@ It is ported from my QMK configuration, which in turn is heavily inspired by Man
 
 ## Key features
 
+- clean keymap config using
+  [zmk-nodefree-config](https://github.com/urob/zmk-nodefree-config)[^1]
 - simple macro-implementation of combos and keymap to fit different physical
-  keyboards[^1]
+  keyboards[^2]
 - home-row mods on base layer, sticky mods on `Nav` and `Num` layers
 - most symbols can be accessed from the base layer via combos
 - sticky shift on right thumb, double-tap activates caps-word
@@ -15,7 +17,7 @@ It is ported from my QMK configuration, which in turn is heavily inspired by Man
 - full numpad-layer with arithmetic operators (`=` via combo) and `Esc`, `Enter`, `Tab`
   on left hand (can be numlocked via `W + P` combo, ideal for data entry and
   right-handed mouse)
-- unicode-layer with Greek letters for mathematical typesetting (implemented via preprocessor macros[^2]) 
+- unicode-layer with Greek letters for mathematical typesetting (implemented via preprocessor macros[^3]) 
 
 ![](img/keymap.png)
 
@@ -36,7 +38,10 @@ and (2) make them easy to remember. Specifically:
 - shortcuts for cut (on `X + D`), copy, and paste on the left-hand side for right-handed
   mouse usage
 
-[^1]: I use a 36-key layout per default. Additional thumb keys can be configured with
+[^1]: I am using git-subtree for the dependency management here as Github actions don't 
+    recognize git-submodules.
+
+[^2]: I use a 36-key layout per default. Additional thumb keys can be configured with
     the `EXTRA_BOT_L` and `EXTRA_BOT_R` macros. Additional "middle-keys" can be
     configured with the `EXTRA_MID` macro (see `planck_rev6.keymap` for an example).
 
@@ -49,7 +54,7 @@ and (2) make them easy to remember. Specifically:
     **R**ight **B**ottom-row. They need to be defined in the shield-specific keymap-file
     *before* sourcing the common `base.keymap`.
 
-[^2]: This is my attempt at a simple user-space solution until unicode is natively
+[^3]: This is my attempt at a simple user-space solution until unicode is natively
     supported. Check out `unicode.dtsi` for details and read
     [my write up here](https://github.com/zmkfirmware/zmk/issues/232#issuecomment-1163833880)
     for a few more pointers and some caveats.
