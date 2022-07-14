@@ -1,0 +1,25 @@
+/* Greek letters */
+ZMK_UNICODE_PAIR(   alpha,   N0, N3,  B, N1,    N0, N3, N9, N1)
+ZMK_UNICODE_PAIR(   beta,    N0, N3,  B, N2,    N0, N3, N9, N2)
+ZMK_UNICODE_PAIR(   gamma,   N0, N3,  B, N3,    N0, N3, N9, N3)
+ZMK_UNICODE_PAIR(   delta,   N0, N3,  B, N4,    N0, N3, N9, N4)
+ZMK_UNICODE_PAIR(   epsilon, N0, N3,  F, N5,    N0, N3, N9, N5)  // varepsilon = 03B5
+ZMK_UNICODE_PAIR(   zeta,    N0, N3,  B, N6,    N0, N3, N9, N6)
+ZMK_UNICODE_PAIR(   eta,     N0, N3,  B, N7,    N0, N3, N9, N7)
+ZMK_UNICODE_PAIR(   theta,   N0, N3,  B, N8,    N0, N3, N9, N8)
+ZMK_UNICODE_PAIR(   iota,    N0, N3,  B, N9,    N0, N3, N9, N9)
+ZMK_UNICODE_PAIR(   kappa,   N0, N3,  B,  A,    N0, N3, N9,  A)
+ZMK_UNICODE_PAIR(   lambda,  N0, N3,  B,  B,    N0, N3, N9,  B)
+ZMK_UNICODE_PAIR(   mu,      N0, N3,  B,  C,    N0, N3, N9,  C)
+ZMK_UNICODE_PAIR(   nu,      N0, N3,  B,  D,    N0, N3, N9,  D)
+ZMK_UNICODE_PAIR(   xi,      N0, N3,  B,  E,    N0, N3, N9,  E)
+ZMK_UNICODE_PAIR(   pi,      N0, N3,  C, N0,    N0, N3,  A, N0)
+ZMK_UNICODE_PAIR(   rho,     N0, N3,  C, N1,    N0, N3,  A, N1)
+ZMK_UNICODE_PAIR(   sigma,   N0, N3,  C, N3,    N0, N3,  A, N3)
+ZMK_UNICODE_PAIR(   tau,     N0, N3,  C, N4,    N0, N3,  A, N4)
+ZMK_UNICODE_PAIR(   upsilon, N0, N3,  C, N5,    N0, N3,  A, N5)
+ZMK_UNICODE_PAIR(   phi,     N0, N3,  C, N6,    N0, N3,  A, N6)  // varphi = 03C6
+ZMK_UNICODE_PAIR(   chi,     N0, N3,  C, N7,    N0, N3,  A, N7)
+ZMK_UNICODE_PAIR(   psi,     N0, N3,  C, N8,    N0, N3,  A, N8)
+ZMK_UNICODE_PAIR(   omega,   N0, N3,  C, N9,    N0, N3,  A, N9)
+

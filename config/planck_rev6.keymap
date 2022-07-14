@@ -1,62 +1,10 @@
-/*                KEY POSITIONS
+/* source keypos definitions */
+#include "../zmk-nodefree-config/keypos_def/keypos_48keys_wide.h"
 
-  ╭────────────────────╮ ╭────────╮ ╭────────────────────╮
-  │  0   1   2   3   4 │ │  5   6 │ │  7   8   9  10  11 │
-  │ 12  13  14  15  16 │ │ 17  18 │ │ 19  20  21  22  23 │
-  │ 24  25  26  27  28 │ │ 29  30 │ │ 31  32  33  34  35 │
-  │ 36  37  38  39  40 │ │ 41  42 │ │ 43  44  45  46  47 │
-  ╰────────────────────╯ ╰────────╯ ╰────────────────────╯ */
-
-
-/* key positions */
-#define LT0  0  // left-top row
-#define LT1  1
-#define LT2  2
-#define LT3  3
-#define LT4  4
-
-#define RT0  7  // right-top row
-#define RT1  8
-#define RT2  9
-#define RT3 10
-#define RT4 11
-
-#define LM0 12  // left-middle row
-#define LM1 13
-#define LM2 14
-#define LM3 15
-#define LM4 16
-
-#define RM0 19  // right-middle row
-#define RM1 20
-#define RM2 21
-#define RM3 22
-#define RM4 23
-
-#define LB0 24  // left-bottom row
-#define LB1 25
-#define LB2 26
-#define LB3 27
-#define LB4 28
-
-#define RB0 31  // right-bottom row
-#define RB1 32
-#define RB2 33
-#define RB3 34
-#define RB4 35
-
-#define LH0 38  // left thumb keys
-#define LH1 39
-#define LH2 40
-
-#define RH0 43  // right thumb keys
-#define RH1 44
-#define RH2 45
-
-/* extra keys */
-#define EXTRA_MID   &none            &none
-#define EXTRA_BOT_L &none            &kp LGUI
-#define EXTRA_BOT_R &mwh SCROLL_DOWN &mwh SCROLL_UP
+/* map Planck's extra keys */
+#define EXTRA_MID   &none            &none              // 3x2 middle keys
+#define EXTRA_BOT_L &none            &kp LGUI           // 1x2 bottom left keys
+#define EXTRA_BOT_R &mwh SCROLL_DOWN &mwh SCROLL_UP     // 1x2 bottom right keys
 
 /* source the main keymap */
 #include "base.keymap"

@@ -10,11 +10,11 @@ streamlined syntax. Check out [example.keymap](example.keymap) to see it in acti
 
 ## Usage overview
 
-1. Copy the file `helper.dtsi` from this repository into the "config" folder of your
+1. Copy the file `helper.h` from this repository into the "config" folder of your
    private zmk-config repository
-2. Source `helper.dtsi` near the top of your `.keymap` file:
+2. Source `helper.h` near the top of your `.keymap` file:
     ```C++
-    #include "helper.dtsi"
+    #include "helper.h"
     ```
 3. Customize your keyboard's `.keymap` file. See [example.keymap](example.keymap) or [my
    personal zmk-config](https://github.com/urob/zmk-config/blob/main/config/base.keymap)
@@ -22,7 +22,7 @@ streamlined syntax. Check out [example.keymap](example.keymap) to see it in acti
 
 ## Usage details
 
-`helper.dtsi` provides two convenience macros. `ZMK_BEHAVIOR` creates new behaviors, and
+`helper.h` provides two convenience macros. `ZMK_BEHAVIOR` creates new behaviors, and
 `ZMK_LAYER` adds new layers to your keymap. 
 
 ### ZMK\_BEHAVIOR

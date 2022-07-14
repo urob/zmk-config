@@ -15,8 +15,9 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include "mouse.dtsi"
-#include "../zmk-nodefree-config/helper.dtsi"
+#include "../zmk-nodefree-config/helper.h"
+#include "../zmk-nodefree-config/international_chars/greek.dtsi"
+#include "../zmk-nodefree-config/international_chars/german.dtsi"
 
 // make a 36 keys layout unless EXTRA-keys are defined in parent .keymap file
 #if !defined EXTRA_MID
@@ -42,9 +43,9 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 #define FN 4
 #define UC 5
 
-// personal combos and unicode setup, must come after layer shortcuts
-#include "combos.dtsi"
-#include "unicode.dtsi"
+// combos, german and greek letters, and mouse setup
+#include "mouse.dtsi"
+#include "combos.dtsi"  // must come after layer shortcuts
 
 // sticky key config
 &sk {
@@ -62,11 +63,11 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 
 /* homerow mods */
 
-#define LHM LM0 LM1 LM2 LM3                                  // left-hand HRMs
+#define LHM LM4 LM3 LM2 LM1                                  // left-hand HRMs
 #define RHM RM1 RM2 RM3 RM4                                  // right-hand HRMs
-#define LHK LT0 LT1 LT2 LT3 LT4 LHM LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
+#define LHK LT4 LT3 LT2 LT1 LT0 LHM LM0 LB4 LB3 LB2 LB1 LB0  // left-hand keys
 #define RHK RT0 RT1 RT2 RT3 RT4 RM0 RHM RB0 RB1 RB2 RB3 RB4  // right-hand keys
-#define THK LH0 LH1 LH2 RH0 RH1 RH2                          // thumb keys
+#define THK LH2 LH1 LH0 RH0 RH1 RH2                          // thumb keys
 
 ZMK_BEHAVIOR(hml, hold_tap,
     flavor = "balanced";
