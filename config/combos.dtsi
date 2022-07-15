@@ -11,43 +11,43 @@
 #define COMBO_TERM 30
 
 /* Punctuation (horizontal left hand) */
-COMBO(num,   &tog NUM,      LT3 LT1, DEF NUM)
-COMBO(all,   &kp LC(A),     LT3 LT2, DEF NUM)
-COMBO(app,   &kp LG(SPACE), LT2 LT1, DEF NUM)
+ZMK_COMBO(num,   &tog NUM,      LT3 LT1, DEF NUM)
+ZMK_COMBO(all,   &kp LC(A),     LT3 LT2, DEF NUM)
+ZMK_COMBO(app,   &kp LG(SPACE), LT2 LT1, DEF NUM)
 
-COMBO(excl,  &kp EXCL,      LM3 LM2, DEF NUM)
-COMBO(qmark, &kp QMARK,     LM2 LM1, DEF NUM)
+ZMK_COMBO(excl,  &kp EXCL,      LM3 LM2, DEF NUM)
+ZMK_COMBO(qmark, &kp QMARK,     LM2 LM1, DEF NUM)
 
-COMBO(cut,   &kp LC(X),     LB3 LB1, DEF NUM)
-COMBO(copy,  &kp LC(INS),   LB3 LB2, DEF NUM)
-COMBO(paste, &kp LS(INS),   LB2 LB1, DEF NUM)
+ZMK_COMBO(cut,   &kp LC(X),     LB3 LB1, DEF NUM)
+ZMK_COMBO(copy,  &kp LC(INS),   LB3 LB2, DEF NUM)
+ZMK_COMBO(paste, &kp LS(INS),   LB2 LB1, DEF NUM)
 
 /* Brackets (horizontal right hand) */
-COMBO(lbrc,  &kp LBRC,      RT1 RT2, DEF NUM)
-COMBO(rbrc,  &kp RBRC,      RT2 RT3, DEF NUM)
-COMBO(lpar,  &kp LPAR,      RM1 RM2, DEF NUM)
-COMBO(rpar,  &kp RPAR,      RM2 RM3, DEF NUM)
-COMBO(lbrk,  &kp LBKT,      RB1 RB2, DEF NUM)
-COMBO(rbrk,  &kp RBKT,      RB2 RB3, DEF NUM)
+ZMK_COMBO(lbrc,  &kp LBRC,      RT1 RT2, DEF NUM)
+ZMK_COMBO(rbrc,  &kp RBRC,      RT2 RT3, DEF NUM)
+ZMK_COMBO(lpar,  &kp LPAR,      RM1 RM2, DEF NUM)
+ZMK_COMBO(rpar,  &kp RPAR,      RM2 RM3, DEF NUM)
+ZMK_COMBO(lbrk,  &kp LBKT,      RB1 RB2, DEF NUM)
+ZMK_COMBO(rbrk,  &kp RBKT,      RB2 RB3, DEF NUM)
 
 /* Other symbols (vertical combos) */
-COMBO(at,    &kp AT,        LT3 LM3, DEF NUM)
-COMBO(hash,  &kp HASH,      LT2 LM2, DEF NUM)
-COMBO(dllr,  &kp DLLR,      LT1 LM1, DEF NUM)
-COMBO(prcnt, &kp PRCNT,     LT0 LM0, DEF NUM)
+ZMK_COMBO(at,    &kp AT,        LT3 LM3, DEF NUM)
+ZMK_COMBO(hash,  &kp HASH,      LT2 LM2, DEF NUM)
+ZMK_COMBO(dllr,  &kp DLLR,      LT1 LM1, DEF NUM)
+ZMK_COMBO(prcnt, &kp PRCNT,     LT0 LM0, DEF NUM)
 
-COMBO(caret, &kp CARET,     RT0 RM0, DEF NUM)
-COMBO(plus,  &kp PLUS,      RT1 RM1, DEF NUM)
-COMBO(star,  &kp STAR,      RT2 RM2, DEF NUM)
-COMBO(amps,  &kp AMPS,      RT3 RM3, DEF NUM)
+ZMK_COMBO(caret, &kp CARET,     RT0 RM0, DEF NUM)
+ZMK_COMBO(plus,  &kp PLUS,      RT1 RM1, DEF NUM)
+ZMK_COMBO(star,  &kp STAR,      RT2 RM2, DEF NUM)
+ZMK_COMBO(amps,  &kp AMPS,      RT3 RM3, DEF NUM)
 
-COMBO(grave, &kp GRAVE,     LM3 LB3, DEF NUM)
-COMBO(bslh,  &kp BSLH,      LM2 LB2, DEF NUM)
-COMBO(tilde, &kp TILDE,     LM1 LB1, DEF NUM)
-COMBO(equal, &kp EQUAL,     LM0 LB0, DEF NUM)
+ZMK_COMBO(grave, &kp GRAVE,     LM3 LB3, DEF NUM)
+ZMK_COMBO(bslh,  &kp BSLH,      LM2 LB2, DEF NUM)
+ZMK_COMBO(tilde, &kp TILDE,     LM1 LB1, DEF NUM)
+ZMK_COMBO(equal, &kp EQUAL,     LM0 LB0, DEF NUM)
 
-COMBO(under, &kp UNDER,     RM0 RB0, DEF NUM)
-COMBO(minus, &kp MINUS,     RM1 RB1, DEF NUM)
-COMBO(fslh,  &kp FSLH,      RM2 RB2, DEF NUM)
-COMBO(pipe,  &kp PIPE,      RM3 RB3, DEF NUM)
+ZMK_COMBO(under, &kp UNDER,     RM0 RB0, DEF NUM)
+ZMK_COMBO(minus, &kp MINUS,     RM1 RB1, DEF NUM)
+ZMK_COMBO(fslh,  &kp FSLH,      RM2 RB2, DEF NUM)
+ZMK_COMBO(pipe,  &kp PIPE,      RM3 RB3, DEF NUM)
 
