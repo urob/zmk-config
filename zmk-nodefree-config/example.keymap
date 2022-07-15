@@ -1,6 +1,9 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include "helper.h"
+
+#include "../zmk-nodefree-config/helper.h"
+#include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
+#include "../zmk-nodefree-config/international_chars/german.dtsi"
 
 /* layer and key shortcuts */
 
@@ -10,7 +13,7 @@
 #define NAV 1
 #define NUM 2
 
-/* custom keys and macros */
+/* custom behaviors */
 
 // homerow mods
 ZMK_BEHAVIOR(hrm, hold_tap,
@@ -33,12 +36,30 @@ ZMK_BEHAVIOR(bs_del_num, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-// windows sleep key
+// windows sleep macro
 ZMK_BEHAVIOR(win_sleep, macro,
     wait-ms = <100>;
     tap-ms = <5>;
     bindings = <&kp LG(X) &kp U &kp S>;
 )
+
+/* combos */
+
+// use timeout of 40ms (omitting the option yields default of 30ms)
+#define COMBO_TERM 40
+
+// combo for our custom sleep behavior from above, only active on NAV layer
+ZMK_COMBO(combo_sleep,  &win_sleep, RT3 RT4, NAV)
+
+// copy and paste combos, active on all layers
+ZMK_COMBO(combo_copy,   &kp LC(C),  LB2 LB3, ALL)
+ZMK_COMBO(combo_paste,  &kp LC(V),  LB1 LB2, ALL)
+
+// german umlauts on right thumb + letter, only active on default layer
+ZMK_COMBO(combo_ae,     &ae,        RH1 LM4, DEF)
+ZMK_COMBO(combo_oe,     &oe,        RH1 RM4, DEF)
+ZMK_COMBO(combo_ue,     &oe,        RH1 RT2, DEF)
+ZMK_COMBO(combo_eszett, &eszett,    RH1 LM2, DEF)
 
 /* keymap */
 
@@ -62,7 +83,7 @@ ZMK_LAYER(nav_layer,
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           ___           ___           ___           ___           ___               ___           &kp LC(X)     &kp LC(INS)   &kp LS(INS)   ___
      // ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-                                      ___           ___           ___               ___           &win_sleep    ___
+                                      ___           ___           ___               ___           ___           ___
      //                             ╰─────────────┴──── ────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
 )
 

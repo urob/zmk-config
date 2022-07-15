@@ -49,7 +49,7 @@
     #define COMBO_TERM 30
 #endif
 
-#define COMBO(name, combo_bindings, keypos, combo_layers) \
+#define ZMK_COMBO(name, combo_bindings, keypos, combo_layers) \
     / { \
         combos { \
             compatible = "zmk,combos"; \
@@ -64,22 +64,22 @@
 
 /* ZMK_UNICODE */
 
-#if !defined OS_COMBO_LEAD
+#if !defined OS_UNICODE_LEAD
     #if HOST_OS == 2
-        // OSx
+        #define OS_UNICODE_LEAD &macro_press &kp LALT  // macOS
     #elif HOST_OS == 1 
-        // Linux
+        #define OS_UNICODE_LEAD &kp LS(LC(U))          // Linux
     #else
-        #define OS_COMBO_LEAD &kp RALT &kp U  // Windows + WinCompose (default)
+        #define OS_UNICODE_LEAD &kp RALT &kp U         // Windows + WinCompose (default)
     #endif
 #endif
-#if !defined OS_COMBO_TRAIL
+#if !defined OS_UNICODE_TRAIL
     #if HOST_OS == 2
-        // OSx
+        #define OS_UNICODE_TRAIL &macro_release &kp LALT // macOS
     #elif HOST_OS == 1 
-        // Linux
+        #define OS_UNICODE_TRAIL &kp SPACE               // Linux
     #else
-        #define OS_COMBO_TRAIL &kp RET  // Windows + WinCompose (default)
+        #define OS_UNICODE_TRAIL &kp RET                 // Windows + WinCompose (default)
     #endif
 #endif
 
@@ -92,7 +92,7 @@
                 wait-ms = <0>; \
                 tap-ms = <1>; \
                 #binding-cells = <0>; \
-                bindings = <OS_COMBO_LEAD>, <unicode_bindings>, <OS_COMBO_TRAIL>; \
+                bindings = <OS_UNICODE_LEAD>, <unicode_bindings>, <OS_UNICODE_TRAIL>; \
             }; \
         }; \
     };
