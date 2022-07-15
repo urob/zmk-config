@@ -79,20 +79,20 @@
 
 #if !defined OS_UNICODE_LEAD
     #if HOST_OS == 2
-        #define OS_UNICODE_LEAD &macro_press &kp LALT  // macOS
+        #define OS_UNICODE_LEAD &macro_press &kp LALT      // macOS
     #elif HOST_OS == 1 
-        #define OS_UNICODE_LEAD &kp LS(LC(U))          // Linux
+        #define OS_UNICODE_LEAD &macro_tap &kp LS(LC(U))   // Linux
     #else
-        #define OS_UNICODE_LEAD &kp RALT &kp U         // Windows + WinCompose (default)
+        #define OS_UNICODE_LEAD &macro_tap &kp RALT &kp U  // Windows + WinCompose (default)
     #endif
 #endif
 #if !defined OS_UNICODE_TRAIL
     #if HOST_OS == 2
-        #define OS_UNICODE_TRAIL &macro_release &kp LALT // macOS
+        #define OS_UNICODE_TRAIL &macro_release &kp LALT  // macOS
     #elif HOST_OS == 1 
-        #define OS_UNICODE_TRAIL &kp SPACE               // Linux
+        #define OS_UNICODE_TRAIL &macro_tap &kp SPACE     // Linux
     #else
-        #define OS_UNICODE_TRAIL &kp RET                 // Windows + WinCompose (default)
+        #define OS_UNICODE_TRAIL &macro_tap &kp RET       // Windows + WinCompose (default)
     #endif
 #endif
 
@@ -105,7 +105,7 @@
                 wait-ms = <0>; \
                 tap-ms = <1>; \
                 #binding-cells = <0>; \
-                bindings = <OS_UNICODE_LEAD>, <unicode_bindings>, <OS_UNICODE_TRAIL>; \
+                bindings = <OS_UNICODE_LEAD>, <&macro_tap unicode_bindings>, <OS_UNICODE_TRAIL>; \
             }; \
         }; \
     };
