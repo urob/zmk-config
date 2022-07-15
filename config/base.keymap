@@ -15,6 +15,7 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+
 #include "../zmk-nodefree-config/helper.h"
 #include "../zmk-nodefree-config/international_chars/greek.dtsi"
 #include "../zmk-nodefree-config/international_chars/german.dtsi"
@@ -43,9 +44,8 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 #define FN 4
 #define UC 5
 
-// combos, german and greek letters, and mouse setup
+#include "combos.dtsi"  // source after layer shortcuts
 #include "mouse.dtsi"
-#include "combos.dtsi"  // must come after layer shortcuts
 
 // sticky key config
 &sk {
