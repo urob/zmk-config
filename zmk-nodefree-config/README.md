@@ -8,7 +8,22 @@ This repository provides simple convenience macros that simplify the configurati
 many common use cases. It results in a "node-free" user configuration with a more
 streamlined syntax. Check out [example.keymap](example.keymap) to see it in action.
 
-## Usage overview
+## Overview
+
+The repository provides a number of convenience macros:
+1. `ZMK_BEHAVIOR` can be used to create new behaviors such as hold-taps, tap-dances or
+   ZMK macros [\[doc\]](#zmk_behavior)
+2. `ZMK_LAYER` adds new layers to your keymap [\[doc\]](#zmk_layer)
+3. `ZMK_COMBO` defines new combos [\[doc\]](#zmk_combo)
+4. `ZMK_UNICODE_SINGLE` and `ZMK_UNICODE_PAIR` create unicode characters [\[doc\]](#zmk_unicode)
+5. optional `international_chars` source files define a number of international character such
+   as <kbd>ä</kbd>/<kbd>Ä</kbd> or <kbd>δ</kbd>/<kbd>Δ</kbd> that can be added to the keymap
+   [\[doc\]](#international-characters)
+6. optional `keypos_def` source files define human-readable key position shortcuts for some popular
+   keyboards that simplify the configuration of combos and positional hold-taps
+   [\[doc\]](#key-position-shortcuts)
+
+## Quickstart
 
 1. Copy this repository into the root folder of your private zmk-config repository. The
    folder structure should look as follows:
@@ -30,20 +45,7 @@ streamlined syntax. Check out [example.keymap](example.keymap) to see it in acti
    personal zmk-config](https://github.com/urob/zmk-config/blob/main/config/base.keymap)
    for a complete configuration, and read the documentation below for details.
 
-## Usage details
-
-This repository provides a number of convenience macros:
-1. `ZMK_BEHAVIOR` can be used to create new behaviors such as hold-taps, tap-dances or
-   ZMK macros [\[doc\]](#zmk_behavior)
-2. `ZMK_LAYER` adds new layers to your keymap [\[doc\]](#zmk_layer)
-3. `ZMK_COMBO` defines new combos [\[doc\]](#zmk_combo)
-4. `ZMK_UNICODE_SINGLE` and `ZMK_UNICODE_PAIR` create unicode characters [\[doc\]](#zmk_unicode)
-5. `international_chars` define a number of international character definitions such
-   as <kbd>ä</kbd>/<kbd>Ä</kbd> or <kbd>δ</kbd>/<kbd>Δ</kbd> that can be added to the keymap
-   [\[doc\]](#international-characters)
-6. `keypos_def` sets up human-readable key position shortcuts for a number of popular
-   keyboards that simplify the configuration of combos and positional hold-taps
-   [\[doc\]](#key-position-shortcuts)
+## Configuration details
 
 ### ZMK\_BEHAVIOR
 
@@ -165,8 +167,8 @@ second combo is triggered when the 13th and 14th keys are pressed jointly, sendi
 
 ### ZMK\_UNICODE
 
-This repository provides two macros that simplify creating new unicode characters that
-can be added to keymaps. `ZMK_UNICODE_SINGLE` creates single unicode characters such
+There are two macros that simplify creating new unicode characters that
+can be added to the keymap. `ZMK_UNICODE_SINGLE` creates single unicode characters such
 as <kbd>€</kbd>, whereas `ZMK_UNICODE_PAIR` creates pairs of shifted/unshifted unicode
 characters that are useful for specifying international characters such as
 <kbd>ä</kbd>/<kbd>Ä</kbd> or <kbd>δ</kbd>/<kbd>Δ</kbd>.
@@ -174,14 +176,16 @@ characters that are useful for specifying international characters such as
 Note that the input of unicode characters differs across operation systems. By default,
 `ZMK_UNICODE` is configured for Windows (using WinCompose). The easiest way to set up unicode
 characters for other operation systems is to set the variable `HOST_OS` **before**
-sourcing `helper.h`. For Linux use:
+sourcing `helper.h`.
+
+For Linux use:
 ```C++
-#define HOST_OS 1  // set to 1 for Linux
+#define HOST_OS 1  // set to 1 for Linux, default is 0 (Windows)
 #include helper.h
 ```
 For macOS use:
 ```C++
-#define HOST_OS 2  // set to 2 for macOS
+#define HOST_OS 2  // set to 2 for macOS, default is 0 (Windows)
 #include helper.h
 ```
 This will send unicode characters using the OS's default input channels.
@@ -224,7 +228,7 @@ The "umlaut"-pairs can be added to the keymap using `&ae`, `&oe` and `&ue`.
 #### Dependencies for unicodes
 
 * `ZMK_UNICODE_PAIR` requires a ZMK version patched with
-  [PR#1114](https://github.com/zmkfirmware/zmk/pull/1114) (not needed when only using
+  [PR#1114](https://github.com/zmkfirmware/zmk/pull/1114) (not needed for
   `ZMK_UNICODE_SINGLE`). If you don't want to maintain
   your own ZMK repository, you can use ZMK's [beta
   testing](https://zmk.dev/docs/features/beta-testing) feature to configure Github
@@ -252,14 +256,14 @@ The "umlaut"-pairs can be added to the keymap using `&ae`, `&oe` and `&ue`.
 ### International characters
 
 This repository includes pre-defined definitions for international characters for a few
-languages (currently German and Greek --- contributions are welcome 😀!). These can be
+languages (currently German and Greek --- contributions are welcome!). These can be
 loaded by sourcing the corresponding files.
 ```C++
 #include "../zmk-nodefree-config/international_chars/greek.dtsi"
 #include "../zmk-nodefree-config/international_chars/german.dtsi"
 ```
 These files make use of unicode in the background, please see the unicode documentation
-above for prerequisites. Once sourced Greek and German characters can be added to the
+above for prerequisites. Once sourced, Greek and German characters can be added to the
 keymap using, e.g., `&alpha`, `&upsilon`, `&tau` or `&omikron` (see the language files for
 a complete list of available characters).
 
@@ -269,13 +273,12 @@ Certain configuration options such as combos and positional hold-taps are based 
 physical position of keys on your keyboard. This reduces portability of configuration
 files across keyboards with different layouts. 
 
-To increase portability, this repository comes with key position definitions for a
-number of popular keyboard layouts (48-key boards such as Planck, 42-key boards such as Corne,
-36-key boards and 34-key boards --- new contributions are welcome 😀!).
+To increase portability, this repository comes with key position definitions for some
+popular keyboard layouts (48-key boards such as Planck, 42-key boards such as Corne,
+36-key boards and 34-key boards).
 
-These layouts provide a map from the physical key positions to human-readable shortcuts
-such as "LT0" and "LT1" for the left-hand's top-row's first and second keys.
-In general, all shortcuts are of the following form:
+These layouts provide a map from the physical key positions to human-readable shortcuts.
+All shortcuts are of the following form:
 * `L/R` for **L**eft/**R**ight hand
 * `T/M/B/H` for **T**op/**M**iddle/**B**ottom and t**H**umb row.
 * `0/1/2/3/4` for the finger position starting from the inside (`0` is the inner
@@ -291,8 +294,8 @@ For instance, the shortcuts layout for a 36-key board looks as follows:
 ╰───────╮ LH2 LH1 LH0 │ RH0 RH1 RH2 ╭───────╯
         ╰─────────────┴─────────────╯
 ```
-Schematics to all of the layout files can be found inside the corresponding definition
-files.
+Schematics for all existing layout files can be found at the top of the corresponding
+definition files.
 
 To use these shortcut definitions, source the definition file for your keyboard
 into your `.keymap` file. E.g., for a 36-key board, use:
