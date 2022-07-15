@@ -12,6 +12,7 @@
 #define DEF 0
 #define NAV 1
 #define NUM 2
+#define GER 3
 
 /* custom behaviors */
 
@@ -45,21 +46,14 @@ ZMK_BEHAVIOR(win_sleep, macro,
 
 /* combos */
 
-// use timeout of 40ms (omitting the option yields default of 30ms)
-#define COMBO_TERM 40
+#define COMBO_TERM 40  // timeout of 40ms (default is 30ms if omitted)
+ZMK_COMBO(combo_sleep,  &win_sleep, RT3 RT4, NAV)  // custom sleep macro, only active on NAV layer
+ZMK_COMBO(combo_copy,   &kp LC(C),  LB2 LB3, ALL)  // Ctrl + C, active on all layers
+ZMK_COMBO(combo_paste,  &kp LC(V),  LB1 LB2, ALL)  // Ctrl + V, active on all layers
 
-// combo for our custom sleep behavior from above, only active on NAV layer
-ZMK_COMBO(combo_sleep,  &win_sleep, RT3 RT4, NAV)
+/* conditional layer */
 
-// copy and paste combos, active on all layers
-ZMK_COMBO(combo_copy,   &kp LC(C),  LB2 LB3, ALL)
-ZMK_COMBO(combo_paste,  &kp LC(V),  LB1 LB2, ALL)
-
-// german umlauts on right thumb + letter, only active on default layer
-ZMK_COMBO(combo_ae,     &ae,        RH1 LM4, DEF)
-ZMK_COMBO(combo_oe,     &oe,        RH1 RM4, DEF)
-ZMK_COMBO(combo_ue,     &oe,        RH1 RT2, DEF)
-ZMK_COMBO(combo_eszett, &eszett,    RH1 LM2, DEF)
+ZMK_CONDITIONAL_LAYERS(NAV NUM, GER)  // replace A/O/U/S with umlauts when NAV and NUM are held jointly
 
 /* keymap */
 
@@ -71,8 +65,8 @@ ZMK_LAYER(default_layer,
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           &kp Z         &kp X         &kp C         &kp D         &kp V             &kp K         &kp H         &kp COMMA     &kp DOT       &kp SEMI
      // ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-                                      &kp ESC       &lt NAV SPACE &kp TAB           &kp RET       &ss_cw        &bs_del_num
-     //                             ╰─────────────┴──── ────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+                                      &kp ESC       &lt NAV SPACE &kp TAB           &kp RET       &bs_del_num   &ss_cw
+     //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
 )
 
 ZMK_LAYER(nav_layer,
@@ -84,7 +78,7 @@ ZMK_LAYER(nav_layer,
           ___           ___           ___           ___           ___               ___           &kp LC(X)     &kp LC(INS)   &kp LS(INS)   ___
      // ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
                                       ___           ___           ___               ___           ___           ___
-     //                             ╰─────────────┴──── ────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+     //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
 )
 
 ZMK_LAYER(num_layer,
@@ -96,6 +90,18 @@ ZMK_LAYER(num_layer,
           &kp RET       &kp N1        &kp N2        &kp N3        &kp FSLH          ___           ___           ___           ___           ___
      // ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
                                       &kp DOT       &kp N0        &kp MINUS         ___           ___           ___
-     //                             ╰─────────────┴──── ────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+     //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(german_layer,
+     // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+          ___           ___           ___           ___           ___               ___           ___           &ue           ___           ___
+     // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+          &ae           ___           &eszett       ___           ___               ___           ___           ___           ___           &oe
+     // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+          ___           ___           ___           ___           ___               ___           ___           ___           ___           ___
+     // ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+                                      ___           ___           ___               ___           ___           ___
+     //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
 )
 

@@ -62,6 +62,19 @@
         }; \
     };
 
+/* ZMK_CONDITIONAL_LAYERS */
+
+#define ZMK_CONDITIONAL_LAYERS(if_layers, then_layer) \
+    / { \
+        conditional_layers { \
+            compatible = "zmk,conditional-layers"; \
+            tri_layer { \
+                if-layers = <if_layers>; \
+                then-layer = <then_layer>; \
+            }; \
+        }; \
+    };
+
 /* ZMK_UNICODE */
 
 #if !defined OS_UNICODE_LEAD

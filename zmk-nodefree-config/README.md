@@ -10,16 +10,17 @@ streamlined syntax. Check out [example.keymap](example.keymap) to see it in acti
 
 ## Overview
 
-The repository provides a number of convenience macros:
+The following convenience macros are provided:
 1. `ZMK_BEHAVIOR` can be used to create new behaviors such as hold-taps, tap-dances or
    ZMK macros [\[doc\]](#zmk_behavior)
 2. `ZMK_LAYER` adds new layers to your keymap [\[doc\]](#zmk_layer)
 3. `ZMK_COMBO` defines new combos [\[doc\]](#zmk_combo)
-4. `ZMK_UNICODE_SINGLE` and `ZMK_UNICODE_PAIR` create unicode characters [\[doc\]](#zmk_unicode)
-5. optional `international_chars` source files define a number of international character such
+4. `ZMK_CONDITIONAL_LAYERS` sets up "tri-layer" conditions [\[doc\]](#zmk_conditional_layers)
+5. `ZMK_UNICODE_SINGLE` and `ZMK_UNICODE_PAIR` create unicode characters [\[doc\]](#zmk_unicode)
+6. optional `international_chars` source files define a number of international character such
    as <kbd>ä</kbd>/<kbd>Ä</kbd> or <kbd>δ</kbd>/<kbd>Δ</kbd> that can be added to the keymap
    [\[doc\]](#international-characters)
-6. optional `keypos_def` source files define human-readable key position shortcuts for some popular
+7. optional `keypos_def` source files define human-readable key position shortcuts for some popular
    keyboards that simplify the configuration of combos and positional hold-taps
    [\[doc\]](#key-position-shortcuts)
 
@@ -142,10 +143,10 @@ ZMK_KEYMAP(default_layer,
 * `binding`: the binding triggered by the combo (this can be any stock or previously defined behavior)
 * `keypos`: a list of 2 or more key positions that trigger the combo (e.g., `12
   13`). Note that the mapping from key positions to keys depends on your keyboard. To facilitate 
-  the combo set-up and increase portability, this repository provides shortcuts for a number of popular keyboard.
+  the combo set-up and increase portability, this repository provides shortcuts for some popular keyboards.
   See [below](#key-position-shortcuts) on how to use them.
-* `layers`: a list of layers for which the combo is active (e.g., `0` for only the
-  default layer). If set to `ALL` the combo is active on all layers.
+* `layers`: a list of layers for which the combo is active (e.g., `0 1` for the first
+  two layers). If set to `ALL` the combo is active on all layers.
 
 By default, the timeout for combos created with `ZMK_COMBO` is 30ms. If `COMBO_TERM` is
 set prior to calling `ZMK_COMBO`, the value of `COMBO_TERM` is used instead. Note: while
@@ -156,14 +157,31 @@ it is possible to set different timeout for different combos, this is known to c
 
 ```C++
 #define COMBO_TERM 50
-ZMK_COMBO(copy, &kp LC(C), 12 13, 0 1)
-ZMK_COMBO(paste, &kp LC(V), 13 14, 0 1)
+ZMK_COMBO(copy,  &kp LC(C), 12 13, ALL)
+ZMK_COMBO(paste, &kp LC(V), 13 14, ALL)
 ```
 This sets the combo timeout to 50ms, and then creates two combos which both are 
-active on the first two layers (layers 0 and 1). The first combo is triggered when the
+active all layers. The first combo is triggered when the
 12th and 13th keys are pressed jointly within the `COMBO_TERM`, sending <kbd>Ctrl</kbd> + <kbd>C</kbd>. The
 second combo is triggered when the 13th and 14th keys are pressed jointly, sending
 <kbd>Ctrl</kbd> + <kbd>V</kbd>.
+
+### ZMK\_CONDITIONAL\_LAYERS
+
+This sets up tri-layer conditions.
+
+**Syntax:** `ZMK_CONDITIONAL_LAYERS(if_layers, then_layers)`
+* `if_layers`: a list of layers which trigger the `then_layer` if simultaneously active
+* `then_layer`: the layer which is activated when the if-condition is met. Due to ZMK's
+  layering model, it should generally have a higher number than the `if_layers`
+
+For instance, this triggers "layer 3" if layers "1" and "2" are
+simultaneously active. 
+```C++
+ZMK_CONDITIONAL_LAYERS(1 2, 3)
+```
+Mind that ZMK's layer numbering starts at 0! In general, it is recommended to use layer
+definitions, as demonstrated in [example.keymap](example.keymap), to simplify life.
 
 ### ZMK\_UNICODE
 
@@ -255,14 +273,14 @@ The "umlaut"-pairs can be added to the keymap using `&ae`, `&oe` and `&ue`.
 
 ### International characters
 
-This repository includes pre-defined definitions for international characters for a few
+There are pre-defined definitions for international characters for a few
 languages (currently German and Greek --- contributions are welcome!). These can be
 loaded by sourcing the corresponding files.
 ```C++
 #include "../zmk-nodefree-config/international_chars/greek.dtsi"
 #include "../zmk-nodefree-config/international_chars/german.dtsi"
 ```
-These files make use of unicode in the background, please see the unicode documentation
+These definitions make use of unicode in the background, please see the unicode documentation
 above for prerequisites. Once sourced, Greek and German characters can be added to the
 keymap using, e.g., `&alpha`, `&upsilon`, `&tau` or `&omikron` (see the language files for
 a complete list of available characters).
@@ -303,14 +321,47 @@ into your `.keymap` file. E.g., for a 36-key board, use:
 #include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
 ```
 
-#### Example: Defining combos using key position shortcuts
+#### Example 1: Defining combos using key position shortcuts
 
 ```C++
-ZMK_COMBO(copy, &kp LC(C), LH1 LM2, 0 1)
-ZMK_COMBO(paste, &kp LC(V), LH1 LM1, 0 1)
+ZMK_COMBO(copy,  &kp LC(C), LB2 LB3, ALL)
+ZMK_COMBO(paste, &kp LC(V), LB1 LB2, ALL)
 ```
 
-This would define "copy"-combo on the home positions of the left thumb + the left middle finger,
-and it would defined a "paste"-combo on the home positions of the left thumb + the left
-index finger.
+This defines a "copy"-combo for the middle + ring finger on the left bottom row, and a
+"paste"-combo for the index + middle finger on the left bottom row. Both combos are active on all layers.
 
+#### Example 2: Home-row mods with positional hold-taps
+
+Here we use ZMK's [positional
+hold-tap](https://zmk.dev/docs/behaviors/hold-tap#positional-hold-tap-and-hold-trigger-key-positions)
+feature to make home-row mods only trigger with "opposite hand" keys.[^1] Using our
+positional shortcuts makes this straightforward: 
+
+```C++
+#define HRM_LT LM1 LM2 LM3 LM4                                      // left-hand HRMs
+#define HRM_RT RM1 RM2 RM3 RM4                                      // right-hand HRMs
+#define KEYS_LT LT0 LT1 LT2 LT3 LT4 LM0 HRM_LT LB0 LB1 LB2 LB3 LB4  // left-hand keys
+#define KEYS_RT RT0 RT1 RT2 RT3 RT4 RM0 HRM_RT RB0 RB1 RB2 RB3 RB4  // right-hand keys
+#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                              // thumb keys
+
+ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
+    flavor = "balanced";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <125>;
+    global-quick-tap;
+    bindings = <&kp>, <&kp>;
+    hold-trigger-key-positions = <KEYS_RT THUMBS HRM_LT>;  // include left-hand HRMs for chording
+)
+
+ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
+    flavor = "balanced";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <125>;
+    global-quick-tap;
+    bindings = <&kp>, <&kp>;
+    hold-trigger-key-positions = <KEYS_LT THUMBS HRM_RT>;  // include right-hand HRMs for chording
+)
+```
+
+[^1]: We also whitelist same-hand HRMs so that we can combine them to chord mods.
