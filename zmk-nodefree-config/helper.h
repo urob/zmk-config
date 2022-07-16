@@ -62,9 +62,9 @@
         }; \
     };
 
-/* ZMK_CONDITIONAL_LAYERS */
+/* ZMK_CONDITIONAL_LAYER */
 
-#define ZMK_CONDITIONAL_LAYERS(if_layers, then_layer) \
+#define ZMK_CONDITIONAL_LAYER(if_layers, then_layer) \
     / { \
         conditional_layers { \
             compatible = "zmk,conditional-layers"; \
@@ -125,11 +125,11 @@
     };
 
 #define ZMK_UNICODE_SINGLE(name, L0, L1, L2, L3) \
-    UC_MACRO(uc_lower_ ## name, &kp L0 &kp L1 &kp L2 &kp L3) \
-    UC_MODMORPH(uc_ ## name, &uc_lower_ ## name, &none)
+    UC_MACRO(name ## _lower, &kp L0 &kp L1 &kp L2 &kp L3) \
+    UC_MODMORPH(name, &name ## _lower, &none)
 
 #define ZMK_UNICODE_PAIR(name, L0, L1, L2, L3, U0, U1, U2, U3) \
-    UC_MACRO(uc_lower_ ## name, &kp L0 &kp L1 &kp L2 &kp L3) \
-    UC_MACRO(uc_upper_ ## name, &kp U0 &kp U1 &kp U2 &kp U3) \
-    UC_MODMORPH(uc_ ## name, &uc_lower_ ## name, &uc_upper_ ## name)
+    UC_MACRO(name ## _lower, &kp L0 &kp L1 &kp L2 &kp L3) \
+    UC_MACRO(name ## _upper, &kp U0 &kp U1 &kp U2 &kp U3) \
+    UC_MODMORPH(name, &name ## _lower, &name ## _upper)
 

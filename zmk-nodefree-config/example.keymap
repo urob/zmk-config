@@ -9,7 +9,7 @@
 
 #define ___ &trans
 
-#define DEF 0
+#define DEF 0  // layer shortcuts, must match order in which they are defined below
 #define NAV 1
 #define NUM 2
 #define GER 3
@@ -44,16 +44,17 @@ ZMK_BEHAVIOR(win_sleep, macro,
     bindings = <&kp LG(X) &kp U &kp S>;
 )
 
-/* combos */
+// euro sign
+ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)  // €
 
+// replace a/o/u/s with German umlauts when NAV and NUM are held jointly
+ZMK_CONDITIONAL_LAYER(NAV NUM, GER)
+
+// combos
 #define COMBO_TERM 40  // timeout of 40ms (default is 30ms if omitted)
 ZMK_COMBO(combo_sleep,  &win_sleep, RT3 RT4, NAV)  // custom sleep macro, only active on NAV layer
 ZMK_COMBO(combo_copy,   &kp LC(C),  LB2 LB3, ALL)  // Ctrl + C, active on all layers
 ZMK_COMBO(combo_paste,  &kp LC(V),  LB1 LB2, ALL)  // Ctrl + V, active on all layers
-
-/* conditional layer */
-
-ZMK_CONDITIONAL_LAYERS(NAV NUM, GER)  // replace A/O/U/S with umlauts when NAV and NUM are held jointly
 
 /* keymap */
 
@@ -95,9 +96,9 @@ ZMK_LAYER(num_layer,
 
 ZMK_LAYER(german_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          ___           ___           ___           ___           ___               ___           ___           &ue           ___           ___
+          ___           ___           ___           ___           ___               ___           ___           &de_ue        ___           ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &ae           ___           &eszett       ___           ___               ___           ___           ___           ___           &oe
+          &de_ae        ___           &de_eszett    ___           ___               ___           ___           &euro_sign    ___           &de_oe
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           ___           ___           ___           ___           ___               ___           ___           ___           ___           ___
      // ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤

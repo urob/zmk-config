@@ -11,22 +11,21 @@ streamlined syntax. Check out [example.keymap](example.keymap) to see it in acti
 ## Overview
 
 The following convenience macros are provided:
-1. `ZMK_BEHAVIOR` can be used to create new behaviors such as hold-taps, tap-dances or
+1. `ZMK_BEHAVIOR` creates behaviors such as hold-taps, tap-dances or
    ZMK macros [\[doc\]](#zmk_behavior)
-2. `ZMK_LAYER` adds new layers to your keymap [\[doc\]](#zmk_layer)
-3. `ZMK_COMBO` defines new combos [\[doc\]](#zmk_combo)
-4. `ZMK_CONDITIONAL_LAYERS` sets up "tri-layer" conditions [\[doc\]](#zmk_conditional_layers)
+2. `ZMK_LAYER` adds layers to the keymap [\[doc\]](#zmk_layer)
+3. `ZMK_COMBO` defines combos [\[doc\]](#zmk_combo)
+4. `ZMK_CONDITIONAL_LAYER` sets up "tri-layer" conditions [\[doc\]](#zmk_conditional_layer)
 5. `ZMK_UNICODE_SINGLE` and `ZMK_UNICODE_PAIR` create unicode characters [\[doc\]](#zmk_unicode)
-6. optional `international_chars` source files define a number of international character such
-   as <kbd>ä</kbd>/<kbd>Ä</kbd> or <kbd>δ</kbd>/<kbd>Δ</kbd> that can be added to the keymap
+6. `international_chars` provides character definitions for some non-English languages
    [\[doc\]](#international-characters)
-7. optional `keypos_def` source files define human-readable key position shortcuts for some popular
+7. `keypos_def` provides human-readable key position shortcuts for some popular
    keyboards that simplify the configuration of combos and positional hold-taps
-   [\[doc\]](#key-position-shortcuts)
+   [\[doc\]](#key-position-helpers)
 
 ## Quickstart
 
-1. Copy this repository into the root folder of your private zmk-config repository. The
+1. Copy this repository into the root folder of your zmk-config. The
    folder structure should look as follows:
    ```
     zmk-config
@@ -55,7 +54,7 @@ hold-tap, key-repeat, macro, mod-morph, sticky-key or tap-dance
 
 **Syntax:** `ZMK_BEHAVIOR(name, type, specification)`
 * `name`: a unique string chosen by the user (e.g., `my_behavior`). The new behavior can
-  be added to the keymap using `&name` (e.g., `&my_behavior`)
+  be added to the keymap using `&name` (e.g., `&my_behavior`).
 * `type`: the behavior to be created. It must be one of the following:
   `caps_word`, `hold_tap`, `key_repeat`, `macro`, `mod_morph`, `sticky_key` or
   `tap_dance`. Note that two-word types are separated by underscores (`_`).
@@ -76,9 +75,8 @@ ZMK_BEHAVIOR(hrm, hold_tap,
 )
 ```
 
-The new behavior can be added to the keymap-layout using `&hrm` (e.g., `&hrm LSHIFT T`
-creates a key that yields `T` on tap and `LSHIFT` on hold, using the custom
-configuration above).
+This creates a custom "homerow mod" that can be added to the keymap using `&hrm`. For example,
+`&hrm LSHIFT T` creates a key that yields `T` on tap and `LSHIFT` on hold.
 
 #### Example 2: Creating a custom tap-dance key
 
@@ -88,9 +86,8 @@ ZMK_BEHAVIOR(ss_cw, tap_dance,
     bindings = <&sk LSHFT>, <&caps_word>;
 )
 ```
-
-The new behavior can be added to the keymap-layout using `&ss_cw`. The key yields 
-sticky-shift on tap and caps-word on double tap;
+This behavior yields sticky-shift on tap and caps-word on double tap. It can be added to
+the keymap using `&ss_cw`. 
 
 #### Example 3: Creating a custom "win-sleep" macro
 
@@ -102,15 +99,14 @@ ZMK_BEHAVIOR(win_sleep, macro,
 )
 ```
 
-This creates a "Windows sleep key" that can be added to the keymap-layout using
-`&win_sleep`.
+This creates a "Windows sleep macro" that can be added to the keymap using `&win_sleep`.
 
 ### ZMK\_LAYER
 
 `ZMK_LAYER` adds new keymap layers to the configuration.
 
 **Syntax:** `ZMK_LAYER(name, layout)`
-* `name`: a unique identifier string chosen by the user (usually this isn't referenced elsewhere)
+* `name`: a unique identifier string chosen by the user (usually there is no reason to reference this elsewhere)
 * `layout`: the layout specification using the same syntax as the `bindings`
   property of the [ZMK keymap configuration](https://zmk.dev/docs/config/keymap)
 
@@ -139,18 +135,18 @@ ZMK_KEYMAP(default_layer,
 `ZMK_COMBO` defines new combos.
 
 **Syntax:** `ZMK_COMBO(name, bindings, keypos, layers)`
-* `name`: a unique identifier string chosen by the user (usually this isn't referenced elsewhere)
+* `name`: a unique identifier string chosen by the user (usually there is not reason to reference this elsewhere)
 * `binding`: the binding triggered by the combo (this can be any stock or previously defined behavior)
 * `keypos`: a list of 2 or more key positions that trigger the combo (e.g., `12
   13`). Note that the mapping from key positions to keys depends on your keyboard. To facilitate 
-  the combo set-up and increase portability, this repository provides shortcuts for some popular keyboards.
-  See [below](#key-position-shortcuts) on how to use them.
+  the combo setup and increase portability, one can use key-position helpers instead.
+  See [below](#key-position-helpers) on how to use them.
 * `layers`: a list of layers for which the combo is active (e.g., `0 1` for the first
   two layers). If set to `ALL` the combo is active on all layers.
 
 By default, the timeout for combos created with `ZMK_COMBO` is 30ms. If `COMBO_TERM` is
 set prior to calling `ZMK_COMBO`, the value of `COMBO_TERM` is used instead. Note: while
-it is possible to set different timeout for different combos, this is known to cause
+it is possible to set different timeouts for different combos, this is known to cause
 [issues](https://github.com/zmkfirmware/zmk/issues/905) with overlapping combos and should be avoided.
 
 #### Example: copy and paste combos
@@ -161,16 +157,16 @@ ZMK_COMBO(copy,  &kp LC(C), 12 13, ALL)
 ZMK_COMBO(paste, &kp LC(V), 13 14, ALL)
 ```
 This sets the combo timeout to 50ms, and then creates two combos which both are 
-active all layers. The first combo is triggered when the
+active on all layers. The first combo is triggered when the
 12th and 13th keys are pressed jointly within the `COMBO_TERM`, sending <kbd>Ctrl</kbd> + <kbd>C</kbd>. The
 second combo is triggered when the 13th and 14th keys are pressed jointly, sending
 <kbd>Ctrl</kbd> + <kbd>V</kbd>.
 
-### ZMK\_CONDITIONAL\_LAYERS
+### ZMK\_CONDITIONAL\_LAYER
 
 This sets up tri-layer conditions.
 
-**Syntax:** `ZMK_CONDITIONAL_LAYERS(if_layers, then_layers)`
+**Syntax:** `ZMK_CONDITIONAL_LAYER(if_layers, then_layers)`
 * `if_layers`: a list of layers which trigger the `then_layer` if simultaneously active
 * `then_layer`: the layer which is activated when the if-condition is met. Due to ZMK's
   layering model, it should generally have a higher number than the `if_layers`
@@ -178,38 +174,19 @@ This sets up tri-layer conditions.
 For instance, this triggers "layer 3" if layers "1" and "2" are
 simultaneously active. 
 ```C++
-ZMK_CONDITIONAL_LAYERS(1 2, 3)
+ZMK_CONDITIONAL_LAYER(1 2, 3)
 ```
-Mind that ZMK's layer numbering starts at 0! In general, it is recommended to use layer
+Mind that ZMK's layer numbering starts at 0. One can use layer
 definitions, as demonstrated in [example.keymap](example.keymap), to simplify life.
 
 ### ZMK\_UNICODE
 
-There are two macros that simplify creating new unicode characters that
+There are two macros that create new unicode characters that
 can be added to the keymap. `ZMK_UNICODE_SINGLE` creates single unicode characters such
-as <kbd>€</kbd>, whereas `ZMK_UNICODE_PAIR` creates pairs of shifted/unshifted unicode
+as <kbd>€</kbd>, and `ZMK_UNICODE_PAIR` creates pairs of shifted/unshifted unicode
 characters that are useful for specifying international characters such as
 <kbd>ä</kbd>/<kbd>Ä</kbd> or <kbd>δ</kbd>/<kbd>Δ</kbd>.
 
-Note that the input of unicode characters differs across operation systems. By default,
-`ZMK_UNICODE` is configured for Windows (using WinCompose). The easiest way to set up unicode
-characters for other operation systems is to set the variable `HOST_OS` **before**
-sourcing `helper.h`.
-
-For Linux use:
-```C++
-#define HOST_OS 1  // set to 1 for Linux, default is 0 (Windows)
-#include helper.h
-```
-For macOS use:
-```C++
-#define HOST_OS 2  // set to 2 for macOS, default is 0 (Windows)
-#include helper.h
-```
-This will send unicode characters using the OS's default input channels.
-For non-default input channels or for other operation systems, one can instead set the
-variables `OS_UNICODE_LEAD` and `OS_UNICODE_TRAIL` to the character sequences that
-initialize/terminate the unicode input.
 
 **Syntax:** `ZMK_UNICODE_SINGLE(name, L0, L1, L2, L3)`
 * `name:` a unique string chosen by the user (e.g., `my_char`). The unicode character  can
@@ -224,35 +201,36 @@ initialize/terminate the unicode input.
 * `U0` to `U3`: a 4-digit sequence defining the shifted unicode string (which is send when
   holding <kbd>Shift</kbd> while pressing <kbd>&name</kbd>)
 
-Note: 5-digit unicode characters are currently not supported.
+Note: 5-digit unicode characters are currently not supported (but would be easy to add
+if there is interest).
 
-#### Example 1: Euro sign (U+20AC)
+#### Example 1: Euro sign (€)
 
 ```C++
 ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)
 ```
-The Euro character can be added to the keymap using `&euro_sign`.
+This creates a Euro character that can be added to the keymap using `&euro_sign`.
 
 #### Example 2: German umlauts (ä/Ä, ö/Ö, ü/Ü)
 
 ```C++
-//                name  unshifted         shifted
-ZMK_UNICODE_PAIR( ae,   N0, N0,  E, N4,   N0, N0,  C, N4 )
-ZMK_UNICODE_PAIR( oe,   N0, N0,  F, N6,   N0, N0,  D, N6 )
-ZMK_UNICODE_PAIR( ue,   N0, N0,  F,  C,   N0, N0,  D,  C )
+//                name     unshifted         shifted
+ZMK_UNICODE_PAIR( de_ae,   N0, N0,  E, N4,   N0, N0,  C, N4 )
+ZMK_UNICODE_PAIR( de_oe,   N0, N0,  F, N6,   N0, N0,  D, N6 )
+ZMK_UNICODE_PAIR( de_ue,   N0, N0,  F,  C,   N0, N0,  D,  C )
 ```
-The "umlaut"-pairs can be added to the keymap using `&ae`, `&oe` and `&ue`.
+The creates "umlaut" pairs that can be added to the keymap using `&de_ae`, `&de_oe` and `&de_ue`.
 
-#### Dependencies for unicodes
+#### Dependencies for unicode
 
-* `ZMK_UNICODE_PAIR` requires a ZMK version patched with
-  [PR#1114](https://github.com/zmkfirmware/zmk/pull/1114) (not needed for
-  `ZMK_UNICODE_SINGLE`). If you don't want to maintain
-  your own ZMK repository, you can use ZMK's [beta
+
+* `ZMK_UNICODE_PAIR` requires ZMK patched with a modified version of the "masked-mods"
+  PR, available from [https://github.com/urob/zmk/tree/masked-mods](https://github.com/urob/zmk/tree/masked-mods).[^1] If you don't want
+  to maintain your own ZMK repository, you can use ZMK's [beta
   testing](https://zmk.dev/docs/features/beta-testing) feature to configure Github
   Actions to build against a patched remote branch of ZMK. To do so, replace the
-  contents of `west.yml` in your local `zmk-config/config` directory with the following
-  contents:
+  contents of `west.yml` in your `zmk-config/config` directory with the following
+  contents, which adds the required patch:
     ```
     manifest:
       remotes:
@@ -266,36 +244,58 @@ The "umlaut"-pairs can be added to the keymap using `&ae`, `&oe` and `&ue`.
       self:
         path: config
     ```
-* Depending on the operation system there are addition requirements for unicode input to
-  work. On Windows, one must install
-  [WinCompose](https://github.com/samhocevar/wincompose). On macOS one must enable
-  unicode input in the system preferences.
+* The input of unicode characters differs across operating systems. By
+    default, `ZMK_UNICODE` is configured for Windows (using WinCompose). To set it up
+    for another OS, set the variable
+    `HOST_OS` **before** sourcing `helper.h`.
+
+    For Linux use:
+    ```C++
+    #define HOST_OS 1  // set to 1 for Linux, default is 0 (Windows)
+    #include helper.h
+    ```
+    For macOS use:
+    ```C++
+    #define HOST_OS 2  // set to 2 for macOS, default is 0 (Windows)
+    #include helper.h
+    ```
+    This will send unicode characters using the OS's default input channels.
+    For non-default input channels or for other operating systems, one can instead set the
+    variables `OS_UNICODE_LEAD` and `OS_UNICODE_TRAIL` to the character sequences that
+    initialize/terminate the unicode input.[^2]
+
+* On Windows and macOS there are additional requirements for unicode input to work. On
+  Windows, one must install [WinCompose](https://github.com/samhocevar/wincompose). On
+  macOS one must enable unicode input in the system preferences.
 
 ### International characters
 
 There are pre-defined definitions for international characters for a few
-languages (currently German and Greek --- contributions are welcome!). These can be
-loaded by sourcing the corresponding files.
+languages  --- currently German, Greek and Swedish (contributions are welcome)[^3]. These can be
+loaded by sourcing the corresponding files; e.g.:
 ```C++
-#include "../zmk-nodefree-config/international_chars/greek.dtsi"
 #include "../zmk-nodefree-config/international_chars/german.dtsi"
+#include "../zmk-nodefree-config/international_chars/greek.dtsi"
+#include "../zmk-nodefree-config/international_chars/swedish.dtsi"
 ```
-These definitions make use of unicode in the background, please see the unicode documentation
-above for prerequisites. Once sourced, Greek and German characters can be added to the
-keymap using, e.g., `&alpha`, `&upsilon`, `&tau` or `&omikron` (see the language files for
-a complete list of available characters).
+Once sourced, international characters can be added to the
+keymap using, e.g., `&de_ae`, `&el_alpha` or `&sv_ao`
+(each language has its own prefix; see the language files for a complete list of available characters).
 
-### Key position shortcuts
+**Dependencies:** These definitions make use of unicode in the background,
+see the unicode section above for [prerequisites](#dependencies-for-unicode).
 
-Certain configuration options such as combos and positional hold-taps are based on the 
-physical position of keys on your keyboard. This reduces portability of configuration
-files across keyboards with different layouts. 
+### Key-position helpers
 
-To increase portability, this repository comes with key position definitions for some
-popular keyboard layouts (48-key boards such as Planck, 42-key boards such as Corne,
-36-key boards and 34-key boards).
+Certain configuration options such as combos and positional hold-taps are based on the
+physical position of keys on the keyboard. This can be cumbersome and reduces
+portability of configuration files across keyboards with different layouts. 
 
-These layouts provide a map from the physical key positions to human-readable shortcuts.
+To increase portability and ease of use, this repo provides optional key-position
+helpers for some popular keyboard layouts (48-key boards such as Planck, 42-key
+boards such as Corne, 36-key boards and 34-key boards).
+
+These key-position helpers provide a map from the physical key positions to human-readable shortcuts.
 All shortcuts are of the following form:
 * `L/R` for **L**eft/**R**ight hand
 * `T/M/B/H` for **T**op/**M**iddle/**B**ottom and t**H**umb row.
@@ -312,16 +312,16 @@ For instance, the shortcuts layout for a 36-key board looks as follows:
 ╰───────╮ LH2 LH1 LH0 │ RH0 RH1 RH2 ╭───────╯
         ╰─────────────┴─────────────╯
 ```
-Schematics for all existing layout files can be found at the top of the corresponding
-definition files.
+Schematics for all supported keyboards can be found in the corresponding
+definition files in the `keypos_def` folder.
 
-To use these shortcut definitions, source the definition file for your keyboard
+To use these key-position helpers, source the definition file for your keyboard
 into your `.keymap` file. E.g., for a 36-key board, use:
 ```C++
 #include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
 ```
 
-#### Example 1: Defining combos using key position shortcuts
+#### Example 1: Defining combos using key-position helpers
 
 ```C++
 ZMK_COMBO(copy,  &kp LC(C), LB2 LB3, ALL)
@@ -335,8 +335,8 @@ This defines a "copy"-combo for the middle + ring finger on the left bottom row,
 
 Here we use ZMK's [positional
 hold-tap](https://zmk.dev/docs/behaviors/hold-tap#positional-hold-tap-and-hold-trigger-key-positions)
-feature to make home-row mods only trigger with "opposite hand" keys.[^1] Using our
-positional shortcuts makes this straightforward: 
+feature to make home-row mods only trigger with "opposite hand" keys.[^4] Using
+key-position helpers makes this straightforward: 
 
 ```C++
 #define HRM_LT LM1 LM2 LM3 LM4                                      // left-hand HRMs
@@ -363,5 +363,19 @@ ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
     hold-trigger-key-positions = <KEYS_LT THUMBS HRM_RT>;  // include right-hand HRMs for chording
 )
 ```
+[^1]: The original "masked-mods" PR is available [here](https://github.com/zmkfirmware/zmk/pull/1114).
+      It works well when using the standard unicode configuration with Windows or macOS, 
+      but leads to garbled unicode sequences under Linux. Using the patched version from
+      https://github.com/urob/zmk/tree/masked-mods makes it work under all three
+      operating systems and for non-standard configurations.
 
-[^1]: We also whitelist same-hand HRMs so that we can combine them to chord mods.
+[^2]: The default for Windows is `OS_UNICODE_LEAD` set to tap <kbd>Right Alt</kbd>
+    followed by <kbd>U</kbd> and `OS_UNICODE_TRAIL` set to tap <kbd>Return</kbd>. 
+    The default for Linux is `OS_UNICODE_LEAD` set to tap <kbd>Shift</kbd> +
+    <kbd>Ctrl</kbd> + <kbd>U</kbd> and `OS_UNICODE_TRAIL` set to tap <kbd>Space</kbd>. 
+    The default for macOS is `OS_UNICODE_LEAD` set to hold <kbd>Left Alt</kbd>
+    and `OS_UNICODE_TRAIL` set to release <kbd>Left Alt</kbd>.
+
+[^3]: Swedish language support was added by discord user "captainwoot".
+
+[^4]: We also whitelist same-hand HRMs so that we can combine them to chord mods.
