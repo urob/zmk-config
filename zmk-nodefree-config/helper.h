@@ -54,6 +54,7 @@
         combos { \
             compatible = "zmk,combos"; \
             combo_ ## name { \
+                global-quick-tap-ms = <125>; \
                 timeout-ms = <COMBO_TERM>; \
                 bindings = <combo_bindings>; \
                 key-positions = <keypos>; \

@@ -72,8 +72,8 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
     flavor = "balanced";
     tapping-term-ms = <280>;
-    quick-tap-ms = <125>;
-    global-quick-tap;
+    quick-tap-ms = <175>;
+    global-quick-tap-ms = <125>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_RT THUMBS HRM_LT>;  // include left-hand HRMs for chording
 )
@@ -81,8 +81,8 @@ ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
 ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
     flavor = "balanced";
     tapping-term-ms = <280>;
-    quick-tap-ms = <125>;
-    global-quick-tap;
+    quick-tap-ms = <175>;
+    global-quick-tap-ms = <125>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_LT THUMBS HRM_RT>;  // include right-hand HRMs for chording
 )
