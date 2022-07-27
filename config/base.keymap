@@ -53,6 +53,12 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
     quick-release;             // no double capitalization when rolling keys
 };
 
+// sticky layer config
+&sl {
+//    release-after-ms = <550>;  // release after 0.55s
+    ignore-modifiers;             // no double capitalization when rolling keys
+};
+
 // layer tap config
 &lt {
     flavor = "balanced";
@@ -148,7 +154,7 @@ ZMK_LAYER(nav_layer,
 
 ZMK_LAYER(sys_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          &kp LG(GRAVE) ___           ___           ___           &bootloader       EXTRA_MID         ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep
+          &kp LG(GRAVE) ___           ___           &reset        &bootloader       EXTRA_MID         ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               EXTRA_MID         ___           DSK_PREV      &kp C_VOL_DN  DSK_NEXT      ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤

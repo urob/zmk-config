@@ -51,3 +51,4 @@ ZMK_COMBO(minus, &kp MINUS,     RM1 RB1, DEF NUM)
 ZMK_COMBO(fslh,  &kp FSLH,      RM2 RB2, DEF NUM)
 ZMK_COMBO(pipe,  &kp PIPE,      RM3 RB3, DEF NUM)
 
+ZMK_COMBO(greek, &sl UC,        LH1 LT2, DEF NUM)
