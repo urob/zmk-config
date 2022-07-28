@@ -8,7 +8,9 @@
           ╰─────────────╯ ╰─────────────╯ */
 
 // COMBO_TERM must be same for all combos to avoid #986, possibly related to #905
+#undef COMBO_TERM
 #define COMBO_TERM 30
+#undef COMBO_QUICK_TAP_MS
 #define COMBO_QUICK_TAP_MS 150
 
 /* Punctuation (horizontal left hand) */
@@ -30,6 +32,9 @@ ZMK_COMBO(lpar,  &kp LPAR,      RM1 RM2, DEF NUM)
 ZMK_COMBO(rpar,  &kp RPAR,      RM2 RM3, DEF NUM)
 ZMK_COMBO(lbrk,  &kp LBKT,      RB1 RB2, DEF NUM)
 ZMK_COMBO(rbrk,  &kp RBKT,      RB2 RB3, DEF NUM)
+
+// #undef COMBO_TERM
+// #define COMBO_TERM 50
 
 /* Other symbols (vertical combos) */
 ZMK_COMBO(at,    &kp AT,        LT3 LM3, DEF NUM)
