@@ -7,8 +7,9 @@
   ╰───────╮ LH2 LH1 LH0 │ │ RH0 RH1 RH2 ╭───────╯
           ╰─────────────╯ ╰─────────────╯ */
 
-// must be same for all combos to avoid #986, possibly related to #905
+// COMBO_TERM must be same for all combos to avoid #986, possibly related to #905
 #define COMBO_TERM 30
+#define COMBO_QUICK_TAP_MS 150
 
 /* Punctuation (horizontal left hand) */
 ZMK_COMBO(num,   &tog NUM,      LT3 LT1, DEF NUM)

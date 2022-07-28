@@ -1,4 +1,4 @@
-/* 
+/*
  * helper.h
  *
  * Convenience macros simplifying ZMK's keymap configuration.
@@ -48,13 +48,16 @@
 #if !defined COMBO_TERM
     #define COMBO_TERM 30
 #endif
+#if !defined COMBO_QUICK_TAP_MS
+    #define COMBO_QUICK_TAP_MS -1
+#endif
 
 #define ZMK_COMBO(name, combo_bindings, keypos, combo_layers) \
     / { \
         combos { \
             compatible = "zmk,combos"; \
             combo_ ## name { \
-                global-quick-tap-ms = <125>; \
+                global-quick-tap-ms = <COMBO_QUICK_TAP_MS>; \
                 timeout-ms = <COMBO_TERM>; \
                 bindings = <combo_bindings>; \
                 key-positions = <keypos>; \
@@ -81,7 +84,7 @@
 #if !defined OS_UNICODE_LEAD
     #if HOST_OS == 2
         #define OS_UNICODE_LEAD &macro_press &kp LALT      // macOS
-    #elif HOST_OS == 1 
+    #elif HOST_OS == 1
         #define OS_UNICODE_LEAD &macro_tap &kp LS(LC(U))   // Linux
     #else
         #define OS_UNICODE_LEAD &macro_tap &kp RALT &kp U  // Windows + WinCompose (default)
@@ -90,7 +93,7 @@
 #if !defined OS_UNICODE_TRAIL
     #if HOST_OS == 2
         #define OS_UNICODE_TRAIL &macro_release &kp LALT  // macOS
-    #elif HOST_OS == 1 
+    #elif HOST_OS == 1
         #define OS_UNICODE_TRAIL &macro_tap &kp SPACE     // Linux
     #else
         #define OS_UNICODE_TRAIL &macro_tap &kp RET       // Windows + WinCompose (default)

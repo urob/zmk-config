@@ -44,6 +44,8 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 #define FN 4
 #define UC 5
 
+#define QUICK_TAP_MS 220
+
 #include "combos.dtsi"  // source after layer shortcuts
 #include "mouse.dtsi"
 
@@ -63,7 +65,7 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 &lt {
     flavor = "balanced";
     tapping-term-ms = <200>;
-    quick-tap-ms = <220>;  // double-tap + hold repeats tap-key
+    quick-tap-ms = <QUICK_TAP_MS>;  // double-tap + hold repeats tap-key
 //    global-quick-tap;
 };
 
@@ -77,8 +79,8 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 
 ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
     flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <220>;
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
     global-quick-tap-ms = <150>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_RT THUMBS HRM_LT>;  // include left-hand HRMs for chording
@@ -86,8 +88,8 @@ ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
 
 ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
     flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <220>;
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
     global-quick-tap-ms = <150>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_LT THUMBS HRM_RT>;  // include right-hand HRMs for chording
