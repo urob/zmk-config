@@ -51,6 +51,7 @@ ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)  // €
 ZMK_CONDITIONAL_LAYER(NAV NUM, GER)
 
 // combos
+#undef COMBO_TERM
 #define COMBO_TERM 40  // timeout of 40ms (default is 30ms if omitted)
 ZMK_COMBO(combo_sleep,  &win_sleep, RT3 RT4, NAV)  // custom sleep macro, only active on NAV layer
 ZMK_COMBO(combo_copy,   &kp LC(C),  LB2 LB3, ALL)  // Ctrl + C, active on all layers

@@ -44,24 +44,37 @@
 
 /* ZMK_COMBOS */
 
-#define ALL -1
+#define ALL 0xff
 #if !defined COMBO_TERM
     #define COMBO_TERM 30
 #endif
-#if !defined COMBO_QUICK_TAP_MS
-    #define COMBO_QUICK_TAP_MS (-1)
-#endif
 
-#define ZMK_COMBO(name, combo_bindings, keypos, combo_layers, combo_term) \
+#define ZMK_COMBO(name, combo_bindings, keypos, combo_layers) \
     / { \
         combos { \
             compatible = "zmk,combos"; \
             combo_ ## name { \
+                timeout-ms = <COMBO_TERM>; \
                 bindings = <combo_bindings>; \
                 key-positions = <keypos>; \
                 layers = <combo_layers>; \
-                timeout-ms = <combo_term>; \
-                global-quick-tap-ms = <COMBO_QUICK_TAP_MS>; \
+            }; \
+        }; \
+    };
+
+#if !defined COMBO_ADD_ON
+    #define COMBO_ADD_ON
+#endif
+#define ZMK_COMBO_ADV(name, combo_bindings, keypos, combo_layers, combo_timeout) \
+    / { \
+        combos { \
+            compatible = "zmk,combos"; \
+            combo_ ## name { \
+                timeout-ms = <combo_timeout>; \
+                bindings = <combo_bindings>; \
+                key-positions = <keypos>; \
+                layers = <combo_layers>; \
+                COMBO_ADD_ON \
             }; \
         }; \
     };
@@ -123,6 +136,7 @@
                 #binding-cells = <0>; \
                 bindings = <uc_binding>, <shifted_uc_binding>; \
                 mods = <(MOD_LSFT|MOD_RSFT)>; \
+                masked-mods = <(MOD_LSFT|MOD_RSFT)>; \
             }; \
         }; \
     };
