@@ -118,19 +118,11 @@ ZMK_BEHAVIOR(uc_shift, macro,
              , <&macro_release &mo UC &kp LSHFT>;
 )
 
-/ {
-	behaviors {
-		sls: sticky_uc_shift {
-			compatible = "zmk,behavior-sticky-key";
-			label = "STICKY_UC_SHIFT";
-			#binding-cells = <1>;
-			release-after-ms = <1000>;
-			bindings = <&uc_shift>;
-			ignore-modifiers;
-		};
-	};
-};
-
+ZMK_BEHAVIOR(sls, sticky_key,
+    release-after-ms = <1000>;
+    bindings = <&uc_shift>;
+    ignore-modifiers;
+)
 
 /* keymap */
 
