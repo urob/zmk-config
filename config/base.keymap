@@ -63,6 +63,11 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 //    global-quick-tap;
 };
 
+// caps word
+&caps_word {
+    /delete-property/ ignore-modifiers;
+};
+
 /* homerow mods */
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
