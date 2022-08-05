@@ -49,19 +49,19 @@
     #define COMBO_TERM 30
 #endif
 #if !defined COMBO_QUICK_TAP_MS
-    #define COMBO_QUICK_TAP_MS -1
+    #define COMBO_QUICK_TAP_MS (-1)
 #endif
 
-#define ZMK_COMBO(name, combo_bindings, keypos, combo_layers) \
+#define ZMK_COMBO(name, combo_bindings, keypos, combo_layers, combo_term) \
     / { \
         combos { \
             compatible = "zmk,combos"; \
             combo_ ## name { \
-                global-quick-tap-ms = <COMBO_QUICK_TAP_MS>; \
-                timeout-ms = <COMBO_TERM>; \
                 bindings = <combo_bindings>; \
                 key-positions = <keypos>; \
                 layers = <combo_layers>; \
+                timeout-ms = <combo_term>; \
+                global-quick-tap-ms = <COMBO_QUICK_TAP_MS>; \
             }; \
         }; \
     };

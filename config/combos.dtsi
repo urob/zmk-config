@@ -8,50 +8,51 @@
           ╰─────────────╯ ╰─────────────╯ */
 
 // COMBO_TERM must be same for all combos to avoid #986, possibly related to #905
-#undef COMBO_TERM
-#define COMBO_TERM 20
+#define COMBO_TERM_FAST 20
+#define COMBO_TERM_SLOW 35
 #undef COMBO_QUICK_TAP_MS
 #define COMBO_QUICK_TAP_MS 150
 
 /* Punctuation (horizontal left hand) */
-ZMK_COMBO(num,   &tog NUM,      LT3 LT1, DEF NUM)
-ZMK_COMBO(all,   &kp LC(A),     LT3 LT2, DEF NUM)
-ZMK_COMBO(app,   &kp LG(SPACE), LT2 LT1, DEF NUM)
+ZMK_COMBO(num,   &tog NUM,      LT3 LT1, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(all,   &kp LC(A),     LT3 LT2, DEF NUM, COMBO_TERM_FAST)
+ZMK_COMBO(app,   &kp LG(SPACE), LT2 LT1, DEF NUM, COMBO_TERM_FAST)
 
-ZMK_COMBO(excl,  &kp EXCL,      LM3 LM2, DEF NUM)
-ZMK_COMBO(qmark, &kp QMARK,     LM2 LM1, DEF NUM)
+ZMK_COMBO(excl,  &kp EXCL,      LM3 LM2, DEF NUM, COMBO_TERM_FAST)
+ZMK_COMBO(qmark, &kp QMARK,     LM2 LM1, DEF NUM, COMBO_TERM_FAST)
 
-ZMK_COMBO(cut,   &kp LC(X),     LB3 LB1, DEF NUM)
-ZMK_COMBO(copy,  &kp LC(INS),   LB3 LB2, DEF NUM)
-ZMK_COMBO(paste, &kp LS(INS),   LB2 LB1, DEF NUM)
+ZMK_COMBO(cut,   &kp LC(X),     LB3 LB1, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(copy,  &kp LC(INS),   LB3 LB2, DEF NUM, COMBO_TERM_FAST)
+ZMK_COMBO(paste, &kp LS(INS),   LB2 LB1, DEF NUM, COMBO_TERM_FAST)
 
 /* Brackets (horizontal right hand) */
-ZMK_COMBO(lbrc,  &kp LBRC,      RT1 RT2, DEF NUM)
-ZMK_COMBO(rbrc,  &kp RBRC,      RT2 RT3, DEF NUM)
-ZMK_COMBO(lpar,  &kp LPAR,      RM1 RM2, DEF NUM)
-ZMK_COMBO(rpar,  &kp RPAR,      RM2 RM3, DEF NUM)
-ZMK_COMBO(lbrk,  &kp LBKT,      RB1 RB2, DEF NUM)
-ZMK_COMBO(rbrk,  &kp RBKT,      RB2 RB3, DEF NUM)
+ZMK_COMBO(lbrc,  &kp LBRC,      RT1 RT2, DEF NUM, COMBO_TERM_FAST)
+ZMK_COMBO(rbrc,  &kp RBRC,      RT2 RT3, DEF NUM, COMBO_TERM_FAST)
+ZMK_COMBO(lpar,  &kp LPAR,      RM1 RM2, DEF NUM, COMBO_TERM_FAST)
+ZMK_COMBO(rpar,  &kp RPAR,      RM2 RM3, DEF NUM, COMBO_TERM_FAST)
+ZMK_COMBO(lbrk,  &kp LBKT,      RB1 RB2, DEF NUM, COMBO_TERM_FAST)
+ZMK_COMBO(rbrk,  &kp RBKT,      RB2 RB3, DEF NUM, COMBO_TERM_FAST)
 
 /* Other symbols (vertical combos) */
-ZMK_COMBO(at,    &kp AT,        LT3 LM3, DEF NUM)
-ZMK_COMBO(hash,  &kp HASH,      LT2 LM2, DEF NUM)
-ZMK_COMBO(dllr,  &kp DLLR,      LT1 LM1, DEF NUM)
-ZMK_COMBO(prcnt, &kp PRCNT,     LT0 LM0, DEF NUM)
+ZMK_COMBO(at,    &kp AT,        LT3 LM3, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(hash,  &kp HASH,      LT2 LM2, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(dllr,  &kp DLLR,      LT1 LM1, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(prcnt, &kp PRCNT,     LT0 LM0, DEF NUM, COMBO_TERM_SLOW)
 
-ZMK_COMBO(caret, &kp CARET,     RT0 RM0, DEF NUM)
-ZMK_COMBO(plus,  &kp PLUS,      RT1 RM1, DEF NUM)
-ZMK_COMBO(star,  &kp STAR,      RT2 RM2, DEF NUM)
-ZMK_COMBO(amps,  &kp AMPS,      RT3 RM3, DEF NUM)
+ZMK_COMBO(caret, &kp CARET,     RT0 RM0, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(plus,  &kp PLUS,      RT1 RM1, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(star,  &kp STAR,      RT2 RM2, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(amps,  &kp AMPS,      RT3 RM3, DEF NUM, COMBO_TERM_SLOW)
 
-ZMK_COMBO(grave, &kp GRAVE,     LM3 LB3, DEF NUM)
-ZMK_COMBO(bslh,  &kp BSLH,      LM2 LB2, DEF NUM)
-ZMK_COMBO(tilde, &kp TILDE,     LM1 LB1, DEF NUM)
-ZMK_COMBO(equal, &kp EQUAL,     LM0 LB0, DEF NUM)
+ZMK_COMBO(grave, &kp GRAVE,     LM3 LB3, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(bslh,  &kp BSLH,      LM2 LB2, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(tilde, &kp TILDE,     LM1 LB1, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(equal, &kp EQUAL,     LM0 LB0, DEF NUM, COMBO_TERM_SLOW)
 
-ZMK_COMBO(under, &kp UNDER,     RM0 RB0, DEF NUM)
-ZMK_COMBO(minus, &kp MINUS,     RM1 RB1, DEF NUM)
-ZMK_COMBO(fslh,  &kp FSLH,      RM2 RB2, DEF NUM)
-ZMK_COMBO(pipe,  &kp PIPE,      RM3 RB3, DEF NUM)
+ZMK_COMBO(under, &kp UNDER,     RM0 RB0, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(minus, &kp MINUS,     RM1 RB1, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(fslh,  &kp FSLH,      RM2 RB2, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(pipe,  &kp PIPE,      RM3 RB3, DEF NUM, COMBO_TERM_SLOW)
 
-ZMK_COMBO(greek, &sl UC,        LH1 LT2, DEF NUM)
+ZMK_COMBO(grk,   &sl UC,        RT1 RT3, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(cpgrk, &sls 0,      RT1 RT2 RT3, DEF NUM, COMBO_TERM_SLOW)
