@@ -53,14 +53,13 @@ This is almost perfect, but there's still a few rough edges:
   hold-tap" feature to force HRMs to always resolve as "tap" when the *next* key is on
   the same side of the keyboard. Problem solved.
 * ... or at least almost. The official ZMK version for positional-hold-taps performs the
-  check whether the next key is on the same side of the keyboard upon *key
-  press*. This is not ideal, because it prevents combining two modifiers on the same
-  hand. To fix this, I use a small patch that delays the positional-hold-tap decision
-  until *key release*. This way, multiple mods can be combined, while I still get the
-  benefit from positional-hold-taps when tapping keys. There is no PR yet (I am still in
-  an early testing stage), but if you want to try, this is the [testing
-  branch](https://github.com/urob/zmk/tree/positional-hold-tap-on-release).
-* So far, nothing of the configuration depends on the duration of `tapping-term-ms`. In
+  check whether the next key is on the same side of the keyboard upon *key press*. This
+  is not ideal, because it prevents combining two modifiers on the same hand. To fix
+  this, I use a small patch that delays the positional-hold-tap decision until *key
+  release* ([PR #1423](https://github.com/zmkfirmware/zmk/pull/1423)). This way, multiple
+  mods can be combined, while I still get the benefit from positional-hold-taps when
+  tapping keys.
+  * So far, nothing of the configuration depends on the duration of `tapping-term-ms`. In
   practice, there are two reasons why I don't set it to eternity:
     1. Sometimes, in rare circumstances, I want to use a mod with a key *on
        the same hand* (e.g., when using the mouse with the other hand). My positional
@@ -92,6 +91,7 @@ ZMK_BEHAVIOR(hml, hold_tap,
     global-quick-tap-ms = <150>;         // without PR #1387 use global-quick-tap instead
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_R THUMBS>;
+    hold-trigger-on-release;             // requires PR #1423
 )
 
 /* right-hand HRMs */
@@ -102,6 +102,7 @@ ZMK_BEHAVIOR(hmr, hold_tap,
     global-quick-tap-ms = <150>;         // without PR #1387 use global-quick-tap instead
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_L THUMBS>;
+    hold-trigger-on-release;             // requires PR #1423
 )
 ```
 One last note, the configuration above uses some syntactic sugar introduced in [PR
@@ -112,8 +113,7 @@ similar effect (`global-quick-tap` will use the regular `quick-tap-ms` timeout i
 case).
 
 My personal [ZMK fork](https://github.com/urob/zmk) includes both the
-global-quick-tap-ms PR as well as the positonal-hold-tap tweak (along with a few other
-PRs).
+global-quick-tap-ms PR and the hold-trigger-on-release PR (along with a few other PRs).
 
 
 ## A few thoughts on the combo setup
