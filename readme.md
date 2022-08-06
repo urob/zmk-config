@@ -1,4 +1,4 @@
-# zmk-config
+# urob's zmk-config
 
 This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration. 
 It is ported from my QMK configuration, which in turn is heavily inspired by Manna Harbour's
@@ -6,69 +6,68 @@ It is ported from my QMK configuration, which in turn is heavily inspired by Man
 
 ## Key features
 
-- clean keymap config + easy unicode setup using helper macros from
+- clean keymap + unicode setup using helper macros from
   [zmk-nodefree-config](https://github.com/urob/zmk-nodefree-config)
-- home-row mods on base layer (with the perfect ["timeless" configuration](#timeless-homerow-mods));
+- keymap and combo setup portable across different physical layouts
+- ["timeless" homerow mods](#timeless-homerow-mods) on the base layer;
   sticky mods on other layers
-- most symbols can be accessed from the base layer via combos
+- combos replacing the symbol layer
 - sticky shift on right thumb, double-tap activates caps-word
-- backspace morphs into delete when shifted
+- shift + backspace morphs into delete
 - "Greek" layer for mathematical typesetting
-- full numpad-layer with arithmetic operators and `Esc`, `Tab`, `Enter` --- ideal for
-  "data entry" (aka Sudoku :)) and right-handed mouse use, can be numlocked via combo
 
 ![](img/keymap.png)
 
 ## Timeless homerow mods
 
 Homerow mods [are great](https://precondition.github.io/home-row-mods). But they can
-require some finicky timings: In the most naive version, in order to produce a "mod"
-they must be held longer than `tapping-term-ms`. On the other hand, in order to produce
-a "tap", they must be held less than `tapping-term-ms`. This requires very consistent
+require some finicky timing: In its most naive implementation, in order to produce a "mod",
+they must be held *longer* than `tapping-term-ms`. In order to produce
+a "tap", they must be held *less* than `tapping-term-ms`. This requires very consistent
 typing speeds that, alas, I do not possess. Hence my quest for a "timeless" HRM
-configuration.
+setup.[^1]
 
-Here's what I have ended up with: A "timeless"[^1] HRM setup with virtually no misfires and
+Here's what I have ended up with: A "timeless" HRM setup with virtually no misfires and
 yet a fluent typing experience with mostly no delays.
 
 Let's suppose for a moment we set `tapping-term-ms` to something ridiculously large, say
-5 seconds. This makes the configuration "timeless". But obviously it creates two
-undesired side-effects: (1) In order to get a "mod" we now have to hold the HRM keys for
-something that feels eternity. (2) In normal typing, when tapping keys, there can be
+5 seconds. This makes the configuration "timeless". But it also creates two
+problems: (1) In order to get a "mod" we now have to hold the HRM keys for
+what feels like eternity. (2) In normal typing, when tapping keys, there can be
 long delays between the press of a key and the time it appears on the screen. Enter my
 two favorite configuration options:
-* To alleviate the first side-effect, I use ZMK's `balanced` flavor, which will produce
+* To address the first problem, I use ZMK's `balanced` flavor, which produces
   a "hold" if another key is both pressed and released within the tapping-term. Because
   that is exactly what I normally do with HRMs, there is virtually never a need to wait
   past my long tapping term (see below for two exceptions).
-* To alleviate the typing delay, I use the `global-quick-tap` property, which will
-  immediately resolve HRMs as "tap" when they are pressed shortly *after* another key
-  has been tapped. This all but completely eliminates the delay when typing. 
+* To address the typing delay, I use ZMK's `global-quick-tap` property, which
+  immediately resolves a HRM as "tap" when it is pressed shortly *after* another key
+  has been tapped.[^2] This all but completely eliminates the delay when typing. 
 
 This is almost perfect, but there's still a few rough edges:
 
-* While rolling keys quickly, I sometimes unintentionally end up with "nested" key
+* When rolling keys, I sometimes unintentionally end up with "nested" key
   sequences: `key 1` down, `key 2` down and up, `key 1` up. Given the `balanced` flavor,
   this would falsely register `key 1` as a mod. To prevent this, I use ZMK's "positional
   hold-tap" feature to force HRMs to always resolve as "tap" when the *next* key is on
   the same side of the keyboard. Problem solved.
 * ... or at least almost. The official ZMK version for positional-hold-taps performs the
-  check whether the next key is on the same side of the keyboard upon *key press*. This
-  is not ideal, because it prevents combining two modifiers on the same hand. To fix
-  this, I use a small patch that delays the positional-hold-tap decision until *key
-  release* ([PR #1423](https://github.com/zmkfirmware/zmk/pull/1423)). This way, multiple
-  mods can be combined, while I still get the benefit from positional-hold-taps when
-  tapping keys.
-  * So far, nothing of the configuration depends on the duration of `tapping-term-ms`. In
-  practice, there are two reasons why I don't set it to eternity:
-    1. Sometimes, in rare circumstances, I want to use a mod with a key *on
+  positional check when the next key is *pressed*. This is not ideal, because it
+  prevents combining multiple modifiers on the same hand. To fix this, I use a small
+  patch that delays the positional-hold-tap decision until the next key's *release* ([PR
+  #1423](https://github.com/zmkfirmware/zmk/pull/1423)). With the patch, multiple mods
+  can be combined when held, while I still get the benefit from positional-hold-taps
+  when keys are tapped.
+* So far, nothing of the configuration depends on the duration of `tapping-term-ms`. In
+  practice, there are two reasons why I don't set it to infinity:
+    1. Sometimes, in rare circumstances, I want to combine a mod with a alpha-key *on
        the same hand* (e.g., when using the mouse with the other hand). My positional
        hold-tap configuration prevents this *within* the tapping term. By setting the
        tapping term to something large but not crazy large (I use 280ms), I can still
-       use same-hand `mod` + `key` shortcuts by holding the mod for just a little while
-       before tapping the shortcut-key.
+       use same-hand `mod` + `alpha` shortcuts by holding the mod for just a little while
+       before tapping the alpha-key.
     2. Sometimes, I want to press a modifier without another key (e.g., on Windows,
-       tapping the `Win` key opens the search menu). Because the `balanced` flavour only
+       tapping `Win` opens the search menu). Because the `balanced` flavour only
        kicks in when another key is pressed, this also requires waiting past
        `tapping-term-ms`.
 
@@ -114,6 +113,9 @@ case).
 
 My personal [ZMK fork](https://github.com/urob/zmk) includes both the
 global-quick-tap-ms PR and the hold-trigger-on-release PR (along with a few other PRs).
+If you are looking for a ZMK-centric introduction to maintaining your own fork with a
+custom selection of PRs, you might find my ["cookbook
+approach"](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7) helpful.
 
 
 ## A few thoughts on the combo setup
@@ -121,22 +123,27 @@ global-quick-tap-ms PR and the hold-trigger-on-release PR (along with a few othe
 The combo layout is guided by two goals: (1) put all combos in easy-to-access locations,
 and (2) make them easy to remember. Specifically:
 
-- the top vertical-combo row is almost equivalent to the symbols on standard number rows,
-  making them easy to remember
-- the bottom vertical-combo row is set up symmetrically to facilitate memorization
+- the top vertical-combo row matches the symbols on a standard numbers row
+  (except `+` and `&` being swapped)
+- the bottom vertical-combo row aims for symmetry with the top row
   (subscript `_` aligns with superscript `^`; minus `-` aligns with `+`; division `/`
-  aligns with multiplication `*`; logical-or `|` aligns with logical-and `&`; backslash
-  `\` aligns horizontally with forward slash `/`)
-- parenthesis, braces and brackets in symmetric positions
-- `!` and `?` are on home-row position for prime access
-- a numlock shortcut (on `W + P`) for one-handed data entry
-- shortcuts for cut (on `X + D`), copy, and paste on the left-hand side for right-handed
-  mouse usage
+  aligns with multiplication `*`; logical-or `|` aligns with logical-and `&`)
+- parenthesis, braces, brackets, `!` and `?` all in prime access locations and set up
+  symmetrically
+- a numlock shortcut (on `W + P`) for one-handed "data entry" (aka Sudoku 🙂)
+- shortcuts for cut (on `X + D`), copy, and paste on left side (good with right-handed
+  mouse use)
 
 [^1]: I call it "timeless", because the large tapping-term makes the behavior
-  insensitive to the precise timings. One may say that there is still the `global-quick-tap`
-  timeout in the background. However, with the combination of a large tapping-term and
+  insensitive to the precise timings. One may say that there is still the
+  `global-quick-tap` timeout. However, with both a large tapping-term and
   positional-hold-taps, the behavior is *not* actually sensitive to the
-  `global-quick-tap` timing: All it does is to reduce the *delay* in typing. That is, the
-  occasional slow key press past the `global-quick-tap` timeout will *not* result in a
-  misfire, but merely in delay between key input and the time it shows up on the screen.
+  `global-quick-tap` timing: All it does is reduce the delay in typing; i.e., variations
+  in typing speed won't affect *what* is being typed but merly *how fast* it appears on
+  the screen.
+
+[^2]: One potential downside of `global-quick-tap` is that it prevents using modifiers
+  *immediately* after another key press. Arguably, this is only problematic for shift,
+  which is not a problem for me, because I have a dedicated "sticky shift" on my right
+  thumb. If you rely on homerow mods for regular capitalization, you may want to reduce
+  the `global-quick-tap` term for just the two shift-mods to about 75-100ms.
