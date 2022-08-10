@@ -62,8 +62,8 @@
         }; \
     };
 
-#if !defined COMBO_ADD_ON
-    #define COMBO_ADD_ON
+#if !defined COMBO_HOOK
+    #define COMBO_HOOK
 #endif
 #define ZMK_COMBO_ADV(name, combo_bindings, keypos, combo_layers, combo_timeout) \
     / { \
@@ -74,7 +74,7 @@
                 bindings = <combo_bindings>; \
                 key-positions = <keypos>; \
                 layers = <combo_layers>; \
-                COMBO_ADD_ON \
+                COMBO_HOOK \
             }; \
         }; \
     };

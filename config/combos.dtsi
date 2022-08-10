@@ -8,8 +8,8 @@
           ╰─────────────╯ ╰─────────────╯ */
 
 // use global-quick-tap-ms for combos (requires PR 1387)
-#undef COMBO_ADD_ON
-#define COMBO_ADD_ON global-quick-tap-ms = <150>;
+#undef COMBO_HOOK
+#define COMBO_HOOK global-quick-tap-ms = <125>;
 
 #define COMBO_TERM_FAST 20
 #define COMBO_TERM_SLOW 35

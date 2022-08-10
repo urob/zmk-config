@@ -5,6 +5,7 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
  * sticky-hold swallows OS shift when typing quickly, using sticky-tap for now
  * native sleep key doesn't work with windows (#1077), using sleep-macro for now
  * invalid DFU suffix signature warning when flashing with dfu-util
+ * todo: num_word: momentary shift to number layer, auto-cancel on everything that's not a number
 */
 
 #include <behaviors.dtsi>

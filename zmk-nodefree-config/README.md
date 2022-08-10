@@ -147,9 +147,12 @@ ZMK_KEYMAP(default_layer,
   two layers). If set to `ALL` the combo is active on all layers.
 
 By default, the timeout for combos created with `ZMK_COMBO` is 30ms. If `COMBO_TERM` is
-reset prior to calling `ZMK_COMBO`, the new value of `COMBO_TERM` is used instead. Note: while
-it is possible to set different timeouts for different combos, this is known to cause
-[issues](https://github.com/zmkfirmware/zmk/issues/905) with overlapping combos and should be avoided.
+reset prior to calling `ZMK_COMBO`, the new value of `COMBO_TERM` is used instead.
+Alternatively, one can use `ZMK_COMBO_ADV` which allows to specify the combo-timeout directly 
+as 5th argument.
+
+Note: with older ZMK versions, using different combo-timeouts would result in keys
+getting stuck. If this is an issue, try updating to the latest ZMK version.
 
 #### Example: copy and paste combos
 
@@ -369,8 +372,16 @@ ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
 
 ## Changelog
 
-* 7/31/2022: Switch unicode dependency from PR #1114 to
-  [#1412](https://github.com/zmkfirmware/zmk/pull/1412)
+* **8/05/2022:** New combo macro `ZMK_COMBO_ADV` for "advanced" combo setups. Compared
+  to the regular `ZMK_COMBO` macro, it takes the combo-timeout as fifth argument.
+  Moreover, if `COMBO_HOOK` is defined, it includes its definition as additional
+  options. For example, to use the new global-quick-tap for combos option introduced in
+  [PR #1387](https://github.com/andrewjrae/zmk/tree/min-prior-ms), one would set
+  `#define COMBO_HOOK global-quick-tap-ms = <125>;` before calling `ZMK_COMBO_ADV`.
+  See [my personal combo
+  setup](https://github.com/urob/zmk-config/blob/main/config/combos.dtsi) for examples.
+* **7/31/2022:** Switch unicode dependency from PR #1114 to
+  [PR #1412](https://github.com/zmkfirmware/zmk/pull/1412)
 
 
 [^1]: The default for Windows is `OS_UNICODE_LEAD` set to tap <kbd>Right Alt</kbd>
