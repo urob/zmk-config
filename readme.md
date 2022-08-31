@@ -13,6 +13,7 @@ It is ported from my QMK configuration, which in turn is heavily inspired by Man
   sticky mods on other layers
 - combos replacing the symbol layer
 - sticky shift on right thumb, double-tap activates caps-word
+- shift + space morphs into dot + space + sticky-shift
 - shift + backspace morphs into delete
 - "Greek" layer for mathematical typesetting
 

@@ -109,6 +109,23 @@ ZMK_BEHAVIOR(bs_del_num, mod_morph,
     masked-mods = <MOD_LSFT>;  // requires PR #1412
 )
 
+// tap: space | space + tap: dot -> space -> sticky shift | hold: activate layer
+ZMK_BEHAVIOR(dot_spc, macro,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp DOT &kp SPACE &sk LSHFT>;
+)
+ZMK_BEHAVIOR(spc_morph, mod_morph,
+    bindings = <&kp SPACE>, <&dot_spc>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+ZMK_BEHAVIOR(lt_spc, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&mo>, <&spc_morph>;
+)
+
 // Windows sleep key
 ZMK_BEHAVIOR(win_sleep, macro,
     wait-ms = <100>;
@@ -140,7 +157,7 @@ ZMK_LAYER(default_layer,
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           &kp Z         &kp X         &kp C         &kp D         &kp V             EXTRA_MID         &kp K         &kp H         &kp COMMA     &kp DOT       &kp SEMI
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          EXTRA_BOT_L                 &lt SYS ESC   &lt NAV SPACE &lt UC TAB        EXTRA_MID         &lt FN RET    &ss_cw        &bs_del_num                 EXTRA_BOT_R
+          EXTRA_BOT_L                 &lt SYS ESC   &lt_spc NAV 0 &lt UC TAB        EXTRA_MID         &lt FN RET    &ss_cw        &bs_del_num                 EXTRA_BOT_R
      // ╰─────────────╯             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
 )
 
