@@ -231,8 +231,10 @@ The creates "umlaut" pairs that can be added to the keymap using `&de_ae`, `&de_
 
 
 * `ZMK_UNICODE_PAIR` requires ZMK patched with [PR
-  #1412](https://github.com/zmkfirmware/zmk/pull/1412). If you don't want to maintain
-  your own ZMK repository, you can use ZMK's [beta
+  #1412](https://github.com/zmkfirmware/zmk/pull/1412). If you need help maintaining
+  your own ZMK repository, check out [this
+  guide](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7). If you don't
+  want to maintain your own ZMK repository, you can use ZMK's [beta
   testing](https://zmk.dev/docs/features/beta-testing) feature to configure Github
   Actions to build against a patched remote branch of ZMK. To do so, replace the
   contents of `west.yml` in your `zmk-config/config` directory with the following
@@ -341,15 +343,13 @@ This defines a "copy"-combo for the middle + ring finger on the left bottom row,
 
 Here we use ZMK's [positional
 hold-tap](https://zmk.dev/docs/behaviors/hold-tap#positional-hold-tap-and-hold-trigger-key-positions)
-feature to make home-row mods only trigger with "opposite hand" keys.[^3] Using
+feature to make home-row mods only trigger with "opposite hand" keys. Using
 key-position helpers makes this straightforward: 
 
 ```C++
-#define HRM_LT LM1 LM2 LM3 LM4                                      // left-hand HRMs
-#define HRM_RT RM1 RM2 RM3 RM4                                      // right-hand HRMs
-#define KEYS_LT LT0 LT1 LT2 LT3 LT4 LM0 HRM_LT LB0 LB1 LB2 LB3 LB4  // left-hand keys
-#define KEYS_RT RT0 RT1 RT2 RT3 RT4 RM0 HRM_RT RB0 RB1 RB2 RB3 RB4  // right-hand keys
-#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                              // thumb keys
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right-hand keys
+#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                                      // thumb keys
 
 ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
     flavor = "balanced";
@@ -357,7 +357,7 @@ ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
     quick-tap-ms = <125>;
     global-quick-tap;
     bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_RT THUMBS HRM_LT>;  // include left-hand HRMs for chording
+    hold-trigger-key-positions = <KEYS_R THUMBS>;
 )
 
 ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
@@ -366,7 +366,7 @@ ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
     quick-tap-ms = <125>;
     global-quick-tap;
     bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_LT THUMBS HRM_RT>;  // include right-hand HRMs for chording
+    hold-trigger-key-positions = <KEYS_L THUMBS>;
 )
 ```
 
@@ -392,5 +392,3 @@ ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
     and `OS_UNICODE_TRAIL` set to release <kbd>Left Alt</kbd>.
 
 [^2]: Swedish language support was added by discord user "captainwoot".
-
-[^3]: We also whitelist same-hand HRMs so that we can combine them to chord mods.
