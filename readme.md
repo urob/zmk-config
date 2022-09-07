@@ -12,7 +12,7 @@ It is ported from my QMK configuration, which in turn is heavily inspired by Man
 - ["timeless" homerow mods](#timeless-homerow-mods) on the base layer;
   sticky mods on other layers
 - combos replacing the symbol layer
-- sticky shift on right thumb, double-tap activates caps-word
+- sticky shift on right thumb, double-tap (or shift + tap)[^1] activates caps-word
 - shift + space morphs into dot + space + sticky-shift
 - shift + backspace morphs into delete
 - "Greek" layer for mathematical typesetting
@@ -26,7 +26,7 @@ require some finicky timing: In its most naive implementation, in order to produ
 they must be held *longer* than `tapping-term-ms`. In order to produce
 a "tap", they must be held *less* than `tapping-term-ms`. This requires very consistent
 typing speeds that, alas, I do not possess. Hence my quest for a "timeless" HRM
-setup.[^1]
+setup.[^2]
 
 Here's what I have ended up with: A "timeless" HRM setup with virtually no misfires and
 yet a fluent typing experience with mostly no delays.
@@ -43,7 +43,7 @@ two favorite configuration options:
   past my long tapping term (see below for two exceptions).
 * To address the typing delay, I use ZMK's `global-quick-tap` property, which
   immediately resolves a HRM as "tap" when it is pressed shortly *after* another key
-  has been tapped.[^2] This all but completely eliminates the delay when typing. 
+  has been tapped.[^3] This all but completely eliminates the delay when typing. 
 
 This is almost perfect, but there's still a few rough edges:
 
@@ -135,7 +135,14 @@ and (2) make them easy to remember. Specifically:
 - shortcuts for cut (on `X + D`), copy, and paste on left side (good with right-handed
   mouse use)
 
-[^1]: I call it "timeless", because the large tapping-term makes the behavior
+[^1]: Really what's happening is that `Shift` + my right home-thumb morph into
+  caps-word. This gives me two separate ways of activating it: (1) Holding the
+  homerow-mod shift on my left index-finger and then pressing my right home-thumb, which
+  is my new preferred way. Or, (2) double-tapping the right home-thumb, which also works
+  because the first tap yields sticky-shift, activating the mod-morph upon the second
+  tap.
+
+[^2]: I call it "timeless", because the large tapping-term makes the behavior
   insensitive to the precise timings. One may say that there is still the
   `global-quick-tap` timeout. However, with both a large tapping-term and
   positional-hold-taps, the behavior is *not* actually sensitive to the
@@ -143,7 +150,7 @@ and (2) make them easy to remember. Specifically:
   in typing speed won't affect *what* is being typed but merly *how fast* it appears on
   the screen.
 
-[^2]: One potential downside of `global-quick-tap` is that it prevents using modifiers
+[^3]: One potential downside of `global-quick-tap` is that it prevents using modifiers
   *immediately* after another key press. Arguably, this is only problematic for shift,
   which is not a problem for me, because I have a dedicated "sticky shift" on my right
   thumb. If you rely on homerow mods for regular capitalization, you may want to reduce
