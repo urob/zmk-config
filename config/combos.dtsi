@@ -9,13 +9,14 @@
 
 // use global-quick-tap-ms for combos (requires PR 1387)
 #undef COMBO_HOOK
-#define COMBO_HOOK global-quick-tap-ms = <125>;
+#define COMBO_HOOK global-quick-tap-ms = <75>;
 
 #define COMBO_TERM_FAST 20
 #define COMBO_TERM_SLOW 35
 
 /* Punctuation (horizontal left hand) */
-ZMK_COMBO_ADV(num,   &tog NUM,      LT3 LT1, DEF NUM, COMBO_TERM_SLOW)
+// ZMK_COMBO_ADV(num,   &tog NUM,      LT3 LT1, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(num,   &num_word,     LT3 LT1, DEF NUM, COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(all,   &kp LC(A),     LT3 LT2, DEF NUM, COMBO_TERM_FAST)
 ZMK_COMBO_ADV(app,   &kp LG(SPACE), LT2 LT1, DEF NUM, COMBO_TERM_FAST)
 
@@ -56,4 +57,4 @@ ZMK_COMBO_ADV(fslh,  &kp FSLH,      RM2 RB2, DEF NUM, COMBO_TERM_SLOW)
 ZMK_COMBO_ADV(pipe,  &kp PIPE,      RM3 RB3, DEF NUM, COMBO_TERM_SLOW)
 
 ZMK_COMBO_ADV(grk,   &sl UC,        RT1 RT3, DEF NUM, COMBO_TERM_SLOW)
-ZMK_COMBO_ADV(cpgrk, &sls 0,      RT1 RT2 RT3, DEF NUM, COMBO_TERM_SLOW)
+ZMK_COMBO_ADV(cpgrk, &sls 0,        RT1 RT2 RT3, DEF NUM, COMBO_TERM_SLOW)

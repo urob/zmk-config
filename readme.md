@@ -11,6 +11,7 @@ It is ported from my QMK configuration, which in turn is heavily inspired by Man
 - keymap and combo setup portable across different physical layouts
 - ["timeless" homerow mods](#timeless-homerow-mods) on the base layer;
   sticky mods on other layers
+- num-word: a zmk version of smart-layers that automatically de-activate for non-numbers
 - combos replacing the symbol layer
 - sticky shift on right thumb, double-tap (or shift + tap)[^1] activates caps-word
 - shift + space morphs into dot + space + sticky-shift

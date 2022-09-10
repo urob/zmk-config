@@ -5,7 +5,6 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
  * sticky-hold swallows OS shift when typing quickly, using sticky-tap for now
  * native sleep key doesn't work with windows (#1077), using sleep-macro for now
  * invalid DFU suffix signature warning when flashing with dfu-util
- * todo: num_word: momentary shift to number layer, auto-cancel on everything that's not a number
 */
 
 #include <behaviors.dtsi>
@@ -50,7 +49,7 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 };
 
 &sl {  // sticky layer config
-    ignore-modifiers;                   // no double capitalization when rolling keys
+    ignore-modifiers;
 };
 
 &lt {  // layer tap config
@@ -59,8 +58,11 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
     quick-tap-ms = <QUICK_TAP_MS>;      // double-tap + hold repeats tap-key
 };
 
-&caps_word {  // caps-word config
+&caps_word {
     /delete-property/ ignore-modifiers; // mods deactivate caps word, requires PR #1422
+};
+&num_word {
+    layers = <NUM>;                     // requires PR #1451
 };
 
 /* homerow mods */
@@ -73,20 +75,20 @@ ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <QUICK_TAP_MS>;
-    global-quick-tap-ms = <150>;
+    global-quick-tap-ms = <150>;        // requires PR #1387
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_R THUMBS>;
-    hold-trigger-on-release;  // requires PR #1423
+    hold-trigger-on-release;            // requires PR #1423
 )
 
 ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <QUICK_TAP_MS>;
-    global-quick-tap-ms = <150>;
+    global-quick-tap-ms = <150>;        // requires PR #1387
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_L THUMBS>;
-    hold-trigger-on-release;  // requires PR #1423
+    hold-trigger-on-release;            // requires PR #1423
 )
 
 /* custom keys and macros */
@@ -189,7 +191,7 @@ ZMK_LAYER(num_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
           &kp ESC       &kp N7        &kp N8        &kp N9        ___               EXTRA_MID         ___           ___           ___           ___           ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &kp TAB       &kp N4        &kp N5        &kp N6        &kp DOT           EXTRA_MID         ___           &sk RSHFT     &sk LCTRL     &sk LALT      &sk LGUI
+          &kp TAB       &kp N4        &kp N5        &kp N6        &kp DOT           EXTRA_MID         ___           ___           ___           ___           ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           ___           &kp N1        &kp N2        &kp N3        &kp COMMA         EXTRA_MID         ___           ___           ___           ___           ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
