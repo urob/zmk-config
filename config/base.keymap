@@ -58,12 +58,9 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
     quick-tap-ms = <QUICK_TAP_MS>;      // double-tap + hold repeats tap-key
 };
 
-&caps_word {
-    /delete-property/ ignore-modifiers; // mods deactivate caps word, requires PR #1422
-};
-&num_word {
-    layers = <NUM>;                     // requires PR #1451
-};
+// caps-word and num-word enhancements, requires PR #1441
+&caps_word { /delete-property/ ignore-modifiers; };  // mods deactivate caps-word
+&num_word { layers = <NUM>; };
 
 /* homerow mods */
 
@@ -128,6 +125,11 @@ ZMK_BEHAVIOR(lt_spc, hold_tap,
     bindings = <&mo>, <&spc_morph>;
 )
 
+ZMK_BEHAVIOR(copy_cut, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp LC(INS)>, <&kp LC(X)>;
+)
+
 // Windows sleep key
 ZMK_BEHAVIOR(win_sleep, macro,
     wait-ms = <100>;
@@ -169,7 +171,7 @@ ZMK_LAYER(nav_layer,
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               EXTRA_MID         &kp PG_DN     &kp LEFT      &kp DOWN      &kp RIGHT     &kp DEL
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          ___           ___           ___           ___           ___               EXTRA_MID         ___           &kp LC(X)     &kp LC(INS)   &kp LS(INS)   ___
+          ___           ___           ___           ___           ___               EXTRA_MID         ___           &kp LC(X)     &copy_cut     &kp LS(INS)   ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           EXTRA_BOT_L                 ___           ___           ___               EXTRA_MID         ___           ___           ___                         EXTRA_BOT_R
      // ╰─────────────╯             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
@@ -223,3 +225,4 @@ ZMK_LAYER(uc_layer,
      // ╰─────────────╯             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
 )
 
+/* vim: set tw=180: */
