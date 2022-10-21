@@ -2,9 +2,12 @@
 #include "../zmk-nodefree-config/keypos_def/keypos_48keys_wide.h"
 
 /* map Planck's extra keys */
-#define EXTRA_MID   &none            &none              // 3x2 middle keys
-#define EXTRA_BOT_L &none            &kp LGUI           // 1x2 bottom left keys
-#define EXTRA_BOT_R &mwh SCROLL_DOWN &mwh SCROLL_UP     // 1x2 bottom right keys
+#define XTR_MT  &none             &none           // top row, middle
+#define XTR_MM  &none             &none           // middle row, middle
+#define XTR_MB  &none             &none           // bottom row, middle
+#define XTR_MH  &kp BSPC  &none   &none  &kp RET  // thumb row, middle
+#define XTR_LH  &none             &kp LGUI        // thumb row, left
+#define XTR_RH  &mwh SCROLL_DOWN  &mwh SCROLL_UP  // thumb row, right
 
 /* source the main keymap */
 #include "base.keymap"

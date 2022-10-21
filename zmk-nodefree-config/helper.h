@@ -136,7 +136,6 @@
                 #binding-cells = <0>; \
                 bindings = <uc_binding>, <shifted_uc_binding>; \
                 mods = <(MOD_LSFT|MOD_RSFT)>; \
-                masked-mods = <(MOD_LSFT|MOD_RSFT)>; \
             }; \
         }; \
     };

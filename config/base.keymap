@@ -1,35 +1,9 @@
-/*
-ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
- * no tap-only combos (#544), prevents rapid chording of HRMs on combo positions
- * &bootloader doesn't work with Planck_rev6 (#1086)
- * sticky-hold swallows OS shift when typing quickly, using sticky-tap for now
- * native sleep key doesn't work with windows (#1077), using sleep-macro for now
- * invalid DFU suffix signature warning when flashing with dfu-util
-*/
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
 #include "../zmk-nodefree-config/helper.h"
 #include "../zmk-nodefree-config/international_chars/greek.dtsi"
 #include "../zmk-nodefree-config/international_chars/german.dtsi"
-
-// make a 36 keys layout unless EXTRA-keys are defined in parent .keymap file
-#if !defined EXTRA_MID
-    #define EXTRA_MID
-#endif
-#if !defined EXTRA_BOT_L
-    #define EXTRA_BOT_L
-#endif
-#if !defined EXTRA_BOT_R
-    #define EXTRA_BOT_R
-#endif
-
-#define XXX &none
-#define ___ &trans
-#define DSK_PREV &kp LG(LC(LEFT))   // previous desktop on windows
-#define DSK_NEXT &kp LG(LC(RIGHT))  // next     "       "  "
-#define CANCEL &kp K_CANCEL         // cancels caps-word and does nothing else
 
 #define DEF 0
 #define NAV 1
@@ -38,31 +12,63 @@ ISSUES, WORKAROUNDS and a "ZMK-WISHLIST"
 #define FN 4
 #define UC 5
 
-#include "combos.dtsi"  // source after layer shortcuts
+#include "combos.dtsi"  // must be sourced after layer-shortcuts
 #include "mouse.dtsi"
+#include "xtr_defaults.h"
+
+ZMK_CONDITIONAL_LAYER(SYS NUM, FN)  // SYS + NUM --> FN
+
+/* Navigation keys and misc shortcuts */
+
+&mt {
+    flavor = "tap-preferred";
+    tapping-term-ms = <220>;
+    quick-tap-ms = <220>;              // repeat on tap-into-hold
+    hold-trigger-key-positions = <0>;  // tap on interrupt
+};
+
+#define NAV_LEFT  &mt HOME     LEFT    // tap: left  | long-tap: beginning of line
+#define NAV_RIGHT &mt END      RIGHT   // tap: right | long-tap: end       of line
+#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
+#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
+#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
+#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
+
+#define XXX &none
+#define ___ &trans
+
+#define CANCEL      &kp K_CANCEL       // cancel caps-word and num-word
+#define DSK_PREV    &kp LG(LC(LEFT))   // previous desktop
+#define DSK_NEXT    &kp LG(LC(RIGHT))  // next     desktop
+
+/* Settings */
 
 #define QUICK_TAP_MS 175
 
-&sk {  // sticky key config
-    release-after-ms = <600>;           // release after 0.6s
-    quick-release;                      // no double capitalization when rolling keys
+&sk {  // sticky-key config
+    release-after-ms = <600>;  // release after 0.6s
+    quick-release;             // no double capitalization when rolling keys
 };
 
-&sl {  // sticky layer config
+&sl {  // sticky-layer config
     ignore-modifiers;
 };
 
-&lt {  // layer tap config
+&lt {  // layer-tap config
     flavor = "balanced";
     tapping-term-ms = <200>;
-    quick-tap-ms = <QUICK_TAP_MS>;      // double-tap + hold repeats tap-key
+    quick-tap-ms = <QUICK_TAP_MS>;
 };
 
-// caps-word and num-word enhancements, requires PR #1441
-&caps_word { /delete-property/ ignore-modifiers; };  // mods deactivate caps-word
-&num_word { layers = <NUM>; };
+&caps_word {  // mods deactivate caps-word, requires PR #1441
+    /delete-property/ ignore-modifiers;
+};
 
-/* homerow mods */
+&num_word {  // num-word, requires PR #1441
+    layers = <NUM>;
+};
+
+/* Homerow mods */
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right-hand keys
@@ -88,7 +94,16 @@ ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
     hold-trigger-on-release;            // requires PR #1423
 )
 
-/* custom keys and macros */
+/* Custom behaviors */
+
+// tap: num-word | hold: num-layer
+ZMK_BEHAVIOR(num_layer_word, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&mo>, <&num_word>;
+)
+#define NUM_WORD &num_layer_word NUM 0
 
 // tap: sticky shift | double tap: capsword | triple tap: cancel capsword
 // ZMK_BEHAVIOR(ss_cw, tap_dance,
@@ -102,10 +117,10 @@ ZMK_BEHAVIOR(ss_cw, mod_morph,
 )
 
 // tap: backspace | lshft + tap: delete | rshft + tap: shift-delete | hold: num layer
-ZMK_BEHAVIOR(bs_del_num, mod_morph,
-    bindings = <&lt NUM BSPC>, <&kp DEL>;
+ZMK_BEHAVIOR(bs_del_sys, mod_morph,
+    bindings = <&lt SYS BSPC>, <&kp DEL>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
-    masked-mods = <MOD_LSFT>;  // requires PR #1412
+    keep-mods = <MOD_LSFT>;  // requires PR #1412
 )
 
 // tap: space | space + tap: dot -> space -> sticky shift | hold: activate layer
@@ -151,78 +166,98 @@ ZMK_BEHAVIOR(sls, sticky_key,
     ignore-modifiers;
 )
 
-/* keymap */
+// tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
+ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
+    bindings = <&kp DOT>, <&kp COLON>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+ZMK_BEHAVIOR(dot_morph, mod_morph,
+    bindings = <&dot_inner_morph>, <&kp DOT>;
+    mods = <(MOD_LCTL|MOD_RCTL)>;
+)
+
+// tap: dot | shift + tap: colon | ctrl + shift + tap: >
+ZMK_BEHAVIOR(comma_inner_morph, mod_morph,
+    bindings = <&kp COMMA>, <&kp SEMICOLON>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+ZMK_BEHAVIOR(comma_morph, mod_morph,
+    bindings = <&comma_inner_morph>, <&kp COMMA>;
+    mods = <(MOD_LCTL|MOD_RCTL)>;
+)
+
+/* Keymap */
 
 ZMK_LAYER(default_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          &kp Q         &kp W         &kp F         &kp P         &kp B             EXTRA_MID         &kp J         &kp L         &kp U         &kp Y         &kp SQT
+          &kp Q         &kp W         &kp F         &kp P         &kp B             XTR_MT            &kp J         &kp L         &kp U         &kp Y         &kp SQT
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &hml LGUI A   &hml LALT R   &hml LCTRL S  &hml LSHFT T  &kp G             EXTRA_MID         &kp M         &hmr RSHFT N  &hmr LCTRL E  &hmr LALT I   &hmr LGUI O
+          &hml LGUI A   &hml LALT R   &hml LCTRL S  &hml LSHFT T  &kp G             XTR_MM            &kp M         &hmr RSHFT N  &hmr LCTRL E  &hmr LALT I   &hmr LGUI O
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &kp Z         &kp X         &kp C         &kp D         &kp V             EXTRA_MID         &kp K         &kp H         &kp COMMA     &kp DOT       &kp SEMI
-     // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          EXTRA_BOT_L                 &lt SYS ESC   &lt_spc NAV 0 &lt UC TAB        EXTRA_MID         &lt FN RET    &ss_cw        &bs_del_num                 EXTRA_BOT_R
-     // ╰─────────────╯             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
+          &kp Z         &kp X         &kp C         &kp D         &kp V             XTR_MB            &kp K         &kp H         &comma_morph  &dot_morph    &key_repeat
+     // ├─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┤
+          XTR_LH                                    &bs_del_sys   &lt_spc NAV 0     XTR_MH            &ss_cw        NUM_WORD                                  XTR_RH
+     // ╰─────────────╯                           ╰─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────╯                           ╰─────────────╯
 )
 
 ZMK_LAYER(nav_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          ___           ___           ___           ___           ___               EXTRA_MID         &kp PG_UP     &kp HOME      &kp UP        &kp END       &kp INS
+          ___           ___           ___           ___           ___               XTR_MT            &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               EXTRA_MID         &kp PG_DN     &kp LEFT      &kp DOWN      &kp RIGHT     &kp DEL
+          &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               XTR_MM            &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          ___           ___           ___           ___           ___               EXTRA_MID         ___           &kp LC(X)     &copy_cut     &kp LS(INS)   ___
-     // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          EXTRA_BOT_L                 ___           ___           ___               EXTRA_MID         ___           ___           ___                         EXTRA_BOT_R
-     // ╰─────────────╯             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
+          ___           ___           ___           ___           ___               XTR_MB            &kp INS       &kp TAB       &copy_cut     &kp LS(INS)   ___
+     // ├─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┤
+          XTR_LH                                    ___           ___               XTR_MH            ___           CANCEL                                    XTR_RH
+     // ╰─────────────╯                           ╰─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────╯                           ╰─────────────╯
 )
 
 ZMK_LAYER(sys_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          &kp LG(GRAVE) ___           ___           &reset        &bootloader       EXTRA_MID         ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep
+          &kp LG(GRAVE) ___           ___           &reset        &bootloader       XTR_MT            ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               EXTRA_MID         ___           DSK_PREV      &kp C_VOL_DN  DSK_NEXT      ___
+          &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               XTR_MM            ___           DSK_PREV      &kp C_VOL_DN  DSK_NEXT      ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          ___           ___           ___           ___           ___               EXTRA_MID         ___           ___           ___           ___           ___
-     // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          EXTRA_BOT_L                 ___           ___           ___               EXTRA_MID         &kp C_MUTE    &kp C_PP      ___                         EXTRA_BOT_R
-     // ╰─────────────╯             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
+          ___           ___           ___           ___           ___               XTR_MB            ___           ___           ___           ___           ___
+     // ├─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┤
+          XTR_LH                                    ___           ___               XTR_MH            &kp C_PP      &kp C_MUTE                                XTR_RH
+     // ╰─────────────╯                           ╰─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────╯                           ╰─────────────╯
 )
 
 ZMK_LAYER(num_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          &kp ESC       &kp N7        &kp N8        &kp N9        ___               EXTRA_MID         ___           ___           ___           ___           ___
+          ___           &kp N7        &kp N8        &kp N9        ___               XTR_MT            ___           ___           ___           ___           ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &kp TAB       &kp N4        &kp N5        &kp N6        &kp DOT           EXTRA_MID         ___           ___           ___           ___           ___
+          &hml LGUI N0  &hml LALT N4  &hml LCTRL N5 &hml LSHFT N6 ___               XTR_MM            ___           ___           ___           ___           ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          ___           &kp N1        &kp N2        &kp N3        &kp COMMA         EXTRA_MID         ___           ___           ___           ___           ___
-     // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          EXTRA_BOT_L                 ___           ___           &kp N0            EXTRA_MID         ___           ___           ___                         EXTRA_BOT_R
-     // ╰─────────────╯             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
+          ___           &kp N1        &kp N2        &kp N3        ___               XTR_MB            ___           ___           ___           ___           ___
+     // ├─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┤
+          XTR_LH                                    ___           ___               XTR_MH            ___           ___                                       XTR_RH
+     // ╰─────────────╯                           ╰─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────╯                           ╰─────────────╯
 )
 
 ZMK_LAYER(fn_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          &kp F12       &kp F7        &kp F8        &kp F9        ___               EXTRA_MID         ___           ___           ___           ___           ___
+          &kp F12       &kp F7        &kp F8        &kp F9        ___               XTR_MT            ___           ___           ___           ___           ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &kp F11       &kp F4        &kp F5        &kp F6        ___               EXTRA_MID         ___           &sk RSHFT     &sk LCTRL     &sk LALT      &sk LGUI
+          &kp F11       &kp F4        &kp F5        &kp F6        ___               XTR_MM            ___           &sk RSHFT     &sk LCTRL     &sk LALT      &sk LGUI
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &kp F10       &kp F1        &kp F2        &kp F3        ___               EXTRA_MID         ___           ___           ___           ___           ___
-     // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          EXTRA_BOT_L                 ___           ___           ___               EXTRA_MID         ___           ___           ___                         EXTRA_BOT_R
-     // ╰─────────────╯             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
+          &kp F10       &kp F1        &kp F2        &kp F3        ___               XTR_MB            ___           ___           ___           ___           ___
+     // ├─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┤
+          XTR_LH                                    ___           ___               XTR_MH            ___           ___                                       XTR_RH
+     // ╰─────────────╯                           ╰─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────╯                           ╰─────────────╯
 )
 
 ZMK_LAYER(uc_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          ___           &el_omega     &el_phi       &el_pi        &el_beta          EXTRA_MID         ___           &el_lambda    &el_upsilon   &el_psi       &de_eszett
+          ___           &el_omega     &el_phi       &el_pi        &el_beta          XTR_MT            ___           &el_lambda    &el_upsilon   &el_psi       &de_eszett
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &el_alpha     &el_rho       &el_sigma     &el_tau       &el_gamma         EXTRA_MID         &el_mu        &el_nu        &el_epsilon   &el_iota      &el_omikron
+          &el_alpha     &el_rho       &el_sigma     &el_tau       &el_gamma         XTR_MM            &el_mu        &el_nu        &el_epsilon   &el_iota      &el_omikron
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          &el_zeta      &el_xi        &el_chi       &el_delta     &el_theta         EXTRA_MID         &el_kappa     &el_eta       &de_ae        &de_oe        &de_ue
-     // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          EXTRA_BOT_L                 ___           ___           ___               EXTRA_MID         ___           ___           ___                         EXTRA_BOT_R
-     // ╰─────────────╯             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────┴─────────────╯             ╰─────────────╯
+          &el_zeta      &el_xi        &el_chi       &el_delta     &el_theta         XTR_MB            &el_kappa     &el_eta       &de_ae        &de_oe        &de_ue
+     // ├─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┤
+          XTR_LH                                    ___           ___               XTR_MH            ___           ___                                       XTR_RH
+     // ╰─────────────╯                           ╰─────────────┴─────────────╯   ╰─────────────╯   ╰───────────────────────────╯                           ╰─────────────╯
 )
 
 /* vim: set tw=180: */

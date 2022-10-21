@@ -1,22 +1,26 @@
 # urob's zmk-config
 
 This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration. 
-It is ported from my QMK configuration, which in turn is heavily inspired by Manna Harbour's
-[Miryoku layout](https://github.com/manna-harbour/miryoku).
 
 ## Key features
 
 - clean keymap + unicode setup using helper macros from
   [zmk-nodefree-config](https://github.com/urob/zmk-nodefree-config)
-- keymap and combo setup portable across different physical layouts
-- ["timeless" homerow mods](#timeless-homerow-mods) on the base layer;
-  sticky mods on other layers
+- keymap and combo setup are independent of the physical location of keys and are
+  (re)used for multiple keyboards with a varying number of keys
+- ["timeless" homerow mods](#timeless-homerow-mods) on the base layer; sticky mods on
+  other layers
 - num-word: a zmk version of smart-layers that automatically de-activate for non-numbers
 - combos replacing the symbol layer
+- arrow-cluster doubles as home/end/beginning of document/end of document on long-press,
+  backspace/delete delete words on long-press
 - sticky shift on right thumb, double-tap (or shift + tap)[^1] activates caps-word
+- shift + comma morph into semicolon, shift + control + comma morph into less-than,
+  shift + dot morph into colon, shift + control + dot morph into greater-than
 - shift + space morphs into dot + space + sticky-shift
-- shift + backspace morphs into delete
-- "Greek" layer for mathematical typesetting
+- conditional layer: "sys" + "num" layer yield "fun" layer
+- "repeat" on right bottom pinky
+- "Greek" layer for mathematical typesetting (activated via sticky-layer combo)
 
 ![](img/keymap.png)
 
@@ -88,8 +92,8 @@ are not necessary):
 ZMK_BEHAVIOR(hml, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // double tapping same key allows for repeating
-    global-quick-tap-ms = <150>;         // without PR #1387 use global-quick-tap instead
+    quick-tap-ms = <175>;                // repeat on tap-into-hold
+    global-quick-tap-ms = <150>;         // requires PR #1387
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_R THUMBS>;
     hold-trigger-on-release;             // requires PR #1423
@@ -99,8 +103,8 @@ ZMK_BEHAVIOR(hml, hold_tap,
 ZMK_BEHAVIOR(hmr, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // double tapping same key allows for repeating
-    global-quick-tap-ms = <150>;         // without PR #1387 use global-quick-tap instead
+    quick-tap-ms = <175>;                // repeat on tap-into-hold
+    global-quick-tap-ms = <150>;         // requires PR #1387
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_L THUMBS>;
     hold-trigger-on-release;             // requires PR #1423
@@ -120,21 +124,65 @@ custom selection of PRs, you might find my ["cookbook
 approach"](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7) helpful.
 
 
-## A few thoughts on the combo setup
+## Combo setup
 
-The combo layout is guided by two goals: (1) put all combos in easy-to-access locations,
-and (2) make them easy to remember. Specifically:
+I make heavy use of combos to replace the usual symbol layer. The combo layout aims to
+put the most used symbols in easy-to-access locations and also make them easy to
+remember. Specifically:
 
-- the top vertical-combo row matches the symbols on a standard numbers row
-  (except `+` and `&` being swapped)
-- the bottom vertical-combo row aims for symmetry with the top row
-  (subscript `_` aligns with superscript `^`; minus `-` aligns with `+`; division `/`
-  aligns with multiplication `*`; logical-or `|` aligns with logical-and `&`)
-- parenthesis, braces, brackets, `!` and `?` all in prime access locations and set up
-  symmetrically
-- a numlock shortcut (on `W + P`) for one-handed "data entry" (aka Sudoku 🙂)
-- shortcuts for cut (on `X + D`), copy, and paste on left side (good with right-handed
-  mouse use)
+- the top vertical-combo row matches the symbols on a standard numbers row (except `+`
+  and `&` being swapped)
+- the bottom vertical-combo row aims for symmetry with the top row (subscript `_` aligns
+  with superscript `^`; minus `-` aligns with `+`; division `/` aligns with
+  multiplication `*`; logical-or `|` aligns with logical-and `&`)
+- parenthesis, braces, brackets, `!` and `?` are set up symmetrically in prime locations
+- numlock (on `W + P`), cut (on `X + D`), copy, and paste are on the left side for
+  one-handed mouse use
+- `L + Y` activates Greek layer for next key, `L + U + Y` activates shifted Greek layer
+  for next key
+
+## Experimental changes
+
+- I recently reduced my core layout to 34 keys. Backspace, Delete and Tap are now all on
+my Navigation-layer. To make room for these keys, I have added hold-taps to the arrow
+cluster, which now double as Home/End and Beginning/End of document. I really like the
+new navigation cluster and will likely keep it in one way or another
+- Inspired by Jonas Hietala's
+  [Numword](https://www.jonashietala.se/blog/2021/06/03/the-t-34-keyboard-layout/#where-are-the-digits)
+  for QMK, I implemented my own version of [Smart-layers for
+    ZMK](https://github.com/zmkfirmware/zmk/pull/1451). It is triggered via a single tap
+    on my Num-key (holding the key will activate the num layer as usual without
+    triggering Numword). Similar to Capsword, Numword continues to be activated as long
+    as I type numbers, and deactivates automatically on any other keypress. I found that
+    I use Numword for most of my numbers typing. For single digits, it effectively is a
+    sticky-layer, but importantly I can also use it for multiple digits. The only case
+    where it doesn't deactivate automatically is where immediately after a digit I would
+    type any of the letters on which my numpad is located (WFPRSTXCD), which is rare,
+    but does happen. For these cases I have a CANCEL key on my Nav layer that cancels
+    both Numword and Capsword.
+- Since the switch to 34 keys, I freed up the tap-position on my left-most thumb key.
+  For now I added a secondary Bspc, but I am still searching for a better use. (I tried
+  adding Repeat here but I found that it doesn't work well adjacent to space)
+
+## Issues and workarounds
+
+Since I switched from QMK to ZMK I have been very impressed with how easy it is to set
+up relatively complex layouts in ZMK. For the most parts I don't miss any functionality
+(to the contrary, I found that ZMK supports many features natively that would complex
+user-space implementations in QMK). Below are a few remaining issues:
+
+- ZMK does not yet support tap-only combos
+  ([#544](https://github.com/zmkfirmware/zmk/issues/544)). Workaround: pause
+  briefly when chording multiple HRMs together on positions that otherwise would trigger
+  a combo.
+- `&bootloader` doesn't work with Planck_rev6
+  ([#1086](https://github.com/zmkfirmware/zmk/issues/1086)). Workaround: Manually press
+  reset-button.
+- "sticky-hold" swallows OS shift when typing quickly. Workaround: use sticky-tap for now.
+- Sleep is not yet implemented ([#1077](https://github.com/zmkfirmware/zmk/issues/1077)).
+  Workaround: use sleep-macro instead.
+- Invalid DFU suffix signature warning when flashing with dfu-util. No problem for now
+  but may cause issues with future versions of dfu-util.
 
 [^1]: Really what's happening is that `Shift` + my right home-thumb morph into
   caps-word. This gives me two separate ways of activating it: (1) Holding the
