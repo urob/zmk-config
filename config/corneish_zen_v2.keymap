@@ -5,7 +5,7 @@
 #define XTR_MH  &kp BSPC  &kp RET  // thumb row, middle
 
 /* activate bluetooth */
-#define CONFIG_WIRELESS
+#define CONFIG_WIRELESS 1
 
 /* source the main keymap */
 #include "base.keymap"
