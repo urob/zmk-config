@@ -1,5 +1,15 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#if defined CONFIG_WIRELESS
+    #include <dt-bindings/zmk/bt.h>
+    #include <dt-bindings/zmk/outputs.h>
+    #include <dt-bindings/zmk/ext_power.h>
+    #define _BT_SEL_KEYS_ &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+    #define _BT_CFG_KEYS_ &bt BT_CLR &out OUT_TOG &ext_power EP_TOG
+#else
+    #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
+    #define _BT_CFG_KEYS_ &trans &trans &trans
+#endif
 
 #include "../zmk-nodefree-config/helper.h"
 #include "../zmk-nodefree-config/international_chars/greek.dtsi"
@@ -227,11 +237,11 @@ ZMK_LAYER(nav_layer,
 
 ZMK_LAYER(sys_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          &kp LG(GRAVE) ___           ___           &reset        &bootloader       XTR_MT            ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep
+                                     _BT_SEL_KEYS_                                  XTR_MT            ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               XTR_MM            ___           DSK_PREV      &kp C_VOL_DN  DSK_NEXT      ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-          ___           ___           ___           ___           ___               XTR_MB            ___           ___           ___           ___           ___
+                       _BT_CFG_KEYS_                &reset        &bootloader       XTR_MB            &bootloader   &reset        ___           ___           ___
      // ├─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┼─────────────┤
           XTR_LH                                    ___           ___               XTR_MH            &kp C_PP      &kp C_MUTE                                XTR_RH
      // ╰─────────────╯                           ╰─────────────┴─────────────╯   ╰─────────────╯   ╰─────────────┴─────────────╯                           ╰─────────────╯

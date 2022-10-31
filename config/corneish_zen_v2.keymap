@@ -4,16 +4,12 @@
 /* map Zen's extra keys */
 #define XTR_MH  &kp BSPC  &kp RET  // thumb row, middle
 
-/* bluetooth support */
-#include <dt-bindings/zmk/bt.h>
+/* activate bluetooth */
+#define CONFIG_WIRELESS
 
 /* source the main keymap */
 #include "base.keymap"
 
 /* use 5-column layout for Zen */
-/ {
-    chosen {
-        zmk,matrix_transform = &five_column_transform;
-    };
-};
+/ { chosen { zmk,matrix_transform = &five_column_transform; }; };
 
