@@ -6,7 +6,7 @@
 
 ZMK_DIR="$HOME/zmk"
 CONFIG_DIR="$HOME/zmk-config"
-OUTPUT="$WINHOME/Downloads/planck_rev6-zmk.bin"
+OUTPUT_DIR="$WINHOME/Downloads"
 
 # +-------------------------+
 # | AUTOMATE CONFIG OPTIONS |
@@ -40,16 +40,28 @@ echo "Setting MAX_KEYS_PER_COMBO to $count"
 
 cd "$ZMK_DIR/app"
 
-# build the firmware
-west build -b planck_rev6 -- -DZMK_CONFIG="$CONFIG_DIR/config"
-
-# copy firmware to Downloads if build was succesful
+# build the firmware and copy to Downloads if build was successful
+west build -d build/planck -b planck_rev6 -- -DZMK_CONFIG="$CONFIG_DIR/config"
 if [[ $? -eq 0 ]]
 then
+    OUTPUT="$OUTPUT_DIR/planck_rev6-zmk.bin"
     [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
-    cp "$ZMK_DIR/app/build/zephyr/zmk.bin" "$OUTPUT"
-    exit 0
-else
-    exit 1
+    cp "$ZMK_DIR/app/build/planck/zephyr/zmk.bin" "$OUTPUT"
+fi
+
+west build -d build/zen_left -b corneish_zen_v2_left -- -DZMK_CONFIG="$CONFIG_DIR/config"
+if [[ $? -eq 0 ]]
+then
+    OUTPUT="$OUTPUT_DIR/zen_v2_left-zmk.uf2"
+    [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
+    cp "$ZMK_DIR/app/build/zen_left/zephyr/zmk.uf2" "$OUTPUT"
+fi
+
+west build -d build/zen_right -b corneish_zen_v2_right -- -DZMK_CONFIG="$CONFIG_DIR/config"
+if [[ $? -eq 0 ]]
+then
+    OUTPUT="$OUTPUT_DIR/zen_v2_right-zmk.uf2"
+    [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
+    cp "$ZMK_DIR/app/build/zen_right/zephyr/zmk.uf2" "$OUTPUT"
 fi
 

@@ -1,0 +1,12 @@
+/* source keypos definitions */
+#include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
+
+/* map Zen's extra keys */
+#define XTR_MH  &kp BSPC  &kp RET  // thumb row, middle
+
+/* bluetooth support */
+#include <dt-bindings/zmk/bt.h>
+
+/* source the main keymap */
+#include "base.keymap"
+
