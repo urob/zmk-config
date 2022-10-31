@@ -167,23 +167,23 @@ ZMK_BEHAVIOR(sls, sticky_key,
 )
 
 // tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
-ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
-    bindings = <&kp DOT>, <&kp COLON>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-ZMK_BEHAVIOR(dot_morph, mod_morph,
-    bindings = <&dot_inner_morph>, <&kp DOT>;
+ZMK_BEHAVIOR(comma_inner_morph, mod_morph,
+    bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
     mods = <(MOD_LCTL|MOD_RCTL)>;
+)
+ZMK_BEHAVIOR(comma_morph, mod_morph,
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+    bindings = <&kp COMMA>, <&comma_inner_morph>;
 )
 
 // tap: dot | shift + tap: colon | ctrl + shift + tap: >
-ZMK_BEHAVIOR(comma_inner_morph, mod_morph,
-    bindings = <&kp COMMA>, <&kp SEMICOLON>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-ZMK_BEHAVIOR(comma_morph, mod_morph,
-    bindings = <&comma_inner_morph>, <&kp COMMA>;
+ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
+    bindings = <&kp COLON>, <&kp GREATER_THAN>;
     mods = <(MOD_LCTL|MOD_RCTL)>;
+)
+ZMK_BEHAVIOR(dot_morph, mod_morph,
+    bindings = <&kp DOT>, <&dot_inner_morph>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
 // Swapper
