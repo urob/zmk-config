@@ -186,6 +186,19 @@ ZMK_BEHAVIOR(comma_morph, mod_morph,
     mods = <(MOD_LCTL|MOD_RCTL)>;
 )
 
+// Swapper
+/ {
+    behaviors {
+        swap: swapper {
+            compatible = "zmk,behavior-tri-state";
+            label = "SWAPPER";
+            #binding-cells = <0>;
+            bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+            ignored-key-positions = <LT2>;
+        };
+    };
+};
+
 /* Keymap */
 
 ZMK_LAYER(default_layer,
@@ -202,7 +215,7 @@ ZMK_LAYER(default_layer,
 
 ZMK_LAYER(nav_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-          ___           ___           ___           ___           ___               XTR_MT            &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___
+          ___           ___           &kp LS(TAB)   &swap         ___               XTR_MT            &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
           &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___               XTR_MM            &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET
      // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
