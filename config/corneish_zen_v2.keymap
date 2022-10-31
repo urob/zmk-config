@@ -10,3 +10,10 @@
 /* source the main keymap */
 #include "base.keymap"
 
+/* use 5-column layout for Zen */
+/ {
+    chosen {
+        zmk,matrix_transform = &five_column_transform;
+    };
+};
+
