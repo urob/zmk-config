@@ -6,20 +6,24 @@ This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/) configur
 
 - clean keymap + unicode setup using helper macros from
   [zmk-nodefree-config](https://github.com/urob/zmk-nodefree-config)
+- modified Github Actions workflow that recognizes git-submodules
 - keymap and combo setup are independent of the physical location of keys and are
   (re)used for multiple keyboards with a varying number of keys
 - ["timeless" homerow mods](#timeless-homerow-mods) on the base layer; sticky mods on
   other layers
 - num-word: a zmk version of smart-layers that automatically de-activate for non-numbers
 - combos replacing the symbol layer
-- arrow-cluster doubles as home/end/beginning of document/end of document on long-press,
-  backspace/delete delete words on long-press
+- arrow-cluster doubles as home/end/etc on long-press,
+  bspc/del delete words on long-press
 - sticky shift on right thumb, double-tap (or shift + tap)[^1] activates caps-word
-- shift + comma morph into semicolon, shift + control + comma morph into less-than,
-  shift + dot morph into colon, shift + control + dot morph into greater-than
-- shift + space morphs into dot + space + sticky-shift
-- conditional layer: "sys" + "num" layer yield "fun" layer
-- "repeat" on right bottom pinky
+- <kbd>shift</kbd> + <kbd>,</kbd> morphs into <kbd>;</kbd>  and <kbd>shift</kbd> +
+  <kbd>.</kbd> morphs into <kbd>;</kbd> (freeing up the right pinky for
+  <kbd>repeat</kbd>)
+- <kbd>shift</kbd> + <kbd>ctrl</kbd> +
+  <kbd>,</kbd> morphs into <kbd><</kbd> and <kbd>shift</kbd> + <kbd>ctrl</kbd> +
+  <kbd>.</kbd> morphs into <kbd>></kbd>
+- <kbd>shift</kbd> + <kbd>space</kbd> morphs into <kbd>dot</kbd> → <kbd>space</kbd> →
+  <kbd>sticky-shift</kbd>
 - "Greek" layer for mathematical typesetting (activated via sticky-layer combo)
 
 ![](img/keymap.png)
