@@ -3,9 +3,8 @@
 #if CONFIG_WIRELESS
     #include <dt-bindings/zmk/bt.h>
     #include <dt-bindings/zmk/outputs.h>
-    #include <dt-bindings/zmk/ext_power.h>
     #define _BT_SEL_KEYS_ &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
-    #define _BT_CFG_KEYS_ &bt BT_CLR &out OUT_TOG &ext_power EP_TOG
+    #define _BT_CFG_KEYS_ &bt BT_CLR &trans &out OUT_TOG
 #else
     #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
     #define _BT_CFG_KEYS_ &trans &trans &trans
