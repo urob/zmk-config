@@ -41,7 +41,7 @@ echo "Setting MAX_KEYS_PER_COMBO to $count"
 cd "$ZMK_DIR/app"
 
 # build the firmware and copy to Downloads if build was successful
-west build -d build/planck -b planck_rev6 -- -DZMK_CONFIG="$CONFIG_DIR/config"
+west build -d build/planck -b planck_rev6 -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
 if [[ $? -eq 0 ]]
 then
     OUTPUT="$OUTPUT_DIR/planck_rev6-zmk.bin"
@@ -49,7 +49,7 @@ then
     cp "$ZMK_DIR/app/build/planck/zephyr/zmk.bin" "$OUTPUT"
 fi
 
-west build -d build/zen_left -b corneish_zen_v2_left -- -DZMK_CONFIG="$CONFIG_DIR/config"
+west build -d build/zen_left -b corneish_zen_v2_left -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
 if [[ $? -eq 0 ]]
 then
     OUTPUT="$OUTPUT_DIR/zen_v2_left-zmk.uf2"
@@ -57,7 +57,7 @@ then
     cp "$ZMK_DIR/app/build/zen_left/zephyr/zmk.uf2" "$OUTPUT"
 fi
 
-west build -d build/zen_right -b corneish_zen_v2_right -- -DZMK_CONFIG="$CONFIG_DIR/config"
+west build -d build/zen_right -b corneish_zen_v2_right -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
 if [[ $? -eq 0 ]]
 then
     OUTPUT="$OUTPUT_DIR/zen_v2_right-zmk.uf2"
