@@ -2,7 +2,7 @@
 #include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
 
 /* map Zen's extra keys */
-#define XTR_MH  &kp BSPC  &kp RET  // thumb row, middle
+#define XTR_MH  &scroll_mode  &kp RET  // thumb row, middle
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
