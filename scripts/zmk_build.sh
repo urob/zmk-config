@@ -40,7 +40,7 @@ echo "Setting MAX_KEYS_PER_COMBO to $count"
 
 cd "$ZMK_DIR/app"
 
-# build the firmware and copy to Downloads if build was successful
+# Planck rev6
 west build -d build/planck -b planck_rev6 -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
 if [[ $? -eq 0 ]]
 then
@@ -49,6 +49,7 @@ then
     cp "$ZMK_DIR/app/build/planck/zephyr/zmk.bin" "$OUTPUT"
 fi
 
+# Zen v2
 west build -d build/zen_left -b corneish_zen_v2_left -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
 if [[ $? -eq 0 ]]
 then
@@ -63,5 +64,22 @@ then
     OUTPUT="$OUTPUT_DIR/zen_v2_right-zmk.uf2"
     [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
     cp "$ZMK_DIR/app/build/zen_right/zephyr/zmk.uf2" "$OUTPUT"
+fi
+
+# Advantage 360 pro
+west build -p -d build/adv360pro_left -b adv360pro_left -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
+if [[ $? -eq 0 ]]
+then
+    OUTPUT="$OUTPUT_DIR/adv360pro_left-zmk.uf2"
+    [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
+    cp "$ZMK_DIR/app/build/adv360pro_left/zephyr/zmk.uf2" "$OUTPUT"
+fi
+
+west build -p -d build/adv360pro_right -b adv360pro_right -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
+if [[ $? -eq 0 ]]
+then
+    OUTPUT="$OUTPUT_DIR/adv360pro_right-zmk.uf2"
+    [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
+    cp "$ZMK_DIR/app/build/adv360pro_right/zephyr/zmk.uf2" "$OUTPUT"
 fi
 
