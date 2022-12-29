@@ -1,14 +1,17 @@
 # urob's zmk-config
 
-This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration. 
+This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration.
+It consists of a 34-keys base layout that is re-used for various boards, including my
+Corneish Zen and an Advantage 360 pro.
 
 ## Key features
 
 - clean keymap + unicode setup using helper macros from
   [zmk-nodefree-config](https://github.com/urob/zmk-nodefree-config)
 - modified Github Actions workflow that recognizes git-submodules
-- keymap and combo setup are independent of the physical location of keys and are
-  (re)used for multiple keyboards with a varying number of keys
+- the base keymap and combo setup are independent of the physical location of keys and
+  are re-used for multiple keyboards. The configuration is fit onto larger boards by
+  padding it via a modular structure of "extra keys"
 - ["timeless" homerow mods](#timeless-homerow-mods) on the base layer; sticky mods on
   other layers
 - num-word: a zmk version of smart-layers that automatically de-activate for non-numbers
