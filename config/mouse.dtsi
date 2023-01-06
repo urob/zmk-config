@@ -1,14 +1,14 @@
 #include <dt-bindings/zmk/mouse.h>
 
 &mmv {
-  time-to-max-speed-ms = <40>;
   acceleration-exponent = <1>;
+  time-to-max-speed-ms = <40>;
   delay-ms = <0>;
 };
 
 &mwh {
-  time-to-max-speed-ms = <40>;
   acceleration-exponent = <0>;
+  time-to-max-speed-ms = <40>;
   delay-ms = <10>;
 };
 
@@ -32,4 +32,16 @@
 #define SCROLL_DOWN SCROLL_VERT(-U_MOUSE_SCROLL_MAX)
 #define SCROLL_LEFT SCROLL_HOR(-U_MOUSE_SCROLL_MAX)
 #define SCROLL_RIGHT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
+
+#define U_BTN1 &mkp MB1
+#define U_BTN2 &mkp MB2
+#define U_BTN3 &mkp MB3
+#define U_MS_U &mmv MOVE_UP
+#define U_MS_D &mmv MOVE_DOWN
+#define U_MS_L &mmv MOVE_LEFT
+#define U_MS_R &mmv MOVE_RIGHT
+#define U_WH_U &mwh SCROLL_UP
+#define U_WH_D &mwh SCROLL_DOWN
+#define U_WH_L &mwh SCROLL_LEFT
+#define U_WH_R &mwh SCROLL_RIGHT
 
