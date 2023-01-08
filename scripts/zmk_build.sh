@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-# TODO
-# * add -c and -z argument to specity non-default branches for config and zmk
-# * add option to pass arguments to west build (useful for -p)
-
 ZMK_DIR="$HOME/zmk"
 CONFIG_DIR="$HOME/zmk-config"
 OUTPUT_DIR="$WINHOME/Downloads"
+WEST_OPTS="$@"
 
 # +-------------------------+
 # | AUTOMATE CONFIG OPTIONS |
@@ -38,48 +35,21 @@ echo "Setting MAX_KEYS_PER_COMBO to $count"
 # | BUILD THE FIRMWARE |
 # +--------------------+
 
+# usage: compile_board [board] [bin|uf2]
+compile_board () {
+    west build -d build/$1 -b $1 ${WEST_OPTS} -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
+    if [[ $? -eq 0 ]]
+    then
+        OUTPUT="$OUTPUT_DIR/$1-zmk.$2"
+        [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
+        cp "$ZMK_DIR/app/build/$1/zephyr/zmk.$2" "$OUTPUT"
+    fi
+}
+
 cd "$ZMK_DIR/app"
-
-# Planck rev6
-west build -d build/planck -b planck_rev6 -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
-if [[ $? -eq 0 ]]
-then
-    OUTPUT="$OUTPUT_DIR/planck_rev6-zmk.bin"
-    [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
-    cp "$ZMK_DIR/app/build/planck/zephyr/zmk.bin" "$OUTPUT"
-fi
-
-# Zen v2
-west build -d build/zen_left -b corneish_zen_v2_left -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
-if [[ $? -eq 0 ]]
-then
-    OUTPUT="$OUTPUT_DIR/zen_v2_left-zmk.uf2"
-    [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
-    cp "$ZMK_DIR/app/build/zen_left/zephyr/zmk.uf2" "$OUTPUT"
-fi
-
-west build -d build/zen_right -b corneish_zen_v2_right -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
-if [[ $? -eq 0 ]]
-then
-    OUTPUT="$OUTPUT_DIR/zen_v2_right-zmk.uf2"
-    [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
-    cp "$ZMK_DIR/app/build/zen_right/zephyr/zmk.uf2" "$OUTPUT"
-fi
-
-# Advantage 360 pro
-west build -p -d build/adv360pro_left -b adv360pro_left -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
-if [[ $? -eq 0 ]]
-then
-    OUTPUT="$OUTPUT_DIR/adv360pro_left-zmk.uf2"
-    [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
-    cp "$ZMK_DIR/app/build/adv360pro_left/zephyr/zmk.uf2" "$OUTPUT"
-fi
-
-west build -p -d build/adv360pro_right -b adv360pro_right -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
-if [[ $? -eq 0 ]]
-then
-    OUTPUT="$OUTPUT_DIR/adv360pro_right-zmk.uf2"
-    [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
-    cp "$ZMK_DIR/app/build/adv360pro_right/zephyr/zmk.uf2" "$OUTPUT"
-fi
+compile_board planck_rev6 bin
+compile_board corneish_zen_v2_left uf2
+compile_board corneish_zen_v2_right uf2
+compile_board adv360pro_left uf2
+compile_board adv360pro_right uf2
 
