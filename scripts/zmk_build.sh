@@ -37,12 +37,16 @@ echo "Setting MAX_KEYS_PER_COMBO to $count"
 
 # usage: compile_board [board] [bin|uf2]
 compile_board () {
+    echo -e "\n$(tput setaf 4)Building $1$(tput sgr0)"
     west build -d build/$1 -b $1 ${WEST_OPTS} -- -DZMK_CONFIG="$CONFIG_DIR/config" -Wno-dev
     if [[ $? -eq 0 ]]
     then
+        echo "$(tput setaf 4)Success: $1 done$(tput sgr0)"
         OUTPUT="$OUTPUT_DIR/$1-zmk.$2"
         [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT".bak
         cp "$ZMK_DIR/app/build/$1/zephyr/zmk.$2" "$OUTPUT"
+    else
+        echo "$(tput setaf 1)Error: $1$ failed$(tput sgr0)"
     fi
 }
 
