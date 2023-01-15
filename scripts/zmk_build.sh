@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-RUNWITH_DOCKER=true
-
+# Parse input arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
         # needed when user isn't in docker group
@@ -27,6 +26,11 @@ while [[ $# -gt 0 ]]; do
 
         -o|--output-dir)
             OUTPUT_DIR="$2"
+            shift
+            ;;
+
+        --log-dir)
+            LOG_DIR="$2"
             shift
             ;;
 
@@ -66,7 +70,10 @@ done
 
 # Set defaults
 [[ -z $WEST_VERSION ]] && WEST_VERSION="3.0"
+[[ -z $RUNWITH_DOCKER ]] && RUNWITH_DOCKER=true
+
 [[ -z $OUTPUT_DIR ]] && OUTPUT_DIR="$WINHOME/Downloads"
+[[ -z $LOG_DIR ]] && LOG_DIR="/tmp"
 
 [[ -z $HOST_ZMK_DIR ]] && HOST_ZMK_DIR="$HOME/zmk"
 [[ -z $HOST_CONFIG_DIR ]] && HOST_CONFIG_DIR="$HOME/zmk-config"
@@ -84,25 +91,28 @@ DOCKER_IMG="zmkfirmware/zmk-dev-arm:$WEST_VERSION"
 
 cd "$HOST_CONFIG_DIR"
 
-# update maximum combos per key
-count=$( \
-    tail -n +10 config/combos.dtsi | \
-    grep -Eo '[LR][TMBH][0-9]' | \
-    sort | uniq -c | sort -nr | \
-    awk 'NR==1{print $1}' \
-)
-sed -Ei "/CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY/s/=.+/=$count/" config/*.conf
-echo "Setting MAX_COMBOS_PER_KEY to $count"
+if [[ -f config/combos.dtsi ]]
+    # update maximum combos per key
+    then
+    count=$( \
+        tail -n +10 config/combos.dtsi | \
+        grep -Eo '[LR][TMBH][0-9]' | \
+        sort | uniq -c | sort -nr | \
+        awk 'NR==1{print $1}' \
+    )
+    sed -Ei "/CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY/s/=.+/=$count/" config/*.conf
+    echo "Setting MAX_COMBOS_PER_KEY to $count"
 
-# update maximum keys per combo
-count=$( \
-    tail -n +10 config/combos.dtsi | \
-    grep -o -n '[LR][TMBH][0-9]' | \
-    cut -d : -f 1 | uniq -c | sort -nr | \
-    awk 'NR==1{print $1}' \
-)
-sed -Ei "/CONFIG_ZMK_COMBO_MAX_KEYS_PER_COMBO/s/=.+/=$count/" config/*.conf
-echo "Setting MAX_KEYS_PER_COMBO to $count"
+    # update maximum keys per combo
+    count=$( \
+        tail -n +10 config/combos.dtsi | \
+        grep -o -n '[LR][TMBH][0-9]' | \
+        cut -d : -f 1 | uniq -c | sort -nr | \
+        awk 'NR==1{print $1}' \
+    )
+    sed -Ei "/CONFIG_ZMK_COMBO_MAX_KEYS_PER_COMBO/s/=.+/=$count/" config/*.conf
+    echo "Setting MAX_KEYS_PER_COMBO to $count"
+fi
 
 # +--------------------+
 # | BUILD THE FIRMWARE |
@@ -130,13 +140,16 @@ fi
 
 # usage: compile_board board
 compile_board () {
-    echo -e "\n$(tput setaf 4)Building $1$(tput sgr0)"
+    echo -en "\n$(tput setaf 2)Building $1... $(tput sgr0)"
     BUILD_DIR="${1}_$SUFFIX"
+    LOGFILE="$LOG_DIR/zmk_build_$1.log"
     $DOCKER_CMD west build -d "build/$BUILD_DIR" -b $1 $WEST_OPTS \
-        -- -DZMK_CONFIG="$CONFIG_DIR" -Wno-dev
+        -- -DZMK_CONFIG="$CONFIG_DIR" -Wno-dev > "$LOGFILE" 2>&1
     if [[ $? -eq 0 ]]
     then
-        echo "$(tput setaf 4)Success: $1 done$(tput sgr0)"
+        # echo "$(tput setaf 4)Success: $1 done$(tput sgr0)"
+        echo "$(tput setaf 2)done$(tput sgr0)"
+        echo "Build log saved to \"$LOGFILE\"."
         if [[ -f $HOST_ZMK_DIR/app/build/$BUILD_DIR/zephyr/zmk.uf2 ]]
         then
             TYPE="uf2"
@@ -147,6 +160,8 @@ compile_board () {
         [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT.bak"
         cp "$HOST_ZMK_DIR/app/build/$BUILD_DIR/zephyr/zmk.$TYPE" "$OUTPUT"
     else
+        echo
+        cat "$LOGFILE"
         echo "$(tput setaf 1)Error: $1 failed$(tput sgr0)"
     fi
 }
