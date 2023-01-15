@@ -1,17 +1,82 @@
 #!/usr/bin/env bash
 
-WEST_OPTS="$@"
-OUTPUT_DIR="$WINHOME/Downloads"
-
-HOST_ZMK_DIR="$HOME/zmk"
-HOST_CONFIG_DIR="$HOME/zmk-config"
-
 RUNWITH_DOCKER=true
-DOCKER_SUDO="sudo"  # leave empty if user is in docker group
-DOCKER_VERSION="zmkfirmware/zmk-dev-arm:3.0"
 
-DOCKER_ZMK_DIR="/workspace/zmk"
-DOCKER_CONFIG_DIR="/workspace/zmk-config"
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        # needed when user isn't in docker group
+        -s|--su)
+            DOCKER_SUDO="sudo"
+            ;;
+
+        -l|--local)
+            RUNWITH_DOCKER="false"
+            ;;
+
+        # comma or space separated list of boards (use quotes if space separated)
+        # if ommitted, will compile list of boards in build.yaml
+        -b|--board)
+            BOARDS="$2"
+            shift
+            ;;
+
+        -v|--version)
+            WEST_VERSION="$2"
+            shift
+            ;;
+
+        -o|--output-dir)
+            OUTPUT_DIR="$2"
+            shift
+            ;;
+
+        --host-config-dir)
+            HOST_CONFIG_DIR="$2"
+            shift
+            ;;
+
+        --host-zmk-dir)
+            HOST_ZMK_DIR="$2"
+            shift
+            ;;
+
+        --docker-config-dir)
+            DOCKER_CONFIG_DIR="$2"
+            shift
+            ;;
+
+        --docker-zmk-dir)
+            DOCKER_ZMK_DIR="$2"
+            shift
+            ;;
+
+        --)
+            WEST_OPTS="${@:2}"
+            break
+            ;;
+
+        *)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+
+    esac
+    shift
+done
+
+# Set defaults
+[[ -z $WEST_VERSION ]] && WEST_VERSION="3.0"
+[[ -z $OUTPUT_DIR ]] && OUTPUT_DIR="$WINHOME/Downloads"
+
+[[ -z $HOST_ZMK_DIR ]] && HOST_ZMK_DIR="$HOME/zmk"
+[[ -z $HOST_CONFIG_DIR ]] && HOST_CONFIG_DIR="$HOME/zmk-config"
+
+[[ -z $DOCKER_ZMK_DIR ]] && DOCKER_ZMK_DIR="/workspace/zmk"
+[[ -z $DOCKER_CONFIG_DIR ]] && DOCKER_CONFIG_DIR="/workspace/zmk-config"
+
+[[ -z $BOARDS ]] && BOARDS="$(grep '^[[:space:]]*\-[[:space:]]*board:' $HOST_CONFIG_DIR/build.yaml | sed 's/^.*: *//')"
+
+DOCKER_IMG="zmkfirmware/zmk-dev-arm:$WEST_VERSION"
 
 # +-------------------------+
 # | AUTOMATE CONFIG OPTIONS |
@@ -49,41 +114,46 @@ then
     DOCKER_CMD="$DOCKER_SUDO docker run --name zmk --rm -w $DOCKER_ZMK_DIR/app \
         --mount type=bind,source=$HOST_ZMK_DIR,target=$DOCKER_ZMK_DIR \
         --mount type=bind,source=$HOST_CONFIG_DIR,target=$DOCKER_CONFIG_DIR,readonly \
-        --mount type=volume,source=zmk-root-user,target=/root \
-        --mount type=volume,source=zmk-zephyr,target=$DOCKER_ZMK_DIR/zephyr \
-        --mount type=volume,source=zmk-zephyr-modules,target=$DOCKER_ZMK_DIR/modules \
-        --mount type=volume,source=zmk-zephyr-tools,target=$DOCKER_ZMK_DIR/tools \
-        $DOCKER_VERSION"
-    SUFFIX="_docker"
+        --mount type=volume,source=zmk-root-user-$WEST_VERSION,target=/root \
+        --mount type=volume,source=zmk-zephyr-$WEST_VERSION,target=$DOCKER_ZMK_DIR/zephyr \
+        --mount type=volume,source=zmk-zephyr-modules-$WEST_VERSION,target=$DOCKER_ZMK_DIR/modules \
+        --mount type=volume,source=zmk-zephyr-tools-$WEST_VERSION,target=$DOCKER_ZMK_DIR/tools \
+        $DOCKER_IMG"
+    SUFFIX="${WEST_VERSION}_docker"
     CONFIG_DIR="$DOCKER_CONFIG_DIR/config"
 
 else
     echo "Build mode: local"
-    DOCKER_CMD=
-    SUFFIX=
+    SUFFIX="${WEST_VERSION}"
     CONFIG_DIR="$HOST_CONFIG_DIR/config"
 fi
 
-# usage: compile_board [board] [bin|uf2]
+# usage: compile_board board
 compile_board () {
     echo -e "\n$(tput setaf 4)Building $1$(tput sgr0)"
-    $DOCKER_CMD west build -d "build/$1$SUFFIX" -b $1 $WEST_OPTS \
+    BUILD_DIR="${1}_$SUFFIX"
+    $DOCKER_CMD west build -d "build/$BUILD_DIR" -b $1 $WEST_OPTS \
         -- -DZMK_CONFIG="$CONFIG_DIR" -Wno-dev
     if [[ $? -eq 0 ]]
     then
         echo "$(tput setaf 4)Success: $1 done$(tput sgr0)"
-        OUTPUT="$OUTPUT_DIR/$1-zmk.$2"
+        if [[ -f $HOST_ZMK_DIR/app/build/$BUILD_DIR/zephyr/zmk.uf2 ]]
+        then
+            TYPE="uf2"
+        else
+            TYPE="bin"
+        fi
+        OUTPUT="$OUTPUT_DIR/$1-zmk.$TYPE"
         [[ -f $OUTPUT ]] && [[ ! -L $OUTPUT ]] && mv "$OUTPUT" "$OUTPUT.bak"
-        cp "$HOST_ZMK_DIR/app/build/$1/zephyr/zmk.$2" "$OUTPUT"
+        cp "$HOST_ZMK_DIR/app/build/$BUILD_DIR/zephyr/zmk.$TYPE" "$OUTPUT"
     else
         echo "$(tput setaf 1)Error: $1 failed$(tput sgr0)"
     fi
 }
 
 cd "$HOST_ZMK_DIR/app"
-compile_board planck_rev6 bin
-compile_board corneish_zen_v2_left uf2
-compile_board corneish_zen_v2_right uf2
-compile_board adv360pro_left uf2
-compile_board adv360pro_right uf2
+for board in $(echo $BOARDS | sed 's/,/ /g')
+do
+    compile_board $board
+done
 
