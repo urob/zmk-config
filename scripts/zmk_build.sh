@@ -5,11 +5,15 @@ while [[ $# -gt 0 ]]; do
     case $1 in
         # needed when user isn't in docker group
         -s|--su)
-            DOCKER_SUDO="sudo"
+            SUDO="sudo"
             ;;
 
         -l|--local)
             RUNWITH_DOCKER="false"
+            ;;
+
+        -c|--clear-cache)
+            CLEAR_CACHE="true"
             ;;
 
         # comma or space separated list of boards (use quotes if space separated)
@@ -20,7 +24,7 @@ while [[ $# -gt 0 ]]; do
             ;;
 
         -v|--version)
-            WEST_VERSION="$2"
+            ZEPHYR_VERSION="$2"
             shift
             ;;
 
@@ -69,8 +73,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Set defaults
-[[ -z $WEST_VERSION ]] && WEST_VERSION="3.0"
-[[ -z $RUNWITH_DOCKER ]] && RUNWITH_DOCKER=true
+[[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.0"
+[[ -z $RUNWITH_DOCKER ]] && RUNWITH_DOCKER="true"
 
 [[ -z $OUTPUT_DIR ]] && OUTPUT_DIR="$WINHOME/Downloads"
 [[ -z $LOG_DIR ]] && LOG_DIR="/tmp"
@@ -83,7 +87,9 @@ done
 
 [[ -z $BOARDS ]] && BOARDS="$(grep '^[[:space:]]*\-[[:space:]]*board:' $HOST_CONFIG_DIR/build.yaml | sed 's/^.*: *//')"
 
-DOCKER_IMG="zmkfirmware/zmk-dev-arm:$WEST_VERSION"
+[[ -z $CLEAR_CACHE ]] && CLEAR_CACHE="false"
+
+DOCKER_IMG="zmkfirmware/zmk-dev-arm:$ZEPHYR_VERSION"
 
 # +-------------------------+
 # | AUTOMATE CONFIG OPTIONS |
@@ -121,20 +127,37 @@ fi
 if [[ $RUNWITH_DOCKER = true ]]
 then
     echo "Build mode: docker"
-    DOCKER_CMD="$DOCKER_SUDO docker run --name zmk --rm -w $DOCKER_ZMK_DIR/app \
+    DOCKER_CMD="$SUDO docker run --name zmk-$ZEPHYR_VERSION --rm \
         --mount type=bind,source=$HOST_ZMK_DIR,target=$DOCKER_ZMK_DIR \
         --mount type=bind,source=$HOST_CONFIG_DIR,target=$DOCKER_CONFIG_DIR,readonly \
-        --mount type=volume,source=zmk-root-user-$WEST_VERSION,target=/root \
-        --mount type=volume,source=zmk-zephyr-$WEST_VERSION,target=$DOCKER_ZMK_DIR/zephyr \
-        --mount type=volume,source=zmk-zephyr-modules-$WEST_VERSION,target=$DOCKER_ZMK_DIR/modules \
-        --mount type=volume,source=zmk-zephyr-tools-$WEST_VERSION,target=$DOCKER_ZMK_DIR/tools \
-        $DOCKER_IMG"
-    SUFFIX="${WEST_VERSION}_docker"
+        --mount type=volume,source=zmk-root-user-$ZEPHYR_VERSION,target=/root \
+        --mount type=volume,source=zmk-zephyr-$ZEPHYR_VERSION,target=$DOCKER_ZMK_DIR/zephyr \
+        --mount type=volume,source=zmk-zephyr-modules-$ZEPHYR_VERSION,target=$DOCKER_ZMK_DIR/modules \
+        --mount type=volume,source=zmk-zephyr-tools-$ZEPHYR_VERSION,target=$DOCKER_ZMK_DIR/tools"
+
+    # Reset volumes
+    if [[ $CLEAR_CACHE = true ]]
+    then
+        $SUDO docker volume rm $(sudo docker volume ls -q | grep "^zmk-.*-$ZEPHYR_VERSION$")
+    fi
+
+    # Update west if needed
+    OLD_WEST="/root/west.yml.old"
+    $DOCKER_CMD -w "$DOCKER_ZMK_DIR" "$DOCKER_IMG" /bin/bash -c " \
+        if [[ ! -f .west/config ]]; then west init -l app/; fi \
+        && if [[ -f $OLD_WEST ]]; then md5_old=\$(md5sum $OLD_WEST | cut -d' ' -f1); fi \
+        && [[ \$md5_old != \$(md5sum app/west.yml | cut -d' ' -f1) ]] \
+        && west update \
+        && cp app/west.yml $OLD_WEST"
+
+    # Build parameters
+    DOCKER_PREFIX="$DOCKER_CMD -w $DOCKER_ZMK_DIR/app $DOCKER_IMG"
+    SUFFIX="${ZEPHYR_VERSION}_docker"
     CONFIG_DIR="$DOCKER_CONFIG_DIR/config"
 
 else
     echo "Build mode: local"
-    SUFFIX="${WEST_VERSION}"
+    SUFFIX="${ZEPHYR_VERSION}"
     CONFIG_DIR="$HOST_CONFIG_DIR/config"
 fi
 
@@ -143,7 +166,7 @@ compile_board () {
     echo -en "\n$(tput setaf 2)Building $1... $(tput sgr0)"
     BUILD_DIR="${1}_$SUFFIX"
     LOGFILE="$LOG_DIR/zmk_build_$1.log"
-    $DOCKER_CMD west build -d "build/$BUILD_DIR" -b $1 $WEST_OPTS \
+    $DOCKER_PREFIX west build -d "build/$BUILD_DIR" -b $1 $WEST_OPTS \
         -- -DZMK_CONFIG="$CONFIG_DIR" -Wno-dev > "$LOGFILE" 2>&1
     if [[ $? -eq 0 ]]
     then
