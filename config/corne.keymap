@@ -1,0 +1,16 @@
+/* source keypos definitions */
+#include "../zmk-nodefree-config/keypos_def/keypos_42keys.h"
+
+#define X_LT    &kp TAB
+#define X_RT    &kp BSLH
+
+#define X_LM    &kp ESC
+#define X_RM    &kp SQT
+
+#define X_LB    &kp LSHFT
+#define X_RB    &kp RSHFT
+
+/* source the main keymap */
+#include "base.keymap"
+
+/ { chosen { zmk,matrix_transform = &default_transform; }; };
