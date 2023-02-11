@@ -10,6 +10,9 @@
 #define X_LB    &kp LSHFT
 #define X_RB    &kp RSHFT
 
+#define X_LH    &none
+#define X_MH    &none
+
 /* source the main keymap */
 #include "base.keymap"
 
