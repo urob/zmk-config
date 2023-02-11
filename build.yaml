@@ -15,5 +15,6 @@
 include:
   - board: adv360pro_left
   - board: adv360pro_right
-  - board: corne_left
-  - board: corne_right
+  - board: nice_nano_v2
+    shield: [corne_left, corne_right]
+    name: ["Corne"]
