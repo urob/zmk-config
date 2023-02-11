@@ -10,8 +10,8 @@
 #define X_LB    &kp LSHFT
 #define X_RB    &kp RSHFT
 
-#define X_LH    &none
-#define X_RH    &none
+#define X_LH  &scroll_mode  // thumb row, left
+#define X_RH  &kp RET       // thumb row, right
 
 /* source the main keymap */
 #include "base.keymap"
