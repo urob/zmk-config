@@ -11,7 +11,7 @@
 #define X_RB    &kp RSHFT
 
 #define X_LH    &none
-#define X_MH    &none
+#define X_RH    &none
 
 /* source the main keymap */
 #include "base.keymap"
