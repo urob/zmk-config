@@ -2,12 +2,9 @@
 #include <dt-bindings/zmk/keys.h>
 #if CONFIG_WIRELESS
     #include <dt-bindings/zmk/bt.h>
-    #include <dt-bindings/zmk/outputs.h>
-    #define _BT_SEL_KEYS_ &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
-    #define _BT_CFG_KEYS_ &trans &out OUT_TOG &bt BT_CLR
+    #define _BT_SEL_KEYS_ &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
 #else
     #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
-    #define _BT_CFG_KEYS_ &trans &trans &trans
 #endif
 
 #include "../zmk-nodefree-config/helper.h"
@@ -16,9 +13,9 @@
 
 #define DEF 0
 #define NAV 1
-#define SYS 2
+#define FN 2
 #define NUM 3
-#define FN 4
+#define SYS 4
 #define UC 5
 #define MWH 6
 #define MOUSE 7
@@ -27,8 +24,8 @@
 #include "mouse.dtsi"
 #include "extra_keys.h"
 
-ZMK_CONDITIONAL_LAYER(SYS NAV, MOUSE)  // SYS + NAV --> MOUSE
-ZMK_CONDITIONAL_LAYER(SYS NUM, FN)     // SYS + NUM --> FN
+ZMK_CONDITIONAL_LAYER(FN NAV, MOUSE)  // FN + NAV --> MOUSE
+ZMK_CONDITIONAL_LAYER(FN NUM, SYS)    // FN + NUM --> SYS
 
 /* Navigation keys and misc shortcuts */
 
@@ -49,9 +46,10 @@ ZMK_CONDITIONAL_LAYER(SYS NUM, FN)     // SYS + NUM --> FN
 #define XXX &none
 #define ___ &trans
 
-#define CANCEL      &kp K_CANCEL       // cancel caps-word and num-word
-#define DSK_PREV    &kp LG(LC(LEFT))   // previous desktop
-#define DSK_NEXT    &kp LG(LC(RIGHT))  // next     desktop
+#define CANCEL      &kp K_CANCEL             // cancel caps-word and num-word
+#define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
+#define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
+#define VOL_DOWN    &hmr LCTRL C_VOL_DN
 
 /* Settings */
 
@@ -139,11 +137,17 @@ ZMK_BEHAVIOR(ss_cw, mod_morph,
     mods = <(MOD_LSFT)>;
 )
 
-// tap: backspace | lshft + tap: delete | rshft + tap: shift-delete | hold: num layer
-ZMK_BEHAVIOR(bs_del_sys, mod_morph,
-    bindings = <&lt SYS BSPC>, <&kp DEL>;
+// tap: backspace | lshft + tap: delete | rshft + tap: shift-delete | hold: fn layer
+ZMK_BEHAVIOR(bs_del, mod_morph,
+    bindings = <&kp BSPC>, <&kp DEL>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
-    keep-mods = <MOD_LSFT>;  // requires PR #1412
+    keep-mods = <MOD_LSFT>;
+)
+ZMK_BEHAVIOR(lt_bspc, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&mo>, <&bs_del>;
 )
 
 // tap: space | space + tap: dot -> space -> sticky shift | hold: activate layer
@@ -232,7 +236,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &kp X         &kp C         &kp D         &kp V           X_MB     &kp K         &kp H         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               &lt_spc NAV 0 &bs_del_sys     X_MH     NUM_WORD      &ss_cw                                                    X_RH
+    X_LH                                               &lt_spc NAV 0 &lt_bspc FN 0   X_MH     NUM_WORD      &ss_cw                                                    X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -242,22 +246,22 @@ ZMK_LAYER(nav,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     ___           ___           ___           ___           ___             X_MB     &kp INS       &kp TAB       &copy_cut     &kp LS(INS)   ___             X_RB
+    X_LB     ___           ___           ___           ___           ___             X_MB     &kp INS       &kp TAB       &kp LT        &kp GT        ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH     &kp RET       CANCEL                                                    X_RH
+    X_LH                                               ___           ___             X_MH     ___           CANCEL                                                    X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
-ZMK_LAYER(sys,
-//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT                                _BT_SEL_KEYS_                                X_MT     ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep      X_RT
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___             X_MM     ___           DSK_PREV      &kp C_VOL_DN  DSK_NEXT      ___             X_RM
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB                  _BT_CFG_KEYS_                &reset        &bootloader     X_MB     &bootloader   &reset        ___           ___           ___             X_RB
-//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH     &kp C_MUTE    &kp C_PP                                                  X_RH
-//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
+ZMK_LAYER(fn,
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     &kp F12       &kp F7        &kp F8        &kp F9        ___             X_MT      ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep      X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     &kp F11       &kp F4        &kp F5        &kp F6        ___             X_MM      ___           DSK_PREV      VOL_DOWN      DSK_NEXT      ___             X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     &kp F10       &kp F1        &kp F2        &kp F3        ___             X_MB      ___           ___           ___           ___           ___             X_RB
+//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤  ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+    X_LH                                               ___           ___             X_MH      &kp C_MUTE    &kp C_PP                                                  X_RH
+//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯  ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
 ZMK_LAYER(num,
@@ -272,13 +276,13 @@ ZMK_LAYER(num,
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
-ZMK_LAYER(fn,
+ZMK_LAYER(sys,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp F12       &kp F7        &kp F8        &kp F9        ___             X_MT     ___           ___           ___           ___           ___             X_RT
+    X_LT                                _BT_SEL_KEYS_                                X_MT     ___           ___           ___           ___           ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &kp F11       &kp F4        &kp F5        &kp F6        ___             X_MM     ___           &sk RSHFT     &sk LCTRL     &sk LALT      &sk LGUI        X_RM
+    X_LM     ___           ___           ___           ___           &bootloader     X_MM     &bootloader   ___           ___           ___           ___             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp F10       &kp F1        &kp F2        &kp F3        ___             X_MB     ___           ___           ___           ___           ___             X_RB
+    X_LB     ___           ___           ___           ___           &reset          X_MB     &reset        ___           ___           ___           ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
