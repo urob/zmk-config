@@ -5,9 +5,9 @@
 #define X_MT  &none   &none                  // top row, middle
 #define X_MM  &none   &none                  // middle row, middle
 #define X_MB  &none   &none                  // bottom row, middle
-#define X_LH  &none   &kp LGUI &scroll_mode  // thumb row, left
+#define X_LH  &none   &kp LGUI &smart_mouse  // thumb row, left
 #define X_MH  &none   &none                  // thumb row, middle
-#define X_RH  &kp RET U_WH_D   U_WH_U        // thumb row, right
+#define X_RH  &bs_del U_WH_D   U_WH_U        // thumb row, right
 
 /* source the main keymap */
 #include "base.keymap"

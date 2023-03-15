@@ -17,14 +17,12 @@
 #define NUM 3
 #define SYS 4
 #define UC 5
-#define MWH 6
-#define MOUSE 7
+#define MOUSE 6
 
 #include "combos.dtsi"  // must be sourced after layer-shortcuts
 #include "mouse.dtsi"
 #include "extra_keys.h"
 
-ZMK_CONDITIONAL_LAYER(FN NAV, MOUSE)  // FN + NAV --> MOUSE
 ZMK_CONDITIONAL_LAYER(FN NUM, SYS)    // FN + NUM --> SYS
 
 /* Navigation keys and misc shortcuts */
@@ -46,7 +44,7 @@ ZMK_CONDITIONAL_LAYER(FN NUM, SYS)    // FN + NUM --> SYS
 #define XXX &none
 #define ___ &trans
 
-#define CANCEL      &kp K_CANCEL             // cancel caps-word and num-word
+#define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
 #define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
 #define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
 #define VOL_DOWN    &hmr LCTRL C_VOL_DN
@@ -106,51 +104,40 @@ ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
 
 /* Custom behaviors */
 
-// tap: num-word | double-tap: sticky fun-layer | hold: num-layer
-ZMK_BEHAVIOR(num_fun_dance, tap_dance,
+// tap: num-word | double-tap: sticky num-layer | hold: num-layer
+ZMK_BEHAVIOR(num_dance, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&num_word>, <&sl FN>;
+    bindings = <&num_word>, <&sl NUM>;  // might want to reverse if rarely using more than 1 digit
 )
 ZMK_BEHAVIOR(num_layer_word, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <200>;
     quick-tap-ms = <QUICK_TAP_MS>;
-    bindings = <&mo>, <&num_fun_dance>;
+    bindings = <&mo>, <&num_dance>;
 )
 #define NUM_WORD &num_layer_word NUM 0
 
-// scroll-mode, requires PR #1366
-ZMK_BEHAVIOR(scroll_mode, tri_state,
-    bindings = <&tog MWH>, <&none>, <&tog MWH>;
-    ignored-key-positions = <RT2 RM2>;
-    ignored-layers = <MWH>;
+// mouse layer that deactivates automatically on all other keys, requires PR #1366
+ZMK_BEHAVIOR(smart_mouse, tri_state,
+    bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
+    ignored-key-positions = <RT1 RT2 RT3 RM1 RM2 RM3 RH0 RH1>;  // mouse keys
+    ignored-layers = <MOUSE>;
 )
 
-// tap: sticky shift | double tap: capsword | triple tap: cancel capsword
-// ZMK_BEHAVIOR(ss_cw, tap_dance,
-//     tapping-term-ms = <200>;
-//     bindings = <&sk LSHFT>, <&caps_word>, <CANCEL>;
-// )
-// tap: sticky-shift | lshft + tap: caps-word | hold: shift
+// tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
 ZMK_BEHAVIOR(ss_cw, mod_morph,
     bindings = <&sk LSHFT>, <&caps_word>;
     mods = <(MOD_LSFT)>;
 )
 
-// tap: backspace | lshft + tap: delete | rshft + tap: shift-delete | hold: fn layer
+// tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
 ZMK_BEHAVIOR(bs_del, mod_morph,
     bindings = <&kp BSPC>, <&kp DEL>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
-    keep-mods = <MOD_LSFT>;
-)
-ZMK_BEHAVIOR(lt_bspc, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <QUICK_TAP_MS>;
-    bindings = <&mo>, <&bs_del>;
+    keep-mods = <MOD_RSFT>;
 )
 
-// tap: space | space + tap: dot -> space -> sticky shift | hold: activate layer
+// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
 ZMK_BEHAVIOR(dot_spc, macro,
     wait-ms = <0>;
     tap-ms = <5>;
@@ -220,7 +207,7 @@ ZMK_BEHAVIOR(qexcl, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-// Swapper, requires PR #1366
+// Alt+Tab swapper, requires PR #1366
 ZMK_BEHAVIOR(swap, tri_state,
     bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
     ignored-key-positions = <LT2>;
@@ -236,7 +223,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &kp X         &kp C         &kp D         &kp V           X_MB     &kp K         &kp H         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               &lt_spc NAV 0 &lt_bspc FN 0   X_MH     NUM_WORD      &ss_cw                                                    X_RH
+    X_LH                                               &lt_spc NAV 0 &lt FN RET     X_MH     NUM_WORD      &ss_cw                                                    X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -253,15 +240,15 @@ ZMK_LAYER(nav,
 )
 
 ZMK_LAYER(fn,
-//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp F12       &kp F7        &kp F8        &kp F9        ___             X_MT      ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep      X_RT
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &kp F11       &kp F4        &kp F5        &kp F6        ___             X_MM      ___           DSK_PREV      VOL_DOWN      DSK_NEXT      ___             X_RM
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp F10       &kp F1        &kp F2        &kp F3        ___             X_MB      ___           ___           ___           ___           ___             X_RB
-//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤  ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH      &kp C_MUTE    &kp C_PP                                                  X_RH
-//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯  ╰─────────────┴─────────────╯                                           ╰──────╯
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     &kp F12       &kp F7        &kp F8        &kp F9        ___             X_MT     ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep      X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     &kp F11       &kp F4        &kp F5        &kp F6        ___             X_MM     ___           DSK_PREV      VOL_DOWN      DSK_NEXT      ___             X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     &kp F10       &kp F1        &kp F2        &kp F3        ___             X_MB     ___           ___           ___           ___           ___             X_RB
+//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+    X_LH                                               ___           ___             X_MH     &kp C_MUTE    &kp C_PP                                                  X_RH
+//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
 ZMK_LAYER(num,
@@ -300,27 +287,15 @@ ZMK_LAYER(uc,
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰───────────────────────────╯                                           ╰──────╯
 )
 
-ZMK_LAYER(scroll,
-//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           ___           ___           ___             X_MT     ___           ___           U_WH_U         ___          ___             X_RT
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     ___           ___           ___           ___           ___             X_MM     ___           ___           U_WH_D         ___          ___             X_RM
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     ___           ___           ___           ___           ___             X_MB     ___           ___           ___            ___          ___             X_RB
-//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH     ___           ___                                                       X_RH
-//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
-)
-
 ZMK_LAYER(mouse,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           ___           ___           ___             X_MT     ___           ___           U_MS_U         ___          ___             X_RT
+    X_LT     ___           ___           ___           ___           ___             X_MT     ___           U_WH_D        U_MS_U         U_WH_U       ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     ___           ___           ___           ___           ___             X_MM     ___           U_MS_L        U_MS_D         U_MS_R       ___             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     ___           ___           ___           ___           ___             X_MB     ___           ___           ___            ___          ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               ___           ___             X_MH     U_BTN1        U_BTN2                                                    X_RH
+    X_LH                                               ___           ___             X_MH     U_BTN2        U_BTN1                                                    X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
