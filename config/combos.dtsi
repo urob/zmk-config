@@ -17,6 +17,7 @@
 /* Punctuation (horizontal left hand) */
 ZMK_COMBO(esc,   &kp ESC,       LT3 LT2,     DEF NAV NUM, COMBO_TERM_FAST)
 ZMK_COMBO(tab,   &kp TAB,       LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST)
+ZMK_COMBO(mouse, &smart_mouse,  LT3 LT1,     DEF NAV NUM, COMBO_TERM_FAST)
 
 ZMK_COMBO(ret,   &kp RETURN,    LM3 LM2,     DEF NAV NUM, COMBO_TERM_FAST)
 ZMK_COMBO(repeat,&key_repeat,   LM2 LM1,     DEF NAV NUM, COMBO_TERM_FAST)
