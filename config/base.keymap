@@ -102,6 +102,17 @@ ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
     hold-trigger-on-release;            // requires PR #1423
 )
 
+// replicate left-hand HRM for repeat combo
+ZMK_BEHAVIOR(hml_repeat, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    global-quick-tap-ms = <150>;
+    bindings = <&kp>, <&key_repeat>;
+    hold-trigger-key-positions = <KEYS_R THUMBS>;
+    hold-trigger-on-release;
+)
+
 /* Custom behaviors */
 
 // tap: num-word | double-tap: sticky num-layer | hold: num-layer

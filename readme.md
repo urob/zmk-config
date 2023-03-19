@@ -234,9 +234,11 @@ natively that would require complex user-space implementations in QMK). Below
 are a few remaining issues:
 
 - ZMK does not yet support "tap-only" combos
-  ([#544](https://github.com/zmkfirmware/zmk/issues/544)). As a workaround, one
-  can pause briefly when chording multiple HRMs together on positions that
-  otherwise would trigger a combo. But this is at the top of my ZMK-wishlist.
+  ([#544](https://github.com/zmkfirmware/zmk/issues/544)), requiring a brief pause when
+  wanting to chord HRMs that overlap with combo positions. As a workaround, I implemented
+  all homerow combos as homerow-mod-combos. This is good enough for day-to-day, but does
+  not address all edge cases (eg removing mods from the mix doesn't work well). I am 
+  really hoping for a native solution similar to QMK's "COMBO_MUST_TAP" property.
 - Another item on my wishlist are adaptive keys
   ([#1624](https://github.com/zmkfirmware/zmk/issues/1624)). This would open
   the door for things like <kbd>space</kbd><kbd>space</kbd> becoming
