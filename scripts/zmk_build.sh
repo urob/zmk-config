@@ -159,6 +159,7 @@ else
     echo "Build mode: local"
     SUFFIX="${ZEPHYR_VERSION}"
     CONFIG_DIR="$HOST_CONFIG_DIR/config"
+    cd "$HOST_ZMK_DIR/app"
 fi
 
 # usage: compile_board board
