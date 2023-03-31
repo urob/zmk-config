@@ -23,33 +23,10 @@
 #include "mouse.dtsi"
 #include "extra_keys.h"
 
-ZMK_CONDITIONAL_LAYER(FN NUM, SYS)    // FN + NUM --> SYS
-
-/* Navigation keys and misc shortcuts */
-
-&mt {
-    flavor = "tap-preferred";
-    tapping-term-ms = <220>;
-    quick-tap-ms = <220>;              // repeat on tap-into-hold
-    hold-trigger-key-positions = <0>;  // tap on interrupt
-};
-
-#define NAV_LEFT  &mt HOME     LEFT    // tap: left  | long-tap: beginning of line
-#define NAV_RIGHT &mt END      RIGHT   // tap: right | long-tap: end       of line
-#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
-#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
-#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
-#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
-
 #define XXX &none
 #define ___ &trans
 
-#define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
-#define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
-#define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
-#define VOL_DOWN    &hmr LCTRL C_VOL_DN
-
-/* Settings */
+/* Global settings */
 
 #define QUICK_TAP_MS 175
 
@@ -68,50 +45,54 @@ ZMK_CONDITIONAL_LAYER(FN NUM, SYS)    // FN + NUM --> SYS
     quick-tap-ms = <QUICK_TAP_MS>;
 };
 
-&caps_word {  // mods deactivate caps-word, requires PR #1441
-    /delete-property/ ignore-modifiers;
-};
-
-&num_word {  // num-word, requires PR #1441
-    layers = <NUM>;
-};
-
 /* Homerow mods */
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right-hand keys
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                                      // thumb keys
 
-ZMK_BEHAVIOR(hml, hold_tap,  // left-hand HRMs
-    flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <QUICK_TAP_MS>;
-    global-quick-tap-ms = <150>;        // requires PR #1387
-    bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_R THUMBS>;
-    hold-trigger-on-release;            // requires PR #1423
-)
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
+    ZMK_BEHAVIOR(NAME, hold_tap, \
+        flavor = "balanced"; \
+        tapping-term-ms = <280>; \
+        quick-tap-ms = <QUICK_TAP_MS>; \
+        global-quick-tap-ms = <150>; \
+        bindings = <HOLD>, <TAP>; \
+        hold-trigger-key-positions = <TRIGGER_POS>; \
+        hold-trigger-on-release; \
+    )
+MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
+MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
+MAKE_HRM(hml_repeat, &kp, &key_repeat, KEYS_R THUMBS)  // left-hand HRM for repeat combo
 
-ZMK_BEHAVIOR(hmr, hold_tap,  // right-hand HRMs
-    flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <QUICK_TAP_MS>;
-    global-quick-tap-ms = <150>;        // requires PR #1387
-    bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_L THUMBS>;
-    hold-trigger-on-release;            // requires PR #1423
-)
+/* Nav cluster */
 
-// replicate left-hand HRM for repeat combo
-ZMK_BEHAVIOR(hml_repeat, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <QUICK_TAP_MS>;
-    global-quick-tap-ms = <150>;
-    bindings = <&kp>, <&key_repeat>;
-    hold-trigger-key-positions = <KEYS_R THUMBS>;
-    hold-trigger-on-release;
-)
+// long-tap action on hold, short-tap action on all interrupts
+#define MT_CORE \
+    flavor = "tap-preferred"; \
+    tapping-term-ms = <220>; \
+    quick-tap-ms = <220>; \
+    hold-trigger-key-positions = <0>;
+
+&mt { MT_CORE };
+ZMK_BEHAVIOR(mt_home, hold_tap, bindings = <&masked_home>, <&kp>; MT_CORE)
+ZMK_BEHAVIOR(mt_end,  hold_tap,  bindings = <&masked_end>, <&kp>; MT_CORE)
+
+#define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
+#define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
+#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
+#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
+#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
+#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
+
+// mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
+#define MASK_MODS(NAME, MODS, BINDING) \
+    ZMK_BEHAVIOR(NAME, mod_morph, \
+        bindings = <BINDING>, <BINDING>; \
+        mods = <MODS>; \
+    )
+MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
+MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
 
 /* Custom behaviors */
 
@@ -127,13 +108,6 @@ ZMK_BEHAVIOR(num_layer_word, hold_tap,
     bindings = <&mo>, <&num_dance>;
 )
 #define NUM_WORD &num_layer_word NUM 0
-
-// mouse layer that deactivates automatically on all other keys, requires PR #1366
-ZMK_BEHAVIOR(smart_mouse, tri_state,
-    bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
-    ignored-key-positions = <LT1 LT3 RT1 RT2 RT3 RM1 RM2 RM3 RH0 RH1>;  // mouse keys
-    ignored-layers = <MOUSE>;
-)
 
 // tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
 ZMK_BEHAVIOR(ss_cw, mod_morph,
@@ -224,7 +198,31 @@ ZMK_BEHAVIOR(swap, tri_state,
     ignored-key-positions = <LT2>;
 )
 
+// misc aliases
+#define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
+#define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
+#define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
+#define VOL_DOWN    &hmr LCTRL C_VOL_DN
+
+/* Caps-word, num-word and smart-mouse */
+
+&caps_word {  // mods deactivate caps-word, requires PR #1441
+    /delete-property/ ignore-modifiers;
+};
+
+&num_word {  // num-word, requires PR #1441
+    layers = <NUM>;
+};
+
+ZMK_BEHAVIOR(smart_mouse, tri_state,  // smart-mouse, requires PR #1366
+    bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
+    ignored-key-positions = <LT1 LT3 RT1 RT2 RT3 RM1 RM2 RM3 RH0 RH1>;
+    ignored-layers = <MOUSE>;
+)
+
 /* Keymap */
+
+ZMK_CONDITIONAL_LAYER(FN NUM, SYS)    // FN + NUM --> SYS
 
 ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
