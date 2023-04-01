@@ -41,10 +41,12 @@ The build script can be used to install either a "docker" or a "local"
 toolchain. If unsure, I recommend using the docker toolchain. Depending on your
 installation choice, do **one** of the following:
 
-1. Install the Docker engine following the
-   [instructions](https://docs.docker.com/engine/install/#server) for your
-   operating system. On Debian and Ubuntu, I recommend using the "Install from
-   Docker's `apt` repository" option.
+1. Install Docker or Podman (recommended) and, if using Podman, configure the docker
+   registry. On Debian or Ubuntu, you can do both by running:
+   ```bash
+   sudo apt-get install podman
+   echo 'unqualified-search-registries = ["docker.io"]' > $XDG_CONFIG_HOME/containers/registries.conf
+   ```
 2. Install a local [developer
    toolchain](https://zmk.dev/docs/development/setup). The
    `zmk_local_install.sh` script in this repository automates the process for
@@ -56,7 +58,7 @@ Run the `zmk_build.sh` script to build your boards. By default, the script will
 build all boards specified in `build.yaml` in your `zmk-config` repo. The default can be
 overwritten with the `-b` option.
 
-If using docker, the script will pull down the required dependencies the first
+If using docker/podman, the script will pull down the required dependencies the first
 time it is used. The script will automatically detect whether the build
 requirement have changed, and will only re-download the dependencies if needed. 
 
@@ -71,8 +73,10 @@ By default the script will copy the firmware into the `OUTPUT_DIR` folder
 specified in the script. Other locations can be specified using the
 `--output-dir` argument.
 
-In order to start Docker in sudo-mode (required when the user is not in the
-docker-group), use `-s`.
+To switch between Docker and Podman, set the `DOCKER_BIN` variable in the
+script (defaults to `podman`). If using Docker and the user is not in the
+docker-group, then one can use Docker in sudo-mode by using the `-s` flag for
+the script. If using Podman, running in rootless mode is recommended.
 
 One can pass custom options to `west` by preluding them with `--`.
 
