@@ -1,23 +1,10 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
-#include "combos.dtsi"  // requires layer aliases
-#include "mouse.dtsi"
-#include "extra_keys.h"
 
 /* source keypos definitions */
 #include "../../../zmk-nodefree-config/keypos_def/keypos_42keys.h"
-
-#if CONFIG_WIRELESS
-    #include <dt-bindings/zmk/bt.h>
-    #define _BT_SEL_KEYS_ &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
-#else
-    #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
-#endif
-
-#include "../../../zmk-nodefree-config/helper.h"
-/* activate bluetooth */
-#define CONFIG_WIRELESS 1
+#include "../../../base.keymap"
 
 #define COMBO_TIMEOUT 60
 
