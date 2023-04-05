@@ -129,9 +129,9 @@ ZMK_BEHAVIOR(smart_mouse, tri_state,
 
 /* Custom behaviors */
 
-// Alt+Tab swapper, requires PR #1366
+// Cmd+Tab swapper, requires PR #1366
 ZMK_BEHAVIOR(swapper, tri_state,
-    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
     ignored-key-positions = <LT2>;
 )
 
@@ -156,7 +156,7 @@ ZMK_BEHAVIOR(comma_morph, mod_morph,
 )
 ZMK_BEHAVIOR(comma_inner_morph, mod_morph,
     bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
-    mods = <(MOD_LCTL|MOD_RCTL)>;
+    mods = <(MOD_LGUI|MOD_RGUI)>;
 )
 
 // tap: dot | shift + tap: colon | ctrl + shift + tap: >
@@ -166,7 +166,7 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
 )
 ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
     bindings = <&kp COLON>, <&kp GREATER_THAN>;
-    mods = <(MOD_LCTL|MOD_RCTL)>;
+    mods = <(MOD_LGUI|MOD_RGUI)>;
 )
 
 // tap: qmark | shift + tap: excl
@@ -190,7 +190,7 @@ ZMK_BEHAVIOR(dot_spc, macro,
     wait-ms = <0>;
     tap-ms = <5>;
     bindings = <&kp DOT &kp SPACE &sk LSHFT>;
-)
+) 
 
 // tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
 ZMK_BEHAVIOR(bs_del, mod_morph,
@@ -228,15 +228,15 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
    &kp TAB    &hml LCTRL A   &hml LALT S   &hml LGUI D  &hml LSHFT F  &kp G            &kp H      &hmr RSHFT J  &hmr RGUI K  &hmr RALT L   &hmr RCTRL ENTER  &kp RA(ENTER)
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-   &kp LCTRL     &kp Z         &kp X         &kp C         &kp V         &kp B            &kp N         &kp M      &comma_morph  &dot_morph    &qexcl    &kp RSHFT
+   &smart_shft     &kp Z         &kp X         &kp C         &kp V         &kp B            &kp N    &kp M      &comma_morph  &dot_morph    &qexcl    &kp RSHFT
 //╰──────╯ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ╰──────╯
-                                        &smart_shft     SMART_NUM   &lt_spc NAV 0     &lt_spc NUM 0  NAV_BSPC  &mt LS(LC(LA(LGUI))) LS(LC(LA(LG(H)))) 
+                                          &kp LSHFT     SMART_NUM   &lt_spc NAV 0     &lt_spc NUM 0  NAV_BSPC  &mt LS(LC(LA(LGUI))) LS(LC(LA(LG(H)))) 
 //                                     ╰─────────────┴─────────────┴─────────────╯  ╰─────────────┴─────────────┴─────────────╯                                           
 )
 
 ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    ___     ___           ___           &kp LS(TAB)   &swapper      ___              &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             ___
+    ___     ___           ___           &kp LS(TAB)     &swapper      ___              &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             ___
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     ___     &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___              &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         ___
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
