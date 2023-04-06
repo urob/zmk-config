@@ -228,7 +228,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
    &kp TAB  &mt LG(A) A   &hml LALT S   &hml LGUI D     &mt LG(F) F  &kp G            &kp H      &hmr RSHFT J  &hmr RGUI K  &hmr RALT L   &hmr RCTRL ENTER  &kp RA(ENTER)
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-   &smart_shft     &kp Z   &mt LG(X) X   &mt LG(C) C  &mt LG(V) V &mt LS(LC(LA(V))) B         &kp N    &kp M            &comma_morph  &dot_morph    &qexcl         &kp RSHFT
+   &smart_shft     &kp Z   &mt LG(X) X   &mt LG(C) C  &mt LG(V) V &mt LS(LC(LA(V))) B     &kp N    &kp M          &comma_morph  &dot_morph    &qexcl       &kp RSHFT
 //╰──────╯ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ╰──────╯
                                           &kp LSHFT     &sk LGUI   &lt NAV SPACE    &lt NUM SPACE  NAV_BSPC     &mt LS(LC(LA(LGUI))) LS(LC(LA(LG(H)))) 
 //                                     ╰─────────────┴─────────────┴─────────────╯  ╰─────────────┴─────────────┴─────────────╯                                           
