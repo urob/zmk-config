@@ -21,11 +21,11 @@
 #define HRC_RPAR   &hmr        LA(LCTRL) RPAR
 
 /* Horizontal combos - left hand */
-ZMK_COMBO(esc,   &kp ESC,       LT3 LT2,     DEF NAV NUM, COMBO_TERM_FAST)
+ZMK_COMBO(esc,   &kp ESC,       LT4 LT3,     DEF NAV NUM, COMBO_TERM_FAST)
 ZMK_COMBO(ret,   &kp RETURN,    LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST)
 ZMK_COMBO(mouse, &smart_mouse,  LT3 LT1,     DEF NAV NUM, COMBO_TERM_SLOW)
 
-ZMK_COMBO(tab,   HRC_TAB,       LM3 LM2,     DEF NAV NUM, COMBO_TERM_FAST)
+ZMK_COMBO(tab,   HRC_TAB,       LM4 LM3,     DEF NAV NUM, COMBO_TERM_FAST)
 ZMK_COMBO(repeat,HRC_REPEAT,    LM2 LM1,     DEF NAV NUM, COMBO_TERM_FAST)
 
 ZMK_COMBO(cut,   &kp LC(X),     LB3 LB1,     DEF NAV NUM, COMBO_TERM_SLOW)

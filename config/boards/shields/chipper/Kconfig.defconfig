@@ -1,73 +1,59 @@
-if SHIELD_CHIPPER_LEFT
+if SHIELD_CHIPPY_LEFT
 
 config ZMK_KEYBOARD_NAME
-	default "Chipper"
+	default "Chippy"
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
 
 endif
 
-if SHIELD_CHIPPER_RIGHT
+if SHIELD_CHIPPY_RIGHT
 
 config ZMK_KEYBOARD_NAME
-	default "Chipper Right"
+	default "Chippy Right"
 	
 endif
 
-if SHIELD_CHIPPER_LEFT || SHIELD_CHIPPER_RIGHT
+if SHIELD_CHIPPY_LEFT || SHIELD_CHIPPY_RIGHT
 
 config ZMK_SPLIT
 	default y
  
-
-config ZMK_DISPLAY
-	select LVGL_USE_CONT
-	select LVGL_FONT_MONTSERRAT_26
-
-#choice ZMK_DISPLAY_STATUS_SCREEN
-#	default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
-
-#endchoice
-
 if ZMK_DISPLAY
 
-choice LVGL_THEME_DEFAULT_FONT_NORMAL
-    default LVGL_THEME_DEFAULT_FONT_NORMAL_MONTSERRAT_26
+config I2C
+	default y
 
-endchoice
+config SSD1306
+	default y
 
-choice LVGL_THEME_DEFAULT_FONT_SMALL
-    default LVGL_THEME_DEFAULT_FONT_SMALL_MONTSERRAT_16
+config SSD1306_REVERSE_MODE
+	default y
 
-endchoice
+endif # ZMK_DISPLAY
+
+if LVGL
 
 config LVGL_HOR_RES_MAX
-	default 160
+	default 128
 
 config LVGL_VER_RES_MAX
-	default 68
+	default 32
 
-config SPI
-	default y
+config LVGL_VDB_SIZE
+	default 64
 
-config LS0XX
-	default y
+config LVGL_DPI
+	default 148
 
 config LVGL_BITS_PER_PIXEL
 	default 1
 
 choice LVGL_COLOR_DEPTH
 	default LVGL_COLOR_DEPTH_1
-
 endchoice
 
-config LVGL_DPI
-	default 30
-
-config LVGL_VDB_SIZE
-	default 16
-
-endif # ZMK_DISPLAY
+endif # LVGL
 
 endif
