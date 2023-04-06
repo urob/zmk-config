@@ -73,7 +73,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Set defaults
-[[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.0"
+[[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.2"
 [[ -z $RUNWITH_DOCKER ]] && RUNWITH_DOCKER="true"
 
 [[ -z $OUTPUT_DIR ]] && OUTPUT_DIR="$WINHOME/Downloads"
