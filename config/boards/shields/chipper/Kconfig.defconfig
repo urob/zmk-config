@@ -1,21 +1,21 @@
-if SHIELD_CHIPPY_LEFT
+if SHIELD_CHIPPER_LEFT
 
 config ZMK_KEYBOARD_NAME
-	default "Chippy"
+	default "Chipper"
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
 
 endif
 
-if SHIELD_CHIPPY_RIGHT
+if SHIELD_CHIPPER_RIGHT
 
 config ZMK_KEYBOARD_NAME
-	default "Chippy Right"
+	default "Chipper Right"
 	
 endif
 
-if SHIELD_CHIPPY_LEFT || SHIELD_CHIPPY_RIGHT
+if SHIELD_CHIPPER_LEFT || SHIELD_CHIPPER_RIGHT
 
 config ZMK_SPLIT
 	default y
