@@ -55,34 +55,31 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10
 	// TODO: per-key RGB node(s)?
 };
 
+&spi0 {
+	compatible = "nordic,nrf-spim";
+	status = "okay";
+	sck-pin = <5>;
+	mosi-pin = <4>;
+	miso-pin = <8>;
+	cs-gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
 
-&i2c0 {
-	
- 	status = "okay";
-	
-    compatible = "nordic,nrf-twi";
-    sda-pin = <4>;
-    scl-pin = <5>;
-   
-
-	oled: ssd1306@3c {
-		compatible = "solomon,ssd1306fb";
-		reg = <0x3c>;
+	sharp: ls0xx@0 {
+		compatible = "sharp,ls0xx";
 		label = "DISPLAY";
-		width = <128>;
-		height = <32>;
-		segment-offset = <0>;
-		page-offset = <0>;
-		display-offset = <0>;
-		multiplex-ratio = <31>;
-		segment-remap;
-		com-invdir;
-		com-sequential;
-		prechargep = <0x22>;
+		spi-max-frequency = <2000000>;
+		reg = <0>;
+		width = <160>;
+		height = <68>;
+		// disp-en-gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
 	};
 };
+
 / {
   chosen {
-    zephyr,display = &oled;
+    zephyr,display = &sharp;
   };
-}; 
+};
+
+&usbd {
+	status = "okay";
+};
