@@ -6,6 +6,3 @@
 
 /* source the main keymap */
 #include "../../../base.keymap"
-
-/* use 5-column layout for Zen */
-/ { chosen { zmk,matrix_transform = &default_transform; }; }; 
