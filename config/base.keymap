@@ -19,7 +19,7 @@
 #define UC 5
 #define MOUSE 6
 
-// #include "combos.dtsi"  // requires layer aliases
+#include "combos.dtsi"  // requires layer aliases
 #include "mouse.dtsi"
 
 #define XXX &none
