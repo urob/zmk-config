@@ -9,3 +9,6 @@
 
 /* use 5-column layout for Zen */
 / { chosen { zmk,matrix_transform = &five_column_transform; }; };
+
+#define X_LH  &smart_mouse  // thumb row, left
+#define X_RH  &bs_del       // thumb row, right
