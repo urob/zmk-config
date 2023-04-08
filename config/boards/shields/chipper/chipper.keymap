@@ -7,8 +7,9 @@
 /* source the main keymap */
 #include "../../../base.keymap"
 
-/* use 5-column layout for Zen */
-/ { chosen { zmk,matrix_transform = &five_column_transform; }; };
-
+/* map Zen's extra keys */
 #define X_LH  &smart_mouse  // thumb row, left
 #define X_RH  &bs_del       // thumb row, right
+
+/* use 5-column layout for Zen */
+/ { chosen { zmk,matrix_transform = &five_column_transform; }; };

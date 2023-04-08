@@ -15,7 +15,7 @@
     #define X_LH
 #endif
 
-/* between left and right half 
+/* between left and right half */
 #if !defined X_MT  // top row, middle
     #define X_MT
 #endif
@@ -28,7 +28,7 @@
 #if !defined X_MH  // thumb row, middle
     #define X_MH
 #endif
-*/
+
 
 /* right of right half */
 #if !defined X_RT  // top row, right
