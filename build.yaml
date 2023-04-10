@@ -19,3 +19,5 @@ include:
     shield: chipper_left
   - board: seeeduino_xiao_ble
     shield: chipper_right
+  - board: seeeduino_xiao_ble
+    shield: settings_reset
