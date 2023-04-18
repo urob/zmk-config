@@ -19,3 +19,7 @@ include:
     shield: chipper36_left
   - board: seeeduino_xiao_ble
     shield: chipper36_right
+  - board: seeeduino_xiao_ble
+    shield: chipper42_left
+  - board: seeeduino_xiao_ble
+    shield: chipper42_right
