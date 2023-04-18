@@ -4,6 +4,10 @@ This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/) configur
 It consists of a 34-keys base layout that is re-used for various boards, including my
 Corneish Zen and an Advantage 360 pro.
 
+This branch is updated for the latest ZMK using Zephyr 3.2. A legacy version
+compatible with Zephyr 3.0 is available
+[here](https://github.com/urob/zmk-config/tree/main-zephyr-3.0).
+
 ## Highlights
 
 - clean keymap + unicode setup using helper macros from
@@ -62,17 +66,16 @@ This is great but there are still a few rough edges:
 * When rolling keys, I sometimes unintentionally end up with "nested" key
   sequences: `key 1` down, `key 2` down and up, `key 1` up. Because of the
   `balanced` flavor, this would falsely register `key 1` as a mod. As a remedy,
-  I use ZMK's "positional hold-tap" feature to force HRMs to always resolve as
+  I use ZMK's `positional hold-tap` feature to force HRMs to always resolve as
   "tap" when the *next* key is on the same side of the keyboard. Problem
   solved.
-* ... or at least almost. The official ZMK version for positional-hold-taps
+* ... or at least almost. By default, positional-hold-tap
   performs the positional check when the next key is *pressed*. This is not
   ideal, because it prevents combining multiple modifiers on the same hand. To
-  fix this, I use a small patch that delays the positional-hold-tap decision
-  until the next key's *release* ([PR
-  #1423](https://github.com/zmkfirmware/zmk/pull/1423)). With the patch,
+  fix this, I use the `hold-trigger-on-release` setting, which delays the
+  positional-hold-tap decision until the next key's *release*. With the setting,
   multiple mods can be combined when held, while I still get the benefit from
-  positional-hold-taps when keys are tapped.
+  positional-hold-tap when keys are tapped.
 * So far, nothing of the configuration depends on the duration of
   `tapping-term-ms`. In practice, there are two reasons why I don't set it to
   infinity:
@@ -87,10 +90,10 @@ This is great but there are still a few rough edges:
     flavour only kicks in when another key is pressed, this also requires
     waiting past `tapping-term-ms`.
 * Finally, it is worth noting that this setup works best in combination with a
-  dedicated shift for capitalization during normal typing (I am a big fan of
-  sticky-shift on a home-thumb). This is because shifting alphas is the
-  one scenario where pressing a mod may conflict with `global-quick-tap`, which
-  may result in false negatives when typing fast.
+  dedicated shift for capitalization during normal typing (I like sticky-shift
+  on a home-thumb). This is because shifting alphas is the one scenario where
+  pressing a mod may conflict with `global-quick-tap`, which may result in
+  false negatives when typing fast.
 
 Here's my configuration (I use a bunch of [helper
 macros](https://github.com/urob/zmk-nodefree-config) to simplify the syntax, but they
@@ -111,7 +114,7 @@ ZMK_BEHAVIOR(hml, hold_tap,
     global-quick-tap-ms = <150>;         // requires PR #1387
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_R THUMBS>;
-    hold-trigger-on-release;             // requires PR #1423
+    hold-trigger-on-release;             // delay positional check until key-release
 )
 
 /* right-hand HRMs */
@@ -122,7 +125,7 @@ ZMK_BEHAVIOR(hmr, hold_tap,
     global-quick-tap-ms = <150>;         // requires PR #1387
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_L THUMBS>;
-    hold-trigger-on-release;             // requires PR #1423
+    hold-trigger-on-release;             // delay positional check until key-release
 )
 ```
 
@@ -133,10 +136,10 @@ one can replace `global-quick-tap-ms = <150>` with `global-quick-tap` for a
 similar effect (`global-quick-tap` will use the regular `quick-tap-ms` timeout
 in this case).
 
-My personal [ZMK fork](https://github.com/urob/zmk) includes both the
-global-quick-tap-ms PR and the hold-trigger-on-release PR (along with a few
-other PRs). If you prefer to maintain your own fork with a custom selection of
-PRs, you might find this [ZMK-centric introduction to
+My personal [ZMK fork](https://github.com/urob/zmk) includes the
+global-quick-tap-ms PR along with a few other PRs used in my config. If you
+prefer to maintain your own fork with a custom selection of PRs, you might find
+this [ZMK-centric introduction to
 Git](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7) helpful.
 
 
@@ -151,7 +154,7 @@ misfires. Fortunately, the above-mentioned PR #1387, also adds a `global-quick-t
 for combos, which in my experience all but completely eliminates the problem -- even
 when rolling keys on the home row!
 
-My combo layout aims place the most used symbols in easy-to-access
+My combo layout aims to place the most used symbols in easy-to-access
 locations while also making them easy to remember. Specifically:
 
 - the top vertical-combo row matches the symbols on a standard numbers row
@@ -159,7 +162,8 @@ locations while also making them easy to remember. Specifically:
 - the bottom vertical-combo row is symmetric to the top row (subscript `_`
   aligns with superscript `^`; minus `-` aligns with `+`; division `/` aligns
   with multiplication `*`; logical-or `|` aligns with logical-and `&`)
-- parenthesis, braces, brackets are set up symmetrically as horizontal combos
+- parenthesis, braces, brackets are set up symmetrically as horizontal combos with `<`,
+  `>`, `{` and `}` being accessed from the Navigation layer
 - left-hand side combos for `tap`, `esc`, `enter`, `cut` (on <kbd>X</kbd> + <kbd>D</kbd>),
   `copy` and `paste` that go well with right-handed mouse usage
 - <kbd>L</kbd> + <kbd>Y</kbd> switches to the Greek layer for a single key
@@ -187,7 +191,10 @@ The main downside is that if a sequence of numbers is *immediately* followed by 
 letters on which my numpad is located (WFPRSTXCD), then the automatic deactivation won't
 work. But this is rare -- most number sequences are terminated by `space`, `return` or some form
 of punctuation/delimination. To deal with the rare cases where they aren't, there is a 
-`CANCEL` key on the navigation-layer that deactivates Numword, Capsword and Smart-mouse.
+`CANCEL` key on the navigation-layer that deactivates Numword, Capsword and Smart-mouse. 
+(It also toggles off when pressing `Numword` again, but I find it cognitively easier to
+have a dedicated "off-switch" than keeping track of which modes are currently active.)
+
 
 ##### Smart-Mouse
 
@@ -219,11 +226,11 @@ one-handed Alt-Tab switcher (`PWin` and `NWin`).
 
 ##### Repeat
 
-I recently switched to 25g-chocs on one of my keyboards. I already was a big fan of 
-combos prior to that (even with heavy MX-switches). But with the light chocs, I find 
-that I can now even use them for regular typing. While I haven't yet tried placing alphas 
-on combos, I am currently experimenting with a `repeat` combo on my home row that I 
-use to make writing double-letter words more fun.
+I recently switched to 25g-chocs on one of my keyboards. I already was very happy with
+my combos prior to that (even with heavy-ish MX-switches). But with the light chocs, I
+find that I can now even use them for regular typing. While I haven't yet tried
+placing alphas on combos, I am currently experimenting with a `repeat` combo on
+my home row that I use to reduce SFUs when typing double-letter words.
 
 ## Issues and workarounds
 
@@ -234,11 +241,12 @@ natively that would require complex user-space implementations in QMK). Below
 are a few remaining issues:
 
 - ZMK does not yet support "tap-only" combos
-  ([#544](https://github.com/zmkfirmware/zmk/issues/544)), requiring a brief pause when
-  wanting to chord HRMs that overlap with combo positions. As a workaround, I implemented
-  all homerow combos as homerow-mod-combos. This is good enough for day-to-day, but does
-  not address all edge cases (eg removing mods from the mix doesn't work well). I am 
-  really hoping for a native solution similar to QMK's "COMBO_MUST_TAP" property.
+  ([#544](https://github.com/zmkfirmware/zmk/issues/544)), requiring a brief
+  pause when wanting to chord HRMs that overlap with combo positions. As a
+  workaround, I implemented all homerow combos as homerow-mod-combos. This is
+  good enough for day-to-day, but does not address all edge cases (eg
+  dynamically adding/removing mods doesn't work well). Having a native solution
+  akin to QMK's "COMBO_MUST_TAP" property would be fantastic.
 - Another item on my wishlist are adaptive keys
   ([#1624](https://github.com/zmkfirmware/zmk/issues/1624)). This would open
   the door for things like <kbd>space</kbd><kbd>space</kbd> becoming

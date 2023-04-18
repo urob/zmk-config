@@ -73,7 +73,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Set defaults
-[[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.0"
+[[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.2"
 [[ -z $RUNWITH_DOCKER ]] && RUNWITH_DOCKER="true"
 
 [[ -z $OUTPUT_DIR ]] && OUTPUT_DIR="$WINHOME/Downloads"
@@ -90,6 +90,7 @@ done
 [[ -z $CLEAR_CACHE ]] && CLEAR_CACHE="false"
 
 DOCKER_IMG="zmkfirmware/zmk-dev-arm:$ZEPHYR_VERSION"
+DOCKER_BIN="$SUDO podman"
 
 # +-------------------------+
 # | AUTOMATE CONFIG OPTIONS |
@@ -127,7 +128,7 @@ fi
 if [[ $RUNWITH_DOCKER = true ]]
 then
     echo "Build mode: docker"
-    DOCKER_CMD="$SUDO docker run --name zmk-$ZEPHYR_VERSION --rm \
+    DOCKER_CMD="$DOCKER_BIN run --name zmk-$ZEPHYR_VERSION --rm \
         --mount type=bind,source=$HOST_ZMK_DIR,target=$DOCKER_ZMK_DIR \
         --mount type=bind,source=$HOST_CONFIG_DIR,target=$DOCKER_CONFIG_DIR,readonly \
         --mount type=volume,source=zmk-root-user-$ZEPHYR_VERSION,target=/root \
@@ -138,7 +139,7 @@ then
     # Reset volumes
     if [[ $CLEAR_CACHE = true ]]
     then
-        $SUDO docker volume rm $(sudo docker volume ls -q | grep "^zmk-.*-$ZEPHYR_VERSION$")
+        $DOCKER_BIN volume rm $($DOCKER_BIN volume ls -q | grep "^zmk-.*-$ZEPHYR_VERSION$")
     fi
 
     # Update west if needed
@@ -159,6 +160,7 @@ else
     echo "Build mode: local"
     SUFFIX="${ZEPHYR_VERSION}"
     CONFIG_DIR="$HOST_CONFIG_DIR/config"
+    cd "$HOST_ZMK_DIR/app"
 fi
 
 # usage: compile_board board
