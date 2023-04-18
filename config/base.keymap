@@ -242,11 +242,11 @@ ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp Q         &kp W         &kp E         &kp R         &kp T                    &kp Y         &kp U         &kp I         &kp O         &kp P           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LGUI A   &hml LALT S   &hml LCTRL D  &hml LSHFT F  &kp G                    &kp H         &hmr RSHFT J  &hmr LCTRL K  &hmr LALT L   &hmr LGUI RET   X_RM
+    X_LM     &mt LG(A) A   &hml LALT S   &hml LCTRL D  &mt LG(F) F  &kp G                    &kp H         &hmr RSHFT J  &hmr LGUI K  &hmr LALT L   &hmr LCTRL RET   X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp Z         &kp X         &kp C         &kp V         &kp B                    &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
+    X_LB     &kp Z         &mt LG(X) X   &mt LG(C) C  &mt LG(V) V   &mt LS(LC(LA(V))) B                    &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-                                         &kp LSHFT     &lt_spc NAV 0 &lt FN RET               SMART_NUM     &smart_shft   &kp RS(RC(RA(RG(H))))
+                                         &kp LSHFT     &lt_spc NAV 0 &lt FN RET               SMART_NUM     &smart_shft   &mt RS(RC(RA(RGUI))) RS(RC(RA(RG(H))))
 //                                     ╰────────────┼──────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┼─────────────╯
 )
 
