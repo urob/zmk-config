@@ -16,6 +16,6 @@ include:
  # - board: corneish_zen_v2_left
  # - board: corneish_zen_v2_right
   - board: seeeduino_xiao_ble
-    shield: chipper_left
+    shield: chipper36_left
   - board: seeeduino_xiao_ble
-    shield: chipper_right
+    shield: chipper36_right

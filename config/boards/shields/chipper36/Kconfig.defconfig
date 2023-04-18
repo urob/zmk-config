@@ -1,0 +1,23 @@
+if SHIELD_CHIPPER36_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "Chipper36"
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
+endif
+
+if SHIELD_CHIPPER36_RIGHT
+
+config ZMK_KEYBOARD_NAME
+	default "Chipper36 Right"
+	
+endif
+
+if SHIELD_CHIPPER36_LEFT || SHIELD_CHIPPER36_RIGHT
+
+config ZMK_SPLIT
+	default y
+
+endif

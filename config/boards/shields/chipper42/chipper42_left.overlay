@@ -1,4 +1,4 @@
-#include "chipper.dtsi"
+#include "chipper42.dtsi"
 
 &kscan0 {
 	col-gpios

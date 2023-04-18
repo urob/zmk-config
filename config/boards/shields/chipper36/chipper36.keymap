@@ -1,0 +1,11 @@
+/* source keypos definitions */
+#include "../../../zmk-nodefree-config/keypos_def/keypos_36keys.h"
+
+/* activate bluetooth */
+#define CONFIG_WIRELESS 1
+
+/* source the main keymap */
+#include "../../../base.keymap"
+
+/* use 5-column layout for Zen */
+/ { chosen { zmk,matrix_transform = &five_column_transform; }; };
