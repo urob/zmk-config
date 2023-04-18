@@ -142,6 +142,23 @@ prefer to maintain your own fork with a custom selection of PRs, you might find
 this [ZMK-centric introduction to
 Git](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7) helpful.
 
+### Troubleshooting
+
+Hopefully, the above configuration "just works". If it doesn't, here's a
+few smaller (and larger) things to try.
+
+* **False negatives (same-hand):** Reduce `tapping-term-ms` (or disable
+  `hold-trigger-key-positions`)
+* **False negatives (cross-hand):** Reduce `global-quick-tap-ms` (or set flavor
+  to `hold-preferred` -- to continue using `hold-trigger-on-release`, you must
+  also [patch
+  ZMK](https://github.com/celejewski/zmk/commit/d7a8482712d87963e59b74238667346221199293)
+  or use [an already patched branch](https://github.com/urob/zmk))
+* **False positives (same-hand):** Increase `tapping-term-ms`
+* **False positives (cross-hand):** Increase `global-quick-tap-ms` (or set
+  flavor to `tap-preferred`, which requires holding HRMs past tapping term to
+  activate)
+
 
 ## Using combos instead of a symbol layer
 
