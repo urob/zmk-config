@@ -1,6 +1,14 @@
 /* source keypos definitions */
 #include "../../../zmk-nodefree-config/keypos_def/keypos_42keys.h"
 
+/* map 6 extra keys */
+#define X_LT  &kp A
+#define X_LM  &kp A
+#define X_LB  &kp A
+#define X_RT  &kp A
+#define X_RM  &kp A
+#define X_RB  &kp A
+
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
 
@@ -9,13 +17,5 @@
 
 /* use 6-column layout*/
 / { chosen { zmk,matrix_transform = &default_transform; }; };
-
-/* map 6 extra keys */
-#define X_LT  &kp A
-#define X_LM  &kp A
-#define X_LB  &kp A
-#define X_RT  &kp A
-#define X_RM  &kp A
-#define X_RB  &kp A
 
 
