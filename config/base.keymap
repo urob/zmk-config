@@ -153,28 +153,6 @@ ZMK_BEHAVIOR(uc_shift, macro,
              , <&macro_release &mo UC &kp LSHFT>;
 )
 
-#define COMMA_MD  &mt SEMICOLON &comma_dance
-ZMK_BEHAVIOR(comma_dance, tap_dance,
-    tapping-term-ms = <200>;
-    bindings = <&kp COMMA>, <&kp DQT>;
-)
-
-// tap: dot | shift + tap: colon | ctrl + shift + tap: >
-ZMK_BEHAVIOR(dot_morph, mod_morph,
-    bindings = <&kp DOT>, <&dot_inner_morph>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
-    bindings = <&kp COLON>, <&kp GREATER_THAN>;
-    mods = <(MOD_LCTL|MOD_RCTL)>;
-)
-
-// tap: qmark | shift + tap: excl
-ZMK_BEHAVIOR(qexcl, mod_morph,
-    bindings = <&kp QMARK>, <&kp EXCL>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-
 // tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
                                                                             ZMK_BEHAVIOR(lt_spc, hold_tap,
                                                                                 flavor = "balanced";
@@ -210,12 +188,16 @@ ZMK_BEHAVIOR(rpar_gt, mod_morph,
     bindings = <&kp RPAR>, <&kp GT>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
-
-// tap: copy | double-tap: cut
-ZMK_BEHAVIOR(copy_cut, tap_dance,
-    tapping-term-ms = <200>;
-    bindings = <&kp LC(INS)>, <&kp LC(X)>;
-)
+                    ZMK_BEHAVIOR(comma_htd, hold_tap,
+                        flavor = "balanced";
+                        tapping-term-ms = <200>;
+                        quick-tap-ms = <QUICK_TAP_MS>;
+                        bindings = <&kp SEMICOLON>, <&comma_dance>;
+                    )
+                    ZMK_BEHAVIOR(comma_dance, tap_dance,
+                        tapping-term-ms = <200>;
+                        bindings = <&kp COMMA>, <&kp DQT>;
+                    )
 
 // Windows sleep key
 ZMK_BEHAVIOR(win_sleep, macro,
@@ -227,12 +209,12 @@ ZMK_BEHAVIOR(win_sleep, macro,
 // misc aliases
 #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
 #define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
-#define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
+#define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next B    desktop
 #define VOL_DOWN    &hmr LCTRL C_VOL_DN
 
 /* Keymap */
 
-ZMK_CONDITIONAL_LAYER(FN NUM, SYS)  // FN + NUM --> SYS
+ZMK_CONDITIONAL_LAYER(NAV NUM, SYS)  // FN + NUM --> SYS
 
 ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
@@ -240,9 +222,9 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &mt LG(A) A   &kp S         &kp D         &mt LG(F) F   &kp G                     &kp H         &hmr RSHFT J  &hmr LGUI K  &hmr LALT L   &hmr LCTRL RET   X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp Z         &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B       &kp N         &kp M        COMMA_MD      &dot_morph    &qexcl          X_RB
+    X_LB     &kp Z         &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B       &kp N         &kp M        &comma_htd     &kp A         &kp A          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-                                         &kp LSHFT     &kp LGUI      &lt NAV SPC               &lt NUM SPC   &lt FN BSPC   &mt RS(RC(RA(RGUI))) RS(RC(RA(RG(H))))
+                                         &kp LSHFT     &kp LGUI      &lt NAV SPC               &lt NUM SPC   &bs_del      &mt RS(RC(RA(RGUI))) RS(RC(RA(RG(H))))
 //                                     ╰────────────┼──────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┼─────────────╯
 )
 
