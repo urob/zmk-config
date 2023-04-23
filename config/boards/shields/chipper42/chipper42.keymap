@@ -3,8 +3,8 @@
 
 /* map 6 extra keys */
 #define X_LT  &kp A
-#define X_LM  &kp A
-#define X_LB  &kp A
+#define X_LM  &kp LCTRL
+#define X_LB  &kp LALT
 #define X_RT  &kp A
 #define X_RM  &kp A
 #define X_RB  &kp A
