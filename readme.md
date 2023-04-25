@@ -158,6 +158,8 @@ few smaller (and larger) things to try.
 * **False positives (cross-hand):** Increase `global-quick-tap-ms` (or set
   flavor to `tap-preferred`, which requires holding HRMs past tapping term to
   activate)
+* **Noticeable delay when tapping HRMs:** Increase `global-quick-tap-ms`. As a rule of thumb,
+  you want to set it to at least `10500/x` where `x` is your usual WPM for English prose.[^4]
 
 
 ## Using combos instead of a symbol layer
@@ -289,10 +291,16 @@ are a few remaining issues:
   `global-quick-tap` timeout. However, with both a large tapping-term and
   positional-hold-taps, the behavior is *not* actually sensitive to the
   `global-quick-tap` timing: All it does is reduce the delay in typing; i.e., variations
-  in typing speed won't affect *what* is being typed but merly *how fast* it appears on
+  in typing speed won't affect *what* is being typed but merely *how fast* it appears on
   the screen.
 
 [^3]: The delay is determined by how quickly a key is released and is not
   directly related to the tapping-term. But regardless of its length, most
   people still find it noticable and disruptive.
 
+[^4]: E.g, if your WPM is 60 or larger, then the default of 175ms (=10500/60)
+    should work well. The rule of thumb is based on an average character length
+    of 4.7 for English words. Taking into account 1 extra tap for `space`, this
+    yields a minimum `global-quick-tap-ms` of (60 * 1000) / (5.7 * x) ≈ 10500 / x
+    milliseconds. In practice, the rule of thumb tends to be on the safe side,
+    as home row taps tend to be faster than average.
