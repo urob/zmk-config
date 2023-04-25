@@ -191,8 +191,18 @@ ZMK_BEHAVIOR(rpar_gt, mod_morph,
 
 ZMK_BEHAVIOR(comma_dance, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&mt SEMICOLON COMMA>, <&kp DQT>;
+    bindings = <&mt BSLH COMMA>, <&kp DQT>;
 )
+ZMK_BEHAVIOR(dot_dance, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&mt QMARK DOT>, <&kp COLON>;
+)
+ZMK_BEHAVIOR(hyper_dance, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&mt RS(RC(RA(RGUI))) RS(RC(RA(H)))>, <&kp RS(RC(RA(J)))>;
+)
+
+
 
 // Windows sleep key
 ZMK_BEHAVIOR(win_sleep, macro,
@@ -217,9 +227,9 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &mt LG(A) A   &kp S         &kp D         &mt LG(F) F   &kp G                     &kp H         &hmr RSHFT J  &hmr LGUI K  &hmr LALT L   &hmr LCTRL RET   X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp Z         &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B       &kp N         &kp M        &comma_dance     &kp A         &kp A          X_RB
+    X_LB     &kp Z         &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B       &kp N         &kp M        &comma_dance  &dot_dance    &kp A          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-                                         &kp LSHFT     &kp LGUI      &lt NAV SPC               &lt NUM SPC   &bs_del      &mt RS(RC(RA(RGUI))) RS(RC(RA(RG(H))))
+                                         &kp LSHFT     &kp LGUI      &lt NAV SPC               &lt NUM SPC   &bs_del      &hyper_dance 
 //                                     ╰────────────┼──────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┼─────────────╯
 )
 
