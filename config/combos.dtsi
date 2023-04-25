@@ -72,4 +72,4 @@ ZMK_COMBO(fslh,  &kp FSLH,      RM2 RB2,     DEF NAV NUM, COMBO_TERM_SLOW)
 ZMK_COMBO(pipe,  &kp PIPE,      RM3 RB3,     DEF NAV NUM, COMBO_TERM_SLOW)
 
 /* / combos - right hand */
-ZMK_COMBO(smart_num, &smart_num,     RB1 RM2,     DEF NAV NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(smartNum, &smart_num,     RB1 RM2,     DEF NAV NUM, COMBO_TERM_SLOW)
