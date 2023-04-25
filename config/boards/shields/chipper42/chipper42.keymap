@@ -2,8 +2,8 @@
 #include "../../../zmk-nodefree-config/keypos_def/keypos_42keys.h"
 
 /* map 6 extra keys */
-#define X_LT  &kp A
-#define X_LM  &kp LCTRL
+#define X_LT  &kp ESC
+#define X_LM  &mt LCTRL TAB
 #define X_LB  &kp LALT
 #define X_RT  &kp A
 #define X_RM  &kp A
