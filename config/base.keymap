@@ -135,7 +135,7 @@ ZMK_BEHAVIOR(smart_mouse, tri_state,
 
 // Alt+Tab swapper, requires PR #1366
 ZMK_BEHAVIOR(swapper, tri_state,
-    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
     ignored-key-positions = <LT2>;
 )
 
@@ -189,10 +189,9 @@ ZMK_BEHAVIOR(rpar_gt, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-#define COMMA_HTD  SEMICOLON  &comma_dance
 ZMK_BEHAVIOR(comma_dance, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&kp COMMA>, <&kp DQT>;
+    bindings = <&mt SEMICOLON COMMA>, <&kp DQT>;
 )
 
 // Windows sleep key
@@ -218,7 +217,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &mt LG(A) A   &kp S         &kp D         &mt LG(F) F   &kp G                     &kp H         &hmr RSHFT J  &hmr LGUI K  &hmr LALT L   &hmr LCTRL RET   X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp Z         &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B       &kp N         &kp M        COMMA_HTD     &kp A         &kp A          X_RB
+    X_LB     &kp Z         &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B       &kp N         &kp M        &comma_dance     &kp A         &kp A          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
                                          &kp LSHFT     &kp LGUI      &lt NAV SPC               &lt NUM SPC   &bs_del      &mt RS(RC(RA(RGUI))) RS(RC(RA(RG(H))))
 //                                     ╰────────────┼──────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┼─────────────╯
