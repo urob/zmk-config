@@ -2,12 +2,12 @@
 #include "../../../zmk-nodefree-config/keypos_def/keypos_42keys.h"
 
 /* map 6 extra keys */
-#define X_LT  &kp ESC
+#define X_LT  &mt LS(LC(LALT)) ESC
 #define X_LM  &mt LCTRL TAB
 #define X_LB  &kp LALT
-#define X_RT  &kp A
+#define X_RT  &mt FN DEL
 #define X_RM  &kp A
-#define X_RB  &kp A
+#define X_RB  &kp RALT
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
