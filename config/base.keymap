@@ -267,11 +267,11 @@ ZMK_LAYER(fn,
 
 ZMK_LAYER(num,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &GRAVE        &kp LT        &kp EQUAL     &kp GT        &kp TILDE               &mt EXCL EQUAL  &mt PLUS N7 &mt MINUS N8   &kp UNDER N9           ___           X_RT
+    X_LT     &kp GRAVE     &kp LT        &kp EQUAL     &kp GT        &kp TILDE               &mt EXCL EQUAL  &mt PLUS N7 &mt MINUS N8   &kp UNDER N9      ___           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &kp AT        &kp LPAR      &kp DLLR      &kp RPAR      ___                    &mt CARET KP_DOT &mt STAR N4  &mt FSLH N5    &mt BSLH N6           ___           X_RM
+    X_LM     &kp AT        &kp LPAR      &kp DLLR      &kp RPAR      ___                     &mt CARET KP_DOT &mt STAR N4  &mt FSLH N5    &mt BSLH N6     ___           X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     ___           &kp LBKT      &kp HASH      &kp RBKT      &kp PRCNT               &kp N0        &mt PIPE N1   &mt AMPS N2     &kp N3           ___          X_RB
+    X_LB     &kp LBRC      &kp LBKT      &kp HASH      &kp RBKT      &kp RBRC                &kp PRCNT N0   &mt PIPE N1   &mt AMPS N2     &kp N3          ___          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
                                          &caps_word    ___           ___                      ___           ___                                                       ___
 //                                     ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
