@@ -99,30 +99,62 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
 
 /* Caps-word, num-word and smart-mouse */
 
-// tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
-ZMK_BEHAVIOR(smart_shft, mod_morph,
-    bindings = <&sk LSHFT>, <&caps_word>;
-    mods = <(MOD_LSFT)>;
+// tap: space | shift + tap: sticky shift | shift + double tap: caps-word | hold: shift
+ZMK_BEHAVIOR(sp_smrt_shft, hold_tap,
+		flavor = "balanced";
+		tapping-term-ms = <200>;
+		quick-tap-ms = <QUICK_TAP_MS>;
+		bindings = <&sk LSHFT>, <&space_shift>;
+)
+ZMK_BEHAVIOR(space_shift, mod_morph,
+		bindings = <&sk SPACE>, <&space_dance>;
+		mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+ZMK_BEHAVIOR(space_dance, tap_dance,
+		tapping-term-ms = <200>;
+		bindings = <&sk LSHFT>, <&caps_word>;
 )
 &caps_word {  // mods deactivate caps-word, requires PR #1441
-    /delete-property/ ignore-modifiers;
+	/delete-property/ ignore-modifiers;
 };
 
+// tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
+// ZMK_BEHAVIOR(smart_shft, mod_morph,
+//     bindings = <&sk LSHFT>, <&caps_word>;
+//     mods = <(MOD_LSFT)>;
+// )
+// &caps_word {  // mods deactivate caps-word, requires PR #1441
+//     /delete-property/ ignore-modifiers;
+// };
+
+// tap: return | shift + tap: sticky num-layer | hold: num-layer
+#define RETNUM &ret_num RET 0
+ZMK_BEHAVIOR(ret_num, hold_tap,
+		flavor = "balanced";
+		tapping-term-ms = <200>;
+		quick-tap-ms = <QUICK_TAP_MS>;
+		bindings = <&sl NUM>, <&ret_num_morph>;
+)
+ZMK_BEHAVIOR(ret_num_morph, mod_morph,
+		bindings = <&kp RET>, <&sl NUM>;
+		mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
 // tap: num-word | double-tap: sticky num-layer | hold: num-layer
-#define SMART_NUM &smart_num NUM 0
-ZMK_BEHAVIOR(smart_num, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <QUICK_TAP_MS>;
-    bindings = <&mo>, <&num_dance>;
-)
-ZMK_BEHAVIOR(num_dance, tap_dance,
-    tapping-term-ms = <200>;
-    bindings = <&num_word>, <&sl NUM>;  // reverse this for sticky-num on single tap
-)
-&num_word {  // num-word, requires PR #1441
-    layers = <NUM>;
-};
+// #define SMART_NUM &smart_num NUM 0
+// ZMK_BEHAVIOR(smart_num, hold_tap,
+//     flavor = "balanced";
+//     tapping-term-ms = <200>;
+//     quick-tap-ms = <QUICK_TAP_MS>;
+//     bindings = <&mo>, <&num_dance>;
+// )
+// ZMK_BEHAVIOR(num_dance, tap_dance,
+//     tapping-term-ms = <200>;
+//     bindings = <&num_word>, <&sl NUM>;  // reverse this for sticky-num on single tap
+// )
+// &num_word {  // num-word, requires PR #1441
+//     layers = <NUM>;
+// };
 
 // smart-mouse, requires PR #1366
 ZMK_BEHAVIOR(smart_mouse, tri_state,
@@ -179,29 +211,41 @@ ZMK_BEHAVIOR(qexcl, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
-ZMK_BEHAVIOR(lt_spc, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <QUICK_TAP_MS>;
-    bindings = <&mo>, <&spc_morph>;
+// tap: backspace | shift + tap: delete | hold: activate layer
+ZMK_BEHAVIOR(bs_del, hold_tap,
+		flavor = "balanced";
+		tapping-term-ms = <200>;
+		quick-tap-ms = <QUICK_TAP_MS>;
+		bindings = <&mo>, <&bs_del_morph>;
 )
-ZMK_BEHAVIOR(spc_morph, mod_morph,
-    bindings = <&kp SPACE>, <&dot_spc>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-ZMK_BEHAVIOR(dot_spc, macro,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp DOT &kp SPACE &sk LSHFT>;
+ZMK_BEHAVIOR(bs_del_morph, mod_morph,
+		bindings = <&kp BSPC>, <&kp DEL>;
+		mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
+// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
+// ZMK_BEHAVIOR(lt_spc, hold_tap,
+//     flavor = "balanced";
+//     tapping-term-ms = <200>;
+//     quick-tap-ms = <QUICK_TAP_MS>;
+//     bindings = <&mo>, <&spc_morph>;
+// )
+// ZMK_BEHAVIOR(spc_morph, mod_morph,
+//     bindings = <&kp SPACE>, <&dot_spc>;
+//     mods = <(MOD_LSFT|MOD_RSFT)>;
+// )
+// ZMK_BEHAVIOR(dot_spc, macro,
+//     wait-ms = <0>;
+//     tap-ms = <5>;
+//     bindings = <&kp DOT &kp SPACE &sk LSHFT>;
+// )
+
 // tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
-ZMK_BEHAVIOR(bs_del, mod_morph,
-    bindings = <&kp BSPC>, <&kp DEL>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-    keep-mods = <MOD_RSFT>;
-)
+// ZMK_BEHAVIOR(bs_del, mod_morph,
+//     bindings = <&kp BSPC>, <&kp DEL>;
+//     mods = <(MOD_LSFT|MOD_RSFT)>;
+//     keep-mods = <MOD_RSFT>;
+// )
 
 // tap: left-parenthesis | shft + tap: less-than
 ZMK_BEHAVIOR(lpar_lt, mod_morph,
@@ -246,7 +290,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &kp X         &kp C         &kp D         &kp V           X_MB     &kp K         &kp H         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               &lt_spc NAV 0 &lt FN RET      X_MH     SMART_NUM     &smart_shft                                               X_RH
+    X_LH                                               &bs_del NAV 0 &lt FN TAB      X_MH     RETNUM        &sp_smrt_shft                                               X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
