@@ -107,14 +107,14 @@ ZMK_BEHAVIOR(space_shift_caps, hold_tap,
     bindings = <&kp>, <&space_shift_inner_morph>;
 )
 ZMK_BEHAVIOR(space_shift_inner_morph, mod_morph,
-    bindings = <&kp SPACE>, <&space_shift_tap_dance>;
+    bindings = <&kp SPACE>, <&sk LSHFT;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
-ZMK_BEHAVIOR(space_shift_tap_dance, tap_dance,
-    tapping-term-ms = <200>;
-    bindings = <&sk LSHFT>, <&caps_word>;
-)
-#define SPACE_CAPS  &space_shift_caps LSHFT
+// ZMK_BEHAVIOR(space_shift_tap_dance, tap_dance,
+//     tapping-term-ms = <200>;
+//     bindings = <&sk LSHFT>, <&caps_word>;
+// )
+#define SPACE_CAPS &space_shift_caps LSHFT
 
 // tap: return | double tap: sticky num-layer | hold: num-layer
 ZMK_BEHAVIOR(return_number, hold_tap,
