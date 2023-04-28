@@ -104,7 +104,7 @@ ZMK_BEHAVIOR(space_shift_caps, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <200>;
     quick-tap-ms = <QUICK_TAP_MS>;
-    bindings = <&space_shift_macro>, <&kp LSHFT>;
+    bindings = <&space_shift_macro &kp LSHFT>;
 )
 
 ZMK_BEHAVIOR(space_shift_macro, macro,
