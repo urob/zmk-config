@@ -275,7 +275,7 @@ ZMK_BEHAVIOR(spc_shift_morph, mod_morph,
 		bindings = <&kp SPACE>, <&sk LSHFT>;
 		mods = <(MOD_LSFT|MOD_RSFT)>;
 )
-#define SPACESHIFT &spc_shift_layer NUM 0
+#define SPACESHIFT &spc_shift NUM 0
 
 // tap: return | shift-tap: sticky num-layer | hold: activate layer
 ZMK_BEHAVIOR(return_layer, hold_tap,
