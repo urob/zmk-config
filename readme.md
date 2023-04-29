@@ -147,6 +147,8 @@ Git](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7) helpful.
 Hopefully, the above configuration "just works". If it doesn't, here's a
 few smaller (and larger) things to try.
 
+* **Noticeable delay when tapping HRMs:** Increase `global-quick-tap-ms`. As a rule of thumb,
+  you want to set it to at least `10500/x` where `x` is your (relaxed) WPM for English prose.[^4]
 * **False negatives (same-hand):** Reduce `tapping-term-ms` (or disable
   `hold-trigger-key-positions`)
 * **False negatives (cross-hand):** Reduce `global-quick-tap-ms` (or set flavor
@@ -158,9 +160,6 @@ few smaller (and larger) things to try.
 * **False positives (cross-hand):** Increase `global-quick-tap-ms` (or set
   flavor to `tap-preferred`, which requires holding HRMs past tapping term to
   activate)
-* **Noticeable delay when tapping HRMs:** Increase `global-quick-tap-ms`. As a rule of thumb,
-  you want to set it to at least `10500/x` where `x` is your usual WPM for English prose.[^4]
-
 
 ## Using combos instead of a symbol layer
 
@@ -298,9 +297,9 @@ are a few remaining issues:
   directly related to the tapping-term. But regardless of its length, most
   people still find it noticable and disruptive.
 
-[^4]: E.g, if your WPM is 60 or larger, then the default of 175ms (=10500/60)
+[^4]: E.g, if your WPM is 70 or larger, then the default of 150ms (=10500/70)
     should work well. The rule of thumb is based on an average character length
     of 4.7 for English words. Taking into account 1 extra tap for `space`, this
     yields a minimum `global-quick-tap-ms` of (60 * 1000) / (5.7 * x) ≈ 10500 / x
-    milliseconds. In practice, the rule of thumb tends to be on the safe side,
-    as home row taps tend to be faster than average.
+    milliseconds. The approximation errs on the safe side,
+    as in practice home row taps tend to be faster than average.
