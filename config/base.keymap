@@ -248,6 +248,34 @@ ZMK_BEHAVIOR(win_sleep, macro,
 //     tap-ms = <5>;
 //     bindings = <&kp DOT &kp SPACE &sk LSHFT>;
 // )
+// tap: num-word | double-tap: sticky num-layer | hold: num-layer
+// #define SMART_NUM &smart_num NUM 0
+// ZMK_BEHAVIOR(smart_num, hold_tap,
+//     flavor = "balanced";
+//     tapping-term-ms = <200>;
+//     quick-tap-ms = <QUICK_TAP_MS>;
+//     bindings = <&mo>, <&num_dance>;
+// )
+// ZMK_BEHAVIOR(num_dance, tap_dance,
+//     tapping-term-ms = <200>;
+//     bindings = <&num_word>, <&sl NUM>;  // reverse this for sticky-num on single tap
+// )
+// &num_word {  // num-word, requires PR #1441
+//     layers = <NUM>;
+// };
+
+// tap: return | shift-tap: sticky num-layer | hold: activate layer
+ZMK_BEHAVIOR(return_layer, hold_tap,
+		flavor = "balanced";
+		tapping-term-ms = <200>;
+		quick-tap-ms = <QUICK_TAP_MS>;
+		bindings = <&mo>, <&return_morph>;
+)
+ZMK_BEHAVIOR(return_morph, mod_morph,
+		bindings = <&kp RET>, <&sl NUM>;
+		mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+#define RETURN_NUM &return_layer NUM 0
 
 //tap: tab | shift + tap: backtab | hold: activate layer
 ZMK_BEHAVIOR(tab_layer, hold_tap,
@@ -298,7 +326,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &kp X         &kp C         &kp D         &kp V           X_MB     &kp K         &kp H         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               BKSP_NAV      TAB_NAV         X_MH     SMART_NUM     &smart_shft                                               X_RH
+    X_LH                                               BKSP_NAV      TAB_NAV         X_MH     RETURN_NUM    &smart_shft                                               X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
