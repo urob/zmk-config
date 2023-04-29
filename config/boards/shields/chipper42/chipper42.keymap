@@ -5,7 +5,7 @@
 #define X_LT  &mt LS(LC(LALT)) ESC
 #define X_LM  &mt LCTRL TAB
 #define X_LB  &kp LALT
-#define X_RT  &mt FN DEL
+#define X_RT  &lt FN DEL
 #define X_RM  &kp A
 #define X_RB  &kp RALT
 
