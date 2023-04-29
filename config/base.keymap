@@ -264,6 +264,19 @@ ZMK_BEHAVIOR(win_sleep, macro,
 //     layers = <NUM>;
 // };
 
+// tap: space | shift + tap: sticky shift | hold: shift
+ZMK_BEHAVIOR(spc_shift, hold_tap,
+		flavor = "balanced";
+		tapping-term-ms = <200>;
+		quick-tap-ms = <QUICK_TAP_MS>;
+		bindings = <&mo>, <&spc_shift_morph>;
+)
+ZMK_BEHAVIOR(spc_shift_morph, mod_morph,
+		bindings = <&kp SPACE>, <&sk LSHFT>;
+		mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+#define SPACESHIFT &spc_shift_layer NUM 0
+
 // tap: return | shift-tap: sticky num-layer | hold: activate layer
 ZMK_BEHAVIOR(return_layer, hold_tap,
 		flavor = "balanced";
@@ -326,7 +339,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &kp X         &kp C         &kp D         &kp V           X_MB     &kp K         &kp H         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               BKSP_NAV      TAB_NAV         X_MH     RETURN_NUM    &smart_shft                                               X_RH
+    X_LH                                               BKSP_NAV      TAB_NAV         X_MH     RETURN_NUM    SPACESHIFT                                                X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
