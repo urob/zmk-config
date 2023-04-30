@@ -195,7 +195,7 @@ ZMK_BEHAVIOR(comma_dance, tap_dance,
 )
 ZMK_BEHAVIOR(dot_dance, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&mt QMARK DOT>, <&kp COLON>;
+    bindings = <&mt COLON DOT>, <&kp EXCL>;
 )
 ZMK_BEHAVIOR(qt_dance, tap_dance,
     tapping-term-ms = <200>;
@@ -233,7 +233,7 @@ ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp Q         &kp W         &kp E         &kp R         &kp T                    &kp Y         &kp U         &kp I         &kp O         &kp P           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &mt LG(A) A  &hmr LALT S    &hmr LGUI D   &mt LG(F) F   &kp G                    &kp H         &hmr RSHFT J  &hmr RGUI K   &hmr RALT L   &hmr RCTRL RET   X_RM
+    X_LM     &mt LG(A) A  &hmr LALT S    &hmr LGUI D   &mt LG(F) F   &kp G                    &kp H         &hmr RSHFT J  &hmr RGUI K   &hmr RALT L   &hmr RCTRL RET  X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B      &kp N         &kp M         &comma_dance  &dot_dance    &qt_dance       X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
