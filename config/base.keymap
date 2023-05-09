@@ -199,7 +199,7 @@ ZMK_BEHAVIOR(dot_dance, tap_dance,
 )
 ZMK_BEHAVIOR(qt_dance, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&mt QMARK SQT>, <&kp DQT>;
+    bindings = <&mt DQT QMARK>, <&kp SQT>;
 )
 ZMK_BEHAVIOR(hyper_dance, tap_dance,
     tapping-term-ms = <200>;
@@ -267,7 +267,7 @@ ZMK_LAYER(fn,
 
 ZMK_LAYER(num,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &mt DQT QMARK &kp LT        &kp EQUAL     &kp GT        &kp TILDE               &mt EXCL EQUAL  &mt PLUS N7 &mt MINUS N8   &mt UNDER N9  &kp LG(P)     X_RT
+    X_LT     &mt DQT QMARK &kp LT        &kp EQUAL     &kp GT        &kp BSLH               &mt EXCL EQUAL  &mt PLUS N7 &mt MINUS N8   &mt UNDER N9  &kp RG(P)     X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &kp AT        &kp LPAR      &kp DLLR      &kp RPAR      &kp GRAVE               &mt CARET KP_DOT &mt STAR N4  &mt FSLH N5  &mt BSLH N6   ___           X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
