@@ -42,7 +42,7 @@ ZMK_COMBO(lt,    &kp LT,        RM1 RM2,         NAV    , COMBO_TERM_FAST)
 ZMK_COMBO(gt,    &kp GT,        RM2 RM3,         NAV    , COMBO_TERM_FAST)
 
 ZMK_COMBO(lbkt,  &kp LBKT,      RB1 RB2,     DEF     NUM, COMBO_TERM_FAST)
-ZMK_COMBO(rbkt,  &kp SEMI,      RB2 RB3,     DEF     NUM, COMBO_TERM_FAST)
+ZMK_COMBO(rbkt,  &kp BSLH,      RB2 RB3,     DEF     NUM, COMBO_TERM_FAST)
 ZMK_COMBO(lbrc,  &kp LBRC,      RB1 RB2,         NAV    , COMBO_TERM_FAST)
 ZMK_COMBO(rbrc,  &kp RBRC,      RB2 RB3,         NAV    , COMBO_TERM_FAST)
 
