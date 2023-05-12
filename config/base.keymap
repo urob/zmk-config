@@ -18,7 +18,6 @@
 #define SYS 4
 #define UC 5
 #define MOUSE 6
-#define SPACE_LAYER 7
 
 #include "combos.dtsi"  // requires layer aliases
 #include "mouse.dtsi"
@@ -32,7 +31,7 @@
 #define QUICK_TAP_MS 175
 
 &sk {  // sticky-key config
-    release-after-ms = <1200>;  // release after 1.2s
+    release-after-ms = <600>;  // release after 0.6s
     quick-release;             // no double capitalization when rolling keys
 };
 
@@ -181,7 +180,7 @@ ZMK_BEHAVIOR(qexcl, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-// tap: space | double-tap: dot -> space -> sticky shift | shift + tap: protected space | hold: activate layer
+// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
 ZMK_BEHAVIOR(lt_spc, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <200>;
@@ -189,28 +188,13 @@ ZMK_BEHAVIOR(lt_spc, hold_tap,
     bindings = <&mo>, <&spc_morph>;
 )
 ZMK_BEHAVIOR(spc_morph, mod_morph,
-    bindings =  <&spc_layer>, <&kp SPACE>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-ZMK_BEHAVIOR(spc_layer, macro,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp SPACE &sl SPACE_LAYER>;
-)
-ZMK_BEHAVIOR(lt_spc2, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <QUICK_TAP_MS>;
-    bindings = <&mo>, <&spc_morph2>;
-)
-ZMK_BEHAVIOR(spc_morph2, mod_morph,
-    bindings =  <&dot_spc>, <&kp SPACE>;
+    bindings = <&kp SPACE>, <&dot_spc>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 ZMK_BEHAVIOR(dot_spc, macro,
     wait-ms = <0>;
     tap-ms = <5>;
-    bindings = <&kp BSPC &kp DOT &kp SPACE &sk LSHIFT>;
+    bindings = <&kp DOT &kp SPACE &sk LSHFT>;
 )
 
 // tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
@@ -336,18 +320,6 @@ ZMK_LAYER(mouse,
     X_LB     ___           ___           ___           ___           ___             X_MB     ___           ___           ___            ___          ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               ___           ___             X_MH     U_BTN2        U_BTN1                                                    X_RH
-//╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
-)
-
-ZMK_LAYER(space,
-//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           ___           ___           ___             X_MT     ___           ___           ___            ___          ___             X_RT
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     ___           ___           ___           ___           ___             X_MM     ___           ___           ___            ___          ___             X_RM
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     ___           ___           ___           ___           ___             X_MB     ___           ___           ___            ___          ___             X_RB
-//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               &lt_spc2 NAV 0 ___            X_MH     ___           ___                                                       X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
