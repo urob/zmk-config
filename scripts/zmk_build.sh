@@ -12,6 +12,10 @@ while [[ $# -gt 0 ]]; do
             RUNWITH_DOCKER="false"
             ;;
 
+        -m|--multithread)
+            MULTITHREAD="true"
+            ;;
+            
         -c|--clear-cache)
             CLEAR_CACHE="true"
             ;;
@@ -192,8 +196,31 @@ compile_board () {
 }
 
 cd "$HOST_ZMK_DIR/app"
-for board in $(echo $BOARDS | sed 's/,/ /g')
-do
-    compile_board $board
-done
+if [[ $MULTITHREAD = "true" && $RUNWITH_DOCKER = "false" ]]; then
+    i=1
 
+    for board in $(echo $BOARDS | sed 's/,/ /g')
+    do
+        compile_board $board &
+        eval "T${i}=\${!}"
+        eval "B${i}=\$board"  # Store the board name in a corresponding variable
+        ((i++))
+    done
+
+    echo "Boards = $(($i - 1))"
+
+    echo "This script started $(($i - 1)) background threads:"
+
+    for ((x=1; x<i; x++))
+    do
+        pid="T$x"
+        wait "${!pid}"
+        board="B$x"  # Retrieve the board name from the corresponding variable
+        echo -e "\e[33mThread $x with PID ${!pid} has finished: ${!board}\e[0m"
+    done
+else
+    for board in $(echo $BOARDS | sed 's/,/ /g')
+    do
+        compile_board $board
+    done
+fi
