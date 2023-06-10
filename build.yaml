@@ -20,6 +20,6 @@ include:
   # - board: seeeduino_xiao_ble
   #   shield: chipper36_right
   - board: seeeduino_xiao_ble
-    shield: chipper36_left
+    shield: chipper42_left
   - board: seeeduino_xiao_ble
-    shield: chipper36_right
+    shield: chipper42_right
