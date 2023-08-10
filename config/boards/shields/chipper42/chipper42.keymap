@@ -4,9 +4,9 @@
 /* map 6 extra keys */
 #define X_LT  &mt LS(LC(LALT)) ESC
 #define X_LM  &mt LCTRL TAB
-#define X_LB  &kp LALT
+#define X_LB  U_BTN1
 #define X_RT  &lt FN DEL
-#define X_RM  &kp A
+#define X_RM  &kp RET
 #define X_RB  &kp RALT
 
 /* activate bluetooth */
