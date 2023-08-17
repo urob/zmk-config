@@ -31,7 +31,7 @@
 #define QUICK_TAP_MS 175
 
 &sk {  // sticky-key config
-    release-after-ms = <600>;  // release after 0.6s
+    release-after-ms = <900>;  // release after 0.6s
     quick-release;             // no double capitalization when rolling keys
 };
 
@@ -104,7 +104,7 @@ ZMK_BEHAVIOR(smart_shft, mod_morph,
     bindings = <&sk LSHFT>, <&caps_word>;
     mods = <(MOD_LSFT)>;
 )
-&caps_word {  // mods deactivate caps-word, requires PR #1441
+&caps_word {  // mods deactivate caps-word, requires PR #1451
     /delete-property/ ignore-modifiers;
 };
 
@@ -120,7 +120,7 @@ ZMK_BEHAVIOR(num_dance, tap_dance,
     tapping-term-ms = <200>;
     bindings = <&num_word>, <&sl NUM>;  // reverse this for sticky-num on single tap
 )
-&num_word {  // num-word, requires PR #1441
+&num_word {  // num-word, requires PR #1451
     layers = <NUM>;
     continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
 };
