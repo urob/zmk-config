@@ -1,9 +1,9 @@
 /* source keypos definitions */
-#include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
+#include "../zmk-nodefree-config/keypos_def/keypos_42keys.h"
 
 /* map Zen's extra keys */
-#define X_LH  &smart_mouse  // thumb row, left
-#define X_RH  &bs_del       // thumb row, right
+//#define X_LH  &smart_mouse  // thumb row, left
+//#define X_RH  &bs_del       // thumb row, right
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
