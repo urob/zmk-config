@@ -153,24 +153,16 @@ ZMK_BEHAVIOR(uc_shift, macro,
              , <&macro_release &mo UC &kp LSHFT>;
 )
 
-// tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
+// tap: comma | shift + tap: semicolon
 ZMK_BEHAVIOR(comma_morph, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
-    bindings = <&kp COMMA>, <&comma_inner_morph>;
-)
-ZMK_BEHAVIOR(comma_inner_morph, mod_morph,
-    bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
-    mods = <(MOD_LCTL|MOD_RCTL)>;
+    bindings = <&kp COMMA>, <&kp SEMICOLON>;
 )
 
-// tap: dot | shift + tap: colon | ctrl + shift + tap: >
+// tap: dot | shift + tap: colon
 ZMK_BEHAVIOR(dot_morph, mod_morph,
-    bindings = <&kp DOT>, <&dot_inner_morph>;
+    bindings = <&kp DOT>, <&kp COLON>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
-    bindings = <&kp COLON>, <&kp GREATER_THAN>;
-    mods = <(MOD_LCTL|MOD_RCTL)>;
 )
 
 // tap: qmark | shift + tap: excl
@@ -218,14 +210,7 @@ ZMK_BEHAVIOR(rpar_gt, mod_morph,
 // tap: copy | double-tap: cut
 ZMK_BEHAVIOR(copy_cut, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&kp LC(INS)>, <&kp LC(X)>;
-)
-
-// Windows sleep key
-ZMK_BEHAVIOR(win_sleep, macro,
-    wait-ms = <500>;
-    tap-ms = <50>;
-    bindings = <&kp LG(X) &kp U &kp S>;
+    bindings = <&kp LC(C)>, <&kp LC(X)>;
 )
 
 // misc aliases
@@ -239,15 +224,15 @@ ZMK_BEHAVIOR(win_sleep, macro,
 ZMK_CONDITIONAL_LAYER(FN NUM, SYS)  // FN + NUM --> SYS
 
 ZMK_LAYER(base,
-//╭──────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬────────────┬──────╮
-    ___    &kp X         &kp V         &kp L         &kp C         &kp W           &kp K         &kp H         &kp G         &kp F         &kp Q        ___
-//├──────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼────────────┼──────┤
-    ___    &hml LGUI U   &hml LALT I   &hml LCTRL A  &hml LSHFT E  &kp O           &kp S         &hmr RSHFT N  &hmr RCTRL R  &hmr RALT T   &hmr RGUI D  ___
-//├──────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼────────────┼──────┤
-    ___    ___           &kp J         &kp Y         &kp P         &kp Z           &kp B         &kp M         &comma_morph  &dot_morph    &qexcl       ___
-//╰──────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴──────────────────────────┼──────╯
-                                       ___           SMART_NUM     &lt_spc NAV 0   &lt FN RET    &smart_shft   ___                                      
-//                                   ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯                           
+//╭────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬────────────┬──────╮
+    &kp ESC &kp X         &kp V         &kp L         &kp C         &kp W            &kp K         &kp H         &kp G         &kp F         &kp Q        &kp BSPC
+//├────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼────────────┼──────┤
+    &kp TAB &hml LGUI U   &hml LALT I   &hml LCTRL A  &hml LSHFT E  &kp O            &kp S         &hmr RSHFT N  &hmr RCTRL R  &hmr RALT T   &hmr RGUI D  ___
+//├────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼────────────┼──────┤
+    ___      ___           &kp J         &kp Y         &kp P         &kp Z           &kp B         &kp M         &comma_morph  &dot_morph    &qexcl       ___
+//╰────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴──────────────────────────┼──────╯
+                                         ___           SMART_NUM     &lt_spc NAV 0   &lt FN RET    &smart_shft   ___                                      
+//                                     ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯                           
 )
 
 ZMK_LAYER(nav,
@@ -265,7 +250,7 @@ ZMK_LAYER(nav,
 
 ZMK_LAYER(fn,
 //╭──────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬──────╮
-    ___    ___           &kp F3        &kp F6        &kp F9        &kp F12         ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep    ___
+    ___    ___           &kp F3        &kp F6        &kp F9        &kp F12         ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    ___           ___
 //├──────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼──────┤
     ___    ___           &kp F2        &kp F5        &kp F8        &kp F11         ___           DSK_PREV      VOL_DOWN      DSK_NEXT      ___           ___ 
 //├──────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼──────┤
