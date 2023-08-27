@@ -225,13 +225,13 @@ ZMK_CONDITIONAL_LAYER(FN NUM, SYS)  // FN + NUM --> SYS
 
 ZMK_LAYER(base,
 //╭────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬────────────┬──────╮
-    &kp ESC &kp X         &kp V         &kp L         &kp C         &kp W            &kp K         &kp H         &kp G         &kp F         &kp Q        &kp BSPC
+    &kp ESC  &kp X         &kp V         &kp L         &kp C         &kp W           &kp K         &kp H         &kp G         &kp F         &kp Q        &kp BSPC
 //├────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼────────────┼──────┤
-    &kp TAB &hml LGUI U   &hml LALT I   &hml LCTRL A  &hml LSHFT E  &kp O            &kp S         &hmr RSHFT N  &hmr RCTRL R  &hmr RALT T   &hmr RGUI D  ___
+    &kp TAB  &hml LGUI U   &hml LALT I   &hml LCTRL A  &hml LSHFT E  &kp O           &kp S         &hmr RSHFT N  &hmr RCTRL R  &hmr RALT T   &hmr RGUI D  ___
 //├────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼────────────┼──────┤
-    ___      ___           &kp J         &kp Y         &kp P         &kp Z           &kp B         &kp M         &comma_morph  &dot_morph    &qexcl       ___
+    ___      &kp SQT       &kp J         &kp Y         &kp P         &kp Z           &kp B         &kp M         &comma_morph  &dot_morph    &qexcl       ___
 //╰────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴──────────────────────────┼──────╯
-                                         ___           SMART_NUM     &lt_spc NAV 0   &lt FN RET    &smart_shft   ___                                      
+                                         ___           SMART_NUM     &lt_spc FN 0   &lt NAV RET    &smart_shft   ___                                      
 //                                     ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯                           
 )
 
