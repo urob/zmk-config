@@ -7,9 +7,9 @@
   ╰───────╮ LH2 LH1 LH0 │ │ RH0 RH1 RH2 ╭───────╯
           ╰─────────────╯ ╰─────────────╯ */
 
-// use global-quick-tap-ms for combos (requires PR 1387)
+// use require-prior-idle-ms for combos (requires PR 1387)
 #undef COMBO_HOOK
-#define COMBO_HOOK global-quick-tap-ms = <150>;
+#define COMBO_HOOK require-prior-idle-ms = <150>;
 
 #define COMBO_TERM_FAST 18
 #define COMBO_TERM_SLOW 30
