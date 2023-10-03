@@ -2,7 +2,7 @@
 
 This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration.
 It consists of a 34-keys base layout that is re-used for various boards, including my
-Corneish Zen and an Advantage 360 pro.
+Corneish Zen and my Planck.
 
 This branch is updated for the latest ZMK using Zephyr 3.2. A legacy version
 compatible with Zephyr 3.0 is available
