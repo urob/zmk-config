@@ -53,6 +53,6 @@ pip3 install --user -r zephyr/scripts/requirements.txt  # see above
 
 ### Step 5: Install Docusaurus
 sudo apt-get install --yes --no-install-recommends npm
-cd ~zmk/docs
+cd ~/zmk/docs
 npm ci
 
