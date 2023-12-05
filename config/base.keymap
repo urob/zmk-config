@@ -154,31 +154,27 @@ ZMK_BEHAVIOR(uc_shift, macro,
              , <&macro_release &mo UC &kp LSHFT>;
 )
 
+// reuse basic mod-morph scheme
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) \
+    ZMK_BEHAVIOR(NAME, mod_morph, \
+        mods = <(MOD_L ## MOD|MOD_R ## MOD)>; \
+        bindings = <BINDING1>, <BINDING2>; \
+    )
+
 // tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
-ZMK_BEHAVIOR(comma_morph, mod_morph,
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-    bindings = <&kp COMMA>, <&comma_inner_morph>;
-)
-ZMK_BEHAVIOR(comma_inner_morph, mod_morph,
-    bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
-    mods = <(MOD_LCTL|MOD_RCTL)>;
-)
+SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
+SIMPLE_MORPH(comma_inner_morph, CTL, &kp SEMICOLON, &kp LESS_THAN)
 
 // tap: dot | shift + tap: colon | ctrl + shift + tap: >
-ZMK_BEHAVIOR(dot_morph, mod_morph,
-    bindings = <&kp DOT>, <&dot_inner_morph>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-ZMK_BEHAVIOR(dot_inner_morph, mod_morph,
-    bindings = <&kp COLON>, <&kp GREATER_THAN>;
-    mods = <(MOD_LCTL|MOD_RCTL)>;
-)
+SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph)
+SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
 
 // tap: qmark | shift + tap: excl
-ZMK_BEHAVIOR(qexcl, mod_morph,
-    bindings = <&kp QMARK>, <&kp EXCL>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
+SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
+
+// tap: left/right parenthesis | shft + tap: less-than/greater-than
+SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
+SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
 // tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
 ZMK_BEHAVIOR(lt_spc, hold_tap,
@@ -187,10 +183,7 @@ ZMK_BEHAVIOR(lt_spc, hold_tap,
     quick-tap-ms = <QUICK_TAP_MS>;
     bindings = <&mo>, <&spc_morph>;
 )
-ZMK_BEHAVIOR(spc_morph, mod_morph,
-    bindings = <&kp SPACE>, <&dot_spc>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
+SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
 ZMK_BEHAVIOR(dot_spc, macro,
     wait-ms = <0>;
     tap-ms = <5>;
@@ -202,18 +195,6 @@ ZMK_BEHAVIOR(bs_del, mod_morph,
     bindings = <&kp BSPC>, <&kp DEL>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
     keep-mods = <MOD_RSFT>;
-)
-
-// tap: left-parenthesis | shft + tap: less-than
-ZMK_BEHAVIOR(lpar_lt, mod_morph,
-    bindings = <&kp LPAR>, <&kp LT>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-
-// tap: right-parenthesis | shft + tap: greater-than
-ZMK_BEHAVIOR(rpar_gt, mod_morph,
-    bindings = <&kp RPAR>, <&kp GT>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
 // tap: copy | double-tap: cut
