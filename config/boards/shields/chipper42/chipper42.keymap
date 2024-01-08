@@ -1,7 +1,7 @@
 /* source keypos definitions */
 #include "../../../zmk-nodefree-config/keypos_def/keypos_42keys.h"
 
-/*测试*/
+/*test*/
 /* map 6 extra keys */
 #define X_LT  &mt LS(LC(LALT)) ESC
 #define X_LM  &mt RS(RC(RA(RGUI))) TAB
