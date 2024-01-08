@@ -7,7 +7,7 @@
 #define X_LM  &mt RS(RC(RA(RGUI))) TAB
 #define X_LB  &mt LCTRL BSPC
 #define X_RT  &mt RS(RC(RA(RGUI))) DEL
-#define X_RM  &kp RET
+#define X_RM  &kp SINGLE_QUOTE
 #define X_RB  &kp RALT
 
 /* activate bluetooth */
