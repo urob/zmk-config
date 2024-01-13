@@ -10,6 +10,7 @@
 #define X_RM  &kp SINGLE_QUOTE
 #define X_RB  &kp RALT
 
+
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
 
