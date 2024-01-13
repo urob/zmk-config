@@ -235,13 +235,13 @@ ZMK_CONDITIONAL_LAYER(NAV FN, SYS)  // FN + NAV --> SYS
 
 ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp Q         &kp W         &kp E         &kp R         &kp T                    &kp Y         &kp U         &kp I         &kp O         &lt FN P        X_RT
+    X_LT     &mt LG(Q) AQ  &mt LG(W) W   &mt LG(E) E   &mt LG(R) R    &mt LG(T) T               &kp Y         &kp U         &kp I         &kp O       &lt FN P       X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &mt LG(A) A  &mt LG(S) S    &mt LG(D) D   &mt LG(F) F   &kp G                    &kp H         &kp J         &kp K         &kp L         &kp SEMI         X_RM
+    X_LM     &mt LG(A) A  &mt LG(S) S    &mt LG(D) D   &mt LG(F) F   &mt LG(G) G                &kp H         &kp J         &kp K         &kp L         &kp SEMI      X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &mt LG(Z) Z   &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B      &kp N         &kp M         &comma_dance  &dot_dance    &qt_dance       X_RB
+    X_LB     &mt LG(Z) Z   &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B        &kp N         &kp M       &comma_dance  &dot_dance    &qt_dance       X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-                                         &kp LSHFT     &sk LGUI      &lt NAV SPC              &lt NUM BSPC   &bs_del      &hyper_dance
+                                         &sk LGUI      &sk LALT      &lt NUM SPC              &lt NAV SPC    &kp ENTER      &bs_del
 //                                     ╰────────────┼──────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┼─────────────╯
 )
 
