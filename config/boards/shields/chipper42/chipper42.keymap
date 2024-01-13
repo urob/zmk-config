@@ -10,8 +10,6 @@
 #define X_RM  &mt APOSTROPHE SINGLE_QUOTE
 #define X_RB  &kp RALT
 
-
-
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
 
