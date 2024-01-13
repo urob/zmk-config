@@ -11,6 +11,7 @@
 #define X_RB  &kp RALT
 
 
+
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
 
