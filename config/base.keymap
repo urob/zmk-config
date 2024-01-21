@@ -11,35 +11,37 @@
 #include "../zmk-nodefree-config/international_chars/greek.dtsi"
 #include "../zmk-nodefree-config/international_chars/german.dtsi"
 
-#define DEF 0
-#define NAV 1
-#define FN 2
-#define NUM 3
-#define SYS 4
-#define UC 5
-#define MOUSE 6
+// 这是层的定义, 代表了键盘当中的不同层,
+#define DEF 0 // default 默认层
+#define NAV 1 // navigete 导航层
+#define FN 2 // function 功能层
+#define NUM 3 // Number 数字层
+#define SYS 4 // system 系统层
+#define UC 5  // 未知
+#define MOUSE 6 // 鼠标层
+#define IPHONE 7 // 手机层
 
 #include "combos.dtsi"  // requires layer aliases
-#include "mouse.dtsi"
-#include "extra_keys.h"
+#include "mouse.dtsi" // 这是鼠标层的功能设置
+#include "extra_keys.h" // 左右侧功能键设置
 
 #define XXX &none
 #define ___ &trans
 
 /* Global settings */
 
-#define QUICK_TAP_MS 175
+#define QUICK_TAP_MS 175  // 短按时间 175ms
 
-&sk {  // sticky-key config
+&sk {  // sticky-key config  // 粘滞键（sticky-key）的配置, 
     release-after-ms = <600>;  // release after 0.6s
     quick-release;             // no double capitalization when rolling keys
 };
 
-&sl {  // sticky-layer config
+&sl {  // sticky-layer config  这是一个粘滞层（sticky-layer）的配置。它允许用户临时切换到另一个层，并在完成操作后自动返回。
     ignore-modifiers;          // allow chording sticky mods & layers
 };
 
-&lt {  // layer-tap config
+&lt {  // layer-tap config  这是层-敲击（layer-tap）的配置。它允许键位根据敲击的持续时间来执行不同的操作（比如短按为一个字符，长按切换层
     flavor = "balanced";
     tapping-term-ms = <200>;
     quick-tap-ms = <QUICK_TAP_MS>;
@@ -197,6 +199,13 @@ ZMK_BEHAVIOR(comma_dance, tap_dance,
     tapping-term-ms = <200>;
     bindings = <&mt SEMI COMMA>, <&kp BSLH>;
 )
+
+ZMK_BEHAVIOR(semi_dance, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&mt SEMI COMMA>, <&kp BSLH>;
+)
+
+
 ZMK_BEHAVIOR(dot_dance, tap_dance,
     tapping-term-ms = <200>;
     bindings = <&mt COLON DOT>, <&kp EXCL>;
@@ -223,6 +232,28 @@ ZMK_BEHAVIOR(win_sleep, macro,
     bindings = <&kp LG(X) &kp U &kp S>;
 )
 
+ZMK_BEHAVIOR(my_semi, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp KP_N2>, <&kp SEMI>, <&mt MOD_LSFT SEMI>;
+)
+
+ZMK_BEHAVIOR(my_sqt, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp KP_N3>, <&kp SQT>, <&mt MOD_LSFT SQT>;
+)
+
+
+/// {
+//    behaviors {
+//        two_and_semi: two_button {
+//            compatible = "zmk,behavior-mod-morph";
+//            #binding-cells = <0>;
+//            bindings = <&kp KP_N2>, <&kp SEMI>;
+//            mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+//        };
+//    };
+//};
+
 // misc aliases
 #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
 #define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
@@ -237,11 +268,23 @@ ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &mt LG(Q) Q  &mt LG(W) W   &mt LG(E) E   &mt LG(R) R    &mt LG(T) T               &kp Y         &kp U         &kp I         &kp O       &lt FN P        X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     &mt LG(A) A  &mt LG(S) S    &mt LG(D) D   &mt LG(F) F   &mt LG(G) G                &kp H         &kp J         &kp K         &kp L       &my_semi      X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     &mt LG(Z) Z   &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B        &kp N         &kp M       &kp COMMA       &kp DOT     &kp SLASH      X_RB
+//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+                                        &lt IPHONE LALT  &mt LGUI SPC  &lt NUM ENTER          &kp ENTER     &kp BACKSPACE   &lt NAV SPC
+//                                     ╰─────────────┼──────────────┴─────────────╯ ╰──────╯ ╰─────────────┴──────────────┼─────────────╯
+)
+
+ZMK_LAYER(iphone,
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     &mt LG(Q) Q  &mt LG(W) W   &mt LG(E) E   &mt LG(R) R    &mt LG(T) T               &kp Y         &kp U         &kp I         &kp O       &lt FN P        X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &mt LG(A) A  &mt LG(S) S    &mt LG(D) D   &mt LG(F) F   &mt LG(G) G                &kp H         &kp J         &kp K         &kp L        &kp SEMI      X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &mt LG(Z) Z   &mt LG(X) X   &mt LG(C) C   &mt LG(V) V   &mt LS(LC(LA(V))) B        &kp N         &kp M       &kp COMMA       &kp DOT     &kp SLASH      X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-                                         &sk LGUI     &mt LALT ENTER  &lt NUM SPC              &kp ENTER     &kp BACKSPACE   &lt NAV SPC
+                                        &lt IPHONE LALT  &mt LGUI SPC  &lt NUM ENTER          &kp ENTER     &kp BACKSPACE   &lt NAV SPC
 //                                     ╰───────────┼──────────────┴─────────────╯ ╰──────╯ ╰─────────────┴──────────────┼─────────────╯
 )
 

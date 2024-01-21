@@ -7,7 +7,7 @@
 #define X_LM  &mt LG(TAB) TAB
 #define X_LB  &kp LSHIFT
 #define X_RT  &mt RS(RC(RA(RGUI))) DEL
-#define X_RM  &mt APOSTROPHE SINGLE_QUOTE
+#define X_RM  &my_sqt
 #define X_RB  &kp RALT
 
 /* activate bluetooth */
