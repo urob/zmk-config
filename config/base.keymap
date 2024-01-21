@@ -234,12 +234,12 @@ ZMK_BEHAVIOR(win_sleep, macro,
 
 ZMK_BEHAVIOR(my_semi, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&kp KP_N2>, <&kp SEMI>, <&mt LSHIFT SEMI>;
+    bindings = <&kp N2>, <&kp SEMI>, <&mt LSHIFT SEMI>;
 )
 
 ZMK_BEHAVIOR(my_sqt, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&kp KP_N3>, <&kp SQT>, <&mt LSHIFT SQT>;
+    bindings = <&kp N3>, <&kp SQT>, <&mt LSHIFT SQT>;
 )
 
 
