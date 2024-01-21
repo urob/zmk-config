@@ -19,7 +19,6 @@
 #define SYS 4 // system 系统层
 #define UC 5  // 未知
 #define MOUSE 6 // 鼠标层
-#define IPHONE 7 // 手机层
 
 #include "combos.dtsi"  // requires layer aliases
 #include "mouse.dtsi" // 这是鼠标层的功能设置
