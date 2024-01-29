@@ -19,3 +19,5 @@ include:
     shield: corne_left
   - board: nice_nano_v2
     shield: corne_right 
+  - board: glove80_lh
+  - board: glove80_rh
