@@ -55,7 +55,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Set defaults
-[[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.0"
+[[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.5"
 
 [[ -z $HOST_ZMK_DIR ]] && HOST_ZMK_DIR="$HOME/zmk"
 [[ -z $HOST_CONFIG_DIR ]] && HOST_CONFIG_DIR="$HOME/zmk-config"

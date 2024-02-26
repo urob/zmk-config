@@ -13,6 +13,7 @@
 #
 ---
 include:
-  - board: adv360pro_left
-  - board: adv360pro_right
+#  - board: adv360pro_left
+#  - board: adv360pro_right
   - board: planck_rev6
+

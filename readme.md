@@ -2,7 +2,7 @@
 
 This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration.
 It consists of a 34-keys base layout that is re-used for various boards, including my
-Corneish Zen and an Advantage 360 pro.
+Corneish Zen and my Planck.
 
 This branch is updated for the latest ZMK using Zephyr 3.2. A legacy version
 compatible with Zephyr 3.0 is available
@@ -57,7 +57,7 @@ ZMK's best configuration options:
   Because that is exactly what I normally do with HRMs, there is virtually
   never a need to wait past my long tapping term (see below for two
   exceptions).
-* To address the typing delay, I use ZMK's `global-quick-tap` property, which
+* To address the typing delay, I use ZMK's `require-prior-idle-ms` property, which
   immediately resolves a HRM as "tap" when it is pressed shortly *after*
   another key has been tapped. This all but completely eliminates the delay.
 
@@ -92,7 +92,7 @@ This is great but there are still a few rough edges:
 * Finally, it is worth noting that this setup works best in combination with a
   dedicated shift for capitalization during normal typing (I like sticky-shift
   on a home-thumb). This is because shifting alphas is the one scenario where
-  pressing a mod may conflict with `global-quick-tap`, which may result in
+  pressing a mod may conflict with `require-prior-idle-ms`, which may result in
   false negatives when typing fast.
 
 Here's my configuration (I use a bunch of [helper
@@ -111,7 +111,7 @@ ZMK_BEHAVIOR(hml, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <175>;                // repeat on tap-into-hold
-    global-quick-tap-ms = <150>;         // requires PR #1387
+    require-prior-idle-ms = <150>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_R THUMBS>;
     hold-trigger-on-release;             // delay positional check until key-release
@@ -122,42 +122,40 @@ ZMK_BEHAVIOR(hmr, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <175>;                // repeat on tap-into-hold
-    global-quick-tap-ms = <150>;         // requires PR #1387
+    require-prior-idle-ms = <150>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_L THUMBS>;
     hold-trigger-on-release;             // delay positional check until key-release
 )
 ```
 
-Final note: the config above uses syntax introduced in [PR
-#1387](https://github.com/zmkfirmware/zmk/pull/1387), which decouples the
-`quick-tap-ms` timeout from the `global-quick-tap-ms` timeout. Without the PR,
-one can replace `global-quick-tap-ms = <150>` with `global-quick-tap` for a
-similar effect (`global-quick-tap` will use the regular `quick-tap-ms` timeout
-in this case).
+### Required firmware
 
-My personal [ZMK fork](https://github.com/urob/zmk) includes the
-global-quick-tap-ms PR along with a few other PRs used in my config. If you
-prefer to maintain your own fork with a custom selection of PRs, you might find
-this [ZMK-centric introduction to
-Git](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7) helpful.
+After a recent round of patches, the above configuration now works with
+upstream ZMK. 
+
+Other parts of my configuration still require a few PRs that aren't yet in
+upstream ZMK. My personal [ZMK fork](https://github.com/urob/zmk) includes all
+PRs needed to compile my configuration. If you prefer to maintain your own fork
+with a custom selection of PRs, you might find this [ZMK-centric introduction
+to Git](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7) helpful.
 
 ### Troubleshooting
 
 Hopefully, the above configuration "just works". If it doesn't, here's a
 few smaller (and larger) things to try.
 
-* **Noticeable delay when tapping HRMs:** Increase `global-quick-tap-ms`. As a rule of thumb,
+* **Noticeable delay when tapping HRMs:** Increase `require-prior-idle-ms`. As a rule of thumb,
   you want to set it to at least `10500/x` where `x` is your (relaxed) WPM for English prose.[^4]
 * **False negatives (same-hand):** Reduce `tapping-term-ms` (or disable
   `hold-trigger-key-positions`)
-* **False negatives (cross-hand):** Reduce `global-quick-tap-ms` (or set flavor
+* **False negatives (cross-hand):** Reduce `require-prior-idle-ms` (or set flavor
   to `hold-preferred` -- to continue using `hold-trigger-on-release`, you must
   also [patch
   ZMK](https://github.com/celejewski/zmk/commit/d7a8482712d87963e59b74238667346221199293)
   or use [an already patched branch](https://github.com/urob/zmk))
 * **False positives (same-hand):** Increase `tapping-term-ms`
-* **False positives (cross-hand):** Increase `global-quick-tap-ms` (or set
+* **False positives (cross-hand):** Increase `require-prior-idle-ms` (or set
   flavor to `tap-preferred`, which requires holding HRMs past tapping term to
   activate)
 
@@ -168,7 +166,7 @@ over accessing layers that involve lateral thumb movements to be activated, espe
 when switching between different layers in rapid succession.
 
 One common concern about overloading the layout with combos is that they lead to
-misfires. Fortunately, the above-mentioned PR #1387, also adds a `global-quick-tap` option 
+misfires. Fortunately, the above-mentioned PR #1387, also adds a `require-prior-idle` option 
 for combos, which in my experience all but completely eliminates the problem -- even
 when rolling keys on the home row!
 
@@ -287,9 +285,9 @@ are a few remaining issues:
 
 [^2]: I call it "timer-less", because the large tapping-term makes the behavior
   insensitive to the precise timings. One may say that there is still the
-  `global-quick-tap` timeout. However, with both a large tapping-term and
+  `require-prior-idle` timeout. However, with both a large tapping-term and
   positional-hold-taps, the behavior is *not* actually sensitive to the
-  `global-quick-tap` timing: All it does is reduce the delay in typing; i.e., variations
+  `require-prior-idle` timing: All it does is reduce the delay in typing; i.e., variations
   in typing speed won't affect *what* is being typed but merely *how fast* it appears on
   the screen.
 
@@ -300,6 +298,6 @@ are a few remaining issues:
 [^4]: E.g, if your WPM is 70 or larger, then the default of 150ms (=10500/70)
     should work well. The rule of thumb is based on an average character length
     of 4.7 for English words. Taking into account 1 extra tap for `space`, this
-    yields a minimum `global-quick-tap-ms` of (60 * 1000) / (5.7 * x) ≈ 10500 / x
+    yields a minimum `require-prior-idle-ms` of (60 * 1000) / (5.7 * x) ≈ 10500 / x
     milliseconds. The approximation errs on the safe side,
     as in practice home row taps tend to be faster than average.
