@@ -13,6 +13,9 @@
 #
 ---
 include:
-  - board: planck_rev6
-  - board: corneish_zen_v2_left
-  - board: corneish_zen_v2_right
+  - board: nice_nano_v2
+    shield: sofle_left
+  - board: nice_nano_v2
+    shield: sofle_right
+  - board: nice_nano_v2
+    shield: settings_reset
