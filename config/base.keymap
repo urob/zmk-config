@@ -83,10 +83,10 @@ ZMK_BEHAVIOR(mt_end,  hold_tap,  bindings = <&masked_end>, <&kp>; MT_CORE)
 
 #define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
 #define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
-#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
-#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
-#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
-#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
+#define NAV_UP    &mt LA(HOME) UP      // tap: up    | long-tap: beginning of document
+#define NAV_DOWN  &mt LA(END)  DOWN    // tap: down  | long-tap: end       of document
+#define NAV_BSPC  &mt LA(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
+#define NAV_DEL   &mt LA(DEL)  DEL     // tap: del   | long-tap: delete word forward
 
 // mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
 #define MASK_MODS(NAME, MODS, BINDING) \
@@ -136,7 +136,7 @@ ZMK_BEHAVIOR(smart_mouse, tri_state,
 
 // Alt+Tab swapper, requires PR #1366
 ZMK_BEHAVIOR(swapper, tri_state,
-    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
     ignored-key-positions = <LT2>;
 )
 
@@ -231,13 +231,13 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp Z         &kp X         &kp C         &kp V         &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                               &lt_spc NAV 0 &lt FN RET      X_MH     SMART_NUM     &smart_shft                                               X_RH
+    X_LH                                               &lt_spc NAV 0 &lt FN TAB      X_MH     &smart_shft   NAV_BSPC                                               X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
 ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           &kp LS(TAB)   &swapper      ___             X_MT     NAV_BSPC      &kp PG_DN     &kp PG_UP     NAV_DEL       ___             X_RT
+    X_LT     ___           ___           &kp LG(LS(TAB))   &swapper      ___             X_MT     NAV_BSPC      &kp PG_DN     &kp PG_UP     NAV_DEL       ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &sk LCTRL      &sk LALT      &sk LGUI     &sk LSHFT     ___             X_MM     NAV_LEFT      NAV_DOWN      NAV_UP        NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
