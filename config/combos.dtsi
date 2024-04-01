@@ -46,7 +46,7 @@ ZMK_COMBO(rbkt,  &kp RBKT,      RB2 RB3,     DEF_WIN DEF_OSX, COMBO_TERM_FAST)
 ZMK_COMBO(lbrc,  &kp LBRC,      RB1 RB2,     DEF_WIN DEF_OSX, COMBO_TERM_FAST)
 ZMK_COMBO(rbrc,  &kp RBRC,      RB2 RB3,     DEF_WIN DEF_OSX, COMBO_TERM_FAST)
 
-ZMK_COMBO(cpgrk, &sls 0,        RT1 RT2 RT3, DEF_WIN DEF_OSX, COMBO_TERM_FAST)
+ZMK_COMBO(cpgrk, &sls_win 0,    RT1 RT2 RT3, DEF_WIN DEF_OSX, COMBO_TERM_FAST)
 
 /* Vertical combos - left hand */
 ZMK_COMBO(at,    &kp AT,        LT3 LM3,     DEF_WIN DEF_OSX, COMBO_TERM_SLOW)
