@@ -259,6 +259,9 @@ ZMK_BEHAVIOR(win_sleep, macro,
 
 /* Keymap */
 
+ZMK_CONDITIONAL_LAYER(NAV_WIN UC_WIN, VIM)
+ZMK_CONDITIONAL_LAYER(NAV_OSX UC_OSX, VIM)
+
 ZMK_LAYER(base_win,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp Q         &kp W         &kp F         &kp P         &kp B           X_MT     &kp J         &kp L         &kp U         &kp Y         &kp SQT         X_RT
