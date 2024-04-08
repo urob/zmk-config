@@ -13,6 +13,7 @@
 
 #define COMBO_TERM_FAST 18
 #define COMBO_TERM_SLOW 30
+#define COMBO_TERM_SLOWER 30
 
 // make homerow combos tap-only (so HRMs can be chorded instantaneously)
 #define HRC_TAB    &hml         LA(LCTRL) TAB
