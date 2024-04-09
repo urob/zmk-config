@@ -53,7 +53,7 @@ ZMK_COMBO(tilde, &kp TILDE,     RT0 RT1,     DEF_WIN DEF_OSX, COMBO_TERM_SLOW)
 ZMK_COMBO(plus,  &kp PLUS,      RM0 RM1,     DEF_WIN DEF_OSX, COMBO_TERM_SLOW)
 ZMK_COMBO(grave, &kp GRAVE,     RB0 RB1,     DEF_WIN DEF_OSX, COMBO_TERM_SLOW)
 
-read failed 11: Resource temporarily unavailable_WIN DEF_OSX, COMBO_TERM_SLOW)
+ZMK_COMBO(pipe,  &kp PIPE,      LT0 LT1,     DEF_WIN DEF_OSX, COMBO_TERM_SLOW)
 ZMK_COMBO(hash,  &kp HASH,      LM0 LM1,     DEF_WIN DEF_OSX, COMBO_TERM_SLOW)
 ZMK_COMBO(at,    &kp AT,        LB0 LB1,     DEF_WIN DEF_OSX, COMBO_TERM_SLOW)
  
