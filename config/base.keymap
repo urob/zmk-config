@@ -164,6 +164,18 @@ ZMK_BEHAVIOR(swapper, tri_state,
     ignored-key-positions = <LT2>;
 )
 
+// Alt+Tab swapper, requires PR #1366
+ZMK_BEHAVIOR(swapper_win, tri_state,
+    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+    ignored-key-positions = <LT2>;
+)
+
+// Alt+Tab swapper, requires PR #1366
+ZMK_BEHAVIOR(swapper_osx, tri_state,
+    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+    ignored-key-positions = <LT2>;
+)
+
 // Sticky layer + sticky shift (workaround for issue #1421)
 ZMK_BEHAVIOR(sls_win, sticky_key,
     release-after-ms = <1000>;
