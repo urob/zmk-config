@@ -3,74 +3,74 @@
 # Parse input arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        # needed when user isn't in docker group
-        -s|--su)
-            SUDO="sudo"
-            ;;
+    # needed when user isn't in docker group
+    -s | --su)
+        SUDO="sudo"
+        ;;
 
-        -l|--local)
-            RUNWITH_DOCKER="false"
-            ;;
+    -l | --local)
+        RUNWITH_DOCKER="false"
+        ;;
 
-        -m|--multithread)
-            MULTITHREAD="true"
-            ;;
+    -m | --multithread)
+        MULTITHREAD="true"
+        ;;
 
-        -c|--clear-cache)
-            CLEAR_CACHE="true"
-            ;;
+    -c | --clear-cache)
+        CLEAR_CACHE="true"
+        ;;
 
-        # comma or space separated list of boards (use quotes if space separated)
-        # if ommitted, will compile list of boards in build.yaml
-        -b|--board)
-            BOARDS="$2"
-            shift
-            ;;
+    # comma or space separated list of boards (use quotes if space separated)
+    # if ommitted, will compile list of boards in build.yaml
+    -b | --board)
+        BOARDS="$2"
+        shift
+        ;;
 
-        -v|--version)
-            ZEPHYR_VERSION="$2"
-            shift
-            ;;
+    -v | --version)
+        ZEPHYR_VERSION="$2"
+        shift
+        ;;
 
-        -o|--output-dir)
-            OUTPUT_DIR="$2"
-            shift
-            ;;
+    -o | --output-dir)
+        OUTPUT_DIR="$2"
+        shift
+        ;;
 
-        --log-dir)
-            LOG_DIR="$2"
-            shift
-            ;;
+    --log-dir)
+        LOG_DIR="$2"
+        shift
+        ;;
 
-        --host-config-dir)
-            HOST_CONFIG_DIR="$2"
-            shift
-            ;;
+    --host-config-dir)
+        HOST_CONFIG_DIR="$2"
+        shift
+        ;;
 
-        --host-zmk-dir)
-            HOST_ZMK_DIR="$2"
-            shift
-            ;;
+    --host-zmk-dir)
+        HOST_ZMK_DIR="$2"
+        shift
+        ;;
 
-        --docker-config-dir)
-            DOCKER_CONFIG_DIR="$2"
-            shift
-            ;;
+    --docker-config-dir)
+        DOCKER_CONFIG_DIR="$2"
+        shift
+        ;;
 
-        --docker-zmk-dir)
-            DOCKER_ZMK_DIR="$2"
-            shift
-            ;;
+    --docker-zmk-dir)
+        DOCKER_ZMK_DIR="$2"
+        shift
+        ;;
 
-        --)
-            WEST_OPTS="${@:2}"
-            break
-            ;;
+    --)
+        WEST_OPTS="${@:2}"
+        break
+        ;;
 
-        *)
-            echo "Unknown option $1"
-            exit 1
-            ;;
+    *)
+        echo "Unknown option $1"
+        exit 1
+        ;;
 
     esac
     shift
@@ -103,24 +103,23 @@ DOCKER_BIN="$SUDO podman"
 
 cd "$HOST_CONFIG_DIR"
 
-if [[ -f config/combos.dtsi ]]
+if [[ -f config/combos.dtsi ]]; then
     # update maximum combos per key
-    then
-    count=$( \
-        tail -n +10 config/combos.dtsi | \
-        grep -Eo '[LR][TMBH][0-9]' | \
-        sort | uniq -c | sort -nr | \
-        awk 'NR==1{print $1}' \
+    count=$(
+        tail -n +10 config/combos.dtsi |
+            grep -Eo '[LR][TMBH][0-9]' |
+            sort | uniq -c | sort -nr |
+            awk 'NR==1{print $1}'
     )
     sed -Ei "/CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY/s/=.+/=$count/" config/*.conf
     echo "Setting MAX_COMBOS_PER_KEY to $count"
 
     # update maximum keys per combo
-    count=$( \
-        tail -n +10 config/combos.dtsi | \
-        grep -o -n '[LR][TMBH][0-9]' | \
-        cut -d : -f 1 | uniq -c | sort -nr | \
-        awk 'NR==1{print $1}' \
+    count=$(
+        tail -n +10 config/combos.dtsi |
+            grep -o -n '[LR][TMBH][0-9]' |
+            cut -d : -f 1 | uniq -c | sort -nr |
+            awk 'NR==1{print $1}'
     )
     sed -Ei "/CONFIG_ZMK_COMBO_MAX_KEYS_PER_COMBO/s/=.+/=$count/" config/*.conf
     echo "Setting MAX_KEYS_PER_COMBO to $count"
@@ -130,8 +129,7 @@ fi
 # | BUILD THE FIRMWARE |
 # +--------------------+
 
-if [[ $RUNWITH_DOCKER = true ]]
-then
+if [[ $RUNWITH_DOCKER = true ]]; then
     echo "Build mode: docker"
     # DOCKER_CMD="$DOCKER_BIN run --name zmk-$ZEPHYR_VERSION --rm \
     DOCKER_CMD="$DOCKER_BIN run --rm \
@@ -143,8 +141,7 @@ then
         --mount type=volume,source=zmk-zephyr-tools-$ZEPHYR_VERSION,target=$DOCKER_ZMK_DIR/tools"
 
     # Reset volumes
-    if [[ $CLEAR_CACHE = true ]]
-    then
+    if [[ $CLEAR_CACHE = true ]]; then
         $DOCKER_BIN volume rm $($DOCKER_BIN volume ls -q | grep "^zmk-.*-$ZEPHYR_VERSION$")
     fi
 
@@ -170,19 +167,17 @@ else
 fi
 
 # usage: compile_board board
-compile_board () {
+compile_board() {
     BUILD_DIR="${1}_$SUFFIX"
     LOGFILE="$LOG_DIR/zmk_build_$1.log"
     [[ $MULTITHREAD = "true" ]] || echo -en "\n$(tput setaf 2)Building $1... $(tput sgr0)"
     [[ $MULTITHREAD = "true" ]] && echo -e "$(tput setaf 2)Building $1... $(tput sgr0)"
     $DOCKER_PREFIX west build -d "build/$BUILD_DIR" -b $1 $WEST_OPTS \
-        -- -DZMK_CONFIG="$CONFIG_DIR" -Wno-dev > "$LOGFILE" 2>&1
-    if [[ $? -eq 0 ]]
-    then
+        -- -DZMK_CONFIG="$CONFIG_DIR" -Wno-dev >"$LOGFILE" 2>&1
+    if [[ $? -eq 0 ]]; then
         [[ $MULTITHREAD = "true" ]] || echo "$(tput setaf 2)done$(tput sgr0)"
         echo "Build log saved to \"$LOGFILE\"."
-        if [[ -f $HOST_ZMK_DIR/app/build/$BUILD_DIR/zephyr/zmk.uf2 ]]
-        then
+        if [[ -f $HOST_ZMK_DIR/app/build/$BUILD_DIR/zephyr/zmk.uf2 ]]; then
             TYPE="uf2"
         else
             TYPE="bin"
@@ -200,25 +195,22 @@ compile_board () {
 cd "$HOST_ZMK_DIR/app"
 if [[ $MULTITHREAD = "true" ]]; then
     i=1
-    for board in $(echo $BOARDS | sed 's/,/ /g')
-    do
+    for board in $(echo $BOARDS | sed 's/,/ /g'); do
         compile_board $board &
         eval "T${i}=\${!}"
-        eval "B${i}=\$board"  # Store the board name in a corresponding variable
+        eval "B${i}=\$board" # Store the board name in a corresponding variable
         ((i++))
     done
 
     echo "Starting $(($i - 1)) background threads:"
-    for ((x=1; x<i; x++))
-    do
+    for ((x = 1; x < i; x++)); do
         pid="T$x"
         wait "${!pid}"
-        board="B$x"  # Retrieve the board name from the corresponding variable
+        board="B$x" # Retrieve the board name from the corresponding variable
         echo -e "$(tput setaf 3)Thread $x with PID ${!pid} has finished: ${!board}$(tput sgr0)"
     done
 else
-    for board in $(echo $BOARDS | sed 's/,/ /g')
-    do
+    for board in $(echo $BOARDS | sed 's/,/ /g'); do
         compile_board $board
     done
 fi
