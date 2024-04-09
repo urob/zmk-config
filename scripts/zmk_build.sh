@@ -89,7 +89,8 @@ done
 [[ -z $DOCKER_ZMK_DIR ]] && DOCKER_ZMK_DIR="/workspace/zmk"
 [[ -z $DOCKER_CONFIG_DIR ]] && DOCKER_CONFIG_DIR="/workspace/zmk-config"
 
-[[ -z $BOARDS ]] && BOARDS="$(grep '^[[:space:]]*\-[[:space:]]*board:' $HOST_CONFIG_DIR/build.yaml | sed 's/^.*: *//')"
+# [[ -z $BOARDS ]] && BOARDS="$(grep '^[[:space:]]*\-[[:space:]]*board:' $HOST_CONFIG_DIR/build.yaml | sed 's/^.*: *//')"
+[[ -z $BOARDS ]] && BOARDS="$(yq -r '.include[].board' $HOST_CONFIG_DIR/build.yaml)"
 
 [[ -z $CLEAR_CACHE ]] && CLEAR_CACHE="false"
 
