@@ -4,7 +4,7 @@ This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/) configur
 It consists of a 34-keys base layout that is re-used for various boards, including my
 Corneish Zen and my Planck.
 
-This branch is updated for the latest ZMK using Zephyr 3.2. A legacy version
+This branch is updated for the latest ZMK using Zephyr 3.5. A legacy version
 compatible with Zephyr 3.0 is available
 [here](https://github.com/urob/zmk-config/tree/main-zephyr-3.0).
 
@@ -15,7 +15,7 @@ compatible with Zephyr 3.0 is available
 - the base keymap and combo setup are independent of the physical location of
   keys and are re-used for multiple keyboards. The configuration is fit onto
   larger boards by padding it via a modular structure of "extra keys"
-- ["timer-less" homerow mods](#timeless-homerow-mods) 
+- ["timeless" homerow mods](#timeless-homerow-mods) 
 - combos replacing the symbol layer
 - smart numbers and smart mouse layers that automatically toggle off when done
 - sticky shift on right thumb, double-tap (or shift + tap)[^1] activates caps-word
@@ -50,8 +50,8 @@ Let's suppose for a moment we set `tapping-term-ms` to something ridiculously
 large, say 5 seconds. This makes the configuration timer-less of sorts. But it
 has two problems: (1) To activate a mod we will have to hold the HRM keys for
 what feels like eternity. (2) During regular typing, there are delays between
-the press of a key and the time it appears on the screen.[^3] Enter two of
-ZMK's best configuration options:
+the press of a key and the time it appears on the screen.[^3] Enter two my favorite
+ZMK features:
 * To address the first problem, I use ZMK's `balanced` flavor, which produces a
   "hold" if another key is both pressed and released within the tapping-term.
   Because that is exactly what I normally do with HRMs, there is virtually
@@ -166,7 +166,7 @@ over accessing layers that involve lateral thumb movements to be activated, espe
 when switching between different layers in rapid succession.
 
 One common concern about overloading the layout with combos is that they lead to
-misfires. Fortunately, the above-mentioned PR #1387, also adds a `require-prior-idle` option 
+misfires. Fortunately, the above-mentioned `require-prior-idle-ms` option also works
 for combos, which in my experience all but completely eliminates the problem -- even
 when rolling keys on the home row!
 
@@ -179,7 +179,7 @@ locations while also making them easy to remember. Specifically:
   aligns with superscript `^`; minus `-` aligns with `+`; division `/` aligns
   with multiplication `*`; logical-or `|` aligns with logical-and `&`)
 - parenthesis, braces, brackets are set up symmetrically as horizontal combos with `<`,
-  `>`, `{` and `}` being accessed from the Navigation layer
+  `>`, `{` and `}` being accessed from the Navigation layer (or when combined with `Shift`)
 - left-hand side combos for `tap`, `esc`, `enter`, `cut` (on <kbd>X</kbd> + <kbd>D</kbd>),
   `copy` and `paste` that go well with right-handed mouse usage
 - <kbd>L</kbd> + <kbd>Y</kbd> switches to the Greek layer for a single key
@@ -199,7 +199,7 @@ single tap on "Smart-Num". Numword continues to be activated as long as I
 type numbers, and deactivates automatically on any other keypress (holding it activates 
 a non-sticky num layer).
 
-After using Numword for about 6 months now, I have been overall very happy with it. When
+After using Numword for more than a year now, I have been overall very happy with it. When
 typing single digits, it effectively is a sticky-layer but with the added advantage that 
 I can also use it to type multiple digits. 
 
@@ -232,7 +232,10 @@ instead implemented the double-tap functionality as a mod-morph.
 ##### Multi-purpose Navigation cluster
 
 To economize on keys, I am using hold-taps on my navigation cluster, which yield `home`, `end`,
-`begin/end of document`, and `delete word forward/backward` on long-presses.
+`begin/end of document`, and `delete word forward/backward` on long-presses. The exact
+implementation is tweaked so that `Ctrl` is silently absorbed in combination with `home` and `end`
+to avoid accidental document-wide operations (which are accessible via the dedicated `begin/end
+document keys`.)
 
 ##### Swapper
 
