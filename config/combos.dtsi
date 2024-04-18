@@ -9,7 +9,7 @@
 
 // use require-prior-idle-ms for combos
 #undef COMBO_HOOK
-#define COMBO_HOOK require-prior-idle-ms = <100>;
+#define COMBO_HOOK require-prior-idle-ms = <120>;
 
 #define COMBO_TERM_FAST 18
 #define COMBO_TERM_SLOW 30
