@@ -22,7 +22,7 @@
 #define UC_OSX 9
 #define MOUSE 10
 
-#include "combos.dtsi"  // requires layer aliases
+/*#include "combos.dtsi"  // requires layer aliases*/
 #include "mouse.dtsi"
 #include "extra_keys.h"
 
