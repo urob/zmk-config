@@ -1,5 +1,5 @@
-/* source keypos definitions */
-#include "../zmk-nodefree-config/keypos_def/keypos_glv80.h"
+/* source key position labels */
+#include "zmk-helpers/key-labels/glove80.h"
 
 /* map the Glove's extra keys */
 #define X_LT  \

@@ -1,5 +1,5 @@
-/* source keypos definitions */
-#include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
+/* source key position labels */
+#include "zmk-helpers/key-labels/36.h"
 
 /* map Zen's extra keys */
 #define X_LH  &kp LGUI      // thumb row, left

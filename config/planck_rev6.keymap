@@ -1,5 +1,5 @@
-/* source keypos definitions */
-#include "../zmk-nodefree-config/keypos_def/keypos_48keys_wide.h"
+/* source key position labels */
+#include "zmk-helpers/key-labels/48_wide.h"
 
 /* map Planck's extra keys */
 #define X_MT  &none &none                // top row, middle
