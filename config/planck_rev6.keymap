@@ -1,5 +1,5 @@
 /* source key position labels */
-#include "zmk-helpers/key-labels/48_wide.h"
+#include "zmk-helpers/key-labels/4x12_wide.h"
 
 /* map Planck's extra keys */
 #define X_MT  &none &none                // top row, middle
