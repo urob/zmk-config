@@ -10,7 +10,7 @@
 
 #define X_RH  SMART_NUM    // thumb row, right
 #define X_RB  &trans
-#define X_RM  &trans
+#define X_RM  &smart_mouse
 #define X_RT  &trans
 
 /* activate bluetooth */
