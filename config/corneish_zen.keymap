@@ -1,5 +1,5 @@
-/* source keypos definitions */
-#include "../zmk-nodefree-config/keypos_def/keypos_42keys.h"
+/* source key position labels */
+#include "zmk-helpers/key-labels/42.h"
 
 /* map Zen's extra keys */
 
@@ -20,5 +20,5 @@
 #include "base.keymap"
 
 /* use 5-column layout for Zen */
-/ { chosen { zmk,matrix_transform = &five_column_transform; }; };
+ZMK_APPLY_MATRIX_TRANSFORM(five_column_transform)
 
