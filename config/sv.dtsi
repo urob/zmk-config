@@ -1,16 +1,16 @@
-#include "../zmk-nodefree-config/helper.h"
+#include "zmk-helpers/helper.h"
 
 #define U_TAP_MS 40
 #define U_WAIT_MS 40
 
-ZMK_BEHAVIOR(sv_ao_win, macro,
+ZMK_MACRO(sv_ao_win,
     wait-ms = <0>;
     tap-ms = <1>;
     bindings = <&macro_press   &kp LALT>
              , <&macro_tap     &kp KP_N0 &kp KP_N2 &kp KP_N2 &kp KP_N9>
              , <&macro_release &kp LALT>;
 )
-ZMK_BEHAVIOR(sv_ao_win_shift, macro,
+ZMK_MACRO(sv_ao_win_shift,
     wait-ms = <0>;
     tap-ms = <1>;
     bindings = <&macro_press   &kp LALT>
@@ -18,14 +18,14 @@ ZMK_BEHAVIOR(sv_ao_win_shift, macro,
              , <&macro_release &kp LALT>;
 )
 
-ZMK_BEHAVIOR(sv_ao_osx, macro,
+ZMK_MACRO(sv_ao_osx,
     wait-ms = <U_WAIT_MS>;
     tap-ms = <U_TAP_MS>;
     bindings = <&macro_press   &kp LALT>
              , <&macro_tap     &kp A>
              , <&macro_release &kp LALT>;
 )
-ZMK_BEHAVIOR(sv_ao_osx_shift, macro,
+ZMK_MACRO(sv_ao_osx_shift,
     wait-ms = <U_WAIT_MS>;
     tap-ms = <U_TAP_MS>;
     bindings = <&macro_press   &kp LALT &kp LSHFT>
@@ -34,14 +34,14 @@ ZMK_BEHAVIOR(sv_ao_osx_shift, macro,
 )
 
 
-ZMK_BEHAVIOR(sv_ae_win, macro,
+ZMK_MACRO(sv_ae_win,
     wait-ms = <0>;
     tap-ms = <1>;
     bindings = <&macro_press   &kp LALT>
              , <&macro_tap     &kp KP_N0 &kp KP_N2 &kp KP_N2 &kp KP_N8>
              , <&macro_release &kp LALT>;
 )
-ZMK_BEHAVIOR(sv_ae_win_shift, macro,
+ZMK_MACRO(sv_ae_win_shift,
     wait-ms = <0>;
     tap-ms = <1>;
     bindings = <&macro_press   &kp LALT>
@@ -49,7 +49,7 @@ ZMK_BEHAVIOR(sv_ae_win_shift, macro,
              , <&macro_release &kp LALT>;
 )
 
-ZMK_BEHAVIOR(sv_ae_osx, macro,
+ZMK_MACRO(sv_ae_osx,
     wait-ms = <U_WAIT_MS>;
     tap-ms = <U_TAP_MS>;
     bindings = <&macro_press   &kp LALT>
@@ -57,7 +57,7 @@ ZMK_BEHAVIOR(sv_ae_osx, macro,
              , <&macro_release &kp LALT>
              , <&macro_tap     &kp A>;
 )
-ZMK_BEHAVIOR(sv_ae_osx_shift, macro,
+ZMK_MACRO(sv_ae_osx_shift,
     wait-ms = <U_WAIT_MS>;
     tap-ms = <U_TAP_MS>;
 
@@ -68,14 +68,14 @@ ZMK_BEHAVIOR(sv_ae_osx_shift, macro,
              , <&macro_release &kp LSHFT>;
 )
 
-ZMK_BEHAVIOR(sv_oe_win, macro,
+ZMK_MACRO(sv_oe_win,
     wait-ms = <0>;
     tap-ms = <1>;
     bindings = <&macro_press   &kp LALT>
              , <&macro_tap     &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N6>
              , <&macro_release &kp LALT>;
 )
-ZMK_BEHAVIOR(sv_oe_win_shift, macro,
+ZMK_MACRO(sv_oe_win_shift,
     wait-ms = <0>;
     tap-ms = <1>;
     bindings = <&macro_press   &kp LALT>
@@ -83,7 +83,7 @@ ZMK_BEHAVIOR(sv_oe_win_shift, macro,
              , <&macro_release &kp LALT>;
 )
 
-ZMK_BEHAVIOR(sv_oe_osx, macro,
+ZMK_MACRO(sv_oe_osx,
     wait-ms = <U_WAIT_MS>;
     tap-ms = <U_TAP_MS>;
     bindings = <&macro_press   &kp LALT>
@@ -92,7 +92,7 @@ ZMK_BEHAVIOR(sv_oe_osx, macro,
              , <&macro_tap     &kp O>;
 )
 
-ZMK_BEHAVIOR(sv_oe_osx_shift, macro,
+ZMK_MACRO(sv_oe_osx_shift,
     wait-ms = <U_WAIT_MS>;
     tap-ms = <U_TAP_MS>;
 
@@ -103,29 +103,28 @@ ZMK_BEHAVIOR(sv_oe_osx_shift, macro,
              , <&macro_release &kp LSHFT>;
 )
 
-ZMK_BEHAVIOR(ao_win, mod_morph,
+ZMK_MOD_MORPH(ao_win,
     bindings = <&sv_ao_win>, <&sv_ao_win_shift>;
     mods = <(MOD_LSFT)>;
 )
-ZMK_BEHAVIOR(ae_win, mod_morph,
+ZMK_MOD_MORPH(ae_win,
     bindings = <&sv_ae_win>, <&sv_ae_win_shift>;
     mods = <(MOD_LSFT)>;
 )
-ZMK_BEHAVIOR(oe_win, mod_morph,
+ZMK_MOD_MORPH(oe_win,
     bindings = <&sv_oe_win>, <&sv_oe_win_shift>;
     mods = <(MOD_LSFT)>;
 )
 
-
-ZMK_BEHAVIOR(ao_osx, mod_morph,
+ZMK_MOD_MORPH(ao_osx,
     bindings = <&sv_ao_osx>, <&sv_ao_osx_shift>;
     mods = <(MOD_LSFT)>;
 )
-ZMK_BEHAVIOR(ae_osx, mod_morph,
+ZMK_MOD_MORPH(ae_osx,
     bindings = <&sv_ae_osx>, <&sv_ae_osx_shift>;
     mods = <(MOD_LSFT)>;
 )
-ZMK_BEHAVIOR(oe_osx, mod_morph,
+ZMK_MOD_MORPH(oe_osx,
     bindings = <&sv_oe_osx>, <&sv_oe_osx_shift>;
     mods = <(MOD_LSFT)>;
 )
