@@ -16,6 +16,10 @@ while [[ $# -gt 0 ]]; do
         MULTITHREAD="true"
         ;;
 
+    --no-multithread)
+        MULTITHREAD="false"
+        ;;
+
     -c | --clear-cache)
         CLEAR_CACHE="true"
         ;;
@@ -24,6 +28,13 @@ while [[ $# -gt 0 ]]; do
     # if ommitted, will compile list of boards in build.yaml
     -b | --board)
         BOARDS="$2"
+        shift
+        ;;
+
+    # comma or space separated list of modules (use quotes if space separated)
+    # if ommitted, will compile list of modules in west.yml
+    --modules)
+        MODULES="$2"
         shift
         ;;
 
@@ -79,23 +90,35 @@ done
 # Set defaults
 [[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.5"
 [[ -z $RUNWITH_DOCKER ]] && RUNWITH_DOCKER="true"
+[[ -z $MULTITHREAD ]] && MULTITHREAD="true"
 
 [[ -z $OUTPUT_DIR ]] && OUTPUT_DIR="$WINHOME/Downloads"
 [[ -z $LOG_DIR ]] && LOG_DIR="/tmp"
 
 [[ -z $HOST_ZMK_DIR ]] && HOST_ZMK_DIR="$HOME/zmk"
+[[ -z $HOST_MODULES_DIR ]] && HOST_MODULES_DIR="$HOME/zmk-modules"
 [[ -z $HOST_CONFIG_DIR ]] && HOST_CONFIG_DIR="$HOME/zmk-config"
 
 [[ -z $DOCKER_ZMK_DIR ]] && DOCKER_ZMK_DIR="/workspace/zmk"
+[[ -z $DOCKER_MODULES_DIR ]] && DOCKER_MODULES_DIR="/workspace/zmk-modules"
 [[ -z $DOCKER_CONFIG_DIR ]] && DOCKER_CONFIG_DIR="/workspace/zmk-config"
 
-# [[ -z $BOARDS ]] && BOARDS="$(grep '^[[:space:]]*\-[[:space:]]*board:' $HOST_CONFIG_DIR/build.yaml | sed 's/^.*: *//')"
 [[ -z $BOARDS ]] && BOARDS="$(yq -r '.include[].board' $HOST_CONFIG_DIR/build.yaml)"
+[[ -z $MODULES ]] && MODULES="$(yq -r '.manifest.projects[].name |
+    select(. != "zmk")' $HOST_CONFIG_DIR/config/west.yml)"
 
 [[ -z $CLEAR_CACHE ]] && CLEAR_CACHE="false"
 
 DOCKER_IMG="zmkfirmware/zmk-dev-arm:$ZEPHYR_VERSION"
 DOCKER_BIN="$SUDO podman"
+
+echo "Configured modules: $MODULES"
+MODULES=$(
+    echo $MODULES |
+        sed -z 's/[, \n]/;/g' | # use ; as separator
+        sed -r "s|([^;]*);|${DOCKER_MODULES_DIR}/\1;|g" | # insert modules root path
+        sed 's/;$/\n/' # remove final ;
+)
 
 # +-------------------------+
 # | AUTOMATE CONFIG OPTIONS |
@@ -135,6 +158,7 @@ if [[ $RUNWITH_DOCKER = true ]]; then
     DOCKER_CMD="$DOCKER_BIN run --rm \
         --mount type=bind,source=$HOST_ZMK_DIR,target=$DOCKER_ZMK_DIR \
         --mount type=bind,source=$HOST_CONFIG_DIR,target=$DOCKER_CONFIG_DIR,readonly \
+        --mount type=bind,source=$HOST_MODULES_DIR,target=$DOCKER_MODULES_DIR,readonly \
         --mount type=volume,source=zmk-root-user-$ZEPHYR_VERSION,target=/root \
         --mount type=volume,source=zmk-zephyr-$ZEPHYR_VERSION,target=$DOCKER_ZMK_DIR/zephyr \
         --mount type=volume,source=zmk-zephyr-modules-$ZEPHYR_VERSION,target=$DOCKER_ZMK_DIR/modules \
@@ -173,7 +197,7 @@ compile_board() {
     [[ $MULTITHREAD = "true" ]] || echo -en "\n$(tput setaf 2)Building $1... $(tput sgr0)"
     [[ $MULTITHREAD = "true" ]] && echo -e "$(tput setaf 2)Building $1... $(tput sgr0)"
     $DOCKER_PREFIX west build -d "build/$BUILD_DIR" -b $1 $WEST_OPTS \
-        -- -DZMK_CONFIG="$CONFIG_DIR" -Wno-dev >"$LOGFILE" 2>&1
+        -- -DZMK_CONFIG="$CONFIG_DIR" -DZMK_EXTRA_MODULES="$MODULES" -Wno-dev >"$LOGFILE" 2>&1
     if [[ $? -eq 0 ]]; then
         [[ $MULTITHREAD = "true" ]] || echo "$(tput setaf 2)done$(tput sgr0)"
         echo "Build log saved to \"$LOGFILE\"."

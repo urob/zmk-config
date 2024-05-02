@@ -7,6 +7,9 @@ If the zmk-config repo contains a `combos.dtsi` file, the script will also
 automatically update the `MAX_COMBOS_PER_KEY` and `MAX_KEYS_PER_COMBO` settings
 for all boards, depending on the combos specified in `combos.dtsi`.
 
+If the `west.yml` contains any modules other than `ZMK`, the script will look for them in
+`HOST_MODULES_DIR` and automatically enable them for the build.
+
 ## Build steps
 
 ### 1. Clone the ZMK repository
@@ -43,10 +46,10 @@ The build script can be used to install either a "docker" or a "local"
 toolchain. If unsure, I recommend using the docker toolchain. Depending on your
 installation choice, do **one** of the following:
 
-1. Install Docker or Podman (recommended) and, if using Podman, configure the
+1. Install `yq` and `Docker` or `Podman` (recommended). If using Podman, configure the
    docker registry. On Debian or Ubuntu, you can do both by running:
    ```bash
-   sudo apt-get install podman
+   sudo apt-get install podman yq
    echo 'unqualified-search-registries = ["docker.io"]' > $XDG_CONFIG_HOME/containers/registries.conf
    ```
 2. Install a local
