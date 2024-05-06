@@ -7,55 +7,55 @@
 # Parse input arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        # needed when user isn't in docker group
-        -s|--sudu)
-            SUDO="sudo"
-            ;;
+    # needed when user isn't in docker group
+    -s | --sudu)
+        SUDO="sudo"
+        ;;
 
-        -c|--clear-cache)
-            CLEAR_CACHE="true"
-            ;;
+    -c | --clear-cache)
+        CLEAR_CACHE="true"
+        ;;
 
-        -d|--install-doc-tools)
-            DOC_TOOLS="true"
-            ;;
+    -d | --install-doc-tools)
+        DOC_TOOLS="true"
+        ;;
 
-        -v|--version)
-            ZEPHYR_VERSION="$2"
-            shift
-            ;;
+    -v | --version)
+        ZEPHYR_VERSION="$2"
+        shift
+        ;;
 
-        --host-config-dir)
-            HOST_CONFIG_DIR="$2"
-            shift
-            ;;
+    --host-config-dir)
+        HOST_CONFIG_DIR="$2"
+        shift
+        ;;
 
-        --host-zmk-dir)
-            HOST_ZMK_DIR="$2"
-            shift
-            ;;
+    --host-zmk-dir)
+        HOST_ZMK_DIR="$2"
+        shift
+        ;;
 
-        --docker-config-dir)
-            DOCKER_CONFIG_DIR="$2"
-            shift
-            ;;
+    --docker-config-dir)
+        DOCKER_CONFIG_DIR="$2"
+        shift
+        ;;
 
-        --docker-zmk-dir)
-            DOCKER_ZMK_DIR="$2"
-            shift
-            ;;
+    --docker-zmk-dir)
+        DOCKER_ZMK_DIR="$2"
+        shift
+        ;;
 
-        *)
-            echo "Unknown option $1"
-            exit 1
-            ;;
+    *)
+        echo "Unknown option $1"
+        exit 1
+        ;;
 
     esac
     shift
 done
 
 # Set defaults
-[[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.0"
+[[ -z $ZEPHYR_VERSION ]] && ZEPHYR_VERSION="3.5"
 
 [[ -z $HOST_ZMK_DIR ]] && HOST_ZMK_DIR="$HOME/zmk"
 [[ -z $HOST_CONFIG_DIR ]] && HOST_CONFIG_DIR="$HOME/zmk-config"
@@ -76,8 +76,7 @@ DOCKER_CMD="$SUDO docker run --name zmk-$ZEPHYR_VERSION --rm \
     --mount type=volume,source=zmk-zephyr-tools-$ZEPHYR_VERSION,target=$DOCKER_ZMK_DIR/tools"
 
 # Reset volumes
-if [[ $CLEAR_CACHE = true ]]
-then
+if [[ $CLEAR_CACHE = true ]]; then
     $SUDO docker volume rm $(sudo docker volume ls -q | grep "^zmk-.*-$ZEPHYR_VERSION$")
 fi
 
@@ -91,11 +90,9 @@ $DOCKER_CMD -w "$DOCKER_ZMK_DIR" "$DOCKER_IMG" /bin/bash -c " \
     && west update"
 
 # Install docosaurus
-if [[ $DOC_TOOLS = true ]]
-then
+if [[ $DOC_TOOLS = true ]]; then
     $DOCKER_CMD -w "$DOCKER_ZMK_DIR/docs" "$DOCKER_IMG" npm ci
 fi
 
 # Start interactive shell
 $DOCKER_CMD -w "$DOCKER_ZMK_DIR" -it "$DOCKER_IMG" /bin/bash
-

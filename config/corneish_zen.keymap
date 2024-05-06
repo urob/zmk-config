@@ -1,9 +1,9 @@
-/* source keypos definitions */
-#include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"
+/* source key position labels */
+#include "zmk-helpers/key-labels/36.h"
 
 /* map Zen's extra keys */
-#define X_LH  &smart_mouse  // thumb row, left
-#define X_RH  &bs_del       // thumb row, right
+#define X_LH  &kp LGUI      // thumb row, left
+#define X_RH  &smart_mouse  // thumb row, right
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1
@@ -12,5 +12,4 @@
 #include "base.keymap"
 
 /* use 5-column layout for Zen */
-/ { chosen { zmk,matrix_transform = &five_column_transform; }; };
-
+ZMK_APPLY_MATRIX_TRANSFORM(five_column_transform)
