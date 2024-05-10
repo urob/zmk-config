@@ -84,32 +84,6 @@ MAKE_HRM(hmr_rpar_gt, &kp, &rpar_gt, KEYS_L THUMBS)    // "    "   "   "
 ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
 ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 
-#define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
-#define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
-#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
-#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
-#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
-#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
-
-#define SPLIT_DOWN  &kp LS(LA(DOWN))
-#define SPLIT_RIGHT &kp LS(LA(RIGHT))
-#define SPLIT_LEFT  &kp LS(LA(LEFT))
-#define SPLIT_UP    &kp LS(LA(UP))
-#define FONT_PLUS   &kp LC(KP_PLUS)
-#define FONT_MINUS  &kp LC(MINUS)
-
-// Windows keys
-#define WIN_CLOSE   &kp LA(F4)
-
-// Window management
-#define WIN_LEFT   &kp LC(LA(LEFT))
-#define WIN_RIGHT  &kp LC(LA(RIGHT))
-#define WIN_DOWN   &kp LC(LA(DOWN))
-#define WIN_UP     &kp LC(LA(UP))
-#define WIN_BIG    &kp LC(LA(ENTER))
-
-// OSX keys
-#define OSX_CLOSE   &kp LG(Q)
 
 // mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
 #define MASK_MODS(NAME, MODS, BINDING) \
@@ -283,6 +257,36 @@ ZMK_MACRO(win_sleep,
 #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
 #define VOL_DOWN    &hmr LCTRL C_VOL_DN
 
+#define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
+#define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
+#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
+#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
+#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
+#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
+
+#define SPLIT_DOWN  &kp LS(LA(DOWN))
+#define SPLIT_RIGHT &kp LS(LA(RIGHT))
+#define SPLIT_LEFT  &kp LS(LA(LEFT))
+#define SPLIT_UP    &kp LS(LA(UP))
+#define FONT_PLUS   &kp LC(KP_PLUS)
+#define FONT_MINUS  &kp LC(MINUS)
+
+// Windows keys
+#define WIN_CLOSE   &kp LA(F4)
+
+// Window management
+#define WIN_LEFT   &kp LC(LA(LEFT))
+#define WIN_RIGHT  &kp LC(LA(RIGHT))
+#define WIN_DOWN   &kp LC(LA(DOWN))
+#define WIN_UP     &kp LC(LA(UP))
+#define WIN_BIG    &kp LC(LA(ENTER))
+
+// OSX keys
+#define OSX_CLOSE   &kp LG(Q)
+#define OSX_DOWN    &kp LC(LG(DOWN))
+#define OSX_UP      &kp LC(LG(UP))
+
+
 /* Keymap */
 
 ZMK_LAYER(base_win,
@@ -335,7 +339,7 @@ ZMK_LAYER(nav_win,
 
 ZMK_LAYER(nav_osx,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     OSX_CLOSE     WIN_LEFT      &swapper_osx  WIN_DOWN      WIN_UP          X_MT     &kp PG_DN     &kp PG_UP     NAV_UP        NAV_DEL       ___             X_RT
+    X_LT     OSX_CLOSE     WIN_LEFT      &swapper_osx  OSX_DOWN      OSX_UP          X_MT     &kp PG_DN     &kp PG_UP     NAV_UP        NAV_DEL       ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     FONT_PLUS       X_MM     &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     ___             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
