@@ -283,8 +283,8 @@ ZMK_MACRO(win_sleep,
 
 // OSX keys
 #define OSX_CLOSE   &kp LG(Q)
-#define OSX_DOWN    &kp LC(LG(DOWN))
-#define OSX_UP      &kp LC(LG(UP))
+#define OSX_DOWN    &kp LC(LA(DOWN))
+#define OSX_UP      &kp LC(LA(UP))
 
 
 /* Keymap */
