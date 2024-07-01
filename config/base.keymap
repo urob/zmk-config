@@ -10,7 +10,7 @@
 #define FN 2
 #define NUM 3
 #define SYS 4
-#define MOUSE 6
+#define MOUSE 5
 
 #include "combos.dtsi"  // requires layer aliases
 #include "mouse.dtsi"
@@ -260,7 +260,6 @@ ZMK_LAYER(sys,
                                               ___           ___            ___           ___                                                    
 //                                          ╰─────────────┴─────────────╯╰─────────────┴─────────────╯                                          
 )
-
 
 ZMK_LAYER(mouse,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
