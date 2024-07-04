@@ -8,7 +8,7 @@ manifest:
       url-base: https://github.com/stijnveenman
   projects:
     - name: zmk
-      remote: stijnveenman
+      remote: urob
       revision: main
       import: app/west.yml
     - name: zmk-helpers
