@@ -7,10 +7,10 @@
   ╰───────────╮ LH1 LH0 │ │ RH0 RH1 ╭───────────╯
               ╰─────────╯ ╰─────────╯ */
 
-#define COMBO_TERM_FAST 18
+#define COMBO_TERM_FAST 30
 #define COMBO_TERM_SLOW 30
 
-#define COMBO_IDLE_FAST 150
+#define COMBO_IDLE_FAST 100
 #define COMBO_IDLE_SLOW 50
 
 // make homerow combos tap-only (so HRMs can be chorded instantaneously)
