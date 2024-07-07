@@ -49,7 +49,7 @@
         flavor = "balanced"; \
         tapping-term-ms = <280>; \
         quick-tap-ms = <QUICK_TAP_MS>; \
-        require-prior-idle-ms = <300>; \
+        require-prior-idle-ms = <200>; \
         bindings = <HOLD>, <TAP>; \
         hold-trigger-key-positions = <TRIGGER_POS>; \
         hold-trigger-on-release; \
