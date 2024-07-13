@@ -1,0 +1,22 @@
+name: Draw ZMK keymaps
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "config/*.keymap"
+      - "config/*.dtsi"
+      - "keymap_drawer.config.yaml"
+
+jobs:
+  draw:
+    uses: stijnveenman/keymap-drawer/.github/workflows/draw-zmk.yml@feature/west-init
+    # use below once https://github.com/caksoylar/keymap-drawer/pull/107 has been merged
+    # uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+    with:
+      keymap_patterns: "config/*.keymap"
+      config_path: 'keymap_drawer.config.yaml'
+      destination: 'artifact'
+      west_config_path: './config/'
+      # install repo and branch can be removed once https://github.com/caksoylar/keymap-drawer/pull/105 has been merged
+      install_repo: 'https://github.com/stijnveenman/keymap-drawer.git'
+      install_branch: 'feature/additional_includes'
