@@ -15,7 +15,7 @@ sudo apt-get install --yes --no-install-recommends git cmake ninja-build gperf \
 # Find latest release version
 # ZSDK_URL="https://github.com/zephyrproject-rtos/sdk-ng/releases/latest"
 # ZSDK_VERSION="$(curl -fsSLI -o /dev/null -w %{url_effective} ${ZSDK_URL} | sed 's/^.*v//')"
-ZSDK_VERSION="0.16.5-1"
+ZSDK_VERSION="0.16.3"
 
 # Download and verify latest Zephyr SDK bundle
 cd ~/.local
