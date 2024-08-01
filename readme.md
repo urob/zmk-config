@@ -53,7 +53,7 @@ Let's suppose for a moment we set `tapping-term-ms` to something ridiculously
 large, say 5 seconds. This makes the configuration timer-less of sorts. But it
 has two problems: (1) To activate a mod we will have to hold the HRM keys for
 what feels like eternity. (2) During regular typing, there are delays between
-the press of a key and the time it appears on the screen.[^3] Enter two my
+the press of a key and the time it appears on the screen.[^3] Enter two of my
 favorite ZMK features:
 
 - To address the first problem, I use ZMK's `balanced` flavor, which produces a
@@ -98,8 +98,8 @@ This is great but there are still a few rough edges:
   false negatives when typing fast.
 
 Here's my configuration (I use a bunch of
-[helper macros](https://github.com/urob/zmk-helpers) to simplify the
-syntax, but they are not necessary):
+[helper macros](https://github.com/urob/zmk-helpers) to simplify the syntax, but
+they are not necessary):
 
 ```C++
 /* use helper macros to define left and right hand keys */
@@ -199,11 +199,11 @@ while also making them easy to remember. Specifically:
 
 Inspired by Jonas Hietala's
 [Numword](https://www.jonashietala.se/blog/2021/06/03/the-t-34-keyboard-layout/#where-are-the-digits)
-for QMK, I implemented my own version of
-[Smart-layers for ZMK](https://github.com/zmkfirmware/zmk/pull/1451). It is
-triggered via a single tap on "Smart-Num". Numword continues to be activated as
-long as I type numbers, and deactivates automatically on any other keypress
-(holding it activates a non-sticky num layer).
+for QMK, I implemented my own
+[Auto-layer behavior](https://github.com/urob/zmk-auto-layer) for ZMK to set up
+Numword. It is triggered via a single tap on "Smart-Num". Numword continues to
+be activated as long as I type numbers, and deactivates automatically on any
+other keypress (holding it activates a non-sticky num layer).
 
 After using Numword for more than a year now, I have been overall very happy
 with it. When typing single digits, it effectively is a sticky-layer but with
