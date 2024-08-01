@@ -7,9 +7,15 @@ manifest:
   projects:
     - name: zmk
       remote: urob
-      revision: main
+      revision: going-modular
       import: app/west.yml
     - name: zmk-helpers
+      remote: urob
+      revision: main
+    - name: zmk-auto-layer
+      remote: urob
+      revision: main
+    - name: zmk-tri-state
       remote: urob
       revision: main
   self:
