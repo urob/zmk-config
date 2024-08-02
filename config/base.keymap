@@ -1,4 +1,5 @@
 #include <behaviors.dtsi>
+#include <behaviors/num_word.dtsi> // requires auto-layer module
 #include <dt-bindings/zmk/keys.h>
 #if CONFIG_WIRELESS
     #include <dt-bindings/zmk/bt.h>
@@ -118,12 +119,7 @@ ZMK_HOLD_TAP(smart_num,
 )
 ZMK_TAP_DANCE(num_dance,
     tapping-term-ms = <200>;
-    bindings = <&num_word>, <&sl NUM>;  // reverse this for sticky-num on single tap
-)
-ZMK_AUTO_LAYER(num_word,
-    layers = <NUM>;
-    ignore-numbers;
-    continue-list = <BACKSPACE DELETE DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
+    bindings = <&num_word NUM>, <&sl NUM>;  // reverse this for sticky-num on single tap
 )
 
 // smart-mouse, requires PR #1366
