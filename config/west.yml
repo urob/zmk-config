@@ -1,22 +1,85 @@
+# This file specifies the build dependencies for Github Action workflows and
+# for local build environments. The workspace has three toplevel directories
+# containing the user config, user modules and ZMK. Zephyr and its dependencies
+# are namespaced under /zmk to keep the toplevel clean.
+#
+# ZMK-Workspace
+# ├── config
+# ├── modules (user modules)
+# └── zmk
+#     └── modules (Zephyr modules)
+#
+# To create a local build environment, clone this repository and then run the
+# following commands from its toplevel directory:
+#
+# $ west init -l config
+# $ west update
+# $ west zephyr-export
+#
+---
 manifest:
+  defaults:
+    remote: urob
+
   remotes:
-    - name: zmkfirmware
+    - name: upstream
       url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
+
   projects:
-    - name: zmk
-      remote: urob
-      revision: going-modular
-      import: app/west.yml
     - name: zmk-helpers
-      remote: urob
       revision: main
+      path: modules/helpers
     - name: zmk-auto-layer
-      remote: urob
       revision: main
+      path: modules/auto-layer
     - name: zmk-tri-state
-      remote: urob
       revision: main
+      path: modules/tri-state
+
+    # Add ZMK with Zephyr dependencies namespaced under /zmk. The following
+    # does not work until upstream imports Zephyr with path set to anything
+    # other than 'zephyr' to prevent it from getting added to build/Kconfig.
+
+    # - name: zmk
+    #   revision: going-modular
+    #   path: .
+    #   import:
+    #     file: app/west.yml
+    #     path-prefix: zmk
+
+    # As a workaround, we add ZMK without importing Zephyr and then manually
+    # add Zephyr under the /zmk namespace and set a path other than 'zephyr'.
+    - name: zmk
+      revision: going-modular
+      west-commands: scripts/west-commands.yml
+    - name: zephyr
+      remote: upstream
+      revision: v3.5.0+zmk-fixes
+      clone-depth: 1
+      path: modules/zephyr
+      import:
+        path-prefix: zmk
+        name-blocklist:
+          - ci-tools
+          - hal_altera
+          - hal_cypress
+          - hal_infineon
+          - hal_microchip
+          - hal_nxp
+          - hal_openisa
+          - hal_silabs
+          - hal_xtensa
+          - hal_st
+          - hal_ti
+          - loramac-node
+          - mcuboot
+          - mcumgr
+          - net-tools
+          - openthread
+          - edtt
+          - trusted-firmware-m
+
   self:
     path: config
