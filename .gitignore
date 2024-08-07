@@ -1,0 +1,5 @@
+.direnv
+.venv
+.west
+modules
+zmk
