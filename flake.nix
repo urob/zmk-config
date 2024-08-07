@@ -20,10 +20,11 @@
   in {
     devShells.${system}.default = pkgs.mkShell {
       packages = [
-        zephyr.sdkFull
+        zephyr.hosttools
         zephyr.pythonEnv
-        # zephyr.hosttools
+        zephyr.sdkFull
         pkgs.cmake
+        pkgs.dtc
         pkgs.ninja
       ];
     };

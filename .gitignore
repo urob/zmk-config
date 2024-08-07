@@ -1,5 +1,7 @@
+.build
 .direnv
 .venv
 .west
 modules
+firmware
 zmk
