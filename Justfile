@@ -40,14 +40,14 @@ _parse_targets $expr:
     echo "$(yq -r "$filter" build.yaml | grep -i "${expr/#all/.}")"
 
 # build firmware for single board + shield combination
-_build $board $shield *args:
+_build $board $shield *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
     artifact="${shield:+$shield-}${board}"
     build_dir="{{ build / '$artifact' }}"
 
     echo "Building firmware for $artifact..."
-    west build -s zmk/app -d "$build_dir" -b $board {{ args }} -- \
+    west build -s zmk/app -d "$build_dir" -b $board {{ west_args }} -- \
         -DZMK_CONFIG="{{ config }}" ${shield:+-DSHIELD="$shield"}
 
     if [[ -f "$build_dir/zephyr/zmk.uf2" ]]; then
@@ -57,7 +57,7 @@ _build $board $shield *args:
     fi
 
 # build firmware for matching targets
-build expr *args: _auto-conf
+build expr *west_args: _auto-conf
     #!/usr/bin/env bash
     set -euo pipefail
     targets=$(just _parse_targets {{ expr }})
@@ -66,7 +66,7 @@ build expr *args: _auto-conf
     echo "$targets" | while IFS=, read -r board shield; do
         echo "board: $board"
         echo "shield: $shield"
-        just _build "$board" "$shield" {{ args }}
+        just _build "$board" "$shield" {{ west_args }}
     done
 
 # clear build cache and artifacts
