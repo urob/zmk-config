@@ -1,29 +1,77 @@
 default:
     @just --list --unsorted
 
-build := ".build"
-out := "firmware"
+config := absolute_path('config')
+build := absolute_path('.build')
+out := absolute_path('firmware')
 
-# build firmware
-build board *args:
+# parse combos.dtsi and update all conf files
+_auto-conf:
     #!/usr/bin/env bash
     set -euo pipefail
-    BUILD="{{build}}/{{board}}"
-    echo "Building firmware..."
-    west build -d "$BUILD" -s zmk/app -b {{board}} {{args}} -- -DZMK_CONFIG="{{absolute_path('config')}}"
-    if [[ -f "$BUILD/zephyr/zmk.uf2" ]]; then
-        mkdir -p {{out}} && cp "$BUILD/zephyr/zmk.uf2" "{{out}}/{{board}}.uf2"
-    else
-        mkdir -p {{out}} && cp "$BUILD/zephyr/zmk.bin" "{{out}}/{{board}}.bin"
+    cconf="{{ config / 'combos.dtsi' }}"
+    if [[ -f $cconf ]]; then
+        # set MAX_COMBOS_PER_KEY to the most frequent combos count in combos.dtsi
+        count=$(
+            tail -n +10 $cconf |
+                grep -Eo '[LR][TMBH][0-9]' |
+                sort | uniq -c | sort -nr |
+                awk 'NR==1{print $1}'
+        )
+        sed -Ei "/CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY/s/=.+/=$count/" "{{ config }}"/*.conf
+        echo "Setting MAX_COMBOS_PER_KEY to $count"
+
+        # set MAX_KEYS_PER_COMBO to the most frequent key count in combos.dtsi
+        count=$(
+            tail -n +10 $cconf |
+                grep -o -n '[LR][TMBH][0-9]' |
+                cut -d : -f 1 | uniq -c | sort -nr |
+                awk 'NR==1{print $1}'
+        )
+        sed -Ei "/CONFIG_ZMK_COMBO_MAX_KEYS_PER_COMBO/s/=.+/=$count/" "{{ config }}"/*.conf
+        echo "Setting MAX_KEYS_PER_COMBO to $count"
     fi
+
+# parse build.yaml and filter targets by expression
+_parse_targets $expr:
+    #!/usr/bin/env bash
+    attrs="[.board, .shield]"
+    filter="(($attrs | map(. // [.]) | combinations), (.include[] | $attrs)) | join(\",\")"
+    echo "$(yq -r "$filter" build.yaml | grep -i "${expr/#all/.}")"
+
+# build firmware for single board + shield combination
+_build $board $shield *args:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    artifact="${shield:+$shield-}${board}"
+    build_dir="{{ build / '$artifact' }}"
+
+    echo "Building firmware for $artifact..."
+    west build -s zmk/app -d "$build_dir" -b $board {{ args }} -- \
+        -DZMK_CONFIG="{{ config }}" ${shield:+-DSHIELD="$shield"}
+
+    if [[ -f "$build_dir/zephyr/zmk.uf2" ]]; then
+        mkdir -p "{{ out }}" && cp "$build_dir/zephyr/zmk.uf2" "{{ out }}/$artifact.uf2"
+    else
+        mkdir -p "{{ out }}" && cp "$build_dir/zephyr/zmk.bin" "{{ out }}/$artifact.bin"
+    fi
+
+# build firmware for matching targets
+build expr *args: _auto-conf
+    #!/usr/bin/env bash
+    set -euo pipefail
+    targets=$(just _parse_targets {{ expr }})
+
+    [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
+    echo "$targets" | while IFS=, read -r board shield; do
+        echo "board: $board"
+        echo "shield: $shield"
+        just _build "$board" "$shield" {{ args }}
+    done
 
 # clear build cache and artifacts
 clean:
-    rm -rf {{build}} {{out}}
-
-# list all build targets
-list:
-    echo "TBD"
+    rm -rf {{ build }} {{ out }}
 
 # initialize west
 init:
@@ -31,10 +79,14 @@ init:
     west update
     west zephyr-export
 
-# upgrade west
-upgrade:
+# list build targets
+list:
+    @just _parse_targets all | sed 's/,$//' | sort | column
+
+# update west
+update:
     west update
 
-# upgrade zephyr
-upgrade-zephyr:
+# upgrade zephyr-sdk and python dependencies
+upgrade-sdk:
     nix flake update --flake .
