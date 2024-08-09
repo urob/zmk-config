@@ -36,7 +36,7 @@ _parse_combos:
 _parse_targets $expr:
     #!/usr/bin/env bash
     attrs="[.board, .shield]"
-    filter="(($attrs | map(. // [.]) | combinations), (.include[] | $attrs)) | join(\",\")"
+    filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
     echo "$(yq -r "$filter" build.yaml | grep -v "^," | grep -i "${expr/#all/.*}")"
 
 # build firmware for single board & shield combination
