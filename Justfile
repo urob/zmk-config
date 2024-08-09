@@ -5,13 +5,13 @@ config := absolute_path('config')
 build := absolute_path('.build')
 out := absolute_path('firmware')
 
-# parse combos.dtsi and update all conf files
-_auto-conf:
+# parse combos.dtsi and adjust settings to not run out of slots
+_parse_combos:
     #!/usr/bin/env bash
     set -euo pipefail
     cconf="{{ config / 'combos.dtsi' }}"
     if [[ -f $cconf ]]; then
-        # set MAX_COMBOS_PER_KEY to the most frequent combos count in combos.dtsi
+        # set MAX_COMBOS_PER_KEY to the most frequent combos count
         count=$(
             tail -n +10 $cconf |
                 grep -Eo '[LR][TMBH][0-9]' |
@@ -21,7 +21,7 @@ _auto-conf:
         sed -Ei "/CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY/s/=.+/=$count/" "{{ config }}"/*.conf
         echo "Setting MAX_COMBOS_PER_KEY to $count"
 
-        # set MAX_KEYS_PER_COMBO to the most frequent key count in combos.dtsi
+        # set MAX_KEYS_PER_COMBO to the most frequent key count
         count=$(
             tail -n +10 $cconf |
                 grep -o -n '[LR][TMBH][0-9]' |
@@ -37,10 +37,10 @@ _parse_targets $expr:
     #!/usr/bin/env bash
     attrs="[.board, .shield]"
     filter="(($attrs | map(. // [.]) | combinations), (.include[] | $attrs)) | join(\",\")"
-    echo "$(yq -r "$filter" build.yaml | grep -i "${expr/#all/.}")"
+    echo "$(yq -r "$filter" build.yaml | grep -v "^," | grep -i "${expr/#all/.*}")"
 
-# build firmware for single board + shield combination
-_build $board $shield *west_args:
+# build firmware for single board & shield combination
+_build_single $board $shield *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
     artifact="${shield:+$shield-}${board}"
@@ -57,16 +57,14 @@ _build $board $shield *west_args:
     fi
 
 # build firmware for matching targets
-build expr *west_args: _auto-conf
+build expr *west_args: _parse_combos
     #!/usr/bin/env bash
     set -euo pipefail
     targets=$(just _parse_targets {{ expr }})
 
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
     echo "$targets" | while IFS=, read -r board shield; do
-        echo "board: $board"
-        echo "shield: $shield"
-        just _build "$board" "$shield" {{ west_args }}
+        just _build_single "$board" "$shield" {{ west_args }}
     done
 
 # clear build cache and artifacts
