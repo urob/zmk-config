@@ -27,6 +27,7 @@
         zephyr.sdkFull
         pkgs.cmake
         pkgs.dtc
+        pkgs.just
         pkgs.ninja
         pkgs.yq
       ];

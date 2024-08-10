@@ -280,14 +280,13 @@ environment is _completely isolated_ and won't pollute your system.
    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
    ```
 
-2. Install [`just`](https://github.com/casey/just) and
-   [`direnv`](https://direnv.net/) (and optionally
+2. Install [`direnv`](https://direnv.net/) and, optionally,
    [`nix-direnv`](https://github.com/nix-community/nix-direnv)) using your
    package manager of choice. E.g., using the `nix` package manager that we just
    installed[^5]:
 
    ```
-   nix profile install nixpkgs#just nixpkgs#direnv nixpkgs#nix-direnv
+   nix profile install nixpkgs#direnv nixpkgs#nix-direnv
    ```
 
 3. Set up the `direnv` [shell-hook](https://direnv.net/docs/hook.html) for your
@@ -297,7 +296,7 @@ environment is _completely isolated_ and won't pollute your system.
    # Install the shell-hook
    echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 
-   # Optionally: Activate nix-direnv (if installed in the previous step)
+   # Optionally: Enable nix-direnv (if installed in the previous step)
    echo 'source $HOME/.nix-profile/share/nix-direnv/direnvrc' >> ~/.config/direnv/direnvrc
 
    # Source the bashrc to activate the hook (or start a new shell)
