@@ -276,14 +276,14 @@ environment is _completely isolated_ and won't pollute your system.
    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix |
       sh -s -- install --no-confirm
 
-   # Start nix daemon without reloading shell
+   # Start the nix daemon without restarting the shell
    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
    ```
 
-2. Install [`direnv`](https://direnv.net/) and, optionally,
-   [`nix-direnv`](https://github.com/nix-community/nix-direnv)) using your
+2. Install [`direnv`](https://direnv.net/) (and optionally but recommended
+   [`nix-direnv`](https://github.com/nix-community/nix-direnv)[^5]) using your
    package manager of choice. E.g., using the `nix` package manager that we just
-   installed[^5]:
+   installed[^6]:
 
    ```
    nix profile install nixpkgs#direnv nixpkgs#nix-direnv
@@ -296,7 +296,7 @@ environment is _completely isolated_ and won't pollute your system.
    # Install the shell-hook
    echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 
-   # Optionally: Enable nix-direnv (if installed in the previous step)
+   # Enable nix-direnv (if installed in the previous step)
    echo 'source $HOME/.nix-profile/share/nix-direnv/direnvrc' >> ~/.config/direnv/direnvrc
 
    # Source the bashrc to activate the hook (or start a new shell)
@@ -305,8 +305,8 @@ environment is _completely isolated_ and won't pollute your system.
 
 #### Set up the workspace
 
-1. Clone _your fork_ of this repository. I like to name it `zmk-workspace` as it
-   will be the toplevel of the development environment.
+1. Clone _your fork_ of this repository. I like to name my local clone
+   `zmk-workspace` as it will be the toplevel of the development environment.
 
    ```bash
    # Replace `urob` with your username
@@ -442,6 +442,11 @@ remaining issues:
     home row taps tend to be faster than average.
 
 [^5]:
+    `nix-direnv` provides a vastly improved caching experience compared to only
+    having `direnv`, making entering and exiting the workspace instantaneous
+    after the first time.
+
+[^6]:
     This will permanently install the packages into your local profile, forgoing
     many of the benefits that make Nix uniquely powerful. A better approach,
     though beyond the scope of this document, is to use `home-manager` to
