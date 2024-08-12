@@ -28,9 +28,16 @@
           zephyr.sdkFull
           pkgs.cmake
           pkgs.dtc
-          pkgs.just
           pkgs.ninja
-          pkgs.yq
+          # ---
+          # Uncomment these if you don't have system-wide versions:
+          # pkgs.gawk             # awk
+          # pkgs.unixtools.column # column
+          # pkgs.coreutils        # cp, cut, echo, mkdir, sort, tail, uniq etc.
+          # pkgs.gnugrep          # grep
+          pkgs.just               # just
+          # pkgs.gnused           # sed
+          pkgs.yq                 # yq
         ];
       };
     });
