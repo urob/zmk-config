@@ -313,10 +313,7 @@ environment is _completely isolated_ and won't pollute your system.
    git clone https://github.com/urob/zmk-config zmk-workspace
    ```
 
-2. If on `macOS`, edit `flake.nix` and replace `system = "x86_64-linux` with
-   `"x86_64-darwin"` (Intel processor) or `"aarch64-darwin"` (Apple silicon).
-
-3. Enter the workspace and set up the environment.
+2. Enter the workspace and set up the environment.
 
    ```bash
    # This automatically sets up and activates a virtual shell with the Zephyr toolchain.

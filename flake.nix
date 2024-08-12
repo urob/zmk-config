@@ -13,24 +13,26 @@
     zephyr-nix.inputs.zephyr.follows = "zephyr";
   };
 
-  outputs = { self, nixpkgs, zephyr-nix, ... }: let
-    # Set your system ("x86_64-linux", "aarch64-linux", "x86_64-darwin", or "aarch64-darwin")
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-    zephyr = zephyr-nix.packages.${system};
+  outputs = { nixpkgs, zephyr-nix, ... }: let
+    forAllSystems = nixpkgs.lib.genAttrs ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
   in {
-    devShells.${system}.default = pkgs.mkShell {
-      packages = [
-        # zephyr.hosttools-nix
-        # (zephyr.pythonEnv.override {extraPackages = pkgs: [pkgs.pyyaml];})
-        zephyr.pythonEnv
-        zephyr.sdkFull
-        pkgs.cmake
-        pkgs.dtc
-        pkgs.just
-        pkgs.ninja
-        pkgs.yq
-      ];
-    };
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      zephyr = zephyr-nix.packages.${system};
+    in {
+      default = pkgs.mkShell {
+        packages = [
+          # zephyr.hosttools-nix
+          # (zephyr.pythonEnv.override {extraPackages = pkgs: [pkgs.pyyaml];})
+          zephyr.pythonEnv
+          zephyr.sdkFull
+          pkgs.cmake
+          pkgs.dtc
+          pkgs.just
+          pkgs.ninja
+          pkgs.yq
+        ];
+      };
+    });
   };
 }
