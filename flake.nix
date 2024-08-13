@@ -25,13 +25,14 @@
       default = pkgs.mkShell {
         packages = [
           keymap_drawer
+
           zephyr.hosttools-nix
           zephyr.pythonEnv
           (zephyr.sdk.override { targets = [ "arm-zephyr-eabi" ]; })
+
           pkgs.cmake
-          pkgs.dtc
           pkgs.ninja
-          # ---
+
           # Uncomment these if you don't have system-wide versions:
           # pkgs.gawk             # awk
           # pkgs.unixtools.column # column
