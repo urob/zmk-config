@@ -123,11 +123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1720132542,
-        "narHash": "sha256-5o5qhBec7GABj/x3LPOVQn8W9iyyLTqH+FMLe454HOc=",
+        "lastModified": 1723508723,
+        "narHash": "sha256-KK8SoQj9IDvfB8TfzRo1ns+NcNlKJ8rR115Xx0ZdNCg=",
         "owner": "urob",
         "repo": "zephyr-nix",
-        "rev": "6339867e76405b7e84270b908c2ab6deca5f6d8d",
+        "rev": "b90b8d0ea15cfef6ff2b0732145016d38c3ecdd1",
         "type": "github"
       },
       "original": {
