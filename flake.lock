@@ -51,6 +51,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1723400035,
+        "narHash": "sha256-WoKZDlBEdMhP+hjquBAh0BhUJbcH2+U8g2mHOr1mv8I=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a731b45590a5169542990c36ffcde6cebd9a3356",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1720535198,
         "narHash": "sha256-zwVvxrdIzralnSbcpghA92tWu2DV2lwv89xZc8MTrbg=",
         "owner": "NixOS",
@@ -114,9 +130,7 @@
     },
     "zephyr-nix": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_2",
         "pyproject-nix": "pyproject-nix",
         "zephyr": [
           "zephyr"
