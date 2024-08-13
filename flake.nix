@@ -19,13 +19,13 @@
     devShells = forAllSystems (system: let
       pkgs = nixpkgs.legacyPackages.${system};
       zephyr = zephyr-nix.packages.${system};
+
     in {
       default = pkgs.mkShell {
         packages = [
-          # zephyr.hosttools-nix
-          # (zephyr.pythonEnv.override {extraPackages = pkgs: [pkgs.pyyaml];})
+          zephyr.hosttools-nix
           zephyr.pythonEnv
-          zephyr.sdkFull
+          (zephyr.sdk.override { targets = [ "arm-zephyr-eabi" ]; })
           pkgs.cmake
           pkgs.dtc
           pkgs.ninja
