@@ -71,6 +71,10 @@ build expr *west_args: _parse_combos
 clean:
     rm -rf {{ build }} {{ out }}
 
+# clear nix cache
+clean-nix:
+    nix-collect-garbage --delete-old
+
 # initialize west
 init:
     west init -l config
