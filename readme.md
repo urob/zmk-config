@@ -31,7 +31,7 @@ compatible with Zephyr 3.0 is available
 - nix-based [local build environment](#local-development-workspace) -- simply
   `cd` into your workspace and start building without any setup
 
-![](img/keymap.png)
+![](draw/keymap.png)
 
 ## Timeless homerow mods
 
@@ -358,6 +358,14 @@ pristine build can be triggered with `just build all -p`.
 
 (For this particular example, there is also a `just clean` recipe, which clears
 the build cache. To list all available recipes, type `just`.)
+
+#### Drawing the keymap
+
+The build environment packages
+[keymap-drawer](https://github.com/caksoylar/keymap-drawer). `just draw` parses
+`base.keymap` and draws it to `draw/base.svg`. I haven't gotten around to
+tweaking the output yet, so for now this is just a demonstration of how to set
+things up.
 
 #### Hacking the firmware
 
