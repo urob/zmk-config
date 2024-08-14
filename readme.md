@@ -316,9 +316,11 @@ environment is _completely isolated_ and won't pollute your system.
 2. Enter the workspace and set up the environment.
 
    ```bash
-   # This automatically sets up and activates a virtual shell with the Zephyr toolchain.
-   # This takes a while when entering the workspace for the first time.
+   # The first time you enter the workspace, you will be prompted to allow direnv
    cd zmk-workspace
+
+   # Allow direnv for the workspace, which will set up the environment
+   direnv allow
 
    # Initialize the Zephyr workspace and pull in the ZMK dependencies
    # (same as `west init -l config && west update && west zephyr-export`)
