@@ -26,12 +26,13 @@
         packages = [
           keymap_drawer
 
-          zephyr.hosttools-nix
           zephyr.pythonEnv
           (zephyr.sdk.override { targets = [ "arm-zephyr-eabi" ]; })
 
           pkgs.cmake
+          pkgs.dtc
           pkgs.ninja
+          pkgs.qemu # needed for native_posix target
 
           # Uncomment these if you don't have system-wide versions:
           # pkgs.gawk             # awk
