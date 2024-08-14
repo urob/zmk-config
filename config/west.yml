@@ -53,7 +53,7 @@ manifest:
     # add Zephyr under the /zmk namespace and set a path other than 'zephyr'.
     - name: zmk
       revision: going-modular
-      west-commands: scripts/west-commands.yml
+      west-commands: app/scripts/west-commands.yml
     - name: zephyr
       remote: upstream
       revision: v3.5.0+zmk-fixes
