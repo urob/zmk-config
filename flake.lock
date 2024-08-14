@@ -137,16 +137,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1723595954,
-        "narHash": "sha256-wRoQsj2Dg1qur8L0BzQBHxecGSOG5WesCOqTsqRjhGw=",
+        "lastModified": 1723611259,
+        "narHash": "sha256-0KpCmM2hOb56EYUTQWgMYdQlrkMeqTC0m9Ou6J5f8/8=",
         "owner": "urob",
         "repo": "zephyr-nix",
-        "rev": "ae659ffa1cbf08368b10a94c2f36e13395c0d958",
+        "rev": "a12131ec450ea66e9005c668c31c8a055a766ef3",
         "type": "github"
       },
       "original": {
         "owner": "urob",
-        "ref": "testing",
         "repo": "zephyr-nix",
         "type": "github"
       }

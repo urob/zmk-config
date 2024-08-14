@@ -8,7 +8,7 @@
     zephyr.flake = false;
 
     # Zephyr sdk and host tools
-    zephyr-nix.url = "github:urob/zephyr-nix/testing";
+    zephyr-nix.url = "github:urob/zephyr-nix";
     # zephyr-nix.inputs.nixpkgs.follows = "nixpkgs";
     zephyr-nix.inputs.zephyr.follows = "zephyr";
   };
