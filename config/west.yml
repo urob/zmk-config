@@ -38,48 +38,14 @@ manifest:
       revision: main
       path: modules/tri-state
 
-    # Add ZMK with Zephyr dependencies namespaced under /zmk. The following
-    # does not work until upstream imports Zephyr with path set to anything
-    # other than 'zephyr' to prevent it from getting added to build/Kconfig.
-
-    # - name: zmk
-    #   revision: going-modular
-    #   path: .
-    #   import:
-    #     file: app/west.yml
-    #     path-prefix: zmk
-
-    # As a workaround, we add ZMK without importing Zephyr and then manually
-    # add Zephyr under the /zmk namespace and set a path other than 'zephyr'.
+    # ZMK with Zephyr namespaced under /zmk. This requires that ZMK imports
+    # Zephyr with a path other than `zephyr` (as in `going-modular`).
     - name: zmk
       revision: going-modular
-      west-commands: app/scripts/west-commands.yml
-    - name: zephyr
-      remote: upstream
-      revision: v3.5.0+zmk-fixes
-      clone-depth: 1
-      path: modules/zephyr
+      path: .
       import:
+        file: app/west.yml
         path-prefix: zmk
-        name-blocklist:
-          - ci-tools
-          - hal_altera
-          - hal_cypress
-          - hal_infineon
-          - hal_microchip
-          - hal_nxp
-          - hal_openisa
-          - hal_silabs
-          - hal_xtensa
-          - hal_st
-          - hal_ti
-          - loramac-node
-          - mcuboot
-          - mcumgr
-          - net-tools
-          - openthread
-          - edtt
-          - trusted-firmware-m
 
   self:
     path: config
