@@ -363,7 +363,10 @@ Additional arguments to `just build` are passed on to `west`. For instance, a
 pristine build can be triggered with `just build all -p`.
 
 (For this particular example, there is also a `just clean` recipe, which clears
-the build cache. To list all available recipes, type `just`.)
+the build cache. To list all available recipes, type `just`. Bonus tip: `just`
+provides
+[completion scripts](https://github.com/casey/just?tab=readme-ov-file#shell-completion-scripts)
+for many shells.)
 
 #### Drawing the keymap
 
