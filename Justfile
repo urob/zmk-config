@@ -72,6 +72,10 @@ build expr *west_args: _parse_combos
 clean:
     rm -rf {{ build }} {{ out }}
 
+# clear all automatically generated files
+clean-all: clean
+    rm -rf .west zmk
+
 # clear nix cache
 clean-nix:
     nix-collect-garbage --delete-old
