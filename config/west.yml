@@ -26,6 +26,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
+    - name: stx
+      url-base: https://github.com/shootex
 
   projects:
     - name: zmk-helpers
@@ -41,7 +43,8 @@ manifest:
     # ZMK with Zephyr namespaced under /zmk. This requires that ZMK imports
     # Zephyr with a path other than `zephyr` (as in `going-modular`).
     - name: zmk
-      revision: going-modular
+      revision: main
+      remote: stx
       path: .
       import:
         file: app/west.yml
