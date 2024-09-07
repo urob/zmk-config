@@ -1,3 +1,7 @@
+# STX zmk-config based on urob's zmk-config
+
+[<img src="draw/base.svg" width="100%" alt="layout">](draw/base.svg)
+
 # urob's zmk-config
 
 This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/)
@@ -451,7 +455,7 @@ remaining issues:
     E.g, if your WPM is 70 or larger, then the default of 150ms (=10500/70)
     should work well. The rule of thumb is based on an average character length
     of 4.7 for English words. Taking into account 1 extra tap for `space`, this
-    yields a minimum `require-prior-idle-ms` of (60 _ 1000) / (5.7 _ x) ≈ 10500
+    yields a minimum `require-prior-idle-ms` of (60 _1000) / (5.7_ x) ≈ 10500
     / x milliseconds. The approximation errs on the safe side, as in practice
     home row taps tend to be faster than average.
 
