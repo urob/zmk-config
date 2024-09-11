@@ -13,7 +13,7 @@
 #
 ---
 board: ["nice_nano_v2"]
-shield: ["corne_left", "corne_right"]
+shield: ["corne_left", "corne_right", "settings_reset"]
 include:
   - board: planck_rev6
   - board: corneish_zen_v2_left
