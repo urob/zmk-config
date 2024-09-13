@@ -6,7 +6,7 @@
 #define X_RH  &smart_mouse  // thumb row, right
 
 /* activate bluetooth */
-#define CONFIG_WIRELESS 1
+#define CONFIG_WIRELESS
 
 /* source the main keymap */
 #include "base.keymap"
