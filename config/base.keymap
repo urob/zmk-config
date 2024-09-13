@@ -46,6 +46,10 @@
     quick-tap-ms = <QUICK_TAP_MS>;
 };
 
+&leader {  // leader-key config
+    timeout-ms = <220>;
+};
+
 /* Homerow mods */
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left hand
@@ -206,6 +210,9 @@ ZMK_MACRO(win_sleep,
     tap-ms = <50>;
     bindings = <&kp LG(X) &kp U &kp S>;
 )
+
+// Sticky shift + leader
+ZMK_MACRO(shift_leader, bindings = <&sk LSHFT &leader>;)
 
 // misc aliases
 #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
