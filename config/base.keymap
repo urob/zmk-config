@@ -20,10 +20,6 @@
 #define UC 5
 #define MOUSE 6
 
-#include "combos.dtsi"  // requires layer aliases
-#include "mouse.dtsi"
-#include "extra_keys.h"
-
 #define XXX &none
 #define ___ &trans
 
@@ -73,9 +69,17 @@
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
-MAKE_HRM(hml_repeat, &kp, &key_repeat, KEYS_R THUMBS)  // used for HRM-combo
-MAKE_HRM(hmr_lpar_lt, &kp, &lpar_lt, KEYS_L THUMBS)    // "    "   "   "
-MAKE_HRM(hmr_rpar_gt, &kp, &rpar_gt, KEYS_L THUMBS)    // "    "   "   "
+// HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
+#define ZMK_COMBO_8(NAME, TAP, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE, HOLD, SIDE) \
+    MAKE_HRM(hm_combo_ ## NAME, &kp, TAP, SIDE THUMBS) \
+    ZMK_COMBO_6(NAME, &hm_combo_ ## NAME HOLD 0, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE)
+
+/* Combos, leader key sequences, mouse emulation */
+
+#include "combos.dtsi"  // must be sources after HRM-combo hack
+#include "leader.dtsi"
+#include "mouse.dtsi"
+#include "extra_keys.h"
 
 /* Nav cluster */
 
@@ -216,12 +220,12 @@ ZMK_MACRO(win_sleep,
 )
 
 // Sticky shift + leader
-ZMK_MACRO(shift_leader, bindings = <&sk LSHFT &leader>;)
+ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
 // misc aliases
 #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
-#define DSK_PREV    &hmr LCTRL LG(LC(LEFT))   // previous desktop
-#define DSK_NEXT    &hmr LALT LG(LC(RIGHT)) // next     desktop
+#define DSK_PREV    &hmr LCTRL LG(LC(LEFT))  // previous desktop
+#define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
 #define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
 #define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
 #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
