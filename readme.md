@@ -10,26 +10,20 @@ compatible with Zephyr 3.0 is available
 
 ## Highlights
 
-- simple keymap configuration using helper macros from
+- ["Timeless" homerow mods](#timeless-homerow-mods)
+- Combos replace symbol layer
+- Smart numbers and mouse layers auto-toggle off
+- Unicode math and international leader key sequences
+- Simplified Devicetree syntax using helper macros from
   [zmk-helpers](https://github.com/urob/zmk-helpers)
-- the base keymap and combo setup are independent of the physical location of
-  keys and are re-used for multiple keyboards. The configuration is fit onto
-  larger boards by padding it via a modular structure of "extra keys"
-- ["timeless" homerow mods](#timeless-homerow-mods)
-- combos replacing the symbol layer
-- smart numbers and smart mouse layers that automatically toggle off when done
-- sticky shift on right thumb, double-tap (or shift + tap)[^1] activates
-  caps-word
-- arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
+- Base keymap padded with modular structure of "extra keys" to fit on larger
+  boards
+- Arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
   document</kbd> on long-press
-- more intuitive shift-actions: <kbd>, ;</kbd>, <kbd>. :</kbd> and <kbd>?
+- More intuitive shift-actions: <kbd>, ;</kbd>, <kbd>. :</kbd> and <kbd>?
   !</kbd>
-- <kbd>shift</kbd> + <kbd>space</kbd> morphs into <kbd>dot</kbd> →
-  <kbd>space</kbd> → <kbd>sticky-shift</kbd>
-- "Greek" layer for mathematical typesetting (activated as sticky-layer via a
-  combo)
-- nix-based [local build environment](#local-development-workspace) -- simply
-  `cd` into your workspace and start building without any setup
+- Fully automated, nix-based
+  [local build environment](#local-development-workspace)
 
 ![](draw/keymap.png)
 
@@ -41,7 +35,7 @@ timing: In its most naive implementation, in order to produce a "mod", they must
 be held _longer_ than `tapping-term-ms`. In order to produce a "tap", they must
 be held _less_ than `tapping-term-ms`. This requires very consistent typing
 speeds that, alas, I do not possess. Hence my quest for a "timer-less" HRM
-setup.[^2]
+setup.[^1]
 
 After months of tweaking, I eventually ended up with a HRM setup that is
 essentially timer-less, resulting in virtually no misfires. Yet it provides a
@@ -51,7 +45,7 @@ Let's suppose for a moment we set `tapping-term-ms` to something ridiculously
 large, say 5 seconds. This makes the configuration timer-less of sorts. But it
 has two problems: (1) To activate a mod we will have to hold the HRM keys for
 what feels like eternity. (2) During regular typing, there are delays between
-the press of a key and the time it appears on the screen.[^3] Enter two of my
+the press of a key and the time it appears on the screen.[^2] Enter two of my
 favorite ZMK features:
 
 - To address the first problem, I use ZMK's `balanced` flavor, which produces a
@@ -148,7 +142,7 @@ smaller (and larger) things to try.
 
 - **Noticeable delay when tapping HRMs:** Increase `require-prior-idle-ms`. As a
   rule of thumb, you want to set it to at least `10500/x` where `x` is your
-  (relaxed) WPM for English prose.[^4]
+  (relaxed) WPM for English prose.[^3]
 - **False negatives (same-hand):** Reduce `tapping-term-ms` (or disable
   `hold-trigger-key-positions`)
 - **False negatives (cross-hand):** Reduce `require-prior-idle-ms` (or set
@@ -249,14 +243,15 @@ I am using [Nick Conway](https://github.com/nickconway)'s fantastic
 [tri-state](https://github.com/zmkfirmware/zmk/pull/1366) behavior for a
 one-handed Alt-Tab switcher (`PWin` and `NWin`).
 
-##### Repeat
+##### Leader key
 
-I recently switched to 25g-chocs on one of my keyboards. I already was very
-happy with my combos prior to that (even with heavy-ish MX-switches). But with
-the light chocs, I find that I can now even use them for regular typing. While I
-haven't yet tried placing alphas on combos, I am currently experimenting with a
-`repeat` combo on my home row that I use to reduce SFUs when typing
-double-letter words.
+I recently started using Nick Conway's
+[Leader key](https://github.com/zmkfirmware/zmk/pull/1380) implementation for
+ZMK. From my limited experience, I really like how it allows making less
+commonly used behaviors accessible without binding them to a dedicated key. For
+now I am using it for a variety of Unicode math symbols and international
+characters. I am planning to extend the use to various firmware interactions
+once I figure out the technical details.
 
 ## Local development workspace
 
@@ -281,9 +276,9 @@ environment is _completely isolated_ and won't pollute your system.
    ```
 
 2. Install [`direnv`](https://direnv.net/) (and optionally but recommended
-   [`nix-direnv`](https://github.com/nix-community/nix-direnv)[^5]) using your
+   [`nix-direnv`](https://github.com/nix-community/nix-direnv)[^4]) using your
    package manager of choice. E.g., using the `nix` package manager that we just
-   installed[^6]:
+   installed[^5]:
 
    ```
    nix profile install nixpkgs#direnv nixpkgs#nix-direnv
@@ -409,31 +404,11 @@ remaining issues:
   pause when wanting to chord HRMs that overlap with combo positions. As a
   workaround, I implemented all homerow combos as homerow-mod-combos. This is
   good enough for day-to-day, but does not address all edge cases (eg
-  dynamically adding/removing mods doesn't work well). Having a native solution
-  akin to QMK's "COMBO_MUST_TAP" property would be fantastic.
-- Another item on my wishlist are adaptive keys
-  ([#1624](https://github.com/zmkfirmware/zmk/issues/1624)). This would open the
-  door for things like <kbd>space</kbd><kbd>space</kbd> becoming
-  <kbd>.</kbd><kbd>space</kbd><kbd>sticky-shift</kbd>. (Using tap-dance isn't
-  really an option here due to the delay it adds)
-- A minor thing is that ZMK doesn't yet support any keys on the
-  desktop-user-page; e.g., OS sleep
-  ([#1077](https://github.com/zmkfirmware/zmk/issues/1077),
-  [#1535](https://github.com/zmkfirmware/zmk/issues/1535))
+  changing active mods).
 - Very minor: `&bootloader` doesn't work with stm32 boards like the Planck
   ([#1086](https://github.com/zmkfirmware/zmk/issues/1086))
 
 [^1]:
-    Really what's happening is that `Shift` + my right home-thumb morph into
-    caps-word. This gives me two separate ways of activating it: (1) Holding the
-    homerow-mod shift on my left index-finger and then pressing my right
-    home-thumb, which is my new preferred way. Or, (2) double-tapping the right
-    home-thumb, which also works because the first tap yields sticky-shift,
-    activating the mod-morph upon the second tap. But even when only activating
-    via double-tapping, this implementation is advantageous compared to using
-    tap-dance as it does not create any delay when single-tapping the key.
-
-[^2]:
     I call it "timer-less", because the large tapping-term makes the behavior
     insensitive to the precise timings. One may say that there is still the
     `require-prior-idle` timeout. However, with both a large tapping-term and
@@ -442,12 +417,12 @@ remaining issues:
     i.e., variations in typing speed won't affect _what_ is being typed but
     merely _how fast_ it appears on the screen.
 
-[^3]:
+[^2]:
     The delay is determined by how quickly a key is released and is not directly
     related to the tapping-term. But regardless of its length, most people still
     find it noticable and disruptive.
 
-[^4]:
+[^3]:
     E.g, if your WPM is 70 or larger, then the default of 150ms (=10500/70)
     should work well. The rule of thumb is based on an average character length
     of 4.7 for English words. Taking into account 1 extra tap for `space`, this
@@ -455,12 +430,12 @@ remaining issues:
     / x milliseconds. The approximation errs on the safe side, as in practice
     home row taps tend to be faster than average.
 
-[^5]:
+[^4]:
     `nix-direnv` provides a vastly improved caching experience compared to only
     having `direnv`, making entering and exiting the workspace instantaneous
     after the first time.
 
-[^6]:
+[^5]:
     This will permanently install the packages into your local profile, forgoing
     many of the benefits that make Nix uniquely powerful. A better approach,
     though beyond the scope of this document, is to use `home-manager` to
