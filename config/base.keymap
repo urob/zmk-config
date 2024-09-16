@@ -43,7 +43,7 @@
 };
 
 &leader {  // leader-key config
-    timeout-ms = <220>;
+    timeout-ms = <650>;
 };
 
 /* Homerow mods */
