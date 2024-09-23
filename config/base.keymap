@@ -1,8 +1,9 @@
 #include <behaviors.dtsi>
 #include <behaviors/num_word.dtsi> // requires auto-layer module
-#include <dt-bindings/zmk/keys.h>
+
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #include "zmk-helpers/helper.h"
 #include "zmk-helpers/unicode-chars/greek.dtsi"
@@ -234,7 +235,7 @@ ZMK_LAYER(fn,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LGUI F11 &hml LALT F4  &hml LCTRL F5 &hml LSHFT F6 ___             X_MM     &kp C_PREV   &kp C_VOL_DN   &kp C_VOL_UP  &kp C_NEXT    ___             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp F10       &kp F1        &kp F2        &kp F3        ___             X_MB     &bt_zero     &bt_one        &bt_two       &bt_three     ___             X_RB
+    X_LB     &kp F10       &kp F1        &kp F2        &kp F3        ___             X_MB     &bt_zero     &bt_one        &bt_two       &bt_three     &out OUT_TOG    X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     &smart_shft                                        ___           ___             X_MH     &kp C_PP     &kp C_MUTE                                                 ___
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
