@@ -8,6 +8,8 @@
 #endif
 
 #include "../zmk-nodefree-config/helper.h"
+// #include "../zmk-nodefree-config/international_chars/greek.dtsi"
+// #include "../zmk-nodefree-config/international_chars/german.dtsi"
 
 #define DEF 0
 #define NAV 1
@@ -15,12 +17,14 @@
 #define NUM 3
 #define SYS 4
 #define UC 5
+// #define MOUSE 6
 
 #include "corne_combos.dtsi"  // requires layer aliases
+// #include "mouse.dtsi"
 // #include "extra_keys.h"
 
-#define ___ &trans
 #define XXX &none
+#define ___ &trans
 
 /* Global settings */
 
@@ -116,6 +120,12 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
 // misc aliases
 #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word 
+// #define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
+// #define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
+// #define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
+// #define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
+// #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
+// #define VOL_DOWN    &hmr LCTRL C_VOL_DN
 
 /* Keymap */
 
@@ -192,5 +202,17 @@ ZMK_LAYER(uc,
                                            ___         ___           XXX          ___           ___              ___                                             
 //                                     ╰─────────────┴─────────────┴─────────────╯  ╰───────────────────────────┴─────────────╯                                      
 )
+
+// ZMK_LAYER(mouse,
+// //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+//     X_LT     ___           ___           ___           ___           ___             X_MT     U_WH_L        U_WH_D        U_MS_U         U_WH_U       U_WH_R          X_RT
+// //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+//     X_LM     ___           ___           ___           ___           ___             X_MM     ___           U_MS_L        U_MS_D         U_MS_R       ___             X_RM
+// //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+//     X_LB     ___           ___           ___           ___           ___             X_MB     ___           &mkp MB4      &mkp MCLK      &mkp MB5     ___             X_RB
+// //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+//     X_LH                                               ___           ___             X_MH     &mkp LCLK     &mkp RCLK                                                 X_RH
+// //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
+// )
 
 /* vim: set ft=c tw=174: */
