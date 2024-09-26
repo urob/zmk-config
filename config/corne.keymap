@@ -54,7 +54,7 @@
         &kp  TAB        &kp EXCL      &kp AT      &kp HASH      &kp DLLR      &kp PRCNT             &kp CARET      &kp AMPS      &kp ASTRK     &kp LPAR      &kp RPAR       &kp BSPC
 // ---------------------------------------------------------------------------------------       -----------------------------------------------------------------------------------------
 // |      CTRL     |             |             |             |             |             |       |      -      |      =       |      [      |      ]      |      \      |       `        |
-        &kp LCTRL       &trans        &trans        &trans        &trans        &trans              &kp MINUS     &kp EQUAL      &kp LBKT      &kp RBKT      &kp BSLH        &kp GRAVE      
+        &kp LCTRL       &kp F1        &kp F2        &kp F3        &kp F4        &trans              &kp MINUS     &kp EQUAL      &kp LBKT      &kp RBKT      &kp BSLH        &kp GRAVE      
 // ---------------------------------------------------------------------------------------       -----------------------------------------------------------------------------------------
 // |     SHFT      |             |             |             |             |             |       |     _       |      +       |      {       |     }      |     "|"     |       ~        |       
       &kp LSHFT        &trans         &trans       &trans         &trans       &trans                &kp UNDER     &kp PLUS      &kp LBRC       &kp RBRC     &kp PIPE       &kp TILDE
