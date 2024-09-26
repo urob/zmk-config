@@ -1,0 +1,44 @@
+/*                KEY POSITIONS
+
+  ╭─────────────────────╮ ╭─────────────────────╮
+  │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
+  │ LM4 LM3 LM2 LM1 LM0 │ │ RM0 RM1 RM2 RM3 RM4 │
+  │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
+  ╰───────╮ LH2 LH1 LH0 │ │ RH0 RH1 RH2 ╭───────╯
+          ╰─────────────╯ ╰─────────────╯ */
+
+// use require-prior-idle-ms for combos
+#undef COMBO_HOOK
+#define COMBO_HOOK require-prior-idle-ms = <150>;
+
+#define COMBO_TERM_FAST 30
+
+// make homerow combos tap-only (so HRMs can be chorded instantaneously)
+#define HRC_TAB    &hml         LA(LCTRL) TAB
+#define HRC_LPAR   &hmr_lpar_lt RS(LCTRL) 0
+#define HRC_RPAR   &hmr_rpar_gt LA(LCTRL) 0
+
+/* Horizontal combos - left hand */
+ZMK_COMBO(esc,   &kp ESC,       LT3 LT2,     DEF NAV NUM, COMBO_TERM_FAST)
+ZMK_COMBO(ret,   &kp RETURN,    LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST)
+
+ZMK_COMBO(tab,   HRC_TAB,       LM3 LM2,     DEF NAV NUM, COMBO_TERM_FAST)
+// ZMK_COMBO(tab,   &kp COLON,       LM2 LM1,     DEF NAV NUM, COMBO_TERM_FAST)
+
+ZMK_COMBO(cut,   &kp LG(X),     LB3 LB1,     DEF NAV NUM, COMBO_TERM_FAST)
+ZMK_COMBO(copy,  &kp LG(C),   LB3 LB2,     DEF NAV NUM, COMBO_TERM_FAST)
+ZMK_COMBO(paste, &kp LG(V),   LB2 LB1,     DEF NAV NUM, COMBO_TERM_FAST)
+
+/* Horizontal combos - right hand */
+ZMK_COMBO(bspc,  &kp BSPC,      RT1 RT2,     DEF NAV NUM UC, COMBO_TERM_FAST)
+ZMK_COMBO(del,   &kp DEL,       RT2 RT3,     DEF NAV NUM UC, COMBO_TERM_FAST)
+
+ZMK_COMBO(lpar,  HRC_LPAR,      RM1 RM2,     DEF     , COMBO_TERM_FAST)
+ZMK_COMBO(rpar,  HRC_RPAR,      RM2 RM3,     DEF     , COMBO_TERM_FAST)
+ZMK_COMBO(lbrc,    &kp LBRC,        RM1 RM2,         NUM    , COMBO_TERM_FAST)
+ZMK_COMBO(rbrc,    &kp RBRC,        RM2 RM3,         NUM    , COMBO_TERM_FAST)
+
+ZMK_COMBO(lbkt,  &kp LBKT,      RB1 RB2,     DEF   NUM  , COMBO_TERM_FAST)
+ZMK_COMBO(rbkt,  &kp RBKT,      RB2 RB3,     DEF   NUM  , COMBO_TERM_FAST)
+// ZMK_COMBO(lbrc,  &kp LBRC,      RB1 RB2,         NUM    , COMBO_TERM_FAST)
+// ZMK_COMBO(rbrc,  &kp RBRC,      RB2 RB3,         NUM    , COMBO_TERM_FAST)
