@@ -259,9 +259,9 @@
         wait-ms = <0>;
         tap-ms = <10>;
         bindings = 
-            <&macro_press &kp LSHFT &kp LALT>,
+            <&macro_press &kp RSHFT &kp RALT>,
             <&macro_tap &kp SQT>,
-            <&macro_release &kp LSHFT &kp LALT>;
+            <&macro_release &kp RSHFT &kp RALT>;
     )
     /* Keymap */
 
