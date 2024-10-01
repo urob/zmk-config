@@ -262,6 +262,15 @@
             <&macro_tap &kp SQT>,
             <&macro_release &kp RSHFT &kp RALT>;
     )
+
+    ZMK_MACRO(italian_o_acute,
+        wait-ms = <0>;
+        tap-ms = <10>;
+        bindings = 
+            <&macro_press &kp RALT>,
+            <&macro_tap &kp SEMICOLON>,
+            <&macro_release &kp RALT>;
+    )
     /* Keymap */
 
     ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // NAV + NUM --> SYS
@@ -271,8 +280,8 @@
     //|      TAB       | |       Q        |       W        |       E        |       R        |       T        |          |       Y        |       U        |       I        |       O        |       P        | |      BSPC      |
         &kp TAB           &kp Q             &kp W             &kp E             &kp R             &kp T                      &kp Y             &kp U             &kp I             &kp O             &kp P          NAV_BSPC     
     //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
-    //|      CTRL      | |       A        |       S        |       D        |       F        |       G        |          |       H        |       J        |       K        |       L        |       ;        | |       '        |
-        NAV_DEL           &hml LGUI A       &hml LALT S      &hml LCTRL D      &hml LSHFT F      &kp G                      &kp H             &hmr RSHFT J   &hmr LCTRL K    &hmr LALT L      &hmr LGUI SEMI        &kp SQT
+    //|      CTRL      | |       A        |       S        |       D        |       F        |       G        |          |       H        |       J        |       K        |       L        |       ò        | |       '        |
+        NAV_DEL           &hml LGUI A       &hml LALT S      &hml LCTRL D      &hml LSHFT F      &kp G                      &kp H             &hmr RSHFT J   &hmr LCTRL K    &hmr LALT L      &hmr LGUI &italian_o_acute  &kp SQT
     //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
     //|      SHFT      | |       Z        |       X        |       C        |       V        |       B        |          |       N        |       M        |       ,        |       .        |       -        | |      ESC       |
         &kp LCTRL          &kp Z             &kp X             &kp C             &kp V             &kp B                      &kp N             &kp M           &comma_morph      &dot_morph        &kp MINUS         &kp ESC
