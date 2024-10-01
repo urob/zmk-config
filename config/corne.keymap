@@ -123,7 +123,7 @@
         /delete-property/ ignore-modifiers;
     };
 
-    // tap: num-word | double-tap: sticky num-layer | hold: num-layer
+    // tap: sticky num-layer | double-tap: num-word | hold: num-layer
     #define SMART_NUM &smart_num NUM 0
     ZMK_HOLD_TAP(smart_num,
         flavor = "balanced";
@@ -133,9 +133,8 @@
     )
     ZMK_TAP_DANCE(num_dance,
         tapping-term-ms = <200>;
-        bindings = <&num_word NUM>, <&sl NUM>;  // reverse this for sticky-num on single tap
+        bindings = <&sl NUM>, <&num_word NUM>;  // reverse this for sticky num-word
     )
-
     // smart-mouse, requires PR #1366
     ZMK_TRI_STATE(smart_mouse,
         bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
@@ -265,7 +264,7 @@
     )
     /* Keymap */
 
-    ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // FN + NUM --> SYS
+    ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // NAV + NUM --> SYS
 
     ZMK_LAYER(base,
     //╭────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮          ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────╮
