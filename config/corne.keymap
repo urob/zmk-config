@@ -15,6 +15,7 @@
     #include "zmk-helpers/unicode-chars/greek.dtsi"
     #include "zmk-helpers/unicode-chars/german.dtsi"
     #include "keymap_italian.h" // not in use..
+    #include "italian.dtsi"
 
     #define DEF 0
     #define NAV 1
@@ -264,14 +265,6 @@
             <&macro_release &kp RSHFT &kp RALT>;
     )
 
-    ZMK_MACRO(italian_o_acute,
-        wait-ms = <0>;
-        tap-ms = <10>;
-        bindings = 
-            <&macro_press &kp RALT>,
-            <&macro_tap &kp SEMICOLON>,
-            <&macro_release &kp RALT>;
-    )
     /* Keymap */
 
     ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // NAV + NUM --> SYS
@@ -282,7 +275,7 @@
         &kp TAB           &kp Q             &kp W             &kp E             &kp R             &kp T                      &kp Y             &kp U             &kp I             &kp O             &kp P          NAV_BSPC     
     //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
     //|      CTRL      | |       A        |       S        |       D        |       F        |       G        |          |       H        |       J        |       K        |       L        |       ò        | |       '        |
-        NAV_DEL           &hml LGUI A       &hml LALT S      &hml LCTRL D      &hml LSHFT F      &kp G                      &kp H             &hmr RSHFT J   &hmr LCTRL K    &hmr LALT L      &hmr LGUI &italian_o_acute  &kp SQT
+        NAV_DEL           &hml LGUI A       &hml LALT S      &hml LCTRL D      &hml LSHFT F      &kp G                      &kp H             &hmr RSHFT J   &hmr LCTRL K    &hmr LALT L      &hmr LGUI &it_o_grave  &kp &it_a_grave
     //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
     //|      SHFT      | |       Z        |       X        |       C        |       V        |       B        |          |       N        |       M        |       ,        |       .        |       -        | |      ESC       |
         &kp LCTRL          &kp Z             &kp X             &kp C             &kp V             &kp B                      &kp N             &kp M           &comma_morph      &dot_morph        &kp MINUS         &kp ESC

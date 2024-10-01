@@ -1,0 +1,8 @@
+/* Italian letters */
+
+ZMK_UNICODE_PAIR(it_a_grave,        N0, N0, E, N0,   N0, N0, C, N0)  // à/À
+ZMK_UNICODE_PAIR(it_e_grave,        N0, N0, E, N8,   N0, N0, C, N8)  // è/È
+ZMK_UNICODE_PAIR(it_e_acute,        N0, N0, E, N9,   N0, N0, C, N9)  // é/É
+ZMK_UNICODE_PAIR(it_i_grave,        N0, N0, E, C,    N0, N0, C, C)   // ì/Ì
+ZMK_UNICODE_PAIR(it_o_grave,        N0, N0, F, N2,   N0, N0, D, N2)  // ò/Ò
+ZMK_UNICODE_PAIR(it_u_grave,        N0, N0, F, N9,   N0, N0, D, N9)  // ù/Ù
