@@ -267,26 +267,10 @@ ZMK_MACRO(alt_shift_quote,
         <&macro_release &kp RSHFT &kp RALT>;
 )
 
-ZMK_MACRO(o_accent,
-    wait-ms = <30>;
-    tap-ms = <40>;
-    bindings = <&kp SCROLLLOCK &kp APOS &kp O>;
-)
-
-ZMK_TAP_DANCE(o_tap_dance,
-    tapping-term-ms = <200>;
-    bindings = <&kp O>, <&o_accent>;
-)
-
 ZMK_MACRO(a_accent,
     wait-ms = <30>;
     tap-ms = <40>;
     bindings = <&kp SCROLLLOCK &kp APOS &kp A>;
-)
-
-ZMK_TAP_DANCE(a_tap_dance,
-    tapping-term-ms = <200>;
-    bindings = <&kp O>, <&a_accent>;
 )
 
 ZMK_MACRO(e_accent,
@@ -295,20 +279,16 @@ ZMK_MACRO(e_accent,
     bindings = <&kp SCROLLLOCK &kp APOS &kp E>;
 )
 
-ZMK_TAP_DANCE(e_tap_dance,
-    tapping-term-ms = <200>;
-    bindings = <&kp E>, <&e_accent>;
-)
-
 ZMK_MACRO(i_accent,
     wait-ms = <30>;
     tap-ms = <40>;
     bindings = <&kp SCROLLLOCK &kp APOS &kp I>;
 )
 
-ZMK_TAP_DANCE(i_tap_dance,
-    tapping-term-ms = <200>;
-    bindings = <&kp I>, <&i_accent>;
+ZMK_MACRO(o_accent,
+    wait-ms = <30>;
+    tap-ms = <40>;
+    bindings = <&kp SCROLLLOCK &kp APOS &kp O>;
 )
 
 ZMK_MACRO(u_accent,
@@ -317,10 +297,6 @@ ZMK_MACRO(u_accent,
     bindings = <&kp SCROLLLOCK &kp APOS &kp U>;
 )
 
-ZMK_TAP_DANCE(u_tap_dance,
-    tapping-term-ms = <200>;
-    bindings = <&kp U>, <&u_accent>;
-)
 
 /* Keymap */
 
@@ -329,8 +305,8 @@ ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // NAV + NUM --> SYS
 
 ZMK_LAYER(base,
 //╭────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮          ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────╮
-//|      TAB       | |       Q        |       W        |      E é       |       R        |       T        |          |       Y        |     U ú        |     I í        |     O ó        |       P        | |      BSPC      |
-    &kp TAB           &kp Q             &kp W             &e_tap_dance       &kp R             &kp T                      &kp Y          &u_tap_dance    &i_tap_dance     &o_tap_dance        &kp P            NAV_BSPC     
+//|      TAB       | |       Q        |       W        |       E        |       R        |       T        |          |       Y        |       U        |       I        |       O        |       P        | |      BSPC      |
+    &kp TAB           &kp Q             &kp W             &kp E          &kp R             &kp T                      &kp Y          &kp U           &kp I            &kp O           &kp P                  NAV_BSPC     
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
 //|      CTRL      | |       A        |       S        |       D        |       F        |       G        |          |       H        |       J        |       K        |       L        |       '        | |       ;        |
     NAV_DEL           &hml LGUI A      &hml LALT S      &hml LCTRL D      &hml LSHFT F      &kp G                      &kp H           &hmr RSHFT J      &hmr LCTRL K     &hmr LALT L      &hmr LGUI SQT      &kp SEMI
@@ -356,13 +332,13 @@ ZMK_LAYER(nav,
     
 ZMK_LAYER(fn,
 //╭────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮          ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────╮
-        ___            &kp F12          &kp F7           &kp F8            &kp F9           ___                        &kp C_VOL_UP      &kp C_PREV      ___              &kp C_NEXT        &win_sleep           ___
+        ___            &kp F12          &kp F7           &e_accent         &kp F9           ___                        &kp C_VOL_UP      &u_accent      &i_accent        &o_accent        &kp C_PREV         &kp C_NEXT        
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
-        ___             &hml LGUI F11  &hml LALT F4      &hml LSHFT F5     &hml LCTRL F6         ___                   VOL_DOWN          &sk LSHFT        &sk LCTRL        &sk LALT         &sk LGUI           ___
+        ___             &a_accent      &hml LALT F4      &hml LSHFT F5     &hml LCTRL F6         ___                   VOL_DOWN          &sk LSHFT        &sk LCTRL        &sk LALT         &sk LGUI         &win_sleep 
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
-        ___             &kp F10         &kp F1           &kp F2            &kp F3           ___                        PIN_APP          PIN_WIN          DSK_MGR          DSK_PREV         DSK_NEXT                ___
+        ___             &kp F10         &kp F1           &kp F2            &kp F3           ___                        PIN_APP          PIN_WIN          DSK_MGR          DSK_PREV         DSK_NEXT           &kp C_MUTE
 //╰────────────────╯ ╰────────────────┼────────────────┴────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┴────────────────┴────────────────╯ ╰────────────────╯
-                                                         ___              ___             DSK_NEXT                     &kp C_MUTE        &kp C_PP         ___                                            
+                                                         ___              ___             DSK_NEXT                     &kp C_PP         ___                                            
 //                                                     ╰────────────────┴────────────────┴────────────────╯          ╰────────────────┴────────────────┴────────────────╯ 
 )
     
