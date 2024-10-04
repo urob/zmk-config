@@ -297,6 +297,16 @@ ZMK_MACRO(u_accent,
     bindings = <&kp SCROLLLOCK &kp APOS &kp U>;
 )
 
+ZMK_TAP_DANCE(e_tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp F8>, <&e_accent>;
+)
+
+ZMK_TAP_DANCE(a_tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp F11>, <&a_accent>;
+)
+
 
 /* Keymap */
 
@@ -332,9 +342,9 @@ ZMK_LAYER(nav,
     
 ZMK_LAYER(fn,
 //╭────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮          ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────╮
-        ___            &kp F12          &kp F7           &e_accent         &kp F9           ___                        &kp C_VOL_UP      &u_accent      &i_accent        &o_accent        &kp C_PREV         &kp C_NEXT        
+        ___            &kp F12          &kp F7           &e_tap_dance         &kp F9           ___                        &kp C_VOL_UP      &u_accent      &i_accent        &o_accent        &kp C_PREV         &kp C_NEXT        
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
-        ___             &a_accent      &hml LALT F4      &hml LSHFT F5     &hml LCTRL F6         ___                   VOL_DOWN          &sk LSHFT        &sk LCTRL        &sk LALT         &sk LGUI         &win_sleep 
+        ___             &a_tap_dance   &hml LALT F4      &hml LSHFT F5     &hml LCTRL F6         ___                   VOL_DOWN          &sk LSHFT        &sk LCTRL        &sk LALT         &sk LGUI         &win_sleep 
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
         ___             &kp F10         &kp F1           &kp F2            &kp F3           ___                        &kp PRINTSCREEN    PIN_WIN          DSK_MGR          DSK_PREV         DSK_NEXT           &kp C_MUTE
 //╰────────────────╯ ╰────────────────┼────────────────┴────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┴────────────────┴────────────────╯ ╰────────────────╯
