@@ -85,6 +85,12 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 /* Combos, leader key sequences, mouse emulation */
 
+// Alt+Tab swapper, requires PR #1366
+ZMK_TRI_STATE(swapper,
+    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+    ignored-key-positions = <LT2>;
+)
+
 #include "combos.dtsi"  // must be sources after HRM-combo hack
 #include "leader.dtsi"
 #include "mouse.dtsi"
@@ -149,12 +155,6 @@ ZMK_TRI_STATE(smart_mouse,
 )
 
 /* Custom behaviors */
-
-// Alt+Tab swapper, requires PR #1366
-ZMK_TRI_STATE(swapper,
-    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
-    ignored-key-positions = <LT2>;
-)
 
 // reuse basic mod-morph scheme
 #define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) \
