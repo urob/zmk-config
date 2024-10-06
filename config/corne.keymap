@@ -85,11 +85,21 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 /* Combos, leader key sequences, mouse emulation */
 
+// some custom behaviors defined before sourcing combos.dtsi
+
 // Alt+Tab swapper, requires PR #1366
 ZMK_TRI_STATE(swapper,
     bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
     ignored-key-positions = <LT2>;
 )
+
+// Alt+Tab swapper, requires PR #1366
+ZMK_TRI_STATE(c_swapper,
+    bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+    ignored-key-positions = <LT2>;
+)
+
+
 
 #include "combos.dtsi"  // must be sources after HRM-combo hack
 #include "leader.dtsi"
