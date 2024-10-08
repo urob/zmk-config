@@ -292,6 +292,30 @@ ZMK_MACRO(triple_left,
         <&macro_release &kp LCTRL>;
 )
 
+// four_left macro
+ZMK_MACRO(four_left,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = 
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp LEFT>,
+        <&macro_tap &kp LEFT>,
+        <&macro_tap &kp LEFT>,
+        <&macro_tap &kp LEFT>,
+        <&macro_release &kp LCTRL>;
+)
+
+// double_right macro
+ZMK_MACRO(double_right,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = 
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_release &kp LCTRL>;
+)
+
 ZMK_MACRO(alt_shift_quote,
     wait-ms = <0>;
     tap-ms = <10>;
@@ -364,11 +388,11 @@ ZMK_LAYER(base,
     
 ZMK_LAYER(nav,
 //╭────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮          ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────╮
-        ___             ___              ___              &kp LS(TAB)      &swapper          ___                        &triple_left              &double_up          &kp UP           &triple_up          &kp PG_UP          ___
+        ___             ___              ___              &kp LS(TAB)      &swapper          ___                        &triple_left    &double_up       &kp UP           &triple_up       &kp PG_UP          ___
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
-        ___             &sk LGUI         &sk LALT         &sk LCTRL        &sk LSHFT         ___                        &double_left      NAV_LEFT           &kp DOWN         NAV_RIGHT        &kp PG_DN          ___
+        ___             &sk LGUI         &sk LALT         &sk LCTRL        &sk LSHFT         &kp INS                   &double_left      NAV_LEFT           &kp DOWN         NAV_RIGHT        &kp PG_DN          ___
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
-        ___             ___              ___              ___              ___              ___                        &kp INS           &double_down     &triple_down      &four_down         &kp TAB        ___
+        ___             ___              ___              ___              ___              ___                        &four_left        &double_down     &triple_down      &four_down         &kp TAB        ___
 //╰────────────────╯ ╰────────────────┼────────────────┴────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┴────────────────┴────────────────╯ ╰────────────────╯
                                                         ___              ___              ___                           ___                CANCEL           ___                                            
 //                                                     ╰────────────────┴────────────────┴────────────────╯          ╰────────────────┴────────────────┴────────────────╯ 
