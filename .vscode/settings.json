@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "*.dtsi": "c"
+        "*.dtsi": "c",
+        "*.keymap": "c"
     }
 }
