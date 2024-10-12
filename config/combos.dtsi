@@ -17,6 +17,7 @@
 // ZMK_COMBO(esc,   &kp ESC,      LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(mouse, &smart_mouse, LH1 LH0,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(caret, &kp CARET,    LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(prcnt, &kp PRCNT,    LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 // Combos overlapping HRMs are set up as hold-taps themselves to allow for instantaneous
 // chording of mods. Custom hold-tap instances can be bootstrapped on the go using the
@@ -53,7 +54,7 @@ ZMK_COMBO(grave, &kp GRAVE,    LM4 LB4,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_
 ZMK_COMBO(amps,  &kp AMPS,     LM3 LB3,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(excl,  &kp EXCL,     LM2 LB2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(equal, &kp EQUAL,    LM1 LB1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(prcnt, &kp PRCNT,    LM0 LB0,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(code,  &mo CODE,     LM0 LB0,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 
 /* Vertical combos - right hand */
 ZMK_COMBO(dollar,&kp DOLLAR,   RT0 RM0,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
