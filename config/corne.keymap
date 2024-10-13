@@ -236,7 +236,7 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
 #define VOL_DOWN    &hmr RSHFT C_VOL_DN
 
-#include <code.dtsi>
+#include "code.dtsi"
 
 // double_down macro
 ZMK_MACRO(double_down,
