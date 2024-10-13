@@ -25,6 +25,8 @@ ZMK_MACRO(ctrl3,
         <&macro_release &kp LCTRL>;
 ) 
 
+/*
+
 ZMK_MACRO(unfold,
     wait-ms = <0>;
     tap-ms = <10>;
@@ -49,3 +51,4 @@ ZMK_TAP_DANCE(fold_unfold,
     tapping-term-ms = <200>;
     bindings = <&unfold>, <&fold_all>;
 )
+*/
