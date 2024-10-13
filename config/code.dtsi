@@ -32,7 +32,7 @@ ZMK_MACRO(unfold,
     bindings = 
         <&macro_press &kp LCTRL>,
         <&macro_tap &kp K>,
-        <&macro_release &kp LCTRL>
+        <&macro_release &kp LCTRL>,
         <&macro_tap &kp J>;
 )
 
@@ -42,13 +42,11 @@ ZMK_MACRO(fold_all,
     bindings = 
         <&macro_press &kp LCTRL>,
         <&macro_tap &kp K>,
-        <&macro_release &kp LCTRL>
+        <&macro_release &kp LCTRL>,
         <&macro_tap &kp SEMI>;
 )
 
-/*
 ZMK_TAP_DANCE(fold_unfold,
     tapping-term-ms = <200>;
     bindings = <&unfold>, <&fold_all>;
 )
-*/
