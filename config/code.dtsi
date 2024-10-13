@@ -46,7 +46,9 @@ ZMK_MACRO(fold_all,
         <&macro_tap &kp SEMI>;
 )
 
+/*
 ZMK_TAP_DANCE(fold_unfold,
     tapping-term-ms = <200>;
     bindings = <&unfold>, <&fold_all>;
 )
+*/
