@@ -1,0 +1,38 @@
+
+/*
+  g_tile: https://github.com/gTile/gTile
+  this shorcuts are for gTile extension and requires to have a keybinding set in gTile settings. Every macro corresponds to a different tile layout.
+*/
+
+ZMK_MACRO(g_tile_left,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = 
+        <&macro_press &kp RSHFT>,
+        <&macro_tap &kp DEL>,
+        <&macro_release &kp RSHFT>,
+        <&macro_tap &kp J>,
+        <&macro_tap &kp ESC>;
+)
+
+ZMK_MACRO(g_tile_center,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = 
+        <&macro_press &kp RSHFT>,
+        <&macro_tap &kp DEL>,
+        <&macro_release &kp RSHFT>,
+        <&macro_tap &kp K>,
+        <&macro_tap &kp ESC>;
+)
+
+ZMK_MACRO(g_tile_right,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = 
+        <&macro_press &kp RSHFT>,
+        <&macro_tap &kp DEL>,
+        <&macro_release &kp RSHFT>,
+        <&macro_tap &kp DOT>,
+        <&macro_tap &kp ESC>;
+)
