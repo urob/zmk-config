@@ -11,6 +11,7 @@ ZMK_MACRO(g_tile_left,
         <&macro_press &kp RSHFT>,
         <&macro_tap &kp DEL>,
         <&macro_release &kp RSHFT>,
+        <&macro_wait_time 500>,
         <&macro_tap &kp J>,
         <&macro_tap &kp ESC>;
 )
@@ -22,6 +23,7 @@ ZMK_MACRO(g_tile_center,
         <&macro_press &kp RSHFT>,
         <&macro_tap &kp DEL>,
         <&macro_release &kp RSHFT>,
+        <&macro_wait_time 500>,
         <&macro_tap &kp K>,
         <&macro_tap &kp ESC>;
 )
@@ -33,6 +35,7 @@ ZMK_MACRO(g_tile_right,
         <&macro_press &kp RSHFT>,
         <&macro_tap &kp DEL>,
         <&macro_release &kp RSHFT>,
+        <&macro_wait_time 500>,
         <&macro_tap &kp DOT>,
         <&macro_tap &kp ESC>;
 )
