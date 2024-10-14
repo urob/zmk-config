@@ -348,21 +348,21 @@ ZMK_MACRO(i_accent,
 )
 
 ZMK_MACRO(back,
-    wait-ms = <30>;
-    tap-ms = <40>;
+    wait-ms = <0>;
+    tap-ms = <10>;
     bindings = 
-        <&macro_press &kp RALT>,
+        <&macro_press &kp LALT>,
         <&macro_tap &kp LEFT>,
-        <&macro_release &kp RALT>;
+        <&macro_release &kp LALT>;
 )
 
 ZMK_MACRO(forward,
-    wait-ms = <30>;
-    tap-ms = <40>;
+    wait-ms = <0>;
+    tap-ms = <10>;
     bindings = 
-        <&macro_press &kp RALT>,
+        <&macro_press &kp LALT>,
         <&macro_tap &kp RIGHT>,
-        <&macro_release &kp RALT>;
+        <&macro_release &kp LALT>;
 )
 
 ZMK_MACRO(o_accent,
