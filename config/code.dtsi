@@ -50,3 +50,33 @@ ZMK_TAP_DANCE(fold_unfold,
     tapping-term-ms = <200>;
     bindings = <&unfold>, <&fold_all>;
 )
+
+ZMK_MACRO(comment,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = 
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp K>,
+        <&macro_release &kp LCTRL>,
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp C>,
+        <&macro_release &kp LCTRL>;
+)
+
+ZMK_MACRO(uncomment,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = 
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp K>,
+        <&macro_release &kp LCTRL>,
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp U>,
+        <&macro_release &kp LCTRL>;
+)
+
+ZMK_TAP_DANCE(comment_uncomment,
+    tapping-term-ms = <200>;
+    bindings = <&comment>, <&uncomment>;
+)
+
