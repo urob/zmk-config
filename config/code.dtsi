@@ -84,14 +84,14 @@ ZMK_MACRO(add_missing_imports,
     wait-ms = <0>;
     tap-ms = <10>;
     bindings = 
-        <&macro_tap &kp F8>,
-        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp F8>,            // jump to the next error
+        <&macro_press &kp LCTRL>,       // go at the end of the error
         <&macro_tap &kp RIGHT>,
         <&macro_release &kp LCTRL>,
         <&macro_wait_time 100>,
-        <&macro_press &kp LCTRL>,
+        <&macro_press &kp LCTRL>,       // open the quick fix menu
         <&macro_tap &kp DOT>,
         <&macro_release &kp LCTRL>,
         <&macro_wait_time 100>,
-        <&macro_tap &kp RET>;
+        <&macro_tap &kp RET>;           // apply the quick fix
 )
