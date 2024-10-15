@@ -87,7 +87,11 @@ ZMK_MACRO(add_missing_imports,
         <&macro_tap &kp F8>,
         <&macro_press &kp LCTRL>,
         <&macro_tap &kp RIGHT>,
+        <&macro_release &kp LCTRL>,
+        <&macro_wait_time 100>,
+        <&macro_press &kp LCTRL>,
         <&macro_tap &kp DOT>,
-        <&macro_tap &kp RET>,
-        <&macro_release &kp LCTRL>;
+        <&macro_release &kp LCTRL>,
+        <&macro_wait_time 100>,
+        <&macro_tap &kp RET>;
 )
