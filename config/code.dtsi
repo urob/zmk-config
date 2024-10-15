@@ -80,3 +80,14 @@ ZMK_TAP_DANCE(comment_uncomment,
     bindings = <&comment>, <&uncomment>;
 )
 
+ZMK_MACRO(add_missing_imports,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = 
+        <&macro_tap &kp F8>,
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_tap &kp DOT>,
+        <&macro_tap &kp RET>,
+        <&macro_release &kp LCTRL>;
+)
