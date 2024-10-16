@@ -1,5 +1,5 @@
 /* source key position labels */
-#include "zmk-helpers/include/zmk-helpers/key-labels/42.h"
+#include "zmk-helpers/key-labels/42.h"
 
 /* map Corne's extra keys */
 #define X_LT &none
@@ -16,6 +16,3 @@
 
 /* source the main keymap */
 #include "base.keymap"
-
-/* use 5-column layout for Zen */
-//ZMK_APPLY_MATRIX_TRANSFORM(five_column_transform)
