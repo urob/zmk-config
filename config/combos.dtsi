@@ -12,12 +12,18 @@
 #define COMBO_IDLE_FAST 150
 #define COMBO_IDLE_SLOW 50
 
-/* Horizontal combos - left hand */
+/* 
+
+      LEFT HAND
+
+*/
+
+/* Horizontal combos */
 // ZMK_COMBO(ret,   &kp RETURN,   LT1 LT0,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 // ZMK_COMBO(esc,   &kp ESC,      LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(mouse, &smart_mouse, LH1 LH0,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(caret, &kp CARET,    LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(prcnt, &kp PRCNT,    LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(mouse, &smart_mouse, LH1 LH0,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 // Combos overlapping HRMs are set up as hold-taps themselves to allow for instantaneous
 // chording of mods. Custom hold-tap instances can be bootstrapped on the go using the
@@ -30,20 +36,7 @@ ZMK_COMBO(ret,   &hml LS(LALT)RETURN, LM2 LM1, DEF NAV NUM, COMBO_TERM_FAST, COM
 // ZMK_COMBO(cut,   &kp LC(X),    LT3 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 // ZMK_COMBO(dllr,  &kp DLLR,     LT3 LT2,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST) 
 
-/* Horizontal combos - right hand */
-ZMK_COMBO(space,  &kp SPACE,   RT1 RT2,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(tab,    &kp TAB,     RT2 RT3,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(swap,   &swapper,    RM1 RM2,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LCTRL),    KEYS_L)
-ZMK_COMBO(cswap,  &c_swapper,  RM2 RM3,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LALT),     KEYS_L)
-// ZMK_COMBO(lt,    &kp LT,       RM1 RM2,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
-// ZMK_COMBO(gt,    &kp GT,       RM2 RM3,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
-
-// ZMK_COMBO(lbkt,  &kp LBKT,     RB1 RB2,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-// ZMK_COMBO(rbkt,  &kp RBKT,     RB2 RB3,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-// ZMK_COMBO(lbrc,  &kp LBRC,     RB1 RB2,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
-// ZMK_COMBO(rbrc,  &kp RBRC,     RB2 RB3,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
-
-/* Vertical combos - left hand */
+/* Vertical combos */
 ZMK_COMBO(cut,   &kp LC(X),    LT4 LM4,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(undo,  &kp LC(Z),    LT3 LM3,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(paste, &kp LS(INS),  LT2 LM2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
@@ -56,7 +49,30 @@ ZMK_COMBO(excl,  &kp EXCL,     LM2 LB2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_
 ZMK_COMBO(equal, &kp EQUAL,    LM1 LB1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(code,  &mo CODE,     LM0 LB0,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 
-/* Vertical combos - right hand */
+/* AOE combos fwt! */
+ZMK_COMBO(mouse, &smart_mouse, LT0 LH0 LT1 LM1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+
+/* 
+
+      RIGHT HAND
+
+*/
+
+/* Horizontal combos */
+ZMK_COMBO(space,  &kp SPACE,   RT1 RT2,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(tab,    &kp TAB,     RT2 RT3,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(swap,   &swapper,    RM1 RM2,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LCTRL),    KEYS_L)
+ZMK_COMBO(cswap,  &c_swapper,  RM2 RM3,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LALT),     KEYS_L)
+// ZMK_COMBO(lt,    &kp LT,       RM1 RM2,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(gt,    &kp GT,       RM2 RM3,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+// ZMK_COMBO(lbkt,  &kp LBKT,     RB1 RB2,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(rbkt,  &kp RBKT,     RB2 RB3,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(lbrc,  &kp LBRC,     RB1 RB2,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(rbrc,  &kp RBRC,     RB2 RB3,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+/* Vertical combos */
 ZMK_COMBO(dollar,&kp DOLLAR,   RT0 RM0,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(slash, &kp SLASH,    RT1 RM1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(plus,  &kp PLUS,     RT2 RM2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
@@ -68,6 +84,10 @@ ZMK_COMBO(eq,    &kp EQUAL,    RM1 RB1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_
 ZMK_COMBO(qst,   &kp QMARK,    RM2 RB2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(pipe,  &kp PIPE,     RM3 RB3,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(tilde, &kp TILDE,    RM4 RB4,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+
+/*
+      BOTH HANDS
+*/
 
 /* Horizontal combos both hands */
 ZMK_COMBO(clock, &kp CAPSLOCK, LT2 RT2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
