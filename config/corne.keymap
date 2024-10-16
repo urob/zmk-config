@@ -12,7 +12,9 @@
 #define X_RH &none
 
 /* activate bluetooth */
-#define CONFIG_WIRELESS 1
+#define CONFIG_WIRELESS 
+
+
 
 /* source the main keymap */
 #include "base.keymap"
