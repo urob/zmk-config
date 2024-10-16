@@ -87,10 +87,10 @@ ZMK_COMBO(tilde, &kp TILDE,    RM4 RB4,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_
 
 // ZMK_COMBO(4up,   &four_up,     RM0 RB0,         NAV    , COMBO_TERM_SLOW, COMBO_IDLE_SLOW) // free
 ZMK_COMBO(4up,   &four_up,     RT1 RM1,         NAV    , COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(3up,   &three_up,    RT2 RM2,         NAV    , COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(3up,   &triple_up,   RT2 RM2,         NAV    , COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(2up,   &double_up,   RT3 RM3,         NAV    , COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(4down, &four_down,   RM1 RB1,         NAV    , COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(3down, &three_down,  RM2 RB2,         NAV    , COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(3down, &triple_down, RM2 RB2,         NAV    , COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(2down, &double_down, RM3 RB3,         NAV    , COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 
 /*
