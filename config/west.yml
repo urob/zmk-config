@@ -26,6 +26,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
+    - name: gpeye                   
+      url-base: https://github.com/GPeye # https://github.com/GPeye/hammerbeam-slideshow
 
   projects:
     - name: zmk-helpers
@@ -37,7 +39,9 @@ manifest:
     - name: zmk-tri-state
       revision: main
       path: modules/tri-state
-
+    - name: hammerbeam-slideshow        
+      remote: gpeye                     
+      revision: main                    
     # ZMK with Zephyr namespaced under /zmk. This requires that ZMK imports
     # Zephyr with a path other than `zephyr` (as in `going-modular`).
     - name: zmk
