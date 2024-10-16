@@ -1,5 +1,5 @@
 /* source key position labels */
-#include "zmk-helpers/key-labels/42.h"
+#include "zmk-helpers/include/zmk-helpers/key-labels/42.h"
 
 /* map Corne's extra keys */
 #define X_LT &none
