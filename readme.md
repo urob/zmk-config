@@ -1,12 +1,7 @@
-# urob's zmk-config
+# mgkollander's fork of urob's zmk-config
 
 This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/)
-configuration. It consists of a 34-keys base layout that is re-used for various
-boards, including my Corneish Zen and my Planck.
-
-This branch is updated for the latest ZMK using Zephyr 3.5. A legacy version
-compatible with Zephyr 3.0 is available
-[here](https://github.com/urob/zmk-config/tree/main-zephyr-3.0).
+configuration. It consists of a 42-keys base layout designed for the Corne.
 
 ## Highlights
 
@@ -14,131 +9,16 @@ compatible with Zephyr 3.0 is available
 - Combos replace symbol layer
 - Smart numbers and mouse layers auto-toggle off
 - Unicode math and international leader key sequences
-- Simplified Devicetree syntax using helper macros from
   [zmk-helpers](https://github.com/urob/zmk-helpers)
-- Base keymap padded with modular structure of "extra keys" to fit on larger
-  boards
 - Arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
   document</kbd> on long-press
 - More intuitive shift-actions: <kbd>, ;</kbd>, <kbd>. :</kbd> and <kbd>?
   !</kbd>
-- Fully automated, nix-based
-  [local build environment](#local-development-workspace)
+- QWERTY Gaming layer toggle
 
 ![](draw/keymap.png)
 
-## Timeless homerow mods
-
-[Homerow mods](https://precondition.github.io/home-row-mods) (aka "HRMs") can be
-a game changer -- at least in theory. In practice, they require some finicky
-timing: In its most naive implementation, in order to produce a "mod", they must
-be held _longer_ than `tapping-term-ms`. In order to produce a "tap", they must
-be held _less_ than `tapping-term-ms`. This requires very consistent typing
-speeds that, alas, I do not possess. Hence my quest for a "timer-less" HRM
-setup.[^1]
-
-After months of tweaking, I eventually ended up with a HRM setup that is
-essentially timer-less, resulting in virtually no misfires. Yet it provides a
-fluent typing experience with mostly no delays.
-
-Let's suppose for a moment we set `tapping-term-ms` to something ridiculously
-large, say 5 seconds. This makes the configuration timer-less of sorts. But it
-has two problems: (1) To activate a mod we will have to hold the HRM keys for
-what feels like eternity. (2) During regular typing, there are delays between
-the press of a key and the time it appears on the screen.[^2] Enter two of my
-favorite ZMK features:
-
-- To address the first problem, I use ZMK's `balanced` flavor, which produces a
-  "hold" if another key is both pressed and released within the tapping-term.
-  Because that is exactly what I normally do with HRMs, there is virtually never
-  a need to wait past my long tapping term (see below for two exceptions).
-- To address the typing delay, I use ZMK's `require-prior-idle-ms` property,
-  which immediately resolves a HRM as "tap" when it is pressed shortly _after_
-  another key has been tapped. This all but completely eliminates the delay.
-
-This is great but there are still a few rough edges:
-
-- When rolling keys, I sometimes unintentionally end up with "nested" key
-  sequences: `key 1` down, `key 2` down and up, `key 1` up. Because of the
-  `balanced` flavor, this would falsely register `key 1` as a mod. As a remedy,
-  I use ZMK's `positional hold-tap` feature to force HRMs to always resolve as
-  "tap" when the _next_ key is on the same side of the keyboard. Problem solved.
-- ... or at least almost. By default, positional-hold-tap performs the
-  positional check when the next key is _pressed_. This is not ideal, because it
-  prevents combining multiple modifiers on the same hand. To fix this, I use the
-  `hold-trigger-on-release` setting, which delays the positional-hold-tap
-  decision until the next key's _release_. With the setting, multiple mods can
-  be combined when held, while I still get the benefit from positional-hold-tap
-  when keys are tapped.
-- So far, nothing of the configuration depends on the duration of
-  `tapping-term-ms`. In practice, there are two reasons why I don't set it to
-  infinity:
-  1. Sometimes, in rare circumstances, I want to combine a mod with a alpha-key
-     _on the same hand_ (e.g., when using the mouse with the other hand). My
-     positional hold-tap configuration prevents this _within_ the tapping term.
-     By setting the tapping term to something large but not crazy large (I use
-     280ms), I can still use same-hand `mod` + `alpha` shortcuts by holding the
-     mod for just a little while before tapping the alpha-key.
-  2. Sometimes, I want to press a modifier without another key (e.g., on
-     Windows, tapping `Win` opens the search menu). Because the `balanced`
-     flavour only kicks in when another key is pressed, this also requires
-     waiting past `tapping-term-ms`.
-- Finally, it is worth noting that this setup works best in combination with a
-  dedicated shift for capitalization during normal typing (I like sticky-shift
-  on a home-thumb). This is because shifting alphas is the one scenario where
-  pressing a mod may conflict with `require-prior-idle-ms`, which may result in
-  false negatives when typing fast.
-
-Here's my configuration (I use a bunch of
-[helper macros](https://github.com/urob/zmk-helpers) to simplify the syntax, but
-they are not necessary):
-
-```C++
-/* use helper macros to define left and right hand keys */
-#include "zmk-helpers/key-labels/36.h"                                      // key-position labels
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right-hand keys
-#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                                      // thumb keys
-
-/* left-hand HRMs */
-ZMK_HOLD_TAP(hml,
-    flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // repeat on tap-into-hold
-    require-prior-idle-ms = <150>;
-    bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_R THUMBS>;
-    hold-trigger-on-release;             // delay positional check until key-release
-)
-
-/* right-hand HRMs */
-ZMK_HOLD_TAP(hmr,
-    flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // repeat on tap-into-hold
-    require-prior-idle-ms = <150>;
-    bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_L THUMBS>;
-    hold-trigger-on-release;             // delay positional check until key-release
-)
-```
-
-### Required firmware
-
-After a recent round of patches, the above configuration now works with upstream
-ZMK.
-
-Other parts of my configuration still require a few PRs that aren't yet in
-upstream ZMK. My personal [ZMK fork](https://github.com/urob/zmk) includes all
-PRs needed to compile my configuration. If you prefer to maintain your own fork
-with a custom selection of PRs, you might find this
-[ZMK-centric introduction to Git](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7)
-helpful.
-
 ### Troubleshooting
-
-Hopefully, the above configuration "just works". If it doesn't, here's a few
-smaller (and larger) things to try.
 
 - **Noticeable delay when tapping HRMs:** Increase `require-prior-idle-ms`. As a
   rule of thumb, you want to set it to at least `10500/x` where `x` is your
@@ -157,28 +37,15 @@ smaller (and larger) things to try.
 
 ## Using combos instead of a symbol layer
 
-I am a big fan of combos for all sort of things. In terms of comfort, I much
-prefer them over accessing layers that involve lateral thumb movements to be
-activated, especially when switching between different layers in rapid
-succession.
-
-One common concern about overloading the layout with combos is that they lead to
-misfires. Fortunately, the above-mentioned `require-prior-idle-ms` option also
-works for combos, which in my experience all but completely eliminates the
-problem -- even when rolling keys on the home row!
-
-My combo layout aims to place the most used symbols in easy-to-access locations
-while also making them easy to remember. Specifically:
-
-- the top vertical-combo row matches the symbols on a standard numbers row
+- The top vertical-combo row matches the symbols on a standard numbers row
   (except `+` and `&` being swapped)
-- the bottom vertical-combo row is symmetric to the top row (subscript `_`
+- The bottom vertical-combo row is symmetric to the top row (subscript `_`
   aligns with superscript `^`; minus `-` aligns with `+`; division `/` aligns
   with multiplication `*`; logical-or `|` aligns with logical-and `&`)
-- parenthesis, braces, brackets are set up symmetrically as horizontal combos
+- Parenthesis, braces, brackets are set up symmetrically as horizontal combos
   with `<`, `>`, `{` and `}` being accessed from the Navigation layer (or when
   combined with `Shift`)
-- left-hand side combos for `tap`, `esc`, `enter`, `cut` (on <kbd>X</kbd> +
+- Left-hand side combos for `tap`, `esc`, `enter`, `cut` (on <kbd>X</kbd> +
   <kbd>D</kbd>), `copy` and `paste` that go well with right-handed mouse usage
 - <kbd>L</kbd> + <kbd>Y</kbd> switches to the Greek layer for a single key
   press, <kbd>L</kbd> + <kbd>U</kbd> + <kbd>Y</kbd> activates one-shot shift in
@@ -253,144 +120,6 @@ now I am using it for a variety of Unicode math symbols and international
 characters. I am planning to extend the use to various firmware interactions
 once I figure out the technical details.
 
-## Local development workspace
-
-I streamline my local build process using `nix`, `direnv` and `just`. This
-automatically sets up a virtual development environment with `west`, the
-`zephyr-sdk` and all its dependencies when `cd`-ing into the ZMK-workspace. The
-environment is _completely isolated_ and won't pollute your system.
-
-### Setup
-
-#### Pre-requisites
-
-1. Install the `nix` package manager:
-
-   ```bash
-   # Install Nix with flake support enabled
-   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix |
-      sh -s -- install --no-confirm
-
-   # Start the nix daemon without restarting the shell
-   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-   ```
-
-2. Install [`direnv`](https://direnv.net/) (and optionally but recommended
-   [`nix-direnv`](https://github.com/nix-community/nix-direnv)[^4]) using your
-   package manager of choice. E.g., using the `nix` package manager that we just
-   installed[^5]:
-
-   ```
-   nix profile install nixpkgs#direnv nixpkgs#nix-direnv
-   ```
-
-3. Set up the `direnv` [shell-hook](https://direnv.net/docs/hook.html) for your
-   shell. E.g., for `bash`:
-
-   ```bash
-   # Install the shell-hook
-   echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
-
-   # Enable nix-direnv (if installed in the previous step)
-   mkdir -p ~/.config/direnv
-   echo 'source $HOME/.nix-profile/share/nix-direnv/direnvrc' >> ~/.config/direnv/direnvrc
-
-   # Optional: make direnv less verbose
-   echo '[global]\nwarn_timeout = "2m"\nhide_env_diff = true' >> ~/.config/direnv/direnv.toml
-
-   # Source the bashrc to activate the hook (or start a new shell)
-   source ~/.bashrc
-   ```
-
-#### Set up the workspace
-
-1. Clone _your fork_ of this repository. I like to name my local clone
-   `zmk-workspace` as it will be the toplevel of the development environment.
-
-   ```bash
-   # Replace `urob` with your username
-   git clone https://github.com/urob/zmk-config zmk-workspace
-   ```
-
-2. Enter the workspace and set up the environment.
-
-   ```bash
-   # The first time you enter the workspace, you will be prompted to allow direnv
-   cd zmk-workspace
-
-   # Allow direnv for the workspace, which will set up the environment
-   direnv allow
-
-   # Initialize the Zephyr workspace and pull in the ZMK dependencies
-   # (same as `west init -l config && west update && west zephyr-export`)
-   just init
-   ```
-
-### Usage
-
-After following the steps above your workspace should look like this:
-
-```bash
-zmk-workspace
-├── config
-├── firmware (created after building)
-├── modules
-│   ├── auto-layer
-│   ├── helpers
-│   └── tri-state
-└── zmk
-    └── ...
-```
-
-#### Building the firmware
-
-To build the firmware, simply type `just build all` from anywhere within the
-workspace. This will parse `build.yaml` and build the firmware for all board and
-shield combinations listed there.
-
-To only build the firmware for a specific target, use `just build <target>`.
-This will build the firmware for all matching board and shield combinations. For
-instance, to build the firmware for my Corneish Zen, I can type
-`just build zen`, which builds both `corneish_zen_v2_left` and
-`corneish_zen_v2_right`. (`just list` shows all valid build targets.)
-
-Additional arguments to `just build` are passed on to `west`. For instance, a
-pristine build can be triggered with `just build all -p`.
-
-(For this particular example, there is also a `just clean` recipe, which clears
-the build cache. To list all available recipes, type `just`. Bonus tip: `just`
-provides
-[completion scripts](https://github.com/casey/just?tab=readme-ov-file#shell-completion-scripts)
-for many shells.)
-
-#### Drawing the keymap
-
-The build environment packages
-[keymap-drawer](https://github.com/caksoylar/keymap-drawer). `just draw` parses
-`base.keymap` and draws it to `draw/base.svg`. I haven't gotten around to
-tweaking the output yet, so for now this is just a demonstration of how to set
-things up.
-
-#### Hacking the firmware
-
-To make changes to the ZMK source or any of the modules, simply edit the files
-or use `git` to pull in changes.
-
-To switch to any remote branches or tags, use `git fetch` inside a module
-directory to make the remote refs locally available. Then switch to the desired
-branch with `git checkout <branch>` as usual. You may also want to register
-additional remotes to work with or consider making them the default in
-`config/west.yml`.
-
-#### Updating the build environment
-
-To update the ZMK dependencies, use `just update`. This will pull in the latest
-version of ZMK and all modules specified in `config/west.yml`. Make sure to
-commit and push all local changes you have made to ZMK and the modules before
-running this command, as this will overwrite them.
-
-To upgrade the Zephyr SDK and Python build dependencies, use `just upgrade-sdk`.
-
 ## Issues and workarounds
 
 Since I switched from QMK to ZMK I have been very impressed with how easy it is
@@ -429,14 +158,3 @@ remaining issues:
     yields a minimum `require-prior-idle-ms` of (60 _ 1000) / (5.7 _ x) ≈ 10500
     / x milliseconds. The approximation errs on the safe side, as in practice
     home row taps tend to be faster than average.
-
-[^4]:
-    `nix-direnv` provides a vastly improved caching experience compared to only
-    having `direnv`, making entering and exiting the workspace instantaneous
-    after the first time.
-
-[^5]:
-    This will permanently install the packages into your local profile, forgoing
-    many of the benefits that make Nix uniquely powerful. A better approach,
-    though beyond the scope of this document, is to use `home-manager` to
-    maintain your user environment.
