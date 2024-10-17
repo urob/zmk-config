@@ -1,9 +1,16 @@
 # mgkollander's fork of urob's zmk-config
 
-NOTE: The description below is a very slight variation of urob's readme, edited for my own personal use. The keymap image is up to date.
+This [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration was forked from [urob's fantastic zmk-config](https://github.com/urob/zmk-config) and consists of a 42-keys layout designed for the Corne. It uses the [Colemak](https://colemak.com/) keyboard layout, but can be toggled to a modified QWERTY layout for playing games with WASD movement. It is my daily driver for general typing, programming, navigation, and gaming.
 
-This [ZMK firmware](https://github.com/zmkfirmware/zmk/)
-configuration consists of a 42-keys base layout designed for the Corne.
+### ⚠️ <ins>Note</ins>
+
+The description below is a very slight variation of urob's README, edited for my own personal use. Any use of first-person language is from urob's perspective and not my original work.
+
+<br />
+
+⌨️ **Keymap Image Status**: Not up to date -- see todo section.
+
+---------
 
 ## Todo
 
@@ -11,6 +18,7 @@ configuration consists of a 42-keys base layout designed for the Corne.
 - Figure out why leader key isn't working, remove unicode or switch back to L+Y?
 - Try increasing the combo term and decreasing the require prior to idle term
 - Change outside Corne keys once comfortable with homerow
+- Adjust gaming layer
 - Add info to keymap image
   - tap: nav left  | long-tap: beginning of line
   - tap: nav right | long-tap: end       of line
@@ -41,6 +49,7 @@ configuration consists of a 42-keys base layout designed for the Corne.
   - Fix missing FN layer shortcuts
   - SYS layer
   - mouse layer
+  - holding control activates symbols? look into this
 
 ## Highlights
 
@@ -53,7 +62,7 @@ configuration consists of a 42-keys base layout designed for the Corne.
   document</kbd> on long-press
 - More intuitive shift-actions: <kbd>, ;</kbd>, <kbd>. :</kbd> and <kbd>?
   !</kbd>
-- QWERTY Gaming layer toggle
+- Gaming layer toggle that switches to a shifted QWERTY layout
 
 ![](draw/keymap.png)
 
