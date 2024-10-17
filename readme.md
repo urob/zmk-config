@@ -1,5 +1,7 @@
 # mgkollander's fork of urob's zmk-config
 
+NOTE: The description below is a very slight variation of urob's, edited for my own personal use. The keymap image is up to date.
+
 This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/)
 configuration. It consists of a 42-keys base layout designed for the Corne.
 
