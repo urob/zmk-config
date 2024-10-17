@@ -9,6 +9,8 @@ configuration consists of a 42-keys base layout designed for the Corne.
 
 - Change ALT Tab and swapper to left hand only
 - Figure out why leader key isn't working, remove unicode or switch back to L+Y?
+- Try increasing the combo term and decreasing the require prior to idle term
+- Change outside Corne keys once comfortable with homerow
 - Add info to keymap image
   - tap: nav left  | long-tap: beginning of line
   - tap: nav right | long-tap: end       of line
