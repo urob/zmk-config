@@ -5,11 +5,11 @@
 #define X_LT &kp ESC
 #define X_LM &kp LEFT_SHIFT
 #define X_LB &kp LCTRL
-#define X_LH &to game
+#define X_LH &none
 #define X_RT &kp BACKSPACE
 #define X_RM &kp SQT
 #define X_RB &none
-#define X_RH &to base
+#define X_RH &none
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 
