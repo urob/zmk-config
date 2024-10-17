@@ -7,10 +7,38 @@ configuration consists of a 42-keys base layout designed for the Corne.
 
 ## Todo
 
-- Change ALT Tab and swapper to FN layer
-- Better documentation for game and base
-- Add combos to keymap image (w+p for mouse layer and scroll, change back to unicode layer maybe? anything else hidden in code)
-- Figure out why unicode leader key isn't working
+- Change ALT Tab and swapper to left hand only
+- Figure out why leader key isn't working, remove unicode or switch back to L+Y?
+- Add info to keymap image
+  - tap: nav left  | long-tap: beginning of line
+  - tap: nav right | long-tap: end       of line
+  - tap: nav up    | long-tap: beginning of document
+  - tap: nav down  | long-tap: end       of document
+  - tap: nav bspc  | long-tap: delete word backward
+  - tap: nav del   | long-tap: delete word forward
+  - W+P mouse layer and scroll
+  - Gaming layer
+  - tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
+  - tap: num-word | double-tap: sticky num-layer | hold: num-layer
+  - tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
+  - tap: dot | shift + tap: colon | ctrl + shift + tap: >
+  - tap: left/right parenthesis | shft + tap: less-than/greater-than
+  - tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
+  - tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
+  - tap: copy | double-tap: cut
+  - Windows sleep key
+  - // misc aliases
+  - #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
+  - #define DSK_PREV    &hmr LCTRL LG(LC(LEFT))  // previous desktop
+  - #define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
+  - #define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
+  - #define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
+  - #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
+  - #define VOL_DOWN    &hmr RSHFT C_VOL_DN
+  - // FN + NUM --> SYS
+  - Fix missing FN layer shortcuts
+  - SYS layer
+  - mouse layer
 
 ## Highlights
 
