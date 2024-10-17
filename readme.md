@@ -49,9 +49,6 @@ configuration consists of a 42-keys base layout designed for the Corne.
   combined with `Shift`)
 - Left-hand side combos for `tap`, `esc`, `enter`, `cut` (on <kbd>X</kbd> +
   <kbd>D</kbd>), `copy` and `paste` that go well with right-handed mouse usage
-- <kbd>L</kbd> + <kbd>Y</kbd> switches to the Greek layer for a single key
-  press, <kbd>L</kbd> + <kbd>U</kbd> + <kbd>Y</kbd> activates one-shot shift in
-  addition
 - <kbd>W</kbd> + <kbd>P</kbd> activates the smart mouse layer
 
 ## Smart layers and other gimmicks
