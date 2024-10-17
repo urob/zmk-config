@@ -5,6 +5,13 @@ NOTE: The description below is a very slight variation of urob's readme, edited 
 This [ZMK firmware](https://github.com/zmkfirmware/zmk/)
 configuration consists of a 42-keys base layout designed for the Corne.
 
+## Todo
+
+- Change ALT Tab and swapper to FN layer
+- Better documentation for game and base
+- Add combos to keymap image (w+p for mouse layer and scroll, change back to unicode layer maybe? anything else hidden in code)
+- Figure out why unicode leader key isn't working
+
 ## Highlights
 
 - ["Timeless" homerow mods](#timeless-homerow-mods)
