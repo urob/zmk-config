@@ -1,8 +1,8 @@
 /* source keypos definitions */
-#include "../zmk-nodefree-config/keypos_def/keypos_42keys.h"
+#include "zmk-helpers/key-labels/42.h"
 
 /* activate bluetooth */
-#define CONFIG_WIRELESS 1
+#define CONFIG_WIRELESS
 
 /* source the main keymap */
 #include "corne_base.keymap"
