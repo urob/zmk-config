@@ -154,3 +154,9 @@ ZMK_TAP_DANCE(a_tap_dance,
     tapping-term-ms = <200>;
     bindings = <&kp F11>, <&a_accent>;
 )
+
+// tap: copy | double-tap: cut
+ZMK_TAP_DANCE(copy_cut,
+    tapping-term-ms = <200>;
+    bindings = <&kp LC(INS)>, <&kp LC(X)>;
+)

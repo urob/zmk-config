@@ -211,12 +211,6 @@ ZMK_MOD_MORPH(bs_del,
     keep-mods = <MOD_RSFT>;
 )
 
-// tap: copy | double-tap: cut
-ZMK_TAP_DANCE(copy_cut,
-    tapping-term-ms = <200>;
-    bindings = <&kp LC(INS)>, <&kp LC(X)>;
-)
-
 // Windows sleep key
 ZMK_MACRO(win_sleep,
     wait-ms = <500>;
@@ -241,7 +235,7 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
 /* Keymap */
 
-
+base
 ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // NAV + NUM --> SYS
 
 ZMK_LAYER(base,
