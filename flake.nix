@@ -9,9 +9,7 @@
     # Zephyr sdk and toolchain
     zephyr-nix.url = "github:urob/zephyr-nix";
     zephyr-nix.inputs.zephyr.follows = "zephyr";
-    # Relies on 23.11 to provide py38 until zephyr-sdk bumps the requirement
-    # https://github.com/zephyrproject-rtos/sdk-ng/issues/752
-    # zephyr-nix.inputs.nixpkgs.follows = "nixpkgs";
+    zephyr-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { nixpkgs, zephyr-nix, ... }: let
