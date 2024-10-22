@@ -160,3 +160,9 @@ ZMK_TAP_DANCE(copy_cut,
     tapping-term-ms = <200>;
     bindings = <&kp LC(INS)>, <&kp LC(X)>;
 )
+
+// tap: < | double-tap: >
+ZMK_TAP_DANCE(less_greater,
+    tapping-term-ms = <200>;
+    bindings = <&kp LESS_THAN>, <&kp GREATER_THAN)>;
+)
