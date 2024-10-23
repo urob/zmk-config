@@ -80,7 +80,7 @@ ZMK_TAP_DANCE(comment_uncomment,
     bindings = <&comment>, <&uncomment>;
 )
 
-ZMK_MACRO(add_missing_imports,
+ZMK_MACRO(quick_fix,
     wait-ms = <0>;
     tap-ms = <10>;
     bindings = 

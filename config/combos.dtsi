@@ -97,7 +97,4 @@ ZMK_COMBO(2down, &double_down, RM3 RB3,         NAV    , COMBO_TERM_SLOW, COMBO_
 
 /* Horizontal combos both hands */
 ZMK_COMBO(clock, &kp CAPSLOCK, LT2 RT2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(uacc,  &u_accent,    LM0 RT1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(iacc,  &i_accent,    LM0 RT2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW) // don't work
-ZMK_COMBO(oacc,  &o_accent,    LM0 RT3,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 
