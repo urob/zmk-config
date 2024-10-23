@@ -1,0 +1,47 @@
+/*                KEY POSITIONS
+
+  ╭─────────────────────╮ ╭─────────────────────╮
+  │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
+  │ LM4 LM3 LM2 LM1 LM0 │ │ RM0 RM1 RM2 RM3 RM4 │
+  │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
+  ╰───────╮ LH2 LH1 LH0 │ │ RH0 RH1 RH2 ╭───────╯
+          ╰─────────────╯ ╰─────────────╯
+
+Note: The leader sequence must be pressed exactly as defined to be triggered.
+To capitalize a letter, hold the shift key (or tap sticky-shift) *before*
+tapping the leader key. */
+
+/* German umlauts */
+
+ZMK_LEADER_SEQUENCE(de_ae,      &de_ae,         LM4 RM2)  // ä
+ZMK_LEADER_SEQUENCE(de_oe,      &de_oe,         RM4 RM2)  // ö
+ZMK_LEADER_SEQUENCE(de_ue,      &de_ue,         RT2 RM2)  // ü
+ZMK_LEADER_SEQUENCE(de_eszett,  &de_eszett,     LM2 LM2)  // ß
+
+/* Greek letters */
+
+ZMK_LEADER_SEQUENCE(el_alpha,   &el_alpha,      RM2 LM4)  // α
+ZMK_LEADER_SEQUENCE(el_beta,    &el_beta,       RM2 LT0)  // β
+ZMK_LEADER_SEQUENCE(el_gamma,   &el_gamma,      RM2 LM0)  // γ
+ZMK_LEADER_SEQUENCE(el_delta,   &el_delta,      RM2 LB1)  // δ
+ZMK_LEADER_SEQUENCE(el_epsilon, &el_epsilon,    RM2 RM2)  // ε
+ZMK_LEADER_SEQUENCE(el_zeta,    &el_zeta,       RM2 LB4)  // ζ
+ZMK_LEADER_SEQUENCE(el_eta,     &el_eta,        RM2 RB1)  // η
+ZMK_LEADER_SEQUENCE(el_theta,   &el_theta,      RM2 LB0)  // θ
+ZMK_LEADER_SEQUENCE(el_iota,    &el_iota,       RM2 RM3)  // ι
+ZMK_LEADER_SEQUENCE(el_kappa,   &el_kappa,      RM2 RB0)  // κ
+ZMK_LEADER_SEQUENCE(el_lambda,  &el_lambda,     RM2 RT1)  // λ
+ZMK_LEADER_SEQUENCE(el_mu,      &el_mu,         RM2 RM0)  // μ
+ZMK_LEADER_SEQUENCE(el_nu,      &el_nu,         RM2 RM1)  // ν
+ZMK_LEADER_SEQUENCE(el_xi,      &el_xi,         RM2 LB3)  // ξ
+ZMK_LEADER_SEQUENCE(el_omikron, &el_omikron,    RM2 RM4)  // ο
+ZMK_LEADER_SEQUENCE(el_pi,      &el_pi,         RM2 LT1)  // π
+ZMK_LEADER_SEQUENCE(el_rho,     &el_rho,        RM2 LM3)  // ρ
+ZMK_LEADER_SEQUENCE(el_sigma,   &el_sigma,      RM2 LM2)  // σ
+ZMK_LEADER_SEQUENCE(el_tau,     &el_tau,        RM2 LM1)  // τ
+ZMK_LEADER_SEQUENCE(el_upsilon, &el_upsilon,    RM2 RT2)  // υ
+ZMK_LEADER_SEQUENCE(el_phi,     &el_phi,        RM2 LT2)  // ϕ
+ZMK_LEADER_SEQUENCE(el_chi,     &el_chi,        RM2 LB2)  // χ
+ZMK_LEADER_SEQUENCE(el_psi,     &el_psi,        RM2 RT3)  // ψ
+ZMK_LEADER_SEQUENCE(el_omega,   &el_omega,      RM2 LT3)  // ω
+
