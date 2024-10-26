@@ -12,18 +12,14 @@
 }:
 buildPythonApplication rec {
   pname = "keymap-drawer";
-  version = "0.18.0";
+  version = "0.18.1";
   pyproject = true;
 
   src = fetchPypi {
     pname = "keymap_drawer";
     inherit version;
-    hash = "sha256-faJB+cjj740Ny2wqVwc5t/+grEWBIEyhex3RoLCuIs8=";
+    hash = "sha256-MHjxsopXoYWZFuXUbeaI7BCSx3HkRaeVidY+mc8lj+s=";
   };
-
-  postPatch = ''
-    substituteInPlace pyproject.toml --replace 'platformdirs = "^3.5.1"' 'platformdirs = "^4.0.0"'
-  '';
 
   build-system = [poetry-core];
 
