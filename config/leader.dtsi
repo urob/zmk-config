@@ -13,10 +13,10 @@ tapping the leader key. */
 
 /* German umlauts */
 
-ZMK_LEADER_SEQUENCE(de_ae,      &de_ae,         LM4 RM2)  // ä
-ZMK_LEADER_SEQUENCE(de_oe,      &de_oe,         RM4 RM2)  // ö
-ZMK_LEADER_SEQUENCE(de_ue,      &de_ue,         RT2 RM2)  // ü
-ZMK_LEADER_SEQUENCE(de_eszett,  &de_eszett,     LM2 LM2)  // ß
+ZMK_LEADER_SEQUENCE(de_ae,      &de_ae,         LM4)  // ä
+ZMK_LEADER_SEQUENCE(de_oe,      &de_oe,         RM4)  // ö
+ZMK_LEADER_SEQUENCE(de_ue,      &de_ue,         RT2)  // ü
+ZMK_LEADER_SEQUENCE(de_eszett,  &de_eszett,     LM2)  // ß
 
 /* Greek letters */
 
