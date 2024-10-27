@@ -14,43 +14,17 @@ The description below is a very slight variation of urob's README, edited for my
 
 ## Todo
 
-- Change ALT Tab and swapper to left hand only
-- Figure out why leader key isn't working, remove unicode or switch back to L+Y?
-- Try increasing the combo term and decreasing the require prior to idle term
-- Change outside Corne keys once comfortable with homerow
-- Adjust gaming layer
-- Add info to keymap image
-  - tap: nav left  | long-tap: beginning of line
-  - tap: nav right | long-tap: end       of line
-  - tap: nav up    | long-tap: beginning of document
-  - tap: nav down  | long-tap: end       of document
-  - tap: nav bspc  | long-tap: delete word backward
-  - tap: nav del   | long-tap: delete word forward
-  - W+P mouse layer and scroll
-  - Gaming layer
-  - tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
-  - tap: num-word | double-tap: sticky num-layer | hold: num-layer
-  - tap: comma | shift + tap: semicolon | ctrl + shift + tap: <
-  - tap: dot | shift + tap: colon | ctrl + shift + tap: >
-  - tap: left/right parenthesis | shft + tap: less-than/greater-than
-  - tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
-  - tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
-  - tap: copy | double-tap: cut
-  - Windows sleep key
-  - // misc aliases
-  - #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
-  - #define DSK_PREV    &hmr LCTRL LG(LC(LEFT))  // previous desktop
-  - #define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
-  - #define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
-  - #define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
-  - #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
-  - #define VOL_DOWN    &hmr RSHFT C_VOL_DN
-  - // FN + NUM --> SYS
-  - Fix missing FN layer shortcuts
-  - SYS layer
-  - mouse layer
-  - holding control activates symbols? look into this
-
+- Fix leader key not working, or remove and add unicode layer back
+- Increase combo term and decrease require prior to idle term
+- To fix on image:
+  - Unicode / leader key symbols
+  - Space functions: Shift + tap -> dot, space, sticky shift
+  - Pin window across desktops combo
+  - Pin application across desktops combo
+  - Desktop manager combo
+  - FN + NUM layers -> SYS layer
+  - All SYS layer buttons
+  
 ## Highlights
 
 - ["Timeless" homerow mods](#timeless-homerow-mods)
