@@ -186,6 +186,7 @@ ZMK_MACRO(win_sleep, wait - ms = <500>; tap - ms = <50>;
 ZMK_MACRO(leader_sft, bindings = < &sk LSHFT & leader > ;)
 
 // misc aliases
+<<<<<<< HEAD
 #define CANCEL &kp K_CANCEL // cancel caps-word, num-word and smart-mouse
 #define DSK_PREV &hmr LCTRL LG(LC(LEFT)) // previous desktop
 #define DSK_NEXT &hmr LALT LG(LC(RIGHT)) // next     desktop
@@ -193,6 +194,9 @@ ZMK_MACRO(leader_sft, bindings = < &sk LSHFT & leader > ;)
 #define PIN_APP &kp LG(LC(LS(A)))        // pin application across desktops
 #define DSK_MGR &kp LA(GRAVE)            // desktop manager
 #define VOL_DOWN &hmr RSHFT C_VOL_DN
+=======
+#define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
+>>>>>>> 18f5516 (clean up windows related keys)
 
 /* Keymap */
 
