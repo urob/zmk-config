@@ -18,6 +18,6 @@ include:
   # - board: corneish_zen_v2_left
   # - board: corneish_zen_v2_right
   - board: nice_nano_v2
-    shield: sweep_left
+    shield: cradio_left
   - board: nice_nano_v2
-    shield: sweep_right
+    shield: cradio_right
