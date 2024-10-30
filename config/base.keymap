@@ -67,6 +67,7 @@
 #define THUMBS LH1 LH0 RH0 RH1                                              // thumbs
 >>>>>>> 66be6d8 (trying to get this to work on sweep)
 
+<<<<<<< HEAD
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
   ZMK_HOLD_TAP(NAME, flavor = "balanced"; tapping - term - ms = <280>;         \
                quick - tap - ms = <QUICK_TAP_MS>;                              \
@@ -75,6 +76,20 @@
                hold - trigger - on - release;)
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // left-hand HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // right-hand HRMs
+=======
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
+    ZMK_BEHAVIOR(NAME, hold_tap, \
+        flavor = "balanced"; \
+        tapping-term-ms = <280>; \
+        quick-tap-ms = <QUICK_TAP_MS>; \
+        require-prior-idle-ms = <120>; \
+        bindings = <HOLD>, <TAP>; \
+        hold-trigger-key-positions = <TRIGGER_POS>; \
+        hold-trigger-on-release; \
+    )
+MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
+MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
+>>>>>>> 6d8b13a (minor)
 
 // HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
 #define ZMK_COMBO_8(NAME, TAP, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE, HOLD,   \
