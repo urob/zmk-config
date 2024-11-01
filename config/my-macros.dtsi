@@ -68,6 +68,19 @@ ZMK_MACRO(four_left,
         <&macro_release &kp LCTRL>;
 )
 
+
+ZMK_MACRO(four_right,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = 
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_release &kp LCTRL>;
+)
+
 ZMK_MACRO(double_right,
     wait-ms = <0>;
     tap-ms = <5>;
