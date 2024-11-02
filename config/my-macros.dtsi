@@ -35,6 +35,15 @@ ZMK_MACRO(four_up,
     bindings = <&kp UP &kp UP &kp UP &kp UP>;
 )
 
+ZMK_MACRO(one_left,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = 
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp LEFT>,
+        <&macro_release &kp LCTRL>;
+)
+
 ZMK_MACRO(double_left,
     wait-ms = <0>;
     tap-ms = <5>;
@@ -68,15 +77,11 @@ ZMK_MACRO(four_left,
         <&macro_release &kp LCTRL>;
 )
 
-
-ZMK_MACRO(four_right,
+ZMK_MACRO(one_right,
     wait-ms = <0>;
     tap-ms = <5>;
     bindings = 
         <&macro_press &kp LCTRL>,
-        <&macro_tap &kp RIGHT>,
-        <&macro_tap &kp RIGHT>,
-        <&macro_tap &kp RIGHT>,
         <&macro_tap &kp RIGHT>,
         <&macro_release &kp LCTRL>;
 )
@@ -86,6 +91,29 @@ ZMK_MACRO(double_right,
     tap-ms = <5>;
     bindings = 
         <&macro_press &kp LCTRL>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_release &kp LCTRL>;
+)
+
+ZMK_MACRO(triple_right,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = 
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_release &kp LCTRL>;
+)
+
+ZMK_MACRO(four_right,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = 
+        <&macro_press &kp LCTRL>,
+        <&macro_tap &kp RIGHT>,
+        <&macro_tap &kp RIGHT>,
         <&macro_tap &kp RIGHT>,
         <&macro_tap &kp RIGHT>,
         <&macro_release &kp LCTRL>;
