@@ -197,3 +197,13 @@ ZMK_TAP_DANCE(less_greater,
     tapping-term-ms = <200>;
     bindings = <&kp LS(COMMA)>, <&kp LS(DOT)>;
 )
+
+ZMK_MACRO(select_line,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = 
+        <&macro_tap &kp HOME>,
+        <&macro_press &kp LSHFT>,
+        <&macro_tap &kp END>,
+        <&macro_release &kp LSHFT>;
+)
