@@ -65,6 +65,7 @@ ZMK_COMBO(cswap,  &c_swapper,  RM2 RM3,     DEF     NUM, COMBO_TERM_FAST, COMBO_
 // ZMK_COMBO(dleft,  &double_left,RM1 RM2,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST) // cause issue with ? combo
 ZMK_COMBO(tleft,  &triple_left,RM0 RM1,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(dright, &double_right,RM2 RM3,        NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(tright, &triple_right,RM3 RM4,        NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 // ZMK_COMBO(lbkt,  &kp LBKT,     RB1 RB2,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 // ZMK_COMBO(rbkt,  &kp RBKT,     RB2 RB3,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
