@@ -24,6 +24,8 @@ The description below is a very slight variation of urob's README, edited for my
   - Desktop manager combo
   - FN + NUM layers -> SYS layer
   - All SYS layer buttons
+ 
+  ![](draw/keymap.png)
   
 ## Highlights
 
@@ -37,8 +39,6 @@ The description below is a very slight variation of urob's README, edited for my
 - More intuitive shift-actions: <kbd>, ;</kbd>, <kbd>. :</kbd> and <kbd>?
   !</kbd>
 - Gaming layer toggle that switches to a shifted QWERTY layout
-
-![](draw/keymap.png)
 
 ### Troubleshooting
 
