@@ -16,6 +16,7 @@ The description below is a very slight variation of urob's README, edited for my
 
 - Fix leader key not working, or remove and add unicode layer back
 - Increase combo term and decrease require prior to idle term
+- Figure out better way to backspace, with ctrl as well
 - To fix on image:
   - Unicode / leader key symbols
   - Space functions: Shift + tap -> dot, space, sticky shift
