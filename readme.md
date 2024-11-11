@@ -8,16 +8,10 @@ The description below is a very slight variation of urob's README, edited for my
 
 <br />
 
-⌨️ **Keymap Image Status**: Not up to date -- see todo section.
+⌨️ **Keymap Image Status**: Up to date!
+📄 **Repo Status**: Up to date with urob!
 
 ---------
-
-## Todo
-
-- Fix leader key not working, or remove and add unicode layer back
-- Increase combo term and decrease require prior to idle term
-- To fix on image:
-  - Unicode / leader key symbols
  
   ![](keymap.png)
   
