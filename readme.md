@@ -8,8 +8,8 @@ The description below is a very slight variation of urob's README, edited for my
 
 <br />
 
-⌨️ **Keymap Image Status**: Up to date!
-📄 **Repo Status**: Up to date with urob!
+⌨️ **Keymap Image Status**: Up to date!  
+📄 **Repo Status**: Up to date!
 
 ---------
  
