@@ -125,7 +125,9 @@ ZMK. From my limited experience, I really like how it allows making less
 commonly used behaviors accessible without binding them to a dedicated key. For
 now I am using it for a variety of Unicode math symbols and international
 characters. I am planning to extend the use to various firmware interactions
-once I figure out the technical details.
+once I figure out the technical details.  
+
+See [zmk-helpers](https://github.com/urob/zmk-helpers?tab=readme-ov-file#unicode-characters-and-language-collection) for instructions on how to set up unicode and international characters for the leader key. The symbols will not work otherwise!
 
 ## Issues and workarounds
 
