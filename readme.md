@@ -1,4 +1,4 @@
-# mgkollander's fork of urob's zmk-config
+# urob's zmk-config (mgkollander edition)
 
 This [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration was forked from [urob's fantastic zmk-config](https://github.com/urob/zmk-config) and consists of a 42-keys layout designed for the Corne. It uses the [Colemak](https://colemak.com/) keyboard layout, but can be toggled to a modified QWERTY layout for playing games with WASD movement. It is my daily driver for general typing, programming, navigation, and gaming.
 
@@ -7,6 +7,10 @@ This [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration was forke
 The description below is a very slight variation of urob's README, edited for my own personal use. Any use of first-person language is from urob's perspective and not my original work.
 
 <br />
+
+**Todo**:
+- Remove unicode leader key sequences (leave leader key for future use)
+- Bring back unicode layer toggle
 
 ⌨️ **Keymap Image Status**: Up to date!  
 
