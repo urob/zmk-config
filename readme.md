@@ -1,16 +1,12 @@
 # urob's zmk-config (mgkollander edition)
 
-This [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration was forked from [urob's fantastic zmk-config](https://github.com/urob/zmk-config) and consists of a 42-keys layout designed for the Corne. It uses the [Colemak](https://colemak.com/) keyboard layout, but can be toggled to a modified QWERTY layout for playing games with WASD movement. It is my daily driver for general typing, programming, navigation, and gaming.
+This [ZMK firmware](https://github.com/zmkfirmware/zmk/) configuration was forked from [urob's zmk-config](https://github.com/urob/zmk-config) and consists of a 42-keys layout designed for the Corne. It uses the [Colemak](https://colemak.com/) keyboard layout, but can be toggled to a modified QWERTY layout for playing games with WASD movement. It is my daily driver for general typing, programming, navigation, and gaming.
 
 ### ⚠️ <ins>Note</ins>
 
 The description below is a very slight variation of urob's README, edited for my own personal use. Any use of first-person language is from urob's perspective and not my original work.
 
 <br />
-
-**Todo**:
-- Remove unicode leader key sequences (leave leader key for future use)
-- Bring back unicode layer toggle
 
 ⌨️ **Keymap Image Status**: Up to date!  
 
@@ -23,7 +19,7 @@ The description below is a very slight variation of urob's README, edited for my
 - ["Timeless" homerow mods](#timeless-homerow-mods)
 - Combos replace symbol layer
 - Smart numbers and mouse layers auto-toggle off
-- Unicode math and international leader key sequences
+- Leader key template ready to be customized
   [zmk-helpers](https://github.com/urob/zmk-helpers)
 - Arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
   document</kbd> on long-press
@@ -97,7 +93,7 @@ any other key automatically deactivates the layer.
 
 ##### Capsword
 
-My right thumb triggers three variations of shift: Tapping yields sticky-shift
+My left thumb triggers three variations of shift: Tapping yields sticky-shift
 (used to capitalize alphas), holding activates a regular shift, and
 double-tapping (or equivalently shift + tap) activates ZMK's Caps-word behavior.
 
@@ -130,7 +126,7 @@ now I am using it for a variety of Unicode math symbols and international
 characters. I am planning to extend the use to various firmware interactions
 once I figure out the technical details.  
 
-See [zmk-helpers](https://github.com/urob/zmk-helpers?tab=readme-ov-file#unicode-characters-and-language-collection) for instructions on how to set up unicode and international characters for the leader key. The symbols will not work otherwise!
+NOTE: See [zmk-helpers](https://github.com/urob/zmk-helpers?tab=readme-ov-file#unicode-characters-and-language-collection) for instructions on how to set up unicode and international characters for the leader key. As of right now, the leader key has no sequences implemented.
 
 ## Issues and workarounds
 
