@@ -29,8 +29,8 @@ ZMK_COMBO(mouseb,&mo ACCENTS,  LH1 LH0,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_
 // Combos overlapping HRMs are set up as hold-taps themselves to allow for instantaneous
 // chording of mods. Custom hold-tap instances can be bootstrapped on the go using the
 // 8-argument version of ZMK_COMBO defined in base.keymap.
-ZMK_COMBO(esc,   &hml LS(LALT)ESC, LM3 LM2, DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(ret,   &hml LS(LALT)RETURN, LM2 LM1, DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(esc,   &hml LS(LALT)ESC, LM3 LM2, DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(ret,   &hml LS(LALT)RETURN, LM2 LM1, DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 // ZMK_COMBO(ldrsh, &leader_sft,  LM3 LM2 LM1, DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LC(LALT)), KEYS_R)
 
 // ZMK_COMBO(at,    &kp AT,       LT4 LT3,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
