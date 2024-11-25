@@ -1,16 +1,50 @@
+# This file specifies the build dependencies for Github Action workflows and
+# for local build environments. The workspace has three toplevel directories
+# containing the user config, user modules and ZMK. Zephyr and its dependencies
+# are namespaced under /zmk to keep the toplevel clean.
+#
+# ZMK-Workspace
+# ├── config
+# ├── modules (user modules)
+# └── zmk
+#     └── modules (Zephyr modules)
+#
+# To create a local build environment, clone this repository and then run the
+# following commands from its toplevel directory:
+#
+# $ west init -l config
+# $ west update
+# $ west zephyr-export
+#
+---
 manifest:
+  defaults:
+    remote: urob
+    revision: main
+
   remotes:
-    - name: zmkfirmware
+    - name: upstream
       url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
+
   projects:
-    - name: zmk
-      remote: urob
-      revision: main
-      import: app/west.yml
+    - name: zmk-auto-layer
+      path: modules/auto-layer
     - name: zmk-helpers
-      remote: urob
-      revision: v2
+      path: modules/helpers
+    - name: zmk-leader-key
+      path: modules/leader-key
+    - name: zmk-tri-state
+      path: modules/tri-state
+
+    # ZMK with Zephyr namespaced under /zmk. This requires that ZMK imports
+    # Zephyr with a path other than `zephyr` (as in `going-modular`).
+    - name: zmk
+      path: .
+      import:
+        file: app/west.yml
+        path-prefix: zmk
+
   self:
     path: config

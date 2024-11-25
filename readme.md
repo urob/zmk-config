@@ -10,30 +10,22 @@ compatible with Zephyr 3.0 is available
 
 ## Highlights
 
-- clean keymap + unicode setup using helper macros from
-  [zmk-nodefree-config](https://github.com/urob/zmk-nodefree-config)
-- the base keymap and combo setup are independent of the physical location of
-  keys and are re-used for multiple keyboards. The configuration is fit onto
-  larger boards by padding it via a modular structure of "extra keys"
-- ["timeless" homerow mods](#timeless-homerow-mods)
-- combos replacing the symbol layer
-- smart numbers and smart mouse layers that automatically toggle off when done
-- sticky shift on right thumb, double-tap (or shift + tap)[^1] activates
-  caps-word
-- arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
+- ["Timeless" homerow mods](#timeless-homerow-mods)
+- Combos replace symbol layer
+- Smart numbers and mouse layers auto-toggle off
+- Unicode math and international leader key sequences
+- Simplified Devicetree syntax using helper macros from
+  [zmk-helpers](https://github.com/urob/zmk-helpers)
+- Base keymap padded with modular structure of "extra keys" to fit on larger
+  boards
+- Arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
   document</kbd> on long-press
-- more intuitive shift-actions: <kbd>, ;</kbd>, <kbd>. :</kbd> and <kbd>?
+- More intuitive shift-actions: <kbd>, ;</kbd>, <kbd>. :</kbd> and <kbd>?
   !</kbd>
-- <kbd>shift</kbd> + <kbd>space</kbd> morphs into <kbd>dot</kbd> →
-  <kbd>space</kbd> → <kbd>sticky-shift</kbd>
-- "Greek" layer for mathematical typesetting (activated as sticky-layer via a
-  combo)
-- modified Github Actions workflow that recognizes git-submodules
-- automated
-  [build-scripts](https://github.com/urob/zmk-config/tree/main/scripts#readme)
-  for local and Docker-based building (independently of VS Code)
+- Fully automated, nix-based
+  [local build environment](#local-development-workspace)
 
-![](img/keymap.png)
+![](draw/keymap.png)
 
 ## Timeless homerow mods
 
@@ -43,7 +35,7 @@ timing: In its most naive implementation, in order to produce a "mod", they must
 be held _longer_ than `tapping-term-ms`. In order to produce a "tap", they must
 be held _less_ than `tapping-term-ms`. This requires very consistent typing
 speeds that, alas, I do not possess. Hence my quest for a "timer-less" HRM
-setup.[^2]
+setup.[^1]
 
 After months of tweaking, I eventually ended up with a HRM setup that is
 essentially timer-less, resulting in virtually no misfires. Yet it provides a
@@ -53,7 +45,7 @@ Let's suppose for a moment we set `tapping-term-ms` to something ridiculously
 large, say 5 seconds. This makes the configuration timer-less of sorts. But it
 has two problems: (1) To activate a mod we will have to hold the HRM keys for
 what feels like eternity. (2) During regular typing, there are delays between
-the press of a key and the time it appears on the screen.[^3] Enter two my
+the press of a key and the time it appears on the screen.[^2] Enter two of my
 favorite ZMK features:
 
 - To address the first problem, I use ZMK's `balanced` flavor, which produces a
@@ -98,18 +90,18 @@ This is great but there are still a few rough edges:
   false negatives when typing fast.
 
 Here's my configuration (I use a bunch of
-[helper macros](https://github.com/urob/zmk-nodefree-config) to simplify the
-syntax, but they are not necessary):
+[helper macros](https://github.com/urob/zmk-helpers) to simplify the syntax, but
+they are not necessary):
 
 ```C++
 /* use helper macros to define left and right hand keys */
-#include "../zmk-nodefree-config/keypos_def/keypos_36keys.h"                // keyposition helpers
+#include "zmk-helpers/key-labels/36.h"                                      // key-position labels
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right-hand keys
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                                      // thumb keys
 
 /* left-hand HRMs */
-ZMK_BEHAVIOR(hml, hold_tap,
+ZMK_HOLD_TAP(hml,
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <175>;                // repeat on tap-into-hold
@@ -120,7 +112,7 @@ ZMK_BEHAVIOR(hml, hold_tap,
 )
 
 /* right-hand HRMs */
-ZMK_BEHAVIOR(hmr, hold_tap,
+ZMK_HOLD_TAP(hmr,
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <175>;                // repeat on tap-into-hold
@@ -150,7 +142,7 @@ smaller (and larger) things to try.
 
 - **Noticeable delay when tapping HRMs:** Increase `require-prior-idle-ms`. As a
   rule of thumb, you want to set it to at least `10500/x` where `x` is your
-  (relaxed) WPM for English prose.[^4]
+  (relaxed) WPM for English prose.[^3]
 - **False negatives (same-hand):** Reduce `tapping-term-ms` (or disable
   `hold-trigger-key-positions`)
 - **False negatives (cross-hand):** Reduce `require-prior-idle-ms` (or set
@@ -199,11 +191,11 @@ while also making them easy to remember. Specifically:
 
 Inspired by Jonas Hietala's
 [Numword](https://www.jonashietala.se/blog/2021/06/03/the-t-34-keyboard-layout/#where-are-the-digits)
-for QMK, I implemented my own version of
-[Smart-layers for ZMK](https://github.com/zmkfirmware/zmk/pull/1451). It is
-triggered via a single tap on "Smart-Num". Numword continues to be activated as
-long as I type numbers, and deactivates automatically on any other keypress
-(holding it activates a non-sticky num layer).
+for QMK, I implemented my own
+[Auto-layer behavior](https://github.com/urob/zmk-auto-layer) for ZMK to set up
+Numword. It is triggered via a single tap on "Smart-Num". Numword continues to
+be activated as long as I type numbers, and deactivates automatically on any
+other keypress (holding it activates a non-sticky num layer).
 
 After using Numword for more than a year now, I have been overall very happy
 with it. When typing single digits, it effectively is a sticky-layer but with
@@ -251,14 +243,153 @@ I am using [Nick Conway](https://github.com/nickconway)'s fantastic
 [tri-state](https://github.com/zmkfirmware/zmk/pull/1366) behavior for a
 one-handed Alt-Tab switcher (`PWin` and `NWin`).
 
-##### Repeat
+##### Leader key
 
-I recently switched to 25g-chocs on one of my keyboards. I already was very
-happy with my combos prior to that (even with heavy-ish MX-switches). But with
-the light chocs, I find that I can now even use them for regular typing. While I
-haven't yet tried placing alphas on combos, I am currently experimenting with a
-`repeat` combo on my home row that I use to reduce SFUs when typing
-double-letter words.
+I recently started using Nick Conway's
+[Leader key](https://github.com/zmkfirmware/zmk/pull/1380) implementation for
+ZMK. From my limited experience, I really like how it allows making less
+commonly used behaviors accessible without binding them to a dedicated key. For
+now I am using it for a variety of Unicode math symbols and international
+characters. I am planning to extend the use to various firmware interactions
+once I figure out the technical details.
+
+## Local development workspace
+
+I streamline my local build process using `nix`, `direnv` and `just`. This
+automatically sets up a virtual development environment with `west`, the
+`zephyr-sdk` and all its dependencies when `cd`-ing into the ZMK-workspace. The
+environment is _completely isolated_ and won't pollute your system.
+
+### Setup
+
+#### Pre-requisites
+
+1. Install the `nix` package manager:
+
+   ```bash
+   # Install Nix with flake support enabled
+   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix |
+      sh -s -- install --no-confirm
+
+   # Start the nix daemon without restarting the shell
+   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+   ```
+
+2. Install [`direnv`](https://direnv.net/) (and optionally but recommended
+   [`nix-direnv`](https://github.com/nix-community/nix-direnv)[^4]) using your
+   package manager of choice. E.g., using the `nix` package manager that we just
+   installed[^5]:
+
+   ```
+   nix profile install nixpkgs#direnv nixpkgs#nix-direnv
+   ```
+
+3. Set up the `direnv` [shell-hook](https://direnv.net/docs/hook.html) for your
+   shell. E.g., for `bash`:
+
+   ```bash
+   # Install the shell-hook
+   echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
+
+   # Enable nix-direnv (if installed in the previous step)
+   mkdir -p ~/.config/direnv
+   echo 'source $HOME/.nix-profile/share/nix-direnv/direnvrc' >> ~/.config/direnv/direnvrc
+
+   # Optional: make direnv less verbose
+   echo '[global]\nwarn_timeout = "2m"\nhide_env_diff = true' >> ~/.config/direnv/direnv.toml
+
+   # Source the bashrc to activate the hook (or start a new shell)
+   source ~/.bashrc
+   ```
+
+#### Set up the workspace
+
+1. Clone _your fork_ of this repository. I like to name my local clone
+   `zmk-workspace` as it will be the toplevel of the development environment.
+
+   ```bash
+   # Replace `urob` with your username
+   git clone https://github.com/urob/zmk-config zmk-workspace
+   ```
+
+2. Enter the workspace and set up the environment.
+
+   ```bash
+   # The first time you enter the workspace, you will be prompted to allow direnv
+   cd zmk-workspace
+
+   # Allow direnv for the workspace, which will set up the environment
+   direnv allow
+
+   # Initialize the Zephyr workspace and pull in the ZMK dependencies
+   # (same as `west init -l config && west update && west zephyr-export`)
+   just init
+   ```
+
+### Usage
+
+After following the steps above your workspace should look like this:
+
+```bash
+zmk-workspace
+├── config
+├── firmware (created after building)
+├── modules
+│   ├── auto-layer
+│   ├── helpers
+│   └── tri-state
+└── zmk
+    └── ...
+```
+
+#### Building the firmware
+
+To build the firmware, simply type `just build all` from anywhere within the
+workspace. This will parse `build.yaml` and build the firmware for all board and
+shield combinations listed there.
+
+To only build the firmware for a specific target, use `just build <target>`.
+This will build the firmware for all matching board and shield combinations. For
+instance, to build the firmware for my Corneish Zen, I can type
+`just build zen`, which builds both `corneish_zen_v2_left` and
+`corneish_zen_v2_right`. (`just list` shows all valid build targets.)
+
+Additional arguments to `just build` are passed on to `west`. For instance, a
+pristine build can be triggered with `just build all -p`.
+
+(For this particular example, there is also a `just clean` recipe, which clears
+the build cache. To list all available recipes, type `just`. Bonus tip: `just`
+provides
+[completion scripts](https://github.com/casey/just?tab=readme-ov-file#shell-completion-scripts)
+for many shells.)
+
+#### Drawing the keymap
+
+The build environment packages
+[keymap-drawer](https://github.com/caksoylar/keymap-drawer). `just draw` parses
+`base.keymap` and draws it to `draw/base.svg`. I haven't gotten around to
+tweaking the output yet, so for now this is just a demonstration of how to set
+things up.
+
+#### Hacking the firmware
+
+To make changes to the ZMK source or any of the modules, simply edit the files
+or use `git` to pull in changes.
+
+To switch to any remote branches or tags, use `git fetch` inside a module
+directory to make the remote refs locally available. Then switch to the desired
+branch with `git checkout <branch>` as usual. You may also want to register
+additional remotes to work with or consider making them the default in
+`config/west.yml`.
+
+#### Updating the build environment
+
+To update the ZMK dependencies, use `just update`. This will pull in the latest
+version of ZMK and all modules specified in `config/west.yml`. Make sure to
+commit and push all local changes you have made to ZMK and the modules before
+running this command, as this will overwrite them.
+
+To upgrade the Zephyr SDK and Python build dependencies, use `just upgrade-sdk`.
 
 ## Issues and workarounds
 
@@ -273,31 +404,11 @@ remaining issues:
   pause when wanting to chord HRMs that overlap with combo positions. As a
   workaround, I implemented all homerow combos as homerow-mod-combos. This is
   good enough for day-to-day, but does not address all edge cases (eg
-  dynamically adding/removing mods doesn't work well). Having a native solution
-  akin to QMK's "COMBO_MUST_TAP" property would be fantastic.
-- Another item on my wishlist are adaptive keys
-  ([#1624](https://github.com/zmkfirmware/zmk/issues/1624)). This would open the
-  door for things like <kbd>space</kbd><kbd>space</kbd> becoming
-  <kbd>.</kbd><kbd>space</kbd><kbd>sticky-shift</kbd>. (Using tap-dance isn't
-  really an option here due to the delay it adds)
-- A minor thing is that ZMK doesn't yet support any keys on the
-  desktop-user-page; e.g., OS sleep
-  ([#1077](https://github.com/zmkfirmware/zmk/issues/1077),
-  [#1535](https://github.com/zmkfirmware/zmk/issues/1535))
+  changing active mods).
 - Very minor: `&bootloader` doesn't work with stm32 boards like the Planck
   ([#1086](https://github.com/zmkfirmware/zmk/issues/1086))
 
 [^1]:
-    Really what's happening is that `Shift` + my right home-thumb morph into
-    caps-word. This gives me two separate ways of activating it: (1) Holding the
-    homerow-mod shift on my left index-finger and then pressing my right
-    home-thumb, which is my new preferred way. Or, (2) double-tapping the right
-    home-thumb, which also works because the first tap yields sticky-shift,
-    activating the mod-morph upon the second tap. But even when only activating
-    via double-tapping, this implementation is advantageous compared to using
-    tap-dance as it does not create any delay when single-tapping the key.
-
-[^2]:
     I call it "timer-less", because the large tapping-term makes the behavior
     insensitive to the precise timings. One may say that there is still the
     `require-prior-idle` timeout. However, with both a large tapping-term and
@@ -306,15 +417,26 @@ remaining issues:
     i.e., variations in typing speed won't affect _what_ is being typed but
     merely _how fast_ it appears on the screen.
 
-[^3]:
+[^2]:
     The delay is determined by how quickly a key is released and is not directly
     related to the tapping-term. But regardless of its length, most people still
     find it noticable and disruptive.
 
-[^4]:
+[^3]:
     E.g, if your WPM is 70 or larger, then the default of 150ms (=10500/70)
     should work well. The rule of thumb is based on an average character length
     of 4.7 for English words. Taking into account 1 extra tap for `space`, this
     yields a minimum `require-prior-idle-ms` of (60 _ 1000) / (5.7 _ x) ≈ 10500
     / x milliseconds. The approximation errs on the safe side, as in practice
     home row taps tend to be faster than average.
+
+[^4]:
+    `nix-direnv` provides a vastly improved caching experience compared to only
+    having `direnv`, making entering and exiting the workspace instantaneous
+    after the first time.
+
+[^5]:
+    This will permanently install the packages into your local profile, forgoing
+    many of the benefits that make Nix uniquely powerful. A better approach,
+    though beyond the scope of this document, is to use `home-manager` to
+    maintain your user environment.

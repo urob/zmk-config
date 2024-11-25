@@ -14,9 +14,12 @@
 #define X_RT  &trans
 
 /* activate bluetooth */
-#define CONFIG_WIRELESS 1
+#define CONFIG_WIRELESS
 
 /* source the main keymap */
 #include "base.keymap"
+
+/* use 6-column layout for Zen */
+/{ chosen { zmk,physical-layout = &foostan_corne_6col_layout; }; };
 
 
