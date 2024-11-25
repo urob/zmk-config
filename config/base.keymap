@@ -24,9 +24,6 @@
 #define UC_OSX 9
 #define MOUSE 10
 
-#include "mouse.dtsi"
-#include "extra_keys.h"
-
 #define XXX &none
 #define ___ &trans
 
@@ -83,7 +80,6 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 /* Combos, leader key sequences, mouse emulation */
 
-#include "combos.dtsi"  // must be sources after HRM-combo hack
 #include "leader.dtsi"
 #include "mouse.dtsi"
 #include "extra_keys.h"
