@@ -11,6 +11,8 @@
 
 #include "zmk-helpers/helper.h"
 #include "../config/sv.dtsi"
+#include "zmk-helpers/unicode-chars/greek.dtsi"
+#include "zmk-helpers/unicode-chars/german.dtsi"
 
 #define DEF_WIN 0
 #define DEF_OSX 1
