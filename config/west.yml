@@ -37,6 +37,9 @@ manifest:
     - name: zmk-tri-state
       revision: main
       path: modules/tri-state
+    - name: zmk-leader-key
+      revision: main
+      path: modules/leader-key
 
     # ZMK with Zephyr namespaced under /zmk. This requires that ZMK imports
     # Zephyr with a path other than `zephyr` (as in `going-modular`).
