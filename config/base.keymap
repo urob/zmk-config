@@ -148,6 +148,18 @@ ZMK_TRI_STATE(swapper,
     ignored-key-positions = <LT2>;
 )
 
+// Alt+Tab swapper, requires PR #1366
+ZMK_TRI_STATE(swapper_win,
+    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+    ignored-key-positions = <LT2>;
+)
+
+// Alt+Tab swapper, requires PR #1366
+ZMK_TRI_STATE(swapper_osx,
+    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+    ignored-key-positions = <LT2>;
+)
+
 // reuse basic mod-morph scheme
 #define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) \
     ZMK_MOD_MORPH(NAME, \
