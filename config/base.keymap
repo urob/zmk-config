@@ -1,5 +1,6 @@
 #include <behaviors.dtsi>
 #include <behaviors/num_word.dtsi> // requires auto-layer module
+#include <behaviors/leader_key.dtsi> // requires leader-key module
 #include <dt-bindings/zmk/keys.h>
 #ifdef CONFIG_WIRELESS
     #include <dt-bindings/zmk/bt.h>
@@ -198,13 +199,6 @@ ZMK_TAP_DANCE(copy_cut,
     bindings = <&kp LC(INS)>, <&kp LC(X)>;
 )
 
-// Windows sleep key
-ZMK_MACRO(win_sleep,
-    wait-ms = <500>;
-    tap-ms = <50>;
-    bindings = <&kp LG(X) &kp U &kp S>;
-)
-
 // Sticky shift + leader
 ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
@@ -244,7 +238,7 @@ ZMK_LAYER(nav,
 
 ZMK_LAYER(fn,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp F10       &kp F1        &kp F2        &kp F3        &kp LS(TAB)     X_MT     ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    &win_sleep      X_RT
+    X_LT     &kp F10       &kp F1        &kp F2        &kp F3        &kp LS(TAB)     X_MT     ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT   &kp SYSTEM_SLEEP X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LGUI F11 &hml LALT F4  &hml LSHFT F5 &hml LCTRL F6 &swapper        X_MM     ___           DSK_PREV      VOL_DOWN      DSK_NEXT      ___             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
