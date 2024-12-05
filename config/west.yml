@@ -20,7 +20,7 @@
 manifest:
   defaults:
     remote: urob
-    revision: main
+    revision: v0.1
 
   remotes:
     - name: upstream
@@ -34,6 +34,7 @@ manifest:
     - name: zmk-helpers
       path: modules/helpers
     - name: zmk-leader-key
+      revision: legacy
       path: modules/leader-key
     - name: zmk-tri-state
       path: modules/tri-state
