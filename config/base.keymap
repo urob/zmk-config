@@ -1,6 +1,5 @@
 #include <behaviors.dtsi>
 #include <behaviors/num_word.dtsi> // requires auto-layer module
-#include <behaviors/leader_key.dtsi> // requires leader-key module
 #include <dt-bindings/zmk/keys.h>
 #ifdef CONFIG_WIRELESS
     #include <dt-bindings/zmk/bt.h>
@@ -40,10 +39,6 @@
     flavor = "balanced";
     tapping-term-ms = <200>;
     quick-tap-ms = <QUICK_TAP_MS>;
-};
-
-&leader {  // leader-key config
-    timeout-ms = <650>;
 };
 
 /* Homerow mods */

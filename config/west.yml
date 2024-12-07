@@ -34,7 +34,6 @@ manifest:
     - name: zmk-helpers
       path: modules/helpers
     - name: zmk-leader-key
-      revision: legacy
       path: modules/leader-key
     - name: zmk-tri-state
       path: modules/tri-state
