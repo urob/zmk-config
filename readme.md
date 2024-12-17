@@ -4,9 +4,10 @@ This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/)
 configuration. It consists of a 34-keys base layout that is re-used for various
 boards, including my Corneish Zen and my Planck.
 
-This branch is updated for the latest ZMK using Zephyr 3.5. A legacy version
-compatible with Zephyr 3.0 is available
-[here](https://github.com/urob/zmk-config/tree/main-zephyr-3.0).
+My configuration builds against `v0.1` of upstream ZMK plus a backport of the
+merged pointer PR. Custom functionality is added through various ZMK modules.
+The state of the entire firmware is pinned in my `west`
+[manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
 
 ## Highlights
 
@@ -245,13 +246,12 @@ one-handed Alt-Tab switcher (`PWin` and `NWin`).
 
 ##### Leader key
 
-I recently started using Nick Conway's
-[Leader key](https://github.com/zmkfirmware/zmk/pull/1380) implementation for
-ZMK. From my limited experience, I really like how it allows making less
-commonly used behaviors accessible without binding them to a dedicated key. For
-now I am using it for a variety of Unicode math symbols and international
-characters. I am planning to extend the use to various firmware interactions
-once I figure out the technical details.
+I am using my own implementation of a
+[Leader key](https://github.com/urob/zmk-leader-key) to bind less common
+functionality without giving up dedicated keys. Currently, I am using leader
+sequences for various system and output controls. I am also using leader key
+sequences for convenient access to various Unicode math symbols and
+international characters.
 
 ## Local development workspace
 
@@ -403,8 +403,8 @@ remaining issues:
   ([#544](https://github.com/zmkfirmware/zmk/issues/544)), requiring a brief
   pause when wanting to chord HRMs that overlap with combo positions. As a
   workaround, I implemented all homerow combos as homerow-mod-combos. This is
-  good enough for day-to-day, but does not address all edge cases (eg
-  changing active mods).
+  good enough for day-to-day, but does not address all edge cases (eg changing
+  active mods).
 - Very minor: `&bootloader` doesn't work with stm32 boards like the Planck
   ([#1086](https://github.com/zmkfirmware/zmk/issues/1086))
 
