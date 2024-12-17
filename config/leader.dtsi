@@ -5,6 +5,7 @@
             leader: leader { \
                 compatible = "zmk,behavior-leader-key"; \
                 #binding-cells = <0>; \
+                ignore-keys = <LSHFT RSHFT>; \
                 leader_sequence_ ## name { \
                     bindings = <leader_bindings>; \
                     sequence = <leader_sequence>; \
@@ -44,3 +45,12 @@ ZMK_LEADER_SEQUENCE(el_phi,     &el_phi,        E F)  // ϕ
 ZMK_LEADER_SEQUENCE(el_chi,     &el_chi,        E C)  // χ
 ZMK_LEADER_SEQUENCE(el_psi,     &el_psi,        E Y)  // ψ
 ZMK_LEADER_SEQUENCE(el_omega,   &el_omega,      E W)  // ω
+
+// BLE and USB
+#ifdef CONFIG_WIRELESS
+ZMK_LEADER_SEQUENCE(usb,        &out OUT_USB,   U S B)
+ZMK_LEADER_SEQUENCE(ble,        &out OUT_BLE,   B L E)
+#endif // CONFIG_WIRELESS
+ZMK_LEADER_SEQUENCE(reset,      &sys_reset,     R E S E T)
+ZMK_LEADER_SEQUENCE(boot,       &bootloader,    B O O T)
+
