@@ -533,6 +533,9 @@ parse_config:
       shifted: ""
       tap: "V"
       hold: $$mdi:content-paste$$
+    "&grave":
+      shifted: "`"
+      tap: "ESC"
 
     # Reset
     "&sys_reset":

@@ -192,6 +192,9 @@ SIMPLE_MORPH(slash_inner_qmark, GUI, &kp BACKSLASH, &kp QMARK)
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
+// tap: ESC | shift + tap: grave
+SIMPLE_MORPH(grave, SFT, &kp ESC, &kp GRAVE)
+
 // tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
 ZMK_HOLD_TAP(lt_spc,
     flavor = "balanced";
@@ -370,7 +373,7 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // )
 
 ZMK_LAYER(Base,
-&kp ESC  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &bs_del
+&grave  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &bs_del
   &mt LCTRL TAB &hml LCTRL A   &hml LALT S   &hml LCMD D  &hml LSHFT F  &kp G   &kp H &hmr RSHFT J  &hmr LCMD K  &hmr LALT L   &hmr LCTRL SQT  &kp ENTER
     &mo MEDIA &tdundo &tdcut &tdcopy    &tdpaste    &kp B                          &kp N     &kp M    &comma_morph  &dot_morph &slash_qmark &mo FUN
                             SMART_NUM &lt_spc NAV 0  &lt SYM DEL       &kp ENTER &smart_shft  &kp RALT
@@ -398,9 +401,9 @@ ZMK_LAYER(Media,
 )
 
 ZMK_LAYER(Symbols,
- &trans  &trans &trans &trans     &trans    &trans                         &trans  &kp LBRC &kp AMPS &kp STAR     &kp LPAR    &kp RBRC                          
-&trans   &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT  &trans       &trans  &kp SEMI &kp DLLR &kp PRCNT    &kp CARET    &kp PLUS  
- &trans  &trans &trans &trans     &trans    &trans                         &trans  &kp TILDE &kp EXCL &kp AT     &kp HASH    &kp PIPE2
+ &trans  &trans &trans &trans     &trans    &trans                         &kp LBRC &kp AMPS &kp STAR     &kp LPAR    &kp RBRC &trans  
+&trans   &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT  &trans       &kp SEMI &kp DLLR &kp PRCNT    &kp CARET    &kp PLUS &trans  
+ &trans  &trans &trans &trans     &trans    &trans                         &kp TILDE &kp EXCL &kp AT     &kp HASH    &kp PIPE2 &trans  
                              &trans  &trans &trans                        &kp LPAR &kp RPAR &kp UNDER
 )
 
@@ -427,7 +430,7 @@ ZMK_LAYER(Tap-only,
 
 ZMK_LAYER(Adjust,
 &out OUT_TOG &bt BT_NXT &bt BT_PRV &trans       &trans &bt BT_CLR              &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans
-  &to DEF &trans     &trans     &trans       &trans &trans                  &trans &trans &trans &trans &trans &trans
+  &to TAP &trans     &trans     &trans       &trans &trans                  &trans &trans &trans &trans &trans &to DEF
           &trans     &trans     &trans       &trans &trans                  &trans &trans &trans &trans &trans &trans
                            &trans    &trans &trans &trans    &trans &trans &trans
 )
