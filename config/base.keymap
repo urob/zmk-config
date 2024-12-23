@@ -401,7 +401,7 @@ ZMK_LAYER(Media,
 )
 
 ZMK_LAYER(Symbols,
- &trans  &trans &trans &trans     &trans    &trans                         &kp LBRC &kp AMPS &kp STAR     &kp LPAR    &kp RBRC &trans  
+ &trans  &trans &trans &trans     &trans    &trans                         &kp LBKT &kp AMPS &kp STAR     &kp LPAR    &kp RBKT &trans  
 &trans   &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT  &trans       &kp SEMI &kp DLLR &kp PRCNT    &kp CARET    &kp PLUS &trans  
  &trans  &trans &trans &trans     &trans    &trans                         &kp TILDE &kp EXCL &kp AT     &kp HASH    &kp PIPE2 &trans  
                              &trans  &trans &trans                        &kp LPAR &kp RPAR &kp UNDER
