@@ -208,6 +208,8 @@ ZMK_MACRO(dot_spc,
     tap-ms = <5>;
     bindings = <&kp DOT &kp SPACE &sk LSHFT>;
 )
+// tap: media | shift + tap: nav layer
+SIMPLE_MORPH(med_nav, SFT, &mo MEDIA, &to NAV)
 
 // tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
 ZMK_MOD_MORPH(bs_del,
@@ -375,14 +377,14 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 ZMK_LAYER(Base,
 &grave  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &bs_del
   &mt LCTRL TAB &hml LCTRL A   &hml LALT S   &hml LCMD D  &hml LSHFT F  &kp G   &kp H &hmr RSHFT J  &hmr LCMD K  &hmr LALT L   &hmr LCTRL SQT  &kp ENTER
-    &mo MEDIA &tdundo &tdcut &tdcopy    &tdpaste    &kp B                          &kp N     &kp M    &comma_morph  &dot_morph &slash_qmark &mo FUN
+    &med_nav &tdundo &tdcut &tdcopy    &tdpaste    &kp B                          &kp N     &kp M    &comma_morph  &dot_morph &slash_qmark &mo FUN
                             SMART_NUM &lt_spc NAV 0  &lt SYM DEL       &kp ENTER &smart_shft  &kp RALT
 )
 
 ZMK_LAYER(Navigation,
   &kp LG(Q)    &kp TAB_LT    &kp TAB_RT           &kp LS(TAB)   &swapper      &kp LC(F4)                          &kp C_AC_BACK     &kp HOME    NAV_UP     &kp PG_UP &kp C_AC_FORWARD NAV_BSPC
   &trans  &sk LCTRL     &sk LALT      &sk LCMD      &sk LSHFT    &trans                          &caps_word     NAV_LEFT    NAV_DOWN     NAV_RIGHT   NAV_DEL  &trans
-            &trans   &trans &trans &trans     &trans    &trans                    &kp K_APP     &kp END    &kp INS &kp PG_DN &kp C_AC_CUT &trans
+             &to DEF   &trans &trans &trans     &trans    &trans                    &kp K_APP     &kp END    &kp INS &kp PG_DN &kp C_AC_CUT &trans
                              &trans &trans &trans    &trans &trans   &trans
 )
 
