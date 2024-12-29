@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     # Version of requirements.txt installed in pythonEnv
-    zephyr.url = "github:zephyrproject-rtos/zephyr/v3.5.0";
+    zephyr.url = "github:zmkfirmware/zephyr/v3.5.0+zmk-fixes";
     zephyr.flake = false;
 
     # Zephyr sdk and toolchain
@@ -22,17 +22,19 @@
       keymap_drawer = pkgs.python3Packages.callPackage ./draw { };
 
     in {
-      default = pkgs.mkShell {
+      default = pkgs.mkShellNoCC {
         packages = [
           keymap_drawer
 
           zephyr.pythonEnv
-          (zephyr.sdk.override { targets = [ "arm-zephyr-eabi" ]; })
+          (zephyr.sdk-0_16.override { targets = [ "arm-zephyr-eabi" ]; })
 
           pkgs.cmake
           pkgs.dtc
           pkgs.ninja
-          pkgs.qemu # needed for native_posix target
+          # pkgs.ccache
+          # pkgs.dfu-util
+          # pkgs.qemu
 
           # Uncomment these if you don't have system-wide versions:
           # pkgs.gawk             # awk
