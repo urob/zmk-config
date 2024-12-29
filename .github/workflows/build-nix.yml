@@ -1,0 +1,11 @@
+name: Build ZMK firmware (nix)
+on:
+  workflow_dispatch:
+  # push:
+  #   paths:
+  #     - config/**
+  #     - build.yaml
+
+jobs:
+  build:
+    uses: urob/zmk-actions/.github/workflows/build-user-config.yml@main
