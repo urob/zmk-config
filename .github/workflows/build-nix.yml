@@ -9,3 +9,5 @@ on:
 jobs:
   build:
     uses: urob/zmk-actions/.github/workflows/build-user-config.yml@main
+    with:
+      toolchain: zephyr # gnuarmemb or zephyr
