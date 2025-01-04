@@ -10,4 +10,6 @@ jobs:
   build:
     uses: urob/zmk-actions/.github/workflows/build-user-config.yml@main
     with:
-      toolchain: zephyr # gnuarmemb or zephyr
+      # Optionally choose the toolchain to use: Zephyr SDK (default) or GNU Arm
+      # Embedded ('gnuarmemb'). The latter results in slightly faster builds.
+      toolchain: zephyr
