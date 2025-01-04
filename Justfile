@@ -104,3 +104,32 @@ update:
 # upgrade zephyr-sdk and python dependencies
 upgrade-sdk:
     nix flake update --flake .
+
+[no-cd]
+test $testpath *FLAGS:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    testcase=$(basename "$testpath")
+    build_dir="{{ build / "tests" / '$testcase' }}"
+    config_dir="{{ '$(pwd)' / '$testpath' }}"
+    cd {{ justfile_directory() }}
+
+    if [[ "{{ FLAGS }}" != *"--no-build"* ]]; then
+        echo "Running $testcase..."
+        rm -rf "$build_dir"
+        west build -s zmk/app -d "$build_dir" -b native_posix_64 -- \
+            -DCONFIG_ASSERT=y -DZMK_CONFIG="$config_dir"
+    fi
+
+    ${build_dir}/zephyr/zmk.exe | sed -e "s/.*> //" |
+        tee ${build_dir}/keycode_events.full.log |
+        sed -n -f ${config_dir}/events.patterns > ${build_dir}/keycode_events.log
+    diff -auZ ${config_dir}/keycode_events.snapshot ${build_dir}/keycode_events.log
+
+    if [[ "{{ FLAGS }}" == *"--verbose"* ]]; then
+        cat ${build_dir}/keycode_events.log
+    fi
+
+    if [[ "{{ FLAGS }}" == *"--auto-accept"* ]]; then
+        cp ${build_dir}/keycode_events.log ${config_dir}/keycode_events.snapshot
+    fi
