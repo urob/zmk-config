@@ -120,10 +120,11 @@ ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
               tapping-term-ms = <200>;)
 
 // Smart-mouse, requires tri-state module.
-ZMK_TRI_STATE(smart_mouse, bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
-              ignored-key-positions =
-                  <LT1 LT3 RT0 RT1 RT2 RT3 RT4 RM1 RM2 RM3 RB1 RB2 RB3 RH0 RH1>;
-              ignored-layers = <MOUSE>;)
+ZMK_TRI_STATE(
+    smart_mouse, bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
+    ignored-key-positions =
+        <LT1 LT3 LH0 LH1 RT1 RT2 RT3 RM0 RM1 RM2 RM3 RM4 RB1 RB2 RB3 RH0 RH1>;
+    ignored-layers = <MOUSE NAV FN>;)
 
 /* Custom behaviors */
 
