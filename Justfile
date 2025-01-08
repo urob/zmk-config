@@ -95,7 +95,7 @@ init:
 
 # list build targets
 list:
-    @just _parse_targets all | sed 's/,$//' | sort | column
+    @just _parse_targets all | sed 's/,*$//' | sort | column
 
 # update west
 update:
