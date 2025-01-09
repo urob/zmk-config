@@ -90,7 +90,7 @@ draw:
 # initialize west
 init:
     west init -l config
-    west update
+    west update --fetch-opt=--filter=blob:none
     west zephyr-export
 
 # list build targets
@@ -99,7 +99,7 @@ list:
 
 # update west
 update:
-    west update
+    west update --fetch-opt=--filter=blob:none
 
 # upgrade zephyr-sdk and python dependencies
 upgrade-sdk:
