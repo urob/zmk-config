@@ -411,7 +411,7 @@ parse_config:
     - "modules/zmk/helpers/include"
     - "config"
   zmk_preamble: |
-    #include <zmk-helpers/key-labels/34.h>
+    #include <zmk-helpers/key-labels/42.h>
     #define CONFIG_WIRELESS
     #define KEYMAP_DRAWER
   mark_alternate_layer_activators: true
