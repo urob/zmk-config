@@ -406,5 +406,6 @@ ZMK_LAYER(Adjust,
   &to TAP &trans     &trans     &trans       &trans &trans                  &trans &trans &trans &trans &trans &to DEF
           &trans     &trans     &trans       &trans &trans                  &trans &trans &trans &trans &trans &trans
                            &trans    &trans &trans &trans    &trans &trans &trans
+)
 
 /* vim: set ft=c tw=146: */
