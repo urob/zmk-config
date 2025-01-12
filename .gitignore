@@ -1,11 +1,8 @@
 .build
 .direnv
-.venv
 .west
 modules
 firmware
 zephyr
 zmk
-# Ignore keymap-drawer output for now
-draw/base.svg
 draw/base.yaml
