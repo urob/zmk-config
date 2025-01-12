@@ -5,28 +5,29 @@ configuration. It consists of a 34-keys base layout that is re-used for various
 boards, including my Corneish Zen and my Planck.
 
 My configuration builds against `v0.1` of upstream ZMK plus a backport of the
-merged pointer PR. Custom functionality is added through various ZMK modules.
+merged pointer PR. Custom functionality is added through various
+[ZMK modules](https://github.com/search?q=topic%3Azmk-module+fork%3Atrue+owner%3Aurob+&type=repositories).
 The state of the entire firmware is pinned in my `west`
 [manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
 
 ## Highlights
 
 - ["Timeless" homerow mods](#timeless-homerow-mods)
-- Combos replace symbol layer
-- Smart numbers and mouse layers auto-toggle off
-- Unicode math and international leader key sequences
-- Simplified Devicetree syntax using helper macros from
-  [zmk-helpers](https://github.com/urob/zmk-helpers)
-- Base keymap padded with modular structure of "extra keys" to fit on larger
-  boards
+- Combos instead of symbol layer
+- Auto-toggle off numbers and mouse layers
+- Leader key sequences for Unicode input and system commands
 - Arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
   document</kbd> on long-press
-- More intuitive shift-actions: <kbd>, ;</kbd>, <kbd>. :</kbd> and <kbd>?
-  !</kbd>
-- Fully automated, nix-based
-  [local build environment](#local-development-workspace)
+- Shifted actions that make sense: <kbd>, ↦ ;</kbd>, <kbd>. ↦ :</kbd> and <kbd>?
+  ↦ !</kbd>
+- Simpler Devicetree syntax using helper macros from
+  [zmk-helpers](https://github.com/urob/zmk-helpers)
+- Fully automated, nix-based [local build environment](#local-build-environment)
 
 ![](draw/keymap.png)
+([Click here](https://raw.githubusercontent.com/urob/zmk-config/refs/heads/main/draw/base.svg)
+for a breakdown by layer - powered by
+[keymap-drawer](https://github.com/caksoylar/keymap-drawer).)
 
 ## Timeless homerow mods
 
@@ -36,11 +37,11 @@ timing: In its most naive implementation, in order to produce a "mod", they must
 be held _longer_ than `tapping-term-ms`. In order to produce a "tap", they must
 be held _less_ than `tapping-term-ms`. This requires very consistent typing
 speeds that, alas, I do not possess. Hence my quest for a "timer-less" HRM
-setup.[^1]
+setup.
 
 After months of tweaking, I eventually ended up with a HRM setup that is
-essentially timer-less, resulting in virtually no misfires. Yet it provides a
-fluent typing experience with mostly no delays.
+essentially timer-less, resulting in virtually no misfires.[^1] Yet it provides
+a fluent typing experience with mostly no delays.
 
 Let's suppose for a moment we set `tapping-term-ms` to something ridiculously
 large, say 5 seconds. This makes the configuration timer-less of sorts. But it
@@ -60,17 +61,17 @@ favorite ZMK features:
 This is great but there are still a few rough edges:
 
 - When rolling keys, I sometimes unintentionally end up with "nested" key
-  sequences: `key 1` down, `key 2` down and up, `key 1` up. Because of the
-  `balanced` flavor, this would falsely register `key 1` as a mod. As a remedy,
-  I use ZMK's `positional hold-tap` feature to force HRMs to always resolve as
+  sequences: `key-1` down, `key-2` down and up, `key-1` up. Because of the
+  `balanced` flavor, this would falsely register `key-1` as a mod. As a remedy,
+  I use ZMK's "positional hold-tap" feature to force HRMs to always resolve as
   "tap" when the _next_ key is on the same side of the keyboard. Problem solved.
 - ... or at least almost. By default, positional-hold-tap performs the
   positional check when the next key is _pressed_. This is not ideal, because it
   prevents combining multiple modifiers on the same hand. To fix this, I use the
   `hold-trigger-on-release` setting, which delays the positional-hold-tap
-  decision until the next key's _release_. With the setting, multiple mods can
-  be combined when held, while I still get the benefit from positional-hold-tap
-  when keys are tapped.
+  decision until the next key's _release_. With this, mods can be combined when
+  held while positional hold-tap continues to work as expected when keys are
+  tapped.
 - So far, nothing of the configuration depends on the duration of
   `tapping-term-ms`. In practice, there are two reasons why I don't set it to
   infinity:
@@ -88,53 +89,40 @@ This is great but there are still a few rough edges:
   dedicated shift for capitalization during normal typing (I like sticky-shift
   on a home-thumb). This is because shifting alphas is the one scenario where
   pressing a mod may conflict with `require-prior-idle-ms`, which may result in
-  false negatives when typing fast.
+  false negatives for fast typers.
 
 Here's my configuration (I use a bunch of
 [helper macros](https://github.com/urob/zmk-helpers) to simplify the syntax, but
 they are not necessary):
 
 ```C++
-/* use helper macros to define left and right hand keys */
-#include "zmk-helpers/key-labels/36.h"                                      // key-position labels
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left-hand keys
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right-hand keys
-#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                                      // thumb keys
+#include "zmk-helpers/key-labels/36.h"                                      // Source key-labels.
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // Left-hand keys.
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // Right-hand keys.
+#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                                      // Thumb keys.
 
-/* left-hand HRMs */
+/* Left-hand HRMs. */
 ZMK_HOLD_TAP(hml,
     flavor = "balanced";
     tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // repeat on tap-into-hold
+    quick-tap-ms = <175>;
     require-prior-idle-ms = <150>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_R THUMBS>;
-    hold-trigger-on-release;             // delay positional check until key-release
+    hold-trigger-on-release;
 )
 
-/* right-hand HRMs */
+/* Right-hand HRMs. */
 ZMK_HOLD_TAP(hmr,
     flavor = "balanced";
     tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // repeat on tap-into-hold
+    quick-tap-ms = <175>;
     require-prior-idle-ms = <150>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_L THUMBS>;
-    hold-trigger-on-release;             // delay positional check until key-release
+    hold-trigger-on-release;
 )
 ```
-
-### Required firmware
-
-After a recent round of patches, the above configuration now works with upstream
-ZMK.
-
-Other parts of my configuration still require a few PRs that aren't yet in
-upstream ZMK. My personal [ZMK fork](https://github.com/urob/zmk) includes all
-PRs needed to compile my configuration. If you prefer to maintain your own fork
-with a custom selection of PRs, you might find this
-[ZMK-centric introduction to Git](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7)
-helpful.
 
 ### Troubleshooting
 
@@ -148,9 +136,9 @@ smaller (and larger) things to try.
   `hold-trigger-key-positions`)
 - **False negatives (cross-hand):** Reduce `require-prior-idle-ms` (or set
   flavor to `hold-preferred` -- to continue using `hold-trigger-on-release`, you
-  must also
-  [patch ZMK](https://github.com/celejewski/zmk/commit/d7a8482712d87963e59b74238667346221199293)
-  or use [an already patched branch](https://github.com/urob/zmk))
+  must apply this
+  [patch](https://github.com/celejewski/zmk/commit/d7a8482712d87963e59b74238667346221199293)
+  to ZMK
 - **False positives (same-hand):** Increase `tapping-term-ms`
 - **False positives (cross-hand):** Increase `require-prior-idle-ms` (or set
   flavor to `tap-preferred`, which requires holding HRMs past tapping term to
@@ -160,18 +148,17 @@ smaller (and larger) things to try.
 
 I am a big fan of combos for all sort of things. In terms of comfort, I much
 prefer them over accessing layers that involve lateral thumb movements to be
-activated, especially when switching between different layers in rapid
-succession.
+activated, especially when switching between layers in rapid succession.
 
 One common concern about overloading the layout with combos is that they lead to
 misfires. Fortunately, the above-mentioned `require-prior-idle-ms` option also
-works for combos, which in my experience all but completely eliminates the
-problem -- even when rolling keys on the home row!
+works for combos, which in my experience all but completely eliminates misfires
+-- even when rolling keys on the home row!
 
 My combo layout aims to place the most used symbols in easy-to-access locations
 while also making them easy to remember. Specifically:
 
-- the top vertical-combo row matches the symbols on a standard numbers row
+- the top vertical-combo row replicates the symbols on a standard numbers row
   (except `+` and `&` being swapped)
 - the bottom vertical-combo row is symmetric to the top row (subscript `_`
   aligns with superscript `^`; minus `-` aligns with `+`; division `/` aligns
@@ -179,12 +166,8 @@ while also making them easy to remember. Specifically:
 - parenthesis, braces, brackets are set up symmetrically as horizontal combos
   with `<`, `>`, `{` and `}` being accessed from the Navigation layer (or when
   combined with `Shift`)
-- left-hand side combos for `tap`, `esc`, `enter`, `cut` (on <kbd>X</kbd> +
+- left-hand side combos for `tap`, `esc`, `cut` (on <kbd>X</kbd> +
   <kbd>D</kbd>), `copy` and `paste` that go well with right-handed mouse usage
-- <kbd>L</kbd> + <kbd>Y</kbd> switches to the Greek layer for a single key
-  press, <kbd>L</kbd> + <kbd>U</kbd> + <kbd>Y</kbd> activates one-shot shift in
-  addition
-- <kbd>W</kbd> + <kbd>P</kbd> activates the smart mouse layer
 
 ## Smart layers and other gimmicks
 
@@ -247,13 +230,15 @@ one-handed Alt-Tab switcher (`PWin` and `NWin`).
 ##### Leader key
 
 I am using my own implementation of a
-[Leader key](https://github.com/urob/zmk-leader-key) to bind less common
-functionality without giving up dedicated keys. Currently, I am using leader
-sequences for various system and output controls. I am also using leader key
-sequences for convenient access to various Unicode math symbols and
-international characters.
+[Leader key](https://github.com/urob/zmk-leader-key) (activated by comboing
+<kbd>S</kbd> + <kbd>T</kbd>) to bind various behaviors to my layout without
+reserving dedicated keys. Currently, I am using them to bind German Umlauts,
+Greek letters for math usage, and various system commands (e.g., to toggle
+Bluetooth). See
+[`leader.dtsi`](https://github.com/urob/zmk-config/blob/main/config/leader.dtsi)
+for the full list of leader key sequences.
 
-## Local development workspace
+## Local build environment
 
 I streamline my local build process using `nix`, `direnv` and `just`. This
 automatically sets up a virtual development environment with `west`, the
@@ -330,21 +315,18 @@ environment is _completely isolated_ and won't pollute your system.
 
 After following the steps above your workspace should look like this:
 
-```bash
+```
 zmk-workspace
 ├── config
 ├── firmware (created after building)
 ├── modules
-│   ├── auto-layer
-│   ├── helpers
-│   └── tri-state
+├── zephyr
 └── zmk
-    └── ...
 ```
 
 #### Building the firmware
 
-To build the firmware, simply type `just build all` from anywhere within the
+To build the firmware, simply type `just build all` from anywhere in the
 workspace. This will parse `build.yaml` and build the firmware for all board and
 shield combinations listed there.
 
@@ -391,6 +373,19 @@ running this command, as this will overwrite them.
 
 To upgrade the Zephyr SDK and Python build dependencies, use `just upgrade-sdk`.
 
+## Bonus: A (moderately) faster Github Actions Workflow
+
+Using the same Nix-based environment, I have set up a drop-in replacement for
+the default ZMK Github Actions build workflow. While mainly a proof-of-concept,
+it does run moderately faster, especially with a cold cache.
+
+By default, the workflow is configured to run "on demand" (head to the Actions
+tab in your fork and click "Run workflow" to trigger it). To enable automatic
+runs, remove the commented lines near the top of
+[`.github/workflows/build-nix.yml`](.github/workflows/build-nix.yml). (You may
+want to comment the corresponding lines of the default `build.yml` to avoid
+running both workflows.)
+
 ## Issues and workarounds
 
 Since I switched from QMK to ZMK I have been very impressed with how easy it is
@@ -408,6 +403,15 @@ remaining issues:
 - Very minor: `&bootloader` doesn't work with stm32 boards like the Planck
   ([#1086](https://github.com/zmkfirmware/zmk/issues/1086))
 
+## Related resources
+
+- The
+  [collection](https://github.com/search?q=topic%3Azmk-module+fork%3Atrue+owner%3Aurob+&type=repositories)
+  of ZMK modules used in this configuration.
+- A ZMK-centric
+  [introduction to Git](https://gist.github.com/urob/68a1e206b2356a01b876ed02d3f542c7)
+  (useful for maintaining your own ZMK fork with a custom selection of PRs).
+
 [^1]:
     I call it "timer-less", because the large tapping-term makes the behavior
     insensitive to the precise timings. One may say that there is still the
@@ -419,8 +423,8 @@ remaining issues:
 
 [^2]:
     The delay is determined by how quickly a key is released and is not directly
-    related to the tapping-term. But regardless of its length, most people still
-    find it noticable and disruptive.
+    related to the tapping-term. But regardless of its duration, most people
+    still find it noticeable and disruptive.
 
 [^3]:
     E.g, if your WPM is 70 or larger, then the default of 150ms (=10500/70)

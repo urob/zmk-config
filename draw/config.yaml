@@ -1,4 +1,6 @@
 draw_config:
+  footer_text: "anarion80/zmk-config-corneish-zen"
+  
   # key dimensions, non-ortho layouts use key_h for width as well
   # key_w: 100 # This doesn't seem to do anything? 🤔
   key_h: 80
@@ -405,10 +407,13 @@ draw_config:
     }
 
 parse_config:
-  zmk_preamble: "#include <config/corneish_zen.keymap>"
   zmk_additional_includes:
     - "modules/zmk/helpers/include"
     - "config"
+  zmk_preamble: |
+    #include <zmk-helpers/key-labels/34.h>
+    #define CONFIG_WIRELESS
+    #define KEYMAP_DRAWER
   mark_alternate_layer_activators: true
   sticky_label: $$mdi:gesture-tap-hold$$
   trans_legend:

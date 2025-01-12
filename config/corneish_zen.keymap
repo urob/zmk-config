@@ -59,18 +59,18 @@
 #define RH1 40
 #define RH2 41
 
-/* source key position labels */
-// #include "zmk-helpers/key-labels/36.h"
-
-/* map Zen's extra keys */
-// #define X_LH  &smart_mouse  // thumb row, left
-// #define X_RH  &bs_del  // thumb row, right
-
-/* activate bluetooth */
 #define CONFIG_WIRELESS
+#define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                   \
+    ZMK_LAYER(                                                                 \
+        name,                                                                  \
+                 LT RT                                                         \
+                 LM RM                                                         \
+                 LB RB                                                         \
+        &kp LGUI LH RH &smart_mouse                                            \
+    )
 
-/* source the main keymap */
+#include "zmk-helpers/key-labels/36.h"
 #include "base.keymap"
 
-/* use 5-column layout for Zen */
+/* use 6-column layout for Zen */
 /{ chosen { zmk,physical-layout = &foostan_corne_6col_layout; }; };
