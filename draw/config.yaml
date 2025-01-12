@@ -5,7 +5,6 @@ parse_config:
   zmk_preamble: |
     #include <zmk-helpers/key-labels/34.h>
     #define CONFIG_WIRELESS
-    #define KEYMAP_DRAWER
 
   raw_binding_map:
     "&sys_reset": Reset
@@ -64,6 +63,11 @@ parse_config:
   zmk_combos:
     combo_cut: { align: bottom, o: 0.15 }
     combo_ldrsh: { align: top, o: 1.35 }
+
+    combo_lt: { hidden: true }
+    combo_gt: { hidden: true }
+    combo_lbrc: { hidden: true }
+    combo_rbrc: { hidden: true }
 
   zmk_keycode_map:
     # custom mappings
