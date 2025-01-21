@@ -1,10 +1,11 @@
 name: Test Local Build Environment
 on:
   workflow_dispatch:
-  # push:
-  #   paths:
-  #     - nix/**
-  #     - flake.*
+  push:
+    paths:
+      - nix/**
+      - flake.*
+      - .github/workflows/test-build-env.yml
 
 jobs:
   test:
