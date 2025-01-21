@@ -1,0 +1,27 @@
+name: Test Local Build Environment
+on:
+  workflow_dispatch:
+  # push:
+  #   paths:
+  #     - nix/**
+  #     - flake.*
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: nixbuild/nix-quick-install-action@v29
+
+      - name: Set up build environment
+        run: |
+          nix develop --command just init
+
+      - name: Test build recipe
+        run: |
+          nix develop --command just build planck
+
+      - name: Test draw recipe
+        run: |
+          nix develop --command just draw
