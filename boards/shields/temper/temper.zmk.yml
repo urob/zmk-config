@@ -1,0 +1,14 @@
+file_format: "1"
+id: temper
+name: Chocofi Temper
+type: shield
+url: https://github.com/raeedcho/chocofi-temper
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+  - underglow
+siblings:
+  - temper_left
+  - temper_right
