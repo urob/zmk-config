@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     strategy:
+      fail-fast: false
       matrix:
         os:
           - ubuntu-24.04      # x86_64-linux
@@ -22,6 +23,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: nixbuild/nix-quick-install-action@v29
+        if: ${{ matrix.os != 'ubuntu-24.04-arm' }}
+
+      # https://github.com/nixbuild/nix-quick-install-action/issues/55
+      - uses: cachix/install-nix-action@v30
+        if: ${{ matrix.os == 'ubuntu-24.04-arm' }}
 
       - name: Set up build environment
         run: |
