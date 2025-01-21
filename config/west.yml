@@ -24,6 +24,8 @@ manifest:
   remotes:
     - name: urob
       url-base: https://github.com/urob
+    - name: absolzen
+      url-base: https://github.com/absolzen
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
 
