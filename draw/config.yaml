@@ -29,10 +29,8 @@ parse_config:
     "&kp LS(TAB)": Prev Win
     "&dot_spc": Sentence
     "&num_dance": { "t": "Numword", "s": "Sticky Num" }
-    "&magic": Repeat / Smart Shift
+    "&magic_shift": { "t": Magic, "h": "Shift" }
     "&smart_mouse": Smart Mouse
-    # "&smart_num": Smart Num
-    # "&smart_shft": Smart Shift
 
     "&hml LS(LALT)TAB": Tab
     "&hm_combo_ldr": Leader
