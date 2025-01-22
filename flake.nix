@@ -42,11 +42,10 @@
           # pkgs.findutils        # find, xargs
           # pkgs.gnugrep          # grep
           # pkgs.gnused           # sed
-
         ]
         # Temporary disable keymap_drawer on aarch64-linux due to:
         # https://github.com/NixOS/nixpkgs/issues/372375
-        ++ pkgs.lib.optionals (system != "aarch64-linux") [ keymap_drawer ];
+        ++ nixpkgs.lib.optionals (system != "aarch64-linux") [ keymap_drawer ];
 
         shellHook = ''
           export ZMK_BUILD_DIR=$(pwd)/.build;
