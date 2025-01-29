@@ -14,6 +14,6 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: temper_left
+    shield: cradio_left
   - board: nice_nano_v2
-    shield: temper_right
+    shield: cradio_right
