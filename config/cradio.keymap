@@ -10,5 +10,3 @@
 
 #include "zmk-helpers/key-labels/34.h"
 #include "base.keymap"
-
-#/{ chosen { zmk,physical-layout = &foostan_corne_5col_layout; }; };
