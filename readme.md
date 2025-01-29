@@ -15,6 +15,7 @@ The state of the entire firmware is pinned in my `west`
 - ["Timeless" homerow mods](#timeless-homerow-mods)
 - Combos instead of symbol layer
 - Auto-toggle off numbers and mouse layers
+- Magic thumb quadrupling as Repeat/Sticky-shift/Capsword/Shift
 - Leader key sequences for Unicode input and system commands
 - Arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
   document</kbd> on long-press
@@ -22,7 +23,7 @@ The state of the entire firmware is pinned in my `west`
   ↦ !</kbd>
 - Simpler Devicetree syntax using helper macros from
   [zmk-helpers](https://github.com/urob/zmk-helpers)
-- Fully automated, nix-based [local build environment](#local-build-environment)
+- Fully automated, nix-powered [local build environment](#local-build-environment)
 
 ![](draw/keymap.png)
 ([Click here](https://raw.githubusercontent.com/urob/zmk-config/refs/heads/main/draw/base.svg)
@@ -202,11 +203,13 @@ Similarly to Numword, I have a smart-mouse layer (activated by comboing
 and mouse-movements, and replaces the right thumbs with mouse buttons. Pressing
 any other key automatically deactivates the layer.
 
-##### Capsword
+##### Magic Repeat/Shift/Capsword
 
-My right thumb triggers three variations of shift: Tapping yields sticky-shift
-(used to capitalize alphas), holding activates a regular shift, and
-double-tapping (or equivalently shift + tap) activates ZMK's Caps-word behavior.
+My right thumb triggers three variations of shift as well as repeat: Tapping
+after any alpha key yields key-repeat (to reduce SFUs). Tapping after any other
+keycode yields sticky-shift (used to capitalize alphas). Holding activates a
+regular shift, and double-tapping (or equivalently shift + tap) activates ZMK's
+Caps-word behavior.
 
 One minor technical detail: While it would be possible to implement the
 double-tap functionality as a tap-dance, this would add a delay when using
