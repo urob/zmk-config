@@ -360,17 +360,17 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // )
 
 ZMK_BASE_LAYER(Base,
-&grave  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &bs_del
-  &mt LCTRL TAB &hml LCTRL A   &hml LALT S   &hml LCMD D  &hml LSHFT F  &kp G   &kp H &hmr RSHFT J  &hmr LCMD K  &hmr LALT L   &hmr LCTRL SQT  &kp ENTER
-    &med_nav &tdundo &tdcut &tdcopy    &tdpaste    &kp B                          &kp N     &kp M    &comma_morph  &dot_morph &slash_qmark &mo FUN
-                            SMART_NUM &lt_spc NAV 0  &lt SYM DEL       &kp ENTER &smart_shft  &kp RALT
+&grave  &kp Q &kp W &kp E     &kp R    &kp T,                          &kp Y     &kp U    &kp I     &kp O   &kp P    &bs_del,
+  &mt LCTRL TAB &hml LCTRL A   &hml LALT S   &hml LCMD D  &hml LSHFT F  &kp G,   &kp H &hmr RSHFT J  &hmr LCMD K  &hmr LALT L   &hmr LCTRL SQT  &kp ENTER,
+    &med_nav &tdundo &tdcut &tdcopy    &tdpaste    &kp B,                          &kp N     &kp M    &comma_morph  &dot_morph &slash_qmark &mo FUN,
+                            SMART_NUM &lt_spc NAV 0  &lt SYM DEL,       &kp ENTER MAGIC_SHIFT  &kp RALT
 )
 
 ZMK_BASE_LAYER(Navigation,
-  &kp LG(Q)    &kp TAB_LT    &kp TAB_RT           &kp LS(TAB)   &swapper      &kp LC(F4)                          &kp C_AC_BACK     &kp HOME    NAV_UP     &kp PG_UP &kp C_AC_FORWARD NAV_BSPC
-  &trans  &sk LCTRL     &sk LALT      &sk LCMD      &sk LSHFT    &trans                          &caps_word     NAV_LEFT    NAV_DOWN     NAV_RIGHT   NAV_DEL  &trans
-             &to DEF   &trans &trans &trans     &trans    &trans                    &kp K_APP     &kp END    &kp INS &kp PG_DN &kp C_AC_CUT &trans
-                             &trans &trans &trans    &trans &trans   &trans
+  &kp LG(Q)    &kp TAB_LT    &kp TAB_RT           &kp LS(TAB)   &swapper      &kp LC(F4),                          &kp C_AC_BACK     &kp HOME    NAV_UP     &kp PG_UP &kp C_AC_FORWARD NAV_BSPC,
+  &trans  &sk LCTRL     &sk LALT      &sk LCMD      &sk LSHFT    &trans,                          &caps_word     NAV_LEFT    NAV_DOWN     NAV_RIGHT   NAV_DEL  &trans,
+             &to DEF   &trans &trans &trans     &trans    &trans,                    &kp K_APP     &kp END    &kp INS &kp PG_DN &kp C_AC_CUT &trans,
+                             &trans &trans &trans,    &trans &trans   &trans
 )
 
 // ZMK_BASE_LAYER(Mouse,
@@ -381,45 +381,45 @@ ZMK_BASE_LAYER(Navigation,
 // )
 
 ZMK_BASE_LAYER(Media,
-&trans  &trans &trans &trans     &trans    &trans                          U_WH_U  &trans &trans &trans     &trans    &trans
-  &trans  &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT    &trans    U_WH_D  &kp C_PREV &kp C_VOL_UP &kp C_VOL_DN    &kp C_NEXT    &trans
-        &trans &trans &trans &trans &trans &trans                          &trans &trans &trans     &trans    &trans &trans
-                             &trans &trans &trans    &kp C_STOP   &kp C_PP   &kp C_MUTE
+&trans  &trans &trans &trans     &trans    &trans,                          U_WH_U  &trans &trans &trans     &trans    &trans,
+  &trans  &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT    &trans,    U_WH_D  &kp C_PREV &kp C_VOL_UP &kp C_VOL_DN    &kp C_NEXT    &trans,
+        &trans &trans &trans &trans &trans &trans,                          &trans &trans &trans     &trans    &trans &trans,
+                             &trans &trans &trans,    &kp C_STOP   &kp C_PP   &kp C_MUTE
 )
 
 ZMK_BASE_LAYER(Symbols,
- &trans  &trans &trans &trans     &trans    &trans                         &kp LBKT &kp AMPS &kp STAR     &kp LPAR    &kp RBKT &trans  
-&trans   &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT  &trans       &kp SEMI &kp DLLR &kp PRCNT    &kp CARET    &kp PLUS &trans  
- &trans  &trans &trans &trans     &trans    &trans                         &kp TILDE &kp EXCL &kp AT     &kp HASH    &kp BSLH &trans  
-                             &trans  &trans &trans                        &kp LPAR &kp RPAR &kp UNDER
+ &trans  &trans &trans &trans     &trans    &trans,                         &kp LBKT &kp AMPS &kp STAR     &kp LPAR    &kp RBKT &trans,
+&trans   &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT  &trans,       &kp SEMI &kp DLLR &kp PRCNT    &kp CARET    &kp PLUS &trans,
+ &trans  &trans &trans &trans     &trans    &trans,                         &kp TILDE &kp EXCL &kp AT     &kp HASH    &kp BSLH &trans,
+                             &trans  &trans &trans,                        &kp LPAR &kp RPAR &kp UNDER
 )
 
 ZMK_BASE_LAYER(Numbers,
-&trans  &trans &trans &trans     &trans    &trans                          &kp LBKT  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY &trans
-  &trans  &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT    &trans    &kp SEMI  &kp N4 &kp N5 &kp N6 &kp EQUAL    &trans
-             &trans  &trans &trans &trans     &trans    &trans             &kp GRAVE &kp N1 &kp N2 &kp N3 &kp KP_DOT &trans
-                            &trans &trans &trans    &kp MINUS   &kp KP_PLUS   &kp N0
+&trans  &trans &trans &trans     &trans    &trans,                          &kp LBKT  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY &trans,
+  &trans  &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT    &trans,    &kp SEMI  &kp N4 &kp N5 &kp N6 &kp EQUAL    &trans,
+             &trans  &trans &trans &trans     &trans    &trans,             &kp GRAVE &kp N1 &kp N2 &kp N3 &kp KP_DOT &trans,
+                            &trans &trans &trans,    &kp MINUS   &kp KP_PLUS   &kp N0
 )
 
 ZMK_BASE_LAYER(Function,
-&trans  &kp F12 &kp F7 &kp F8     &kp F9    &kp PSCRN                          &trans  &trans &trans &trans     &trans    &trans
-  &trans  &kp F11 &kp F4 &kp F5     &kp F6    &kp SLCK                          &trans  &sk RSHFT  &sk LCMD &sk LALT &sk LCTRL    &trans
-              &trans &kp F10 &kp F1 &kp F2     &kp F3    &kp PAUSE_BREAK                    &trans &trans &trans     &trans    &trans &trans
-                             &trans &trans &trans    &trans &trans   &trans
+&trans  &kp F12 &kp F7 &kp F8     &kp F9    &kp PSCRN,                          &trans  &trans &trans &trans     &trans    &trans,
+  &trans  &kp F11 &kp F4 &kp F5     &kp F6    &kp SLCK,                          &trans  &sk RSHFT  &sk LCMD &sk LALT &sk LCTRL    &trans,
+              &trans &kp F10 &kp F1 &kp F2     &kp F3    &kp PAUSE_BREAK,                    &trans &trans &trans     &trans    &trans &trans,
+                             &trans &trans &trans,    &trans &trans   &trans
 )
 
 ZMK_BASE_LAYER(Tap-only,
-&kp ESC &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC
-  &kp TAB &kp A &kp S &kp D     &kp F    &kp G                          &kp H     &kp J    &kp K     &kp L   &kp SQT  &kp ENTER
-             &to DEF  &kp Z &kp X &kp C     &kp V    &kp B                          &kp N     &kp M    &kp COMMA  &kp DOT &kp SLASH &mo NAV
-                              &kp LALT &kp SPC  &kp DEL     &kp ENTER &kp RCTRL  &kp RALT
+&kp ESC &kp Q &kp W &kp E     &kp R    &kp T,                         &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC,
+  &kp TAB &kp A &kp S &kp D     &kp F    &kp G,                          &kp H     &kp J    &kp K     &kp L   &kp SQT  &kp ENTER,
+             &to DEF  &kp Z &kp X &kp C     &kp V    &kp B,                          &kp N     &kp M    &kp COMMA  &kp DOT &kp SLASH &mo NAV,
+                              &kp LALT &kp SPC  &kp DEL,     &kp ENTER &kp RCTRL  &kp RALT
 )
 
 ZMK_BASE_LAYER(Adjust,
-&out OUT_TOG &bt BT_NXT &bt BT_PRV &trans       &trans &bt BT_CLR              &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans
-  &to TAP &trans     &trans     &trans       &trans &trans                  &trans &trans &trans &trans &trans &to DEF
-          &trans     &trans     &trans       &trans &trans                  &trans &trans &trans &trans &trans &trans
-                           &trans    &trans &trans &trans    &trans &trans &trans
+&out OUT_TOG &bt BT_NXT &bt BT_PRV &trans       &trans &bt BT_CLR,              &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans,
+  &to TAP &trans     &trans     &trans       &trans &trans,                  &trans &trans &trans &trans &trans &to DEF,
+          &trans     &trans     &trans       &trans &trans &trans,            &trans &trans &trans &trans &trans &trans,
+                           &trans    &trans &trans,                          &trans &trans &trans
 )
 
 /* vim: set ft=c tw=146: */
