@@ -117,13 +117,24 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
 MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
 
-/* Caps-word & auto-layers */
+/* Magic-shift & auto-layers */
 
-// Tap: sticky-shift | Shift + tap/ double-tap: caps-word | Hold: shift.
-ZMK_MOD_MORPH(smart_shft,
-  bindings = <&sk LSHFT>, <&caps_word>;
-  mods = <(MOD_LSFT)>;
-)
+// Tap: repeat after alpha, else sticky-shift |
+// Shift + tap/ double-tap: caps-word | Hold: shift.
+#define MAGIC_SHIFT &magic_shift LSHFT 0
+ZMK_HOLD_TAP(magic_shift, bindings = <&kp>, <&magic_shift_tap>;
+             flavor = "balanced"; tapping-term-ms = <200>;
+             quick-tap-ms = <QUICK_TAP_MS>;)
+ZMK_MOD_MORPH(magic_shift_tap, bindings = <&shift_repeat>, <&caps_word>;
+              mods = <(MOD_LSFT)>;)
+ZMK_ADAPTIVE_KEY(
+    shift_repeat, bindings = <&sk LSHFT>;
+    repeat {
+      trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>;
+      bindings = <&key_repeat>;
+      max-prior-idle-ms = <1200>;
+      strict-modifiers;
+    };)
 &caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
   /delete-property/ ignore-modifiers;
 };
@@ -135,15 +146,13 @@ ZMK_HOLD_TAP(smart_num, bindings = <&mo>, <&num_dance>; flavor = "balanced";
 ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
               tapping-term-ms = <200>;)
 
-/* Custom behaviors */
-
 // Smart-mouse, requires tri-state module.
 // ZMK_TRI_STATE(
 //     smart_mouse, bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
 //     ignored-key-positions =
-//         <LT1 LT3 LH0 LH1 RT1 RT2 RT3 RM0 RM1 RM2 RM3 RM4 RB1 RB2 RB3 RH0 RH1>;
-//     ignored-layers = <MOUSE NAV FN>;)
-//
+//         <LT1 LT2 LH0 LH1 RT1 RT2 RT3 RM0 RM1 RM2 RM3 RM4 RB1 RB2 RB3 RH0 RH1>;
+//     ignored-layers = <MEDIA NAV FN>;)
+
 /* Custom behaviors */
 
 // Alt+Tab swapper, requires tri-state module.
@@ -235,7 +244,12 @@ ZMK_TAP_DANCE(tdundo,
 
 ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 
-// ZMK_LAYER(base,
+#ifndef ZMK_BASE_LAYER
+#define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
+    ZMK_LAYER(name, LT RT LM RM LB RB LH RH)
+#endif
+
+// ZMK_BASE_LAYER(base,
 // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 //   &kp ESC    &kp Q         &kp W         &kp E         &kp R         &kp T                &kp Y         &kp U         &kp I         &kp O         &kp P          &bs_del
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -247,7 +261,7 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 // )
 
-// ZMK_LAYER(nav,
+// ZMK_BASE_LAYER(nav,
 // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 //     X_LT     ___           ___           &kp LS(TAB)   &swapper      ___                  &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             X_RT
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -259,7 +273,7 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 // )
 
-// ZMK_LAYER(media,
+// ZMK_BASE_LAYER(media,
 // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 //     X_LT     &kp F12       &kp F7        &kp F8        &kp F9        ___                  ___           &kp C_PREV    &kp C_VOL_UP  &kp C_NEXT    ___             X_RT
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -271,7 +285,7 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 // )
 
-// ZMK_LAYER(num,
+// ZMK_BASE_LAYER(num,
 // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 //     X_LT     ___           &kp N7        &kp N8        &kp N9        ___                  ___           ___           ___           ___           ___             X_RT
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -283,7 +297,7 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 // )
 
-// ZMK_LAYER(fun,
+// ZMK_BASE_LAYER(fun,
 // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 //     X_LT     ___           &kp N7        &kp N8        &kp N9        ___                  ___           ___           ___           ___           ___             X_RT
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -297,7 +311,7 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 
 
 
-// // ZMK_LAYER(sys,
+// // ZMK_BASE_LAYER(sys,
 // // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 // //     X_LT                                _BT_SEL_KEYS_                                X_MT     ___           ___           ___           ___           ___             X_RT
 // // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -309,7 +323,7 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // // //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 // // )
 
-// ZMK_LAYER(mouse,
+// ZMK_BASE_LAYER(mouse,
 // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 //     X_LT     ___           ___           ___           ___           ___                  ___           &kp PG_UP     U_MS_U         &kp PG_DN    ___             X_RT
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -321,7 +335,7 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 // )
 
-// ZMK_LAYER(tap,
+// ZMK_BASE_LAYER(tap,
 // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 //     X_LT     ___           ___           ___           ___           ___                  ___           &kp PG_UP     U_MS_U         &kp PG_DN    ___             X_RT
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -333,7 +347,7 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 // )
 
-// ZMK_LAYER(adjt,
+// ZMK_BASE_LAYER(adjt,
 // //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
 //     X_LT     ___           ___           ___           ___           ___                  ___           &kp PG_UP     U_MS_U         &kp PG_DN    ___             X_RT
 // //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
@@ -345,63 +359,63 @@ ZMK_CONDITIONAL_LAYER(ADJT, MEDIA FUN, ADJT)  // MEDIA + FUN --> ADJT
 // //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 // )
 
-ZMK_LAYER(Base,
+ZMK_BASE_LAYER(Base,
 &grave  &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &bs_del
   &mt LCTRL TAB &hml LCTRL A   &hml LALT S   &hml LCMD D  &hml LSHFT F  &kp G   &kp H &hmr RSHFT J  &hmr LCMD K  &hmr LALT L   &hmr LCTRL SQT  &kp ENTER
     &med_nav &tdundo &tdcut &tdcopy    &tdpaste    &kp B                          &kp N     &kp M    &comma_morph  &dot_morph &slash_qmark &mo FUN
                             SMART_NUM &lt_spc NAV 0  &lt SYM DEL       &kp ENTER &smart_shft  &kp RALT
 )
 
-ZMK_LAYER(Navigation,
+ZMK_BASE_LAYER(Navigation,
   &kp LG(Q)    &kp TAB_LT    &kp TAB_RT           &kp LS(TAB)   &swapper      &kp LC(F4)                          &kp C_AC_BACK     &kp HOME    NAV_UP     &kp PG_UP &kp C_AC_FORWARD NAV_BSPC
   &trans  &sk LCTRL     &sk LALT      &sk LCMD      &sk LSHFT    &trans                          &caps_word     NAV_LEFT    NAV_DOWN     NAV_RIGHT   NAV_DEL  &trans
              &to DEF   &trans &trans &trans     &trans    &trans                    &kp K_APP     &kp END    &kp INS &kp PG_DN &kp C_AC_CUT &trans
                              &trans &trans &trans    &trans &trans   &trans
 )
 
-// ZMK_LAYER(Mouse,
+// ZMK_BASE_LAYER(Mouse,
 // &trans  &trans &trans &trans &trans &trans                          &trans U_WH_L U_MS_U U_WH_R &trans    &trans
 //   &trans  &sk LGUI  &sk LALT  &sk LCTRL  &sk LSHFT  &trans          &trans U_MS_L U_MS_D U_MS_R  &trans &trans
 //         &trans &trans &trans &trans &trans &trans                    &trans U_WH_D U_WH_U &trans &trans &trans
 //                              &trans &trans &trans    U_BTN3 U_BTN1 U_BTN2
 // )
 
-ZMK_LAYER(Media,
+ZMK_BASE_LAYER(Media,
 &trans  &trans &trans &trans     &trans    &trans                          U_WH_U  &trans &trans &trans     &trans    &trans
   &trans  &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT    &trans    U_WH_D  &kp C_PREV &kp C_VOL_UP &kp C_VOL_DN    &kp C_NEXT    &trans
         &trans &trans &trans &trans &trans &trans                          &trans &trans &trans     &trans    &trans &trans
                              &trans &trans &trans    &kp C_STOP   &kp C_PP   &kp C_MUTE
 )
 
-ZMK_LAYER(Symbols,
+ZMK_BASE_LAYER(Symbols,
  &trans  &trans &trans &trans     &trans    &trans                         &kp LBKT &kp AMPS &kp STAR     &kp LPAR    &kp RBKT &trans  
 &trans   &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT  &trans       &kp SEMI &kp DLLR &kp PRCNT    &kp CARET    &kp PLUS &trans  
  &trans  &trans &trans &trans     &trans    &trans                         &kp TILDE &kp EXCL &kp AT     &kp HASH    &kp BSLH &trans  
                              &trans  &trans &trans                        &kp LPAR &kp RPAR &kp UNDER
 )
 
-ZMK_LAYER(Numbers,
+ZMK_BASE_LAYER(Numbers,
 &trans  &trans &trans &trans     &trans    &trans                          &kp LBKT  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY &trans
   &trans  &sk LCTRL      &sk LALT      &sk LCMD     &sk LSHFT    &trans    &kp SEMI  &kp N4 &kp N5 &kp N6 &kp EQUAL    &trans
              &trans  &trans &trans &trans     &trans    &trans             &kp GRAVE &kp N1 &kp N2 &kp N3 &kp KP_DOT &trans
                             &trans &trans &trans    &kp MINUS   &kp KP_PLUS   &kp N0
 )
 
-ZMK_LAYER(Function,
+ZMK_BASE_LAYER(Function,
 &trans  &kp F12 &kp F7 &kp F8     &kp F9    &kp PSCRN                          &trans  &trans &trans &trans     &trans    &trans
   &trans  &kp F11 &kp F4 &kp F5     &kp F6    &kp SLCK                          &trans  &sk RSHFT  &sk LCMD &sk LALT &sk LCTRL    &trans
               &trans &kp F10 &kp F1 &kp F2     &kp F3    &kp PAUSE_BREAK                    &trans &trans &trans     &trans    &trans &trans
                              &trans &trans &trans    &trans &trans   &trans
 )
 
-ZMK_LAYER(Tap-only,
+ZMK_BASE_LAYER(Tap-only,
 &kp ESC &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC
   &kp TAB &kp A &kp S &kp D     &kp F    &kp G                          &kp H     &kp J    &kp K     &kp L   &kp SQT  &kp ENTER
              &to DEF  &kp Z &kp X &kp C     &kp V    &kp B                          &kp N     &kp M    &kp COMMA  &kp DOT &kp SLASH &mo NAV
                               &kp LALT &kp SPC  &kp DEL     &kp ENTER &kp RCTRL  &kp RALT
 )
 
-ZMK_LAYER(Adjust,
+ZMK_BASE_LAYER(Adjust,
 &out OUT_TOG &bt BT_NXT &bt BT_PRV &trans       &trans &bt BT_CLR              &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans
   &to TAP &trans     &trans     &trans       &trans &trans                  &trans &trans &trans &trans &trans &to DEF
           &trans     &trans     &trans       &trans &trans                  &trans &trans &trans &trans &trans &trans
