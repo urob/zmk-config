@@ -396,9 +396,9 @@ ZMK_LAYER(Function,
 
 ZMK_LAYER(Tap-only,
 &kp ESC &kp Q &kp W &kp E     &kp R    &kp T                          &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC
-  &mt LCTRL TAB &kp A &kp S &kp D     &kp F    &kp G                          &kp H     &kp J    &kp K     &kp L   &kp SQT  &kp ENTER
-             &to DEF  &kp Z &kp X &kp C     &kp V    &kp B                          &kp N     &kp M    &comma_morph  &dot_morph &slash_qmark &mo FUN
-                              SMART_NUM &lt_spc NAV 0  &lt SYM DEL     &kp ENTER &smart_shft  &kp RALT
+  &kp TAB &kp A &kp S &kp D     &kp F    &kp G                          &kp H     &kp J    &kp K     &kp L   &kp SQT  &kp ENTER
+             &to DEF  &kp Z &kp X &kp C     &kp V    &kp B                          &kp N     &kp M    &kp COMMA  &kp DOT &kp SLASH &mo NAV
+                              &kp LALT &kp SPC  &kp DEL     &kp ENTER &kp RCTRL  &kp RALT
 )
 
 ZMK_LAYER(Adjust,
