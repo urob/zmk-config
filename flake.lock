@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729742964,
-        "narHash": "sha256-B4mzTcQ0FZHdpeWcpDYPERtyjJd/NIuaQ9+BV1h+MpA=",
+        "lastModified": 1731952509,
+        "narHash": "sha256-p4gB3Rhw8R6Ak4eMl8pqjCPOLCZRqaehZxdZ/mbFClM=",
         "owner": "nix-community",
         "repo": "nix-github-actions",
-        "rev": "e04df33f62cdcf93d73e9a04142464753a16db67",
+        "rev": "7b5f051df789b6b20d259924d349a9ba3319b226",
         "type": "github"
       },
       "original": {
@@ -23,11 +23,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1736344531,
-        "narHash": "sha256-8YVQ9ZbSfuUk2bUf2KRj60NRraLPKPS0Q4QFTbc+c2c=",
+        "lastModified": 1738142207,
+        "narHash": "sha256-NGqpVVxNAHwIicXpgaVqJEJWeyqzoQJ9oc8lnK9+WC4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+        "rev": "9d3ae807ebd2981d593cddd0080856873139aa40",
         "type": "github"
       },
       "original": {
@@ -45,11 +45,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731223003,
-        "narHash": "sha256-hFf8/IeZKPUubMC452Mm+JiAEnvcw/a4Cvn2bcpeJqs=",
+        "lastModified": 1736836246,
+        "narHash": "sha256-bFvBMziYvFtB/Hly+O4WtBGeiDoz7eb2dVQbOvIrHHM=",
         "owner": "nix-community",
         "repo": "pyproject.nix",
-        "rev": "359dd9cd562730bbd31ab164832aae4dacd9c302",
+        "rev": "3db43c7414fce4ce94ca67545233d251d306385a",
         "type": "github"
       },
       "original": {
@@ -68,11 +68,11 @@
     "zephyr": {
       "flake": false,
       "locked": {
-        "lastModified": 1734590665,
-        "narHash": "sha256-r49oEYarM7pMrWXWimDe0SfXCiaLIH048j5FanONPns=",
+        "lastModified": 1737647920,
+        "narHash": "sha256-6hAAP0JXnbKLwPWsJjHU2LzNcwM+/j622Y4kH/U09/U=",
         "owner": "zmkfirmware",
         "repo": "zephyr",
-        "rev": "702e50c58f67c66a57d805ac8948d11ace938d4c",
+        "rev": "e02cbce8cb964dca85f6af852fbb30e03327ac9f",
         "type": "github"
       },
       "original": {
@@ -94,11 +94,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731288812,
-        "narHash": "sha256-lFY/q8f6fZYZNHHshUUqgi92BsHIwgoVtqXIFa8zhxE=",
+        "lastModified": 1737561151,
+        "narHash": "sha256-2Yjeqfr/LDGQ/t7mI7LwiQsNlWxpN1VeaY3urTjxy3Q=",
         "owner": "urob",
         "repo": "zephyr-nix",
-        "rev": "d54fd58912e8d3f5787c01831ccefd0349bfdd0e",
+        "rev": "54958dd5d2316db475d57277150972dccd0ca888",
         "type": "github"
       },
       "original": {
