@@ -66,7 +66,7 @@
                  LT RT                                                         \
                  LM RM                                                         \
                  LB RB                                                         \
-        &kp LGUI LH RH &smart_mouse                                            \
+        &kp LGUI LH RH &kp LSHFT                                               \
     )
 
 #include "zmk-helpers/key-labels/36.h"
