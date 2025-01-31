@@ -17,14 +17,14 @@ let
 in
 buildPythonApplication rec {
   pname = "keymap-drawer";
-  version = "0.20.0+revert-poetry";
+  version = "0.20.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "caksoylar";
     repo = pname;
-    rev = "a2a3b37c54ddb449428b4597b39c3c28b331a7da";
-    hash = "sha256-GKGjEHQ/GsLhCzjuglDuztAEIpeaz+fHHmNJJcLmQT8=";
+    rev = "ea00f44ac5a2ebe97b8b31f9166791bedf9136e5";
+    hash = "sha256-F9lDUuqHKl2FOUsUszJrRK7/a/a1UJLw+RUg9Bv2zN0=";
   };
 
   build-system = [ poetry-core ];

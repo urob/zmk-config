@@ -458,7 +458,10 @@ parse_config:
     "&lt ADJT ESC":
       tap: $$mdi:keyboard-esc$$
       hold: "ADJ"
-
+    "&shift_repeat":
+      shifted: $$mdi:alpha-w-box$$
+      tap: $$mdi:apple-keyboard-shift$$
+      hold: $$mdi:apple-keyboard-shift$$
 
     # Modifiers
     "&caps_word": $$mdi:alpha-w-box$$

@@ -1,0 +1,46 @@
+name: Test Local Build Environment
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - nix/**
+      - flake.*
+      - .github/workflows/test-build-env.yml
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-24.04,     system: x86_64-linux }
+          - { os: ubuntu-24.04-arm, system: aarch64-linux }
+          - { os: macos-13,         system: x86_64-darwin }
+          - { os: macos-15,         system: aarch64-darwin }
+
+    name: ${{ matrix.system }}
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: nixbuild/nix-quick-install-action@v29
+        if: ${{ matrix.system != 'aarch64-linux' }}
+
+      # https://github.com/nixbuild/nix-quick-install-action/issues/55
+      - uses: cachix/install-nix-action@v30
+        if: ${{ matrix.system == 'aarch64-linux' }}
+
+      - name: Set up build environment
+        run: |
+          nix develop --command just init
+
+      - name: Test build recipe
+        run: |
+          nix develop --command just build planck
+
+      - name: Test draw recipe
+        run: |
+          nix develop --command just draw
+        if: ${{ matrix.system != 'aarch64-linux' }}

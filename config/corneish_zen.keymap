@@ -66,10 +66,10 @@
                  LT RT                                                         \
                  LM RM                                                         \
                  LB RB                                                         \
-        &kp LGUI LH RH &smart_mouse                                            \
+                 LH RH                                                         \
     )
 
-#include "zmk-helpers/key-labels/36.h"
+/* #include "zmk-helpers/key-labels/42.h" */
 #include "base.keymap"
 
 /* use 6-column layout for Zen */
