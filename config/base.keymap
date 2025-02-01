@@ -201,11 +201,11 @@ ZMK_CONDITIONAL_LAYER(sys, FN NUM, SYS) // FN + NUM --> SYS.
 
 ZMK_BASE_LAYER(Base,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp Q         &kp W         &kp F         &kp P         &kp B       ,   &kp J         &kp L         &kp U         &kp Y         &kp SQT     ,
+    &kp V         &kp L         &kp H         &kp G         &kp K       ,   &kp Q         &kp F         &kp O         &kp U         &kp J       ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &hml LGUI A   &hml LALT R   &kp S         &hml LCTRL T  &kp G       ,   &kp M         &hmr LCTRL N  &kp E         &hmr RALT I   &hmr LGUI O ,
+    &hml LGUI S   &hml LALT R   &kp N         &hml LCTRL T  &kp B       ,   &kp Y         &hmr LCTRL C  &kp A         &hmr RALT E   &hmr LGUI I ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp Z         &kp X         &kp C         &kp D         &kp V       ,   &kp K         &kp H         &comma_morph  &dot_morph    &qexcl      ,
+    &kp Z         &kp X         &kp M         &kp D         &kp P       ,   &kp SQT       &kp W         &comma_morph  &dot_morph    &qexcl      ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               &lt_spc NAV 0 &lt FN RET  ,   SMART_NUM     MAGIC_SHIFT
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
