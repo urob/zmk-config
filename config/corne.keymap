@@ -9,7 +9,7 @@
 #define X_RT &kp BSPC
 #define X_RM &kp SQT
 #define X_RB &none
-#define X_RH &none
+#define X_RH &kp K_CANCEL
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 
