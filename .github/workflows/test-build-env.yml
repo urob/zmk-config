@@ -24,23 +24,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - uses: nixbuild/nix-quick-install-action@v29
-        if: ${{ matrix.system != 'aarch64-linux' }}
-
-      # https://github.com/nixbuild/nix-quick-install-action/issues/55
       - uses: cachix/install-nix-action@v30
-        if: ${{ matrix.system == 'aarch64-linux' }}
-
       - name: Set up build environment
-        run: |
-          nix develop --command just init
-
+        run: nix develop --command just init
       - name: Test build recipe
-        run: |
-          nix develop --command just build planck
-
+        run: nix develop --command just build planck
       - name: Test draw recipe
-        run: |
-          nix develop --command just draw
-        if: ${{ matrix.system != 'aarch64-linux' }}
+        run: nix develop --command just draw

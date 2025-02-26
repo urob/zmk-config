@@ -35,6 +35,8 @@
               pkgs.just
               pkgs.yq # Make sure yq resolves to python-yq.
 
+              keymap_drawer
+
               # -- Used by just_recipes and west_commands. Most systems already have them. --
               # pkgs.gawk
               # pkgs.unixtools.column
@@ -43,10 +45,7 @@
               # pkgs.findutils # find, xargs
               # pkgs.gnugrep
               # pkgs.gnused
-            ]
-            # Temporary disable keymap_drawer on aarch64-linux due to
-            # https://github.com/NixOS/nixpkgs/issues/372375.
-            ++ nixpkgs.lib.optionals (system != "aarch64-linux") [keymap_drawer];
+            ];
 
           shellHook = ''
             export ZMK_BUILD_DIR=$(pwd)/.build;

@@ -27,6 +27,11 @@ buildPythonApplication rec {
     hash = "sha256-F9lDUuqHKl2FOUsUszJrRK7/a/a1UJLw+RUg9Bv2zN0=";
   };
 
+  postPatch = ''
+    # nixos-unstable no longer bundles v23 of tree-sitter
+    substituteInPlace pyproject.toml --replace 'tree-sitter (>=0.23.2,<0.24.0)' 'tree-sitter (>=0.23.2,<0.25.0)'
+  '';
+
   build-system = [ poetry-core ];
 
   propagatedBuildInputs = [
