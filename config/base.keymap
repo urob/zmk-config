@@ -166,8 +166,8 @@ SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
-// Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
-ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&kp SPACE>; flavor = "balanced";
+// Tap: space | Hold: nav layer.
+ZMK_HOLD_TAP(lt_spc, bindings = <&mo NAV 0>, <&kp SPACE>; flavor = "balanced";
              tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
 
 // Tap: backspace | Lshft + tap: delete | Rshft + tap: shift-delete.
