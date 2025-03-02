@@ -4,8 +4,8 @@ This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/)
 configuration. It consists of a 34-keys base layout that is re-used for various
 boards, including my Corneish Zen and my Planck.
 
-My configuration builds against `v0.1` of upstream ZMK plus a backport of the
-merged pointer PR. Custom functionality is added through various
+My configuration currently builds against `v0.2` of upstream ZMK.
+Custom functionality is added through various
 [ZMK modules](https://github.com/search?q=topic%3Azmk-module+fork%3Atrue+owner%3Aurob+&type=repositories).
 The state of the entire firmware is pinned in my `west`
 [manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
