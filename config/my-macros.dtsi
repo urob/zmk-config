@@ -207,3 +207,15 @@ ZMK_MACRO(select_line,
         <&macro_tap &kp END>,
         <&macro_release &kp LSHFT>;
 )
+
+ZMK_MACRO(del_two_words,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = <&kp LC(DEL) &kp LC(DEL)>;
+)
+
+ZMK_MACRO(bspc_two_words,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = <&kp LC(BSPC) &kp LC(BSPC)>;
+)
