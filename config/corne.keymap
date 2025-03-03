@@ -129,6 +129,23 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 #define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
 #define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
 
+ZMK_MACRO(del_two_words,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = <&kp LC(DEL) &kp LC(DEL)>;
+)
+
+// Macro to delete two words backward  
+ZMK_MACRO(bspc_two_words,
+    wait-ms = <0>;
+    tap-ms = <10>;
+    bindings = <&kp LC(BSPC) &kp LC(BSPC)>;
+)
+
+#define DEL_TWO  &del_two_words
+#define BSPC_TWO &bspc_two_words
+
+
 // mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
 #define MASK_MODS(NAME, MODS, BINDING) \
     ZMK_MOD_MORPH(NAME, \
@@ -271,7 +288,7 @@ ZMK_LAYER(nav,
 //╭────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮          ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────╮
         ___             ___              &back              &swapper        &forward          ___                        &triple_left    &double_up       &kp UP           &select_line       &kp PG_UP          ___
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
-        ___             &sk LGUI         &sk LALT         &sk LCTRL        &sk LSHFT         &kp INS                   &one_left      NAV_LEFT           &kp DOWN         NAV_RIGHT      &one_right      ___
+        ___             &sk LGUI         &sk LALT         &sk LCTRL        &sk LSHFT         &kp INS                   &one_left      NAV_LEFT           &kp DOWN         NAV_RIGHT           &one_right      BSPC_TWO
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
         ___             ___              ___              &smart_mouse       ___              ___                        &four_left        &double_down     &triple_down      &four_right    &kp PG_DN        ___
 //╰────────────────╯ ╰────────────────┼────────────────┴────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┴────────────────┴────────────────╯ ╰────────────────╯
@@ -283,7 +300,7 @@ ZMK_LAYER(fn,
 //╭────────────────╮ ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮          ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮ ╭────────────────╮
         ___            &kp F12          &kp F7           &e_tap_dance         &kp F9           ___                        &kp C_VOL_UP      &u_accent      &i_accent        &o_accent        &kp C_PREV         &kp C_NEXT        
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
-        ___             &a_tap_dance   &hml LALT F4      &hml LSHFT F5     &hml LCTRL F6         ___                   VOL_DOWN          &sk LSHFT        &sk LCTRL        &sk LALT         &sk LGUI         &win_sleep 
+        DEL_TWO        &a_tap_dance   &hml LALT F4      &hml LSHFT F5     &hml LCTRL F6         ___                   VOL_DOWN          &sk LSHFT        &sk LCTRL        &sk LALT         &sk LGUI         &win_sleep 
 //├────────────────┤ ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤ ├────────────────┤
         ___             &kp F10         &kp F1           &kp F2            &kp F3           DSK_MGR                    &kp PRINTSCREEN  &kp K_CMENU       PIN_WIN         DSK_PREV         DSK_NEXT           &kp C_MUTE
 //╰────────────────╯ ╰────────────────┼────────────────┴────────────────┼────────────────┼────────────────┤          ├────────────────┼────────────────┼────────────────┴────────────────┴────────────────╯ ╰────────────────╯
