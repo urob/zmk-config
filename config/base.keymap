@@ -227,12 +227,15 @@ ZMK_LAYER(lower,
                                 &kp LGUI  &mo 4       &kp SPACE    /*|*/ &kp RET   &trans     &kp RALT
 )
 
-ZMK_LAYER(adjust,
-&trans      &trans        &trans        &trans        &ext_power EP_OFF  &soft_off       /*|*/ &kp C_PREV  &kp C_PP     &kp C_NEXT                &kp C_MUTE        &kp C_VOL_DN   &kp C_VOL_UP
-&trans      &trans        &trans        &trans        &trans             &none           /*|*/ &trans      &trans       &kp LS(LG(LEFT_BRACKET))  &kp LS(LG(RBKT))  &kp C_BRI_DEC  &kp C_BRI_INC
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &bt BT_SEL 4    /*|*/ &trans      &trans       &trans                    &trans            &trans         &tog 1
-                                        &trans        &trans             &trans          /*|*/ &trans      &trans       &trans
+ZMK_LAYER(adjust, &trans &trans &trans &trans &ext_power EP_OFF  &trans &kp C_PREV  &kp C_PP &kp C_NEXT &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &trans &trans &trans &trans &trans             &none           /*|*/ &trans      &trans       &kp LS(LG(LEFT_BRACKET))  &kp LS(LG(RBKT))  &kp C_BRI_DEC  &kp C_BRI_INC
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4 &trans &trans &trans &trans &trans &tog 1 &trans &trans &trans &trans &trans &trans
 )
+// ZMK_LAYER(adjust,
+// &trans      &trans        &trans        &trans        &ext_power EP_OFF  &soft_off       /*|*/ &kp C_PREV  &kp C_PP     &kp C_NEXT                &kp C_MUTE        &kp C_VOL_DN   &kp C_VOL_UP
+// &trans      &trans        &trans        &trans        &trans             &none           /*|*/ &trans      &trans       &kp LS(LG(LEFT_BRACKET))  &kp LS(LG(RBKT))  &kp C_BRI_DEC  &kp C_BRI_INC
+// &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &bt BT_SEL 4    /*|*/ &trans      &trans       &trans                    &trans            &trans         &tog 1
+//                                         &trans        &trans             &trans          /*|*/ &trans      &trans       &trans
+// )
 
 ZMK_LAYER(extra,
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans 
