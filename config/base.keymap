@@ -190,7 +190,7 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
 ZMK_LAYER(base,
 &kp TAB    &kp Q         &kp W        &kp E        &kp R          &kp T        /*|*/ &kp Y    &kp U          &kp I        &kp O        &kp P            &kp BSPC
-&kp LCTRL  &hml LCTRL A  &hml LALT S  &hml GUI D   &hml LSHIFT F  &kp G        /*|*/ &kp H    &hmr RSHIFT J  &hmr RGUI K  &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
+&kp LCTRL  &hml LCTRL A  &hml LALT S  &hml LGUI D   &hml LSHIFT F  &kp G        /*|*/ &kp H    &hmr RSHIFT J  &hmr RGUI K  &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
 &kp LSHFT  &kp Z         &kp X        &kp C        &kp V          &kp B        /*|*/ &kp N    &kp M          &kp COMMA    &kp DOT      &kp FSLH         &kp ESC
                                       &kp LGUI     &mo 2          &kp SPACE    /*|*/ &kp RET  &mo 3          &kp RALT
 )
