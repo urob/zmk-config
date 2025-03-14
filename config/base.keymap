@@ -60,7 +60,6 @@
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
                tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
                require-prior-idle-ms = <150>; hold-trigger-on-release;         \
-               // hold-trigger-key-positions = <TRIGGER_POS>;
   )
 
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
