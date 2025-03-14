@@ -1,5 +1,3 @@
-// NOLINT(*)
-// or
 // clang-format off
 
 #include <behaviors.dtsi>
@@ -48,10 +46,10 @@
 
 /* Homerow mods */
 
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5
 #ifndef LH2
-  #define THUMBS LH1 LH0 RH0 RH1         // Thumbs on 34 keys.
+  #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2         // Thumbs on 34 keys.
 #else
   #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2 // Thumbs on 36+ keys.
 #endif
@@ -187,7 +185,7 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
 /* Keymap */
 
-ZMK_CONDITIONAL_LAYER(sys, FN NUM, SYS) // FN + NUM --> SYS.
+// ZMK_CONDITIONAL_LAYER(sys, FN NUM, SYS) // FN + NUM --> SYS.
 
 #ifndef ZMK_BASE_LAYER
   #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
@@ -228,11 +226,11 @@ ZMK_LAYER(Lower,
 &kp LSHFT  &trans     &trans    &trans    &trans      &trans       /*|*/ &kp HOME  &kp PG_UP  &kp PG_DN &kp END    &trans  &trans
                                 &kp LGUI  &mo 4       &kp SPACE    /*|*/ &kp RET   &trans     &kp RALT
 )
+
 ZMK_LAYER(Adjust,
 &trans      &trans        &trans        &trans        &ext_power EP_OFF  &soft_off       /*|*/ &kp C_PREV  &kp C_PLAY_PAUSE  &kp C_NEXT                &kp C_MUTE        &kp C_VOL_DN   &kp C_VOL_UP
 &trans      &trans        &trans        &trans        &trans             &none           /*|*/ &trans      &trans            &kp LS(LG(LEFT_BRACKET))  &kp LS(LG(RBKT))  &kp C_BRI_DEC  &kp C_BRI_INC
 &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &bt BT_SEL 4    /*|*/ &trans      &trans            &trans                    &trans            &trans         &tog 1
                                         &trans        &trans             &trans          /*|*/ &trans      &trans            &trans
-
 )
 /* vim: set ft=c tw=146: */
