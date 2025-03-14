@@ -187,10 +187,10 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
 // ZMK_CONDITIONAL_LAYER(sys, FN NUM, SYS) // FN + NUM --> SYS.
 
-#ifndef ZMK_BASE_LAYER
-  #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
-      ZMK_LAYER(name, LT RT LM RM LB RB LH RH)
-#endif
+// #ifndef ZMK_BASE_LAYER
+//   #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
+//       ZMK_LAYER(name, LT RT LM RM LB RB LH RH)
+// #endif
 
 // ZMK_BASE_LAYER(Base,
 //     &kp Q         &kp W         &kp W         &kp F         &kp P          &kp B    ,   &kp J    &kp L         &kp U         &kp Y        &kp Y        &kp SQT,
@@ -199,38 +199,45 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 //                                                           &lt_spc NAV 0 &lt FN RET  ,   SMART_NUM     MAGIC_SHIFT
 // )
 
-ZMK_LAYER(Base,
+ZMK_LAYER(base,
 &kp TAB    &kp Q         &kp W        &kp E        &kp R          &kp T        /*|*/ &kp Y    &kp U          &kp I        &kp O        &kp P            &kp BSPC
 &kp LCTRL  &hml LCTRL A  &hml LALT S  &hml GUI D   &hml LSHIFT F  &kp G        /*|*/ &kp H    &hmr RSHIFT J  &hmr RGUI K  &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
 &kp LSHFT  &kp Z         &kp X        &kp C        &kp V          &kp B        /*|*/ &kp N    &kp M          &kp COMMA    &kp DOT      &kp FSLH         &kp ESC
                                       &kp LGUI     &mo 2          &kp SPACE    /*|*/ &kp RET  &mo 3          &kp RALT
 )
 
-ZMK_LAYER(Game,
+ZMK_LAYER(game,
 &kp TAB    &kp Q         &kp W        &kp E     &kp R   &kp T      /*|*/ &kp Y    &kp U   &kp I      &kp O    &kp P     &kp BSPC
 &kp LCTRL  &kp A         &kp S        &kp D     &kp F   &kp G      /*|*/ &kp H    &kp J   &kp K      &kp L    &kp SEMI  &kp SQT
 &kp LSHFT  &kp Z         &kp X        &kp C     &kp V   &kp B      /*|*/ &kp N    &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
                                       &kp LGUI  &trans  &kp SPACE  /*|*/ &kp RET  &trans  &kp RALT
 )
 
-ZMK_LAYER(Raise,
+ZMK_LAYER(raise,
 &kp ESC    &kp EXCL   &kp AT    &kp HASH  &kp DLLR    &kp PRCNT    /*|*/ &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
 &kp LCTRL  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHIFT  &trans       /*|*/ &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
 &kp LSHFT  &trans     &trans    &trans    &trans      &trans       /*|*/ &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
                                 &kp LGUI  &trans      &kp SPACE    /*|*/ &kp RET    &mo 4      &kp RALT
 )
 
-ZMK_LAYER(Lower,
+ZMK_LAYER(lower,
 &kp ESC    &kp N1     &kp N2    &kp N3    &kp N4      &kp N5       /*|*/ &kp N6    &kp N7     &kp N8    &kp N9     &kp N0  &kp BSPC
 &trans     &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHIFT  &trans       /*|*/ &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT  &trans  &trans
 &kp LSHFT  &trans     &trans    &trans    &trans      &trans       /*|*/ &kp HOME  &kp PG_UP  &kp PG_DN &kp END    &trans  &trans
                                 &kp LGUI  &mo 4       &kp SPACE    /*|*/ &kp RET   &trans     &kp RALT
 )
 
-ZMK_LAYER(Adjust,
+ZMK_LAYER(adjust,
 &trans      &trans        &trans        &trans        &ext_power EP_OFF  &soft_off       /*|*/ &kp C_PREV  &kp C_PP     &kp C_NEXT                &kp C_MUTE        &kp C_VOL_DN   &kp C_VOL_UP
 &trans      &trans        &trans        &trans        &trans             &none           /*|*/ &trans      &trans       &kp LS(LG(LEFT_BRACKET))  &kp LS(LG(RBKT))  &kp C_BRI_DEC  &kp C_BRI_INC
 &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &bt BT_SEL 4    /*|*/ &trans      &trans       &trans                    &trans            &trans         &tog 1
+                                        &trans        &trans             &trans          /*|*/ &trans      &trans       &trans
+)
+
+ZMK_LAYER(extra,
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans 
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans 
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans 
                                         &trans        &trans             &trans          /*|*/ &trans      &trans       &trans
 )
 /* vim: set ft=c tw=146: */
