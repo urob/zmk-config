@@ -223,10 +223,10 @@ ZMK_LAYER(Raise,
 )
 
 ZMK_LAYER(Lower,
-&kp ESC    &kp N1     &kp N2    &kp N3    &kp N4      &kp N5       /*|*/ &kp N6    &kp N7    &kp N8    &kp N9     &kp N0  &kp BSPC
-&trans     &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHIFT  &trans       /*|*/ &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &trans  &trans
-&kp LSHFT  &trans     &trans    &trans    &trans      &trans       /*|*/ &trans    &trans    &trans    &trans     &trans  &trans
-                                &kp LGUI  &mo 4       &kp SPACE    /*|*/ &kp RET   &trans    &kp RALT
+&kp ESC    &kp N1     &kp N2    &kp N3    &kp N4      &kp N5       /*|*/ &kp N6    &kp N7     &kp N8    &kp N9     &kp N0  &kp BSPC
+&trans     &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHIFT  &trans       /*|*/ &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT  &trans  &trans
+&kp LSHFT  &trans     &trans    &trans    &trans      &trans       /*|*/ &kp HOME  &kp PG_UP  &kp PG_DN &kp END    &trans  &trans
+                                &kp LGUI  &mo 4       &kp SPACE    /*|*/ &kp RET   &trans     &kp RALT
 )
 ZMK_LAYER(Adjust,
 &trans      &trans        &trans        &trans        &ext_power EP_OFF  &soft_off       /*|*/ &kp C_PREV  &kp C_PLAY_PAUSE  &kp C_NEXT                &kp C_MUTE        &kp C_VOL_DN   &kp C_VOL_UP
