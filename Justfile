@@ -125,8 +125,6 @@ test $testpath *FLAGS:
     ${build_dir}/zephyr/zmk.exe | sed -e "s/.*> //" |
         tee ${build_dir}/keycode_events.full.log |
         sed -n -f ${config_dir}/events.patterns > ${build_dir}/keycode_events.log
-    diff -auZ ${config_dir}/keycode_events.snapshot ${build_dir}/keycode_events.log
-
     if [[ "{{ FLAGS }}" == *"--verbose"* ]]; then
         cat ${build_dir}/keycode_events.log
     fi
@@ -134,3 +132,4 @@ test $testpath *FLAGS:
     if [[ "{{ FLAGS }}" == *"--auto-accept"* ]]; then
         cp ${build_dir}/keycode_events.log ${config_dir}/keycode_events.snapshot
     fi
+    diff -auZ ${config_dir}/keycode_events.snapshot ${build_dir}/keycode_events.log
