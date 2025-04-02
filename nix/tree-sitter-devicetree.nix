@@ -8,14 +8,14 @@
 
 buildPythonPackage rec {
   pname = "tree-sitter-devicetree";
-  version = "0.12.1";
+  version = "0.14.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "joelspadin";
     repo = "tree-sitter-devicetree";
-    rev = "16c9cb959675bc9bc4f4e5bebe473d511a12a06d";
-    hash = "sha256-UVxLF4IKRXexz+PbSlypS/1QsWXkS/iYVbgmFCgjvZM=";
+    rev = "6557729f4afaf01dec7481d4e5975515ea8f0edd";
+    hash = "sha256-ua+mk++93ooH5nQH/M4vj7VSSvVDis/Uh8S1H34TxKs=";
   };
 
   build-system = [
