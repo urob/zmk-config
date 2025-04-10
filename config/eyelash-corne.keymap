@@ -12,85 +12,100 @@
 
 #define CONFIG_WIRELESS
 
-# #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                   \
-#     ZMK_LAYER(                                                                 \
-#         name,                                                                  \
-#                  LT RT                                                         \
-#                  LM RM                                                         \
-#                  LB RB                                                         \
-#         &kp LGUI LH RH &smart_mouse                                            \
-#     )
-
-
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rgb.h>
 
 // def num nav gam fn sys mouse
 
-ZMK_KEYMAP(Base,
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-   &kp GRAVE      &kp B         &kp L         &kp D         &kp C         &kp V           &kp J         &kp Y         &kp O         &kp U         &kp COMMA     &kp BSLH
-   &kp ESC        &hml LCTRL N  &hml LALT R   &hml LMETA T  &hml LSHFT S  &kp G           &kp P         &hmr RSHFT H  &hmr LMETA A  &hmr LALT E   &hmr LCTRL I  &kp SLSH
-   &kp LSHFT      &kp Z         &kp X         &kp C         &kp D         &kp Z           &kp K         &kp F         &kp SQT       &kp SEMI      &kp DOT       &mt LSFT RET
-//╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴─────────────╯
-                                              &mt FN ESC   &th NUM SPC   &mt LTCRL TAB    &th NAV      &th LSFT BSPC  XXX             
-//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
-)
+/ {
+  // behaviors {
+  //   td0: td0 {
+  //     compatible = "zmk,behavior-tap-dance";
+  //     #binding-cells = <0>;
+  //     bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
+  //   };
+  // };
 
+  rgb_encoder: rgb_encoder {
+    compatible = "zmk,behavior-sensor-rotate";
+    #sensor-binding-cells = <0>;
+    bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+  };
 
-ZMK_KEYMAP(Num,
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp GRAVE     &kp EXCL      &kp AT        &kp HASH      &kp DOLLAR    &kp PERCENT     &kp CARET     &kp AMPS      &kp STAR      &kp UNDS      &kp PLUS      ___
-    &kp ESC       &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        ___
-    &kp LSHFT     &kp TILDE     &kp MINUS     &kp EQUAL     &kp LBRC      &kp LBKT        &kp RBKT      &kp RBRC      &kp DQT       &kp COLON     &kp DOT       ___
-//╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴─────────────╯
-                                              ___           ___           ___             &kp BSPC      &kp DOT       ___             
-//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
-)
-ZMK_KEYMAP(Nav,
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp GRAVE     XXX           XXX           XXX           XXX           XXX             XXX           &kp HOME      &kp PGDN      &kp PGUP      &kp END       ___
-    &kp ESC       &kp LCTRL     &kp LALT      &kp LMETA     &kp LSHFT     XXX             XXX           &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     ___
-    &kp LSHFT     &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &kp K_PASTE     XXX           XXX           XXX           XXX           XXX           XXX                      
-//╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴─────────────╯
-                                              &kp TAB       &kp SPACE      ___             ___            ___          ___             
-//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
-)
-ZMK_KEYMAP(Gaming,
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp T         &kp TAB       &kp Q         &kp W         &kp E         &kp R           &kp Y         &kp U         &kp I         &kp O         &kp P         &kp F5   
-    &kp G         &kp ESC       &kp A         &kp S         &kp D         &kp F           &kp H         &kp J         &kp K         &kp L         &kp SEMI      &kp SQT
-    &kp B         &kp LSHFT     &kp Z         &kp X         &kp C         &kp V           &kp N         &kp M         &kp COMMA     &kp DOT       &kp SLSH      &kp RET
-//╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴─────────────╯
-                                              &kp LALT      &kp SPC       &kp LCTRL       &kp LMETA     &kp BSPC      EXIT
-//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
-)
-ZMK_KEYMAP(Fn,
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp GRAVE     XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp DEL
-    &kp ESC       XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp BSLH      
-    &kp LSHFT     XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp ENTER     
-//╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴─────────────╯
-                                              XXX           XXX           XXX             XXX             XXX         XXX  
-//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
-)
-ZMK_KEYMAP(Sys,
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp GRAVE     XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp DEL
-    &kp ESC       XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp BSLH      
-    &kp LSHFT     XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp ENTER     
-//╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴─────────────╯
-                                              XXX           XXX           XXX             XXX             XXX         XXX             
-//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
-)
-ZMK_KEYMAP(Mouse,
-//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    XXX           XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           XXX          
-    XXX           XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           XXX          
-    XXX           XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           XXX          
-//╰─────────────┼─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴─────────────╯
-                                              XXX           XXX           XXX             XXX             XXX         XXX             
-//                                          ╰─────────────┴─────────────┴─────────────╯ ╰─────────────┴─────────────┴─────────────╯
+  keymap {
+    compatible = "zmk,keymap";
 
-)
+    default_layer {
+      display-name = "BASE";
+
+      bindings = <
+&kp GRAVE  &kp B        &kp L       &kp D        &kp C         &kp V                               &kp UP                &kp J         &kp Y         &kp O         &kp U         &kp COMMA     &kp BSLH
+&kp ESC    &hml LCTRL N &hml LALT R &hml LMETA T &hml LSHFT S  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp P         &hmr RSHFT H  &hmr LMETA A  &hmr LALT E   &hmr LCTRL I  &kp SLSH
+&kp LSHFT  &kp Z        &kp X       &kp C        &kp D         &kp Z         &kp SPACE             &kp DOWN              &kp K         &kp F         &kp SQT       &kp SEMI      &kp DOT       &mt LSFT RET
+                                    &mt FN ESC   &th NUM SPC   &mt LTCRL TAB                                             &th NAV       &th LSFT BSPC  XXX             
+      >;
+
+      sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+    };
+
+    num_layer {
+      display-name = "NUM";
+
+      bindings = <
+&kp GRAVE  &kp EXCL   &kp AT     &kp HASH   &kp DOLLAR &kp PERCENT          ___      &kp CARET     &kp AMPS      &kp STAR      &kp UNDS      &kp PLUS      ___
+&kp ESC    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5           ___ ___ ___  &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        ___
+&kp LSHFT  &kp TILDE  &kp MINUS  &kp EQUAL  &kp LBRC   &kp LBKT    ___      ___      &kp RBKT      &kp RBRC      &kp DQT       &kp COLON     &kp DOT       ___
+                                  ___       ___        ___                                     &kp BSPC      &kp DOT       ___             
+      >;
+
+      sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+    };
+
+    nav_layer {
+      display-name = "NAV";
+
+      bindings = <
+&kp GRAVE  XXX        XXX        XXX         XXX          XXX                  ___      XXX  &kp HOME   &kp PGDN  &kp PGUP  &kp END    ___
+&kp ESC    &kp LCTRL  &kp LALT   &kp LMETA   &kp LSHFT    XXX              ___ ___ ___  XXX  &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT  ___
+&kp LSHFT  &kp K_UNDO &kp K_CUT  &kp K_COPY  &kp K_PASTE  &kp K_PASTE ___      ___      XXX  XXX        XXX       XXX       XXX        XXX                      
+                                 &kp TAB     &kp SPACE     ___                          ___   ___       ___         
+      >;
+
+      sensor-bindings = <&rgb_encoder>;
+    };
+  };
+};
+
+// ZMKMAP(Gaming,
+// &kp T         &kp TAB       &kp Q         &kp W         &kp E         &kp R           &kp Y         &kp U         &kp I         &kp O         &kp P         &kp F5   
+// &kp G         &kp ESC       &kp A         &kp S         &kp D         &kp F           &kp H         &kp J         &kp K         &kp L         &kp SEMI      &kp SQT
+// &kp B         &kp LSHFT     &kp Z         &kp X         &kp C         &kp V           &kp N         &kp M         &kp COMMA     &kp DOT       &kp SLSH      &kp RET
+//                                           &kp LALT      &kp SPC       &kp LCTRL       &kp LMETA     &kp BSPC      EXIT
+// )
+
+// ZMK_KEYMAP(Fn,
+// &kp GRAVE     XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp DEL
+// &kp ESC       XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp BSLH      
+// &kp LSHFT     XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp ENTER     
+//                                           XXX           XXX           XXX             XXX             XXX         XXX  
+// )
+// ZMK_KEYMAP(Sys,
+// &kp GRAVE     XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp DEL
+// &kp ESC       XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp BSLH      
+// &kp LSHFT     XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           &kp ENTER     
+//                                           XXX           XXX           XXX             XXX             XXX         XXX             
+// )
+// ZMK_KEYMAP(Mouse,
+// XXX           XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           XXX          
+// XXX           XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           XXX          
+// XXX           XXX           XXX           XXX           XXX           XXX             XXX           XXX           XXX           XXX           XXX           XXX          
+//                                           XXX           XXX           XXX             XXX             XXX         XXX             
+
+// )
 
 // ZMK_KEYMAP(Blank,
 // //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
