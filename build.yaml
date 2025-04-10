@@ -14,10 +14,10 @@
 ---
 include:
   - board: planck_rev6
-  - board: corneish_zen_v2_left
-  - board: corneish_zen_v2_right
-  - board: glove80_lh
-  - board: glove80_rh
+  # - board: corneish_zen_v2_left
+  # - board: corneish_zen_v2_right
+  # - board: glove80_lh
+  # - board: glove80_rh
   - board: eyelash_corne_left
     shield: nice_view
   - board: eyelash_corne_right
