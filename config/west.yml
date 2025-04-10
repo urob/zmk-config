@@ -44,6 +44,12 @@ manifest:
     - name: zmk-tri-state
       path: modules/zmk/tri-state
 
+    # eyelash board config
+    - name: eyelash_corne
+      url: https://github.com/a741725193/zmk-new_corne
+      revision: main
+      path: modules/eyelash_corne
+
     # Temporarily overload Zephyr until
     # https://github.com/zmkfirmware/zephyr/pull/40 is merged.
     - name: zephyr
