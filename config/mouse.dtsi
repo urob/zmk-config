@@ -1,4 +1,5 @@
 // Settings tuned for 3840 x 2160 display resolution
+#undef ZMK_POINTING_DEFAULT_SCRL_VAL
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 600 // 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 20  // 10
 
