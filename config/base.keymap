@@ -29,11 +29,11 @@
 
 // thumbs
 
-#define LTH_OUT &mt FN ESCAPE
+#define LTH_OUT &lt FN ESCAPE
 #define LTH     &lt NUM SPACE
 #define LTH_IN  &mt LCTRL TAB
 
-#define RTH_IN  &lt NAV NAV
+#define RTH_IN  &mo NAV 
 #define RTH     &th LSHIFT BACKSPACE
 #define RTH_OUT &kp DOT
 

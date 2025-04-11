@@ -27,53 +27,67 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
     compatible = "zmk,keymap";
 
     default_layer {
-      display-name = "BASE";
+      display-name = "Base";
 
       bindings = <
 
       &kp GRAVE  &kp B        &kp L       &kp D        &kp C         &kp V                   &kp UP                &kp J    &kp Y         &kp O         &kp U         &kp COMMA     &kp BSLH
       &kp ESC    &hml LCTRL N &hml LALT R &hml LMETA T &hml LSHFT S  &kp G         &kp LEFT  &kp ENTER  &kp RIGHT  &kp P    &hmr RSHFT H  &hmr LMETA A  &hmr LALT E   &hmr LCTRL I  &kp SLASH
       &kp LSHFT  &kp X        &kp Q       &kp M        &kp W         &kp Z         &kp C_PP  &kp DOWN              &kp K    &kp F         &kp SQT       &kp SEMI      &kp DOT       &mt LSHFT RET
-                                          &mt FN ESC   &lt NUM SPC   &mt LCTRL TAB                                &lt NAV NAV  &th LSHFT BSPC &kp DOT             
+                                          LTH_OUT      LTH           LTH_IN                                        RTH_IN   RTH           RTH_OUT
       >;
 
       sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP>;
     };
 
     num_layer {
-      display-name = "NUM";
+      display-name = "Num";
 
       bindings = <
       &kp GRAVE  &kp EXCL   &kp AT     &kp HASH   &kp DOLLAR &kp PERCENT     ___      &kp CARET  &kp AMPS  &kp STAR   &kp UNDER  &kp PLUS   &kp K_APP
       &kp ESC    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5      ___ ___ ___  &kp N6     &kp N7    &kp N8     &kp N9     &kp N0     ___
       &kp LSHFT  &kp TILDE  &kp MINUS  &kp EQUAL  &kp LBRC   &kp LBKT    ___ ___      &kp RBKT   &kp RBRC  &kp DQT    &kp COLON  &kp DOT    ___
-                                        ___       ___        ___                      &kp BSPC   ___       &kp DOT
+                                        ___       ___        ___                      ___        ___       &kp DOT
    >;
 
       sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
     };
 
     nav_layer {
-      display-name = "NAV";
+      display-name = "Nav";
 
       bindings = <
       &kp GRAVE  XXX        XXX        XXX         XXX          XXX             ___      &kp K_APP  &kp HOME  &kp PGDN  &kp PGUP  &kp END    &to GAM
       &kp ESC    &kp LCTRL  &kp LALT   &kp LMETA   &kp LSHFT    XXX         ___ ___ ___  &kp K_MENU &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  ___
       &kp LSHFT  &kp K_UNDO &kp K_CUT  &kp K_COPY  &kp K_PASTE  &kp K_PASTE ___ ___      &rgb_ug RGB_TOG XXX  XXX       XXX       XXX        &kp INS
-                                       &kp TAB     &kp SPACE     ___                     ___        ___       ___         
+                                       &kp TAB     &kp SPACE     ___                     ___        &kp BSPC  ___         
       >;
 
       sensor-bindings = <&rgb_encoder>;
     };
 
     gaming_layer {
-      display-name = "GAM";
+      display-name = "Gaming";
 
       bindings = <
       &kp T  &kp TAB   &kp Q  &kp W     &kp E    &kp R         ___         &kp Y      &kp U     &kp I      &kp O    &kp P     &kp F5   
       &kp G  &kp ESC   &kp A  &kp S     &kp D    &kp F     ___ ___ ___     &kp H      &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
       &kp B  &kp LSHFT &kp Z  &kp X     &kp C    &kp V     ___ ___         &kp N      &kp M     &kp COMMA  &kp DOT  &kp SLASH &kp RET
                               &kp LALT  &kp SPC  &kp LCTRL                 &kp LMETA  &kp BSPC  &to DEF
+      >;
+
+      sensor-bindings = <&rgb_encoder>;
+    };
+    
+    function_layer {
+      display-name = "Fn";
+
+      bindings = <
+      
+      XXX XXX     XXX     XXX     XXX     XXX     XXX         ___      XXX     XXX     XXX     XXX     XXX
+      XXX &kp F1  &kp F2  &kp F3  &kp  F4 &kp  F5 &kp F6  ___ ___ ___  &kp F7  &kp F8  &kp F9  &kp F10 XXX
+      XXX &kp F11 &kp F12 &kp F13 &kp F14 &kp F15 &kp F16 ___ ___      &kp F17 &kp F18 &kp F19 &kp F20 XXX
+                                  ___     ___     ___                  ___     ___     ___     
       >;
 
       sensor-bindings = <&rgb_encoder>;
