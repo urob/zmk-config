@@ -87,6 +87,7 @@ ZMK_BEHAVIOR(th, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <160>; // shorter 
     bindings = <&kp>, <&kp>;
+    quick-tap-ms = <QUICK_TAP_MS>; // tap-then-tap-and-hold for space / backspace
 )
 
 // Sticky shift + leader.
