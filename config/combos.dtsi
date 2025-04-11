@@ -25,33 +25,34 @@
 // because                                      
 ZMK_MACRO(minus, bindings = <&kp MINUS>;)
 ZMK_MACRO(under, bindings = <&kp UNDERSCORE>;)
-ZMK_MACRO(bs_word, bindings = <&kp LA(BSPC)>;)
-ZMK_MACRO(bs_word2, bindings = <&kp LC(BSPC)>;)
+
+ZMK_MACRO(bs_word_a, bindings = <&kp LA(BSPC)>;)
+ZMK_MACRO(bs_word_c, bindings = <&kp LC(BSPC)>;)
+
 ZMK_MACRO(del, bindings = <&kp DEL>;)
 
 // LEFT HAND
-ZMK_COMBO(combo_minus , &minus, LM3 LM2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_R) 
-ZMK_COMBO(combo_under,  &under, LM2 LM1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_R) 
+ZMK_COMBO(combo_minus,     &minus,    LM3 LM2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_R) 
+ZMK_COMBO(combo_under,     &under,    LM2 LM1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_R) 
 
 ZMK_COMBO(combo_capsword, &caps_word, LM4 LM3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT),   KEYS_R) 
 // ZMK_COMBO(combo_numword,   &num_word, LB4 LB3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(ldr,   &leader,      LM2 LM1, DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LCTRL), KEYS_R)
 
-ZMK_COMBO(combo_paren_l,   &kp LPAR,  LT3 LT2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(combo_paren_r,   &kp RPAR,  LT2 LT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_paren_l,   &kp LPAR,  LT3 LT2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_paren_r,   &kp RPAR,  LT2 LT1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
-ZMK_COMBO(combo_lt,        &kp LT,    LT4 LT3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(combo_gt,        &kp GT,    LT1 LT0, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_lt,        &kp LT,    LT4 LT3, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_gt,        &kp GT,    LT1 LT0, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
-ZMK_COMBO(combo_lbkt,      &kp LBKT,  LB3 LB2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(combo_rbkt,      &kp RBKT,  LB2 LB1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_lbkt,      &kp LBKT,  LB3 LB2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_rbkt,      &kp RBKT,  LB2 LB1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
-ZMK_COMBO(combo_brace_l,   &kp LBRC,  LB4 LB3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(combo_brace_r,   &kp RBRC,  LB1 LB0, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_brace_l,   &kp LBRC,  LB4 LB3, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_brace_r,   &kp RBRC,  LB1 LB0, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 // RIGHT HAND
-ZMK_COMBO(bspc_word,       &bs_word,  RM1 RM2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_L)
-ZMK_COMBO(bspc_word2,      &bs_word2,  RM3 RM4, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT), KEYS_L)
+ZMK_COMBO(bspc_word_a,     &bs_word_a,  RM1 RM2,  DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_L)
+ZMK_COMBO(bspc_word_c,     &bs_word_c,  RM3 RM4, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT), KEYS_L)
 
 ZMK_COMBO(combo_ent,       &kp ENTER, RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-
+ZMK_COMBO(ldr,             &leader,   RM0 RM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST, LSHIFT, KEYS_L)
