@@ -1,5 +1,6 @@
 
 #define CONFIG_WIRELESS
+
 #include "zmk-helpers/key-labels/42.h"
 #include "base.keymap"
 
@@ -28,10 +29,11 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       display-name = "BASE";
 
       bindings = <
+
       &kp GRAVE  &kp B        &kp L       &kp D        &kp C         &kp V                   &kp UP                &kp J    &kp Y         &kp O         &kp U         &kp COMMA     &kp BSLH
       &kp ESC    &hml LCTRL N &hml LALT R &hml LMETA T &hml LSHFT S  &kp G         &kp LEFT  &kp ENTER  &kp RIGHT  &kp P    &hmr RSHFT H  &hmr LMETA A  &hmr LALT E   &hmr LCTRL I  &kp SLASH
       &kp LSHFT  &kp Z        &kp X       &kp C        &kp D         &kp Z         &kp SPACE &kp DOWN              &kp K    &kp F         &kp SQT       &kp SEMI      &kp DOT       &mt LSHFT RET
-                                          &mt FN ESC   &th NUM SPC   &mt LCTRL TAB                                 &th NAV  &th LSHFT BSPC XXX             
+                                         &mt FN ESC   &th NUM SPC   &mt LCTRL TAB                                 &th NAV NAV  &th LSHFT BSPC XXX             
       >;
 
       sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -70,7 +72,7 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       &kp T  &kp TAB   &kp Q  &kp W     &kp E    &kp R         ___         &kp Y      &kp U     &kp I      &kp O    &kp P     &kp F5   
       &kp G  &kp ESC   &kp A  &kp S     &kp D    &kp F     ___ ___ ___     &kp H      &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
       &kp B  &kp LSHFT &kp Z  &kp X     &kp C    &kp V     ___ ___         &kp N      &kp M     &kp COMMA  &kp DOT  &kp SLASH &kp RET
-                              &kp LALT  &kp SPC  &kp LCTRL                 &kp LMETA  &kp BSPC  K_CANCEL
+                              &kp LALT  &kp SPC  &kp LCTRL                 &kp LMETA  &kp BSPC  &kp K_CANCEL
       >;
 
       sensor-bindings = <&rgb_encoder>;
