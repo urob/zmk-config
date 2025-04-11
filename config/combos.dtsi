@@ -1,12 +1,3 @@
-/*                KEY POSITIONS
-
-  ╭─────────────────────╮ ╭─────────────────────╮
-  │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
-  │ LM4 LM3 LM2 LM1 LM0 │ │ RM0 RM1 RM2 RM3 RM4 │
-  │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
-  ╰───────╮ LH2 LH1 LH0 │ │ RH0 RH1 RH2 ╭───────╯
-          ╰─────────────╯ ╰─────────────╯ */
-
 #define COMBO_TERM_FAST 18
 #define COMBO_TERM_SLOW 30
 
@@ -22,29 +13,26 @@
 // chording of mods. Custom hold-tap instances can be bootstrapped on the go using the
 // 8-argument version of ZMK_COMBO defined in base.keymap.
 
-// // LEFT HAND
+// LEFT HAND
 // ZMK_COMBO(combo_minus,     &kp MINUS, LM3 LM2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LGUI(LALT), KEYS_R) 
 // ZMK_COMBO(combo_under,     &kp UNDER, LM2 LM1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI),   KEYS_R) 
 
 // ZMK_COMBO(combo_capsword, &caps_word, LM4 LM3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT),   KEYS_R) 
 // ZMK_COMBO(combo_numword,   &num_word, LB4 LB3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
-// ZMK_COMBO(combo_paren_l,   &kp LPAR,  LT3 LT2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-// ZMK_COMBO(combo_paren_r,   &kp RPAR,  LT2 LT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_paren_l,   &kp LPAR,  LT3 LT2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_paren_r,   &kp RPAR,  LT2 LT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
-// ZMK_COMBO(combo_lt,        &kp LT,    LT4 LT3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-// ZMK_COMBO(combo_gt,        &kp GT,    LT1 LT0, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_lt,        &kp LT,    LT4 LT3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_gt,        &kp GT,    LT1 LT0, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
-// ZMK_COMBO(combo_lbkt,      &kp LBKT,  LB3 LB2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-// ZMK_COMBO(combo_rbkt,      &kp RBKT,  LB2 LB1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_lbkt,      &kp LBKT,  LB3 LB2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_rbkt,      &kp RBKT,  LB2 LB1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
-// ZMK_COMBO(combo_brace_l,   &kp LBRC,  LB4 LB3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-// ZMK_COMBO(combo_brace_r,   &kp RBRC,  LB1 LB0, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-
-
-// // RIGHT HAND
-// ZMK_COMBO(combo_ent,       &kp ENTER, RB3 RB4, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT), KEYS_L)
+ZMK_COMBO(combo_brace_l,   &kp LBRC,  LB4 LB3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_brace_r,   &kp RBRC,  LB1 LB0, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 
-
+// RIGHT HAND
+ZMK_COMBO(combo_ent,       &kp ENTER, RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 

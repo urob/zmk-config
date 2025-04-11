@@ -1,7 +1,7 @@
 
 #define CONFIG_WIRELESS
 
-#include "zmk-helpers/key-labels/42.h"
+#include "eyelash_matrix.h"
 #include "base.keymap"
 
 /* layout:  the block in the middle is
@@ -15,6 +15,19 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
 >;
 */
 
+/* custom keycodes */
+
+#define LTH_OUT &mt FN ESCAPE
+#define LTH     &lt NUM SPACE
+#define LTH_IN  &mt LCTRL TAB
+
+#define RTH_IN  &lt NAV NAV
+#define RTH     &th LSHIFT BACKSPACE
+#define RTH_OUT &kp DOT
+
+
+
+/* device tree / layout */
 / {
   rgb_encoder: rgb_encoder {
     compatible = "zmk,behavior-sensor-rotate";
@@ -32,8 +45,8 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
 
       &kp GRAVE  &kp B        &kp L       &kp D        &kp C         &kp V                   &kp UP                &kp J    &kp Y         &kp O         &kp U         &kp COMMA     &kp BSLH
       &kp ESC    &hml LCTRL N &hml LALT R &hml LMETA T &hml LSHFT S  &kp G         &kp LEFT  &kp ENTER  &kp RIGHT  &kp P    &hmr RSHFT H  &hmr LMETA A  &hmr LALT E   &hmr LCTRL I  &kp SLASH
-      &kp LSHFT  &kp Z        &kp X       &kp C        &kp D         &kp Z         &kp SPACE &kp DOWN              &kp K    &kp F         &kp SQT       &kp SEMI      &kp DOT       &mt LSHFT RET
-                                         &mt FN ESC   &th NUM SPC   &mt LCTRL TAB                                 &th NAV NAV  &th LSHFT BSPC XXX             
+      &kp LSHFT  &kp X        &kp Q       &kp M        &kp W         &kp Z         &kp SPACE &kp DOWN              &kp K    &kp F         &kp SQT       &kp SEMI      &kp DOT       &mt LSHFT RET
+                                          &mt FN ESC   &lt NUM SPC   &mt LCTRL TAB                                &lt NAV NAV  &th LSHFT BSPC &kp DOT             
       >;
 
       sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -43,11 +56,11 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       display-name = "NUM";
 
       bindings = <
-      &kp GRAVE  &kp EXCL   &kp AT     &kp HASH   &kp DOLLAR &kp PERCENT     ___      &kp CARET     &kp AMPS      &kp STAR      &kp UNDER     &kp PLUS   ___
-      &kp ESC    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5      ___ ___ ___  &kp N6        &kp N7        &kp N8        &kp N9        &kp N0     ___
-      &kp LSHFT  &kp TILDE  &kp MINUS  &kp EQUAL  &kp LBRC   &kp LBKT    ___ ___      &kp RBKT      &kp RBRC      &kp DQT       &kp COLON     &kp DOT    ___
-                                        ___       ___        ___                      &kp BSPC      &kp DOT       ___             
-      >;
+      &kp GRAVE  &kp EXCL   &kp AT     &kp HASH   &kp DOLLAR &kp PERCENT     ___      &kp CARET  &kp AMPS  &kp STAR   &kp UNDER  &kp PLUS   ___
+      &kp ESC    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5      ___ ___ ___  &kp N6     &kp N7    &kp N8     &kp N9     &kp N0     ___
+      &kp LSHFT  &kp TILDE  &kp MINUS  &kp EQUAL  &kp LBRC   &kp LBKT    ___ ___      &kp RBKT   &kp RBRC  &kp DQT    &kp COLON  &kp DOT    ___
+                                        ___       ___        ___                      &kp BSPC   ___       &kp DOT
+   >;
 
       sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
     };
