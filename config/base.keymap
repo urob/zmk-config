@@ -63,6 +63,10 @@ ZMK_BEHAVIOR(th, hold_tap,
     bindings = <&kp>, <&kp>;
 )
 
+// Sticky shift + leader.
+ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
+
+
 &caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
   /delete-property/ ignore-modifiers;
 };
