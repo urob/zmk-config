@@ -37,7 +37,7 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
                                           LTH_OUT      LTH           LTH_IN                                        RTH_IN   RTH           RTH_OUT
       >;
 
-      sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP>;
+      sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
     };
 
     num_layer {
