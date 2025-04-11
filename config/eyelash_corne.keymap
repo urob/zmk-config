@@ -1,5 +1,7 @@
+
 #define CONFIG_WIRELESS
 
+#include <dt-bindings/zmk/ext_power.h>
 #include "eyelash_matrix.h"
 
 /* layout:  the block in the middle is
@@ -44,10 +46,10 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       display-name = "Num";
 
       bindings = <
-      &kp GRAVE  &kp EXCL   &kp AT     &kp HASH   &kp DOLLAR &kp PERCENT     ___      &kp CARET  &kp AMPS  &kp STAR   &kp UNDER  &kp PLUS   &kp K_APP
-      &kp ESC    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5      ___ ___ ___  &kp N6     &kp N7    &kp N8     &kp N9     &kp N0     ___
-      &kp LSHFT  &kp TILDE  &kp MINUS  &kp EQUAL  &kp LBRC   &kp LBKT    ___ ___      &kp RBKT   &kp RBRC  &kp DQT    &kp COLON  &kp DOT    ___
-                                        ___       ___        ___                      ___        ___       &kp DOT
+      &kp GRAVE  &kp EXCL   &kp AT     &kp HASH   &kp DOLLAR &kp PERCENT        U_MS_U         &kp CARET  &kp AMPS  &kp STAR   &kp UNDER  &kp PLUS   &kp K_APP
+      &kp ESC    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5      U_MS_L U_MS_C U_MS_R  &kp N6     &kp N7    &kp N8     &kp N9     &kp N0     ___
+      &kp LSHFT  &kp TILDE  &kp MINUS  &kp EQUAL  &kp LBRC   &kp LBKT    ___    U_MS_D         &kp RBKT   &kp RBRC  &kp DQT    &kp COLON  &kp DOT    ___
+                                        ___       ___        ___                                                   ___        ___       &kp DOT
    >;
 
       sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;

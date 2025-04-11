@@ -1,7 +1,8 @@
 // Settings tuned for 3840 x 2160 display resolution
+#undef ZMK_POINTING_DEFAULT_MOVE_VAL
 #undef ZMK_POINTING_DEFAULT_SCRL_VAL
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 600 // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 20  // 10
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 25
 
 #include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
@@ -10,7 +11,7 @@
 // Based on @caksoylar's config, defaults in comments
 &mmv {
   acceleration-exponent = <1>;          // 1
-  time-to-max-speed-ms = <500>;         // 300
+  time-to-max-speed-ms = <300>;         // 300
   delay-ms = <0>;                       // 0
 };
 
@@ -60,3 +61,4 @@
 #define U_WH_D &msc SCRL_DOWN
 #define U_WH_L &msc SCRL_LEFT
 #define U_WH_R &msc SCRL_RIGHT
+#define U_MS_C &mkp LCLK
