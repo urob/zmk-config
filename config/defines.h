@@ -16,7 +16,7 @@
 #define COMBO_TERM 25
 #define QUICK_TAP_MS 175
 #define TAPPING_TERM_MS 220
-#define PRIOR_IDLE_MS 175
+#define PRIOR_IDLE_MS 120
 
 #undef COMBO_HOOK
 #define COMBO_HOOK require-prior-idle-ms = <25>;

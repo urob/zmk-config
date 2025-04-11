@@ -65,13 +65,13 @@
   tapping-term-ms = <200>;
   quick-tap-ms = <QUICK_TAP_MS>;
 };
-/* Homerow mods */
 
+/* Homerow mods */
 
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
-               tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
-               require-prior-idle-ms = <150>; hold-trigger-on-release;         \
+               tapping-term-ms = <TAPPING_TERM_MS>; quick-tap-ms = <QUICK_TAP_MS>; \
+               require-prior-idle-ms = <PRIOR_IDLE_MS>; hold-trigger-on-release;   \
                hold-trigger-key-positions = <TRIGGER_POS>;)
 
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
@@ -85,7 +85,7 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 // thumb layer-tap / mod-tap
 ZMK_BEHAVIOR(th, hold_tap, 
     flavor = "balanced";
-    tapping-term-ms = <160>;
+    tapping-term-ms = <160>; // shorter 
     bindings = <&kp>, <&kp>;
 )
 
@@ -108,10 +108,8 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 // Trigger tap-action on all interrupts.
 #define MT_CORE                                                                \
   flavor = "tap-preferred";                                                    \
-  tapping-term-ms = <220>;                                                     \
-  quick-tap-ms = <220>;                                                        \
+  tapping-term-ms = <TAPPING_TERM_MS>;                                         \
+  quick-tap-ms = <QUICK_TAP_MS>;                                               \
   hold-trigger-key-positions = <0>;
 
 &mt { MT_CORE };
-
-/* vim: set ft=c tw=146: */

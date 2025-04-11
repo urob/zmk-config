@@ -1,9 +1,8 @@
-- leader key
+- Sys: BLE / USB selection, etc
 - num_word (combo on 2 thumbs?)
-- BLE / USB selection
-- gaming mode
 - extra combos for media controls
-- INS, PRINTSCR, K_APP, Fn, ... 
+
+- INS, PRINTSCR, K_APP, Fn, ...
   
 - fix `just draw` - physical layout?
 

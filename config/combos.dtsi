@@ -7,10 +7,10 @@
              ╰─────────────┴─────────────╯
 */
 
-#define COMBO_TERM_FAST 18
+#define COMBO_TERM_FAST 20
 #define COMBO_TERM_SLOW 30
 
-#define COMBO_IDLE_FAST 150
+#define COMBO_IDLE_FAST 20
 #define COMBO_IDLE_SLOW 50
 
 // ZMK_COMBO(combo_dictate,   DICTATION, LM4 LM0, ALL)
