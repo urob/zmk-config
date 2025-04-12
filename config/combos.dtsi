@@ -13,16 +13,11 @@
 #define COMBO_IDLE_FAST 20
 #define COMBO_IDLE_SLOW 50
 
-// ZMK_COMBO(combo_dictate,   DICTATION, LM4 LM0, ALL)
-// ZMK_COMBO(combo_emdash,    EMDASH,     LM1 LM0, GAL CMK)
-// ZMK_COMBO(combo_bs_word,   BSWORD,    RM1 RM2, ALL)
-// ZMK_COMBO(combo_esc,       &kp ESC,   LM4 LM3, ALL)
-
 // Combos overlapping HRMs are set up as hold-taps themselves to allow for instantaneous
 // chording of mods. Custom hold-tap instances can be bootstrapped on the go using the
 // 8-argument version of ZMK_COMBO defined in base.keymap.
 
-// because                                      
+// need these as valid targets for the home row mod combo function                                      
 ZMK_MACRO(minus, bindings = <&kp MINUS>;)
 ZMK_MACRO(under, bindings = <&kp UNDERSCORE>;)
 
@@ -31,10 +26,16 @@ ZMK_MACRO(bs_word_c, bindings = <&kp LC(BSPC)>;)
 
 ZMK_MACRO(del, bindings = <&kp DEL>;)
 
-// LEFT HAND
-ZMK_COMBO(combo_minus,     &minus,    LM3 LM2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_R) 
-ZMK_COMBO(combo_under,     &under,    LM2 LM1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_R) 
+ZMK_MACRO(vol_dn, bindings = <&kp C_VOL_DN>;)
+ZMK_MACRO(vol_up, bindings = <&kp C_VOL_UP>;)
+ZMK_MACRO(trk_next, bindings = <&kp C_NEXT>;)
+ZMK_MACRO(trk_prev, bindings = <&kp C_PREV>;)
+ZMK_MACRO(play_pause, bindings = <&kp C_PP>;)
 
+// LEFT HAND
+// home row
+ZMK_COMBO(combo_under,     &under,    LM2 LM1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_R) 
+ZMK_COMBO(combo_minus,     &minus,    LM3 LM2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_R) 
 ZMK_COMBO(combo_capsword, &caps_word, LM4 LM3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT),   KEYS_R) 
 // ZMK_COMBO(combo_numword,   &num_word, LB4 LB3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
@@ -51,8 +52,19 @@ ZMK_COMBO(combo_brace_l,   &kp LBRC,  LB4 LB3, DEF NUM, COMBO_TERM_FAST, COMBO_I
 ZMK_COMBO(combo_brace_r,   &kp RBRC,  LB1 LB0, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 // RIGHT HAND
-ZMK_COMBO(bspc_word_a,     &bs_word_a,  RM1 RM2,  DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_L)
-ZMK_COMBO(bspc_word_c,     &bs_word_c,  RM3 RM4, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT), KEYS_L)
+// home row
+ZMK_COMBO(bspc_word_a,     &bs_word_a,  RM1 RM2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_L)
+ZMK_COMBO(bspc_word_c,     &bs_word_c,  RM2 RM3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_L)
+ZMK_COMBO(del,             &del,        RM3 RM4, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT), KEYS_L)
 
-ZMK_COMBO(combo_ent,       &kp ENTER, RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(ldr,             &leader,   RM0 RM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST, LSHIFT, KEYS_L)
+ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(ldr,             &leader,     RM0 RM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST, LSHIFT, KEYS_L)
+
+ZMK_COMBO(vol_up,          &vol_up,     RM1 RT2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(vol_dn,          &vol_dn,     RM1 RT2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(trk_next,        &trk_next,   RM4 RT3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(trk_prev,        &trk_prev,   RM0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(play_pause,      &play_pause, RT0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+// media keys
+

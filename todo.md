@@ -1,8 +1,6 @@
-- Sys: BLE / USB selection, etc
-- make circles in picture change with layer 
+- Sys tri-state layer on fn+nav
 - make keymap defs nicer with a macro / template function
 - num_word (combo on 2 thumbs?)
-- extra combos for media controls
 
 - INS, PRINTSCR, K_APP, Fn, ...
   

@@ -8,13 +8,18 @@
 #include "defines.h"
 #include "zmk-helpers/helper.h"
 
+#include <dt-bindings/zmk/ext_power.h>
+
 #ifdef CONFIG_WIRELESS
   #include <dt-bindings/zmk/bt.h>
   #include <dt-bindings/zmk/outputs.h>
-  #define _BT_SEL_KEYS_                                                        \
-      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
+  #define _BT_SEL_KEYS_  &bt BT_SEL 1  &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 
+  #define _BT_MGMT_KEYS_ XXX           &out OUT_USB &out OUT_BLE &bt BT_CLR   &bt BT_CLR_ALL    
+
+  // #define _BT_SEL_KEYS_                                                        \
+  //     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
 #else
-  #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
+  // #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
 #endif
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4
@@ -41,10 +46,10 @@
 
 #define ZOOM_IN  &kp C_AC_ZOOM_IN 
 #define ZOOM_OUT &kp C_AC_ZOOM_OUT 
-#define VOL_UP   &kp C_VOL_UP
-#define VOL_DN   &kp C_VOL_DN
-#define TRK_NEXT &kp C_NEXT
-#define TRK_PREV &kp C_PREV
+// #define VOL_UP   &kp C_VOL_UP
+// #define VOL_DN   &kp C_VOL_DN
+// #define TRK_NEXT &kp C_NEXT
+// #define TRK_PREV &kp C_PREV
 #define BACK     &kp K_BACK
 #define FWD      &kp K_FORWARD
 
@@ -87,7 +92,7 @@ ZMK_BEHAVIOR(th, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <160>; // shorter 
     bindings = <&kp>, <&kp>;
-    quick-tap-ms = <QUICK_TAP_MS>; // tap-then-tap-and-hold for space / backspace
+    // quick-tap-ms = <QUICK_TAP_MS>; // tap-then-tap-and-hold for space / backspace
 )
 
 // Sticky shift + leader.

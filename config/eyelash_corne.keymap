@@ -85,11 +85,36 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       display-name = "Fn";
 
       bindings = <
-      
-      XXX XXX     XXX     XXX     XXX     XXX     XXX         ___      XXX     XXX     XXX     XXX     XXX
-      XXX &kp F1  &kp F2  &kp F3  &kp  F4 &kp  F5 &kp F6  ___ ___ ___  &kp F7  &kp F8  &kp F9  &kp F10 XXX
-      XXX &kp F11 &kp F12 &kp F13 &kp F14 &kp F15 &kp F16 ___ ___      &kp F17 &kp F18 &kp F19 &kp F20 XXX
-                                  ___     ___     ___                  ___     ___     ___     
+      XXX _BT_SEL_KEYS_                                      ___       _BT_MGMT_KEYS_                            XXX
+      XXX &kp F1   &kp F2   &kp F3   &kp  F4   &kp  F5   ___ ___ ___   &kp F6   &kp F7   &kp F8  &kp F9  &kp F10 XXX
+      XXX &kp F11  &kp F12  &kp F13  &kp F14   &kp F15   ___ ___       &kp F16  &kp F17  &kp F18 &kp F19 &kp F20 XXX
+                            ___      ___       ___           ___       ___      ___     
+      >;
+
+      sensor-bindings = <&rgb_encoder>;
+    };
+
+    sys_layer {
+      display-name = "Sys";
+
+      bindings = <
+      XXX XXX XXX XXX XXX XXX     ___      XXX XXX XXX XXX XXX XXX    
+      XXX XXX XXX XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX XXX    
+      XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX    
+                  XXX XXX XXX              XXX XXX XXX 
+      >;
+
+      sensor-bindings = <&rgb_encoder>;
+    };
+
+    mouse_layer {
+      display-name ="Mouse";
+
+      bindings = <
+      XXX XXX XXX XXX XXX XXX     ___      XXX XXX XXX XXX XXX XXX    
+      XXX XXX XXX XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX XXX    
+      XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX    
+                  XXX XXX XXX              XXX XXX XXX 
       >;
 
       sensor-bindings = <&rgb_encoder>;
