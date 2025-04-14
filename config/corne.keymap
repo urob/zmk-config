@@ -5,7 +5,7 @@
                  LT RT                                                         \
                  LM RM                                                         \
                  LB RB                                                         \
-        &kp BSPC LH RH &smart_mouse                                            \
+        &lt FN BSPC LH RH &smart_mouse                                            \
     )
 
 #include "zmk-helpers/key-labels/36.h"
