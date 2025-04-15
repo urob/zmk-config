@@ -33,10 +33,10 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
 
       bindings = <
 
-      &kp GRAVE  &kp B        &kp L       &kp D        &kp C         &kp V                   &kp UP                &kp J    &kp Y         &kp O         &kp U         &kp COMMA     &kp BSLH
-      &kp ESC    &hml LCTRL N &hml LALT R &hml LMETA T &hml LSHFT S  &kp G         &kp LEFT  &kp ENTER  &kp RIGHT  &kp P    &hmr RSHFT H  &hmr LMETA A  &hmr LALT E   &hmr LCTRL I  &kp SLASH
-      &kp LSHFT  &kp X        &kp Q       &kp M        &kp W         &kp Z         &kp C_PP  &kp DOWN              &kp K    &kp F         &kp SQT       &kp SEMI      &kp DOT       &mt LSHFT RET
-                                          LTH_OUT      LTH           LTH_IN                                        RTH_IN   RTH           RTH_OUT
+      GRV_HYP &kp B  &kp L  &kp D  &kp C  &kp V       _UP       &kp J   &kp Y  &kp O    &kp U     &kp COMMA  BSL_HYP
+      ESC_MEH _HOME_ROW_MODS_LEFT_        &kp G   _L_ _RT _R_   &kp P   _HOME_ROW_MODS_RIGHT_                SLS_MEH
+      CMP_SFT &kp X  &kp Q  &kp M  &kp W  &kp Z   _PP _DN       &kp K   &kp F  &kp SQT  &kp SEMI  &kp DOT    RET_SFT
+                        FN_ESC  NUM_SPC  CTL_TAB                NAV_KEY BS_SFT XXX
       >;
 
       sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -46,11 +46,11 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       display-name = "Num";
 
       bindings = <
-      &kp GRAVE  &kp EXCL   &kp AT     &kp HASH   &kp DOLLAR &kp PERCENT        U_MS_U         &kp CARET  &kp AMPS  &kp STAR   &kp UNDER  &kp PLUS   &kp K_APP
-      &kp ESC    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5      U_MS_L U_MS_C U_MS_R  &kp N6     &kp N7    &kp N8     &kp N9     &kp N0     ___
-      &kp LSHFT  &kp TILDE  &kp MINUS  &kp EQUAL  &kp LBRC   &kp LBKT    ___    U_MS_D         &kp RBKT   &kp RBRC  &kp DQT    &kp COLON  &kp DOT    ___
-                                        ___       ___        ___                                                   ___        ___       &kp DOT
-   >;
+      &kp GRAVE  &kp EXCL  &kp AT    &kp HASH  &kp DOLLAR &kp PERCENT          MS_U      &kp CARET &kp AMPS &kp STAR &kp UNDER &kp PLUS &kp PIPE
+      &kp ESC    &kp N1    &kp N2    &kp N3    &kp N4     &kp N5        MS_L MS_C MS_R   &kp N6    &kp N7   &kp N8   &kp N9    &kp N0   &kp SLASH
+      XXX        &kp TILDE &kp MINUS &kp EQUAL &kp LBRC   &kp LBKT      ___    MS_D      &kp RBKT  &kp RBRC &kp DQT  &kp COLON &kp DOT  &kp ENTER
+                                      ___      ___        ___                            ___       ___      &kp DOT
+      >;
 
       sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
     };
@@ -59,10 +59,10 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       display-name = "Nav";
 
       bindings = <
-      &kp GRAVE  XXX        XXX        XXX         XXX          XXX             ___      &kp K_APP  &kp HOME  &kp PGDN  &kp PGUP  &kp END    &to GAM
-      &kp ESC    &kp LCTRL  &kp LALT   &kp LMETA   &kp LSHFT    XXX         ___ ___ ___  &kp K_MENU &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  ___
-      &kp LSHFT  &kp K_UNDO &kp K_CUT  &kp K_COPY  &kp K_PASTE  &kp K_PASTE ___ ___      &rgb_ug RGB_TOG XXX  XXX       XXX       XXX        &kp INS
-                                       &kp TAB     &kp SPACE     ___                     ___        &kp BSPC  ___         
+      &kp GRAVE XXX        XXX       XXX        XXX         XXX                  WH_U      XXX   &kp HOME &kp PGDN &kp PGUP &kp END   &to GAM
+      &kp ESC   &kp LCTRL  &kp LALT  &kp LMETA  &kp LSHFT   XXX           WH_L MS_C WH_R   XXX   &kp LEFT &kp DOWN &kp UP   &kp RIGHT &kp DEL
+      &sl SYS   &kp K_UNDO &kp K_CUT &kp K_COPY &kp K_PASTE &kp K_PASTE      ___ WH_U      XXX   XXX      XXX      XXX      XXX       &kp INS
+                                     &kp TAB    &kp SPACE   ___                            ___   &kp BSPC ___         
       >;
 
       sensor-bindings = <&rgb_encoder>;
@@ -85,10 +85,10 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       display-name = "Fn";
 
       bindings = <
-      XXX _BT_SEL_KEYS_                                      ___       _BT_MGMT_KEYS_                            XXX
-      XXX &kp F1   &kp F2   &kp F3   &kp  F4   &kp  F5   ___ ___ ___   &kp F6   &kp F7   &kp F8  &kp F9  &kp F10 XXX
-      XXX &kp F11  &kp F12  &kp F13  &kp F14   &kp F15   ___ ___       &kp F16  &kp F17  &kp F18 &kp F19 &kp F20 XXX
-                            ___      ___       ___           ___       ___      ___     
+      &kp K_MENU   XXX      XXX      XXX      XXX       XXX           ___       XXX      XXX      XXX     XXX     XXX     ___
+      &kp PSCRN    &kp  F1  &kp  F2  &kp  F3  &kp  F4   &kp  F5   ___ ___ ___   &kp  F6  &kp  F7  &kp  F8 &kp  F9 &kp F10 ___
+      &kp CLEAR    &kp F11  &kp F12  &kp F13  &kp F14   &kp F15   ___ ___       &kp F16  &kp F17  &kp F18 &kp F19 &kp F20 ___
+                                     ___      ___       ___                     ___      ___      ___     
       >;
 
       sensor-bindings = <&rgb_encoder>;
@@ -98,26 +98,26 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       display-name = "Sys";
 
       bindings = <
-      XXX XXX XXX XXX XXX XXX     ___      XXX XXX XXX XXX XXX XXX    
-      XXX XXX XXX XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX XXX    
-      XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX    
-                  XXX XXX XXX              XXX XXX XXX 
+      _PS_BRK      _BT_SEL_KEYS_                   ___      _BT_MGMT_KEYS_       &kp C_POWER
+      XXX          _RGB_TG XXX     XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX  &kp K_SLEEP   
+      &kp K_CANCEL _EP_OFF _EP_ON  XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX  &kp C_RESET   
+                                   XXX XXX XXX              XXX XXX XXX 
       >;
 
       sensor-bindings = <&rgb_encoder>;
     };
 
-    mouse_layer {
-      display-name ="Mouse";
+    // mouse_layer {
+    //   display-name ="Mouse";
 
-      bindings = <
-      XXX XXX XXX XXX XXX XXX     ___      XXX XXX XXX XXX XXX XXX    
-      XXX XXX XXX XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX XXX    
-      XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX    
-                  XXX XXX XXX              XXX XXX XXX 
-      >;
+    //   bindings = <
+    //   XXX XXX XXX XXX XXX XXX     ___      XXX XXX XXX XXX XXX XXX    
+    //   XXX XXX XXX XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX XXX    
+    //   XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX    
+    //               XXX XXX XXX              XXX XXX XXX 
+    //   >;
 
-      sensor-bindings = <&rgb_encoder>;
-    };
+    //   sensor-bindings = <&rgb_encoder>;
+    // };
   };
 };
