@@ -13,12 +13,13 @@
 #ifdef CONFIG_WIRELESS
   #include <dt-bindings/zmk/bt.h>
   #include <dt-bindings/zmk/outputs.h>
-  #define _BT_SEL_KEYS_  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-  #define _BT_MGMT_KEYS_ XXX           &out OUT_USB  &out OUT_BLE  &bt BT_CLR    &bt BT_CLR_ALL 
-  #define _BT_DISC_KEYS_ &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4
+  #define _CONN_MGMT_KEYS_ &out OUT_TOG  &out OUT_USB   &out OUT_BLE   &bt BT_CLR     &bt BT_CLR_ALL 
+  #define _BT_SEL_KEYS_    &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4
+  #define _BT_DISC_KEYS_   &bt BT_DISC 0 &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4
 #else
-  #define _BT_SEL_KEYS_  ___ ___ ___ ___ 
-  #define _BT_MGMT_KEYS_ ___ ___ ___ ___ 
+  #define _BT_SEL_KEYS_    ___ ___ ___ ___ 
+  #define _BT_MGMT_KEYS_   ___ ___ ___ ___ 
+  #define _CONN_MGMT_KEYS_ ___ ___ ___ ___ 
 #endif
 
 /* keycode aliases */
@@ -61,7 +62,8 @@
 #define _PS_BRK &kp PAUSE_BREAK
 #define _EP_OFF &ext_power EP_OFF
 #define _EP_ON  &ext_power EP_ON
-#define _RGB_TG &rgb_ug RGB_TOG 
+#define _RGB_KEYS_   &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF XXX XXX
+
 
 &sk {
   release-after-ms = <900>;

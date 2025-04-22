@@ -98,10 +98,10 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       display-name = "Sys";
 
       bindings = <
-      _PS_BRK      _BT_SEL_KEYS_                   ___      _BT_MGMT_KEYS_       &kp C_POWER
-      XXX          _RGB_TG XXX     XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX  &kp K_SLEEP   
-      &kp K_CANCEL _EP_OFF _EP_ON  XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX  &kp C_RESET   
-                                   XXX XXX XXX              XXX XXX XXX 
+      &bt BT_CLR   _CONN_MGMT_KEYS_            ___       &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF XXX      XXX     &kp C_POWER
+      _PS_BRK      _BT_SEL_KEYS_           ___ ___ ___   &studio_unlock  &sys_reset      &bootloader     _EP_OFF  _EP_ON  &kp K_SLEEP   
+      &kp K_CANCEL _BT_DISC_KEYS_          ___ ___       XXX             XXX             XXX             XXX      XXX     &kp C_RESET   
+                   XXX XXX XXX                           XXX             &kp K_CANCEL    XXX 
       >;
 
       sensor-bindings = <&rgb_encoder>;
