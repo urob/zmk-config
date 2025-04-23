@@ -3,31 +3,47 @@
 
 #include <dt-bindings/zmk/ext_power.h>
 #include "eyelash_matrix.h"
-
-/* layout:  the block in the middle is
-            - the encoder push button (lower left)
-            - the mini joystick & in the center, it's push button
-bindings = <
-XXX XXX XXX XXX XXX XXX     ___      XXX XXX XXX XXX XXX XXX    
-XXX XXX XXX XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX XXX    
-XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX    
-            XXX XXX XXX              XXX XXX XXX 
->;
-*/
-
 #include "base.keymap"
 
-/* device tree / layout */
+/*
+  layout:  the block in the middle is
+    - the encoder push button (lower left)
+    - the mini joystick & in the center, it's push button
+
+  bindings = <
+    XXX XXX XXX XXX XXX XXX     ___      XXX XXX XXX XXX XXX XXX    
+    XXX XXX XXX XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX XXX    
+    XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX    
+                XXX XXX XXX              XXX XXX XXX 
+  >;
+*/
+
 / {
+  
+  /* encoder behaviours */
+
   rgb_encoder: rgb_encoder {
     compatible = "zmk,behavior-sensor-rotate";
     #sensor-binding-cells = <0>;
     bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
   };
 
+  // TODO get this working, if possible
+
+  // ms_wheel_enc: mouse_wheel_encoder {
+  //   compatible = "zmk,behavior-sensor-rotate";
+  //   #sensor-binding-cells = <0>;
+  //   tap-ms = <30>;
+  //   bindings = <&msc WH_U>, <&msc WH_D>;
+  // };
+    
+  /* layout */
+
   keymap {
     compatible = "zmk,keymap";
 
+    /* Gallium keymap */
+    
     default_layer {
       display-name = "Base";
 
@@ -49,7 +65,7 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       &kp GRAVE  &kp EXCL  &kp AT    &kp HASH  &kp DOLLAR &kp PERCENT          MS_U      &kp CARET &kp AMPS &kp STAR &kp UNDER &kp PLUS &kp PIPE
       &kp ESC    &kp N1    &kp N2    &kp N3    &kp N4     &kp N5        MS_L MS_C MS_R   &kp N6    &kp N7   &kp N8   &kp N9    &kp N0   &kp SLASH
       XXX        &kp TILDE &kp MINUS &kp EQUAL &kp LBRC   &kp LBKT      ___    MS_D      &kp RBKT  &kp RBRC &kp DQT  &kp COLON &kp DOT  &kp ENTER
-                                      ___      ___        ___                            ___       ___      &kp DOT
+                                     &kp TAB   XXX        ___                            ___       ___      &kp DOT
       >;
 
       sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
@@ -61,8 +77,21 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
       bindings = <
       &kp GRAVE XXX        XXX       XXX        XXX         XXX                  WH_U      XXX   &kp HOME &kp PGDN &kp PGUP &kp END   &to GAM
       &kp ESC   &kp LCTRL  &kp LALT  &kp LMETA  &kp LSHFT   XXX           WH_L MS_C WH_R   XXX   &kp LEFT &kp DOWN &kp UP   &kp RIGHT &kp DEL
-      &sl SYS   &kp K_UNDO &kp K_CUT &kp K_COPY &kp K_PASTE &kp K_PASTE      ___ WH_U      XXX   XXX      XXX      XXX      XXX       &kp INS
-                                     &kp TAB    &kp SPACE   ___                            ___   &kp BSPC ___         
+      XXX       &kp K_UNDO &kp K_CUT &kp K_COPY &kp K_PASTE &kp K_PASTE      ___ WH_U      XXX   XXX      XXX      XXX      XXX       &kp INS
+                                     &mo FN     &kp SPACE   ___                            XXX   &kp BSPC ___         
+      >;
+
+      sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+    };
+  
+    function_layer {
+      display-name = "Fn";
+
+      bindings = <
+      &kp K_MENU   XXX      XXX      XXX      XXX       XXX           ___       XXX      XXX      XXX     XXX     XXX     ___
+      &kp PSCRN    &kp  F1  &kp  F2  &kp  F3  &kp  F4   &kp  F5   ___ ___ ___   &kp  F6  &kp  F7  &kp  F8 &kp  F9 &kp F10 ___
+      &kp CLEAR    &kp F11  &kp F12  &kp F13  &kp F14   &kp F15   ___ ___       &kp F16  &kp F17  &kp F18 &kp F19 &kp F20 ___
+                                     ___      ___       ___                     &mo NAV  ___      ___     
       >;
 
       sensor-bindings = <&rgb_encoder>;
@@ -71,6 +100,8 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
     gaming_layer {
       display-name = "Gaming";
 
+      // QUERTY, but adjusted for columnar stagger so WASD is in the ESDF position
+
       bindings = <
       &kp T  &kp TAB   &kp Q  &kp W     &kp E    &kp R         ___         &kp Y      &kp U     &kp I      &kp O    &kp P     &kp F5   
       &kp G  &kp ESC   &kp A  &kp S     &kp D    &kp F     ___ ___ ___     &kp H      &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
@@ -78,46 +109,29 @@ XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX
                               &kp LALT  &kp SPC  &kp LCTRL                 &kp LMETA  &kp BSPC  &to DEF
       >;
 
-      sensor-bindings = <&rgb_encoder>;
-    };
-    
-    function_layer {
-      display-name = "Fn";
-
-      bindings = <
-      &kp K_MENU   XXX      XXX      XXX      XXX       XXX           ___       XXX      XXX      XXX     XXX     XXX     ___
-      &kp PSCRN    &kp  F1  &kp  F2  &kp  F3  &kp  F4   &kp  F5   ___ ___ ___   &kp  F6  &kp  F7  &kp  F8 &kp  F9 &kp F10 ___
-      &kp CLEAR    &kp F11  &kp F12  &kp F13  &kp F14   &kp F15   ___ ___       &kp F16  &kp F17  &kp F18 &kp F19 &kp F20 ___
-                                     ___      ___       ___                     ___      ___      ___     
-      >;
-
-      sensor-bindings = <&rgb_encoder>;
+      sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
     };
 
     sys_layer {
       display-name = "Sys";
 
       bindings = <
-      &bt BT_CLR   _CONN_MGMT_KEYS_            ___       &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF XXX      XXX     &kp C_POWER
-      _PS_BRK      _BT_SEL_KEYS_           ___ ___ ___   &studio_unlock  &sys_reset      &bootloader     _EP_OFF  _EP_ON  &kp K_SLEEP   
-      &kp K_CANCEL _BT_DISC_KEYS_          ___ ___       XXX             XXX             XXX             XXX      XXX     &kp C_RESET   
-                   XXX XXX XXX                           XXX             &kp K_CANCEL    XXX 
+      &bt BT_CLR   _CONN_MGMT_KEYS_            ___       _RGB_KEYS_                                                  &kp C_POWER
+      _PS_BRK      _BT_SEL_KEYS_           ___ ___ ___   &studio_unlock  &sys_reset    &bootloader  _EP_OFF  _EP_ON  &kp K_SLEEP   
+      &kp K_CANCEL _BT_DISC_KEYS_          ___ ___       XXX             XXX           XXX          XXX      XXX     &kp C_RESET   
+                   XXX XXX XXX                           XXX             &kp K_CANCEL  XXX 
       >;
 
       sensor-bindings = <&rgb_encoder>;
     };
-
-    // mouse_layer {
-    //   display-name ="Mouse";
-
-    //   bindings = <
-    //   XXX XXX XXX XXX XXX XXX     ___      XXX XXX XXX XXX XXX XXX    
-    //   XXX XXX XXX XXX XXX XXX ___ ___ ___  XXX XXX XXX XXX XXX XXX    
-    //   XXX XXX XXX XXX XXX XXX ___ ___      XXX XXX XXX XXX XXX XXX    
-    //               XXX XXX XXX              XXX XXX XXX 
-    //   >;
-
-    //   sensor-bindings = <&rgb_encoder>;
-    // };
+    // activate SYS when FN + NAV held
+    // 
+    conditional_layers {
+      compatible = "zmk,conditional-layers";
+      tri_layer {
+        if-layers = <NAV FN>;
+        then-layer = <SYS>;
+      };
+    };
   };
 };
