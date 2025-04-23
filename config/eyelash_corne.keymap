@@ -75,10 +75,10 @@
       display-name = "Nav";
 
       bindings = <
-      &kp GRAVE XXX        XXX       XXX        XXX         XXX                  WH_U      XXX   &kp HOME &kp PGDN &kp PGUP &kp END   &to GAM
-      &kp ESC   &kp LCTRL  &kp LALT  &kp LMETA  &kp LSHFT   XXX           WH_L MS_C WH_R   XXX   &kp LEFT &kp DOWN &kp UP   &kp RIGHT &kp DEL
-      XXX       &kp K_UNDO &kp K_CUT &kp K_COPY &kp K_PASTE &kp K_PASTE      ___ WH_U      XXX   XXX      XXX      XXX      XXX       &kp INS
-                                     &mo FN     &kp SPACE   ___                            XXX   &kp BSPC ___         
+      &kp GRAVE XXX        XXX       XXX        XXX         XXX          WH_U        XXX   &kp HOME &kp PGDN &kp PGUP &kp END   &to GAM
+      &kp ESC   &kp LCTRL  &kp LALT  &kp LMETA  &kp LSHFT   XXX     WH_L MS_C WH_R   XXX   &kp LEFT &kp DOWN &kp UP   &kp RIGHT &kp DEL
+      XXX       _UNDO      _CUT      _COPY      _PASTE      _REDO   ___  WH_U        XXX   XXX      XXX      XXX      XXX       &kp INS // maybe these work?
+                                     &mo FN     &kp SPACE   ___                      XXX   &kp BSPC ___         
       >;
 
       sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
@@ -88,10 +88,10 @@
       display-name = "Fn";
 
       bindings = <
-      &kp K_MENU   XXX      XXX      XXX      XXX       XXX           ___       XXX      XXX      XXX     XXX     XXX     ___
-      &kp PSCRN    &kp  F1  &kp  F2  &kp  F3  &kp  F4   &kp  F5   ___ ___ ___   &kp  F6  &kp  F7  &kp  F8 &kp  F9 &kp F10 ___
-      &kp CLEAR    &kp F11  &kp F12  &kp F13  &kp F14   &kp F15   ___ ___       &kp F16  &kp F17  &kp F18 &kp F19 &kp F20 ___
-                                     ___      ___       ___                     &mo NAV  ___      ___     
+      &kp K_MENU   PRINT_SCR  PS_BRK  &kp INS  &kp DEL  XXX          ___       XXX       XXX     XXX     &kp F11  &kp F12  ___
+      XXX          &kp F1     &kp F2  &kp F3   &kp F4   &kp F5   ___ ___ ___   &kp F6    &kp F7  &kp F8  &kp F9   &kp F10  ___
+      &kp CLEAR    _UNDO      _CUT    _COPY    _PASTE   _REDO    ___ ___       XXX       XXX     XXX     XXX      XXX      ___
+                                      ___      ___      ___                    &mo NAV   ___     ___     
       >;
 
       sensor-bindings = <&rgb_encoder>;
@@ -117,7 +117,7 @@
 
       bindings = <
       &bt BT_CLR   _CONN_MGMT_KEYS_            ___       _RGB_KEYS_                                                  &kp C_POWER
-      _PS_BRK      _BT_SEL_KEYS_           ___ ___ ___   &studio_unlock  &sys_reset    &bootloader  _EP_OFF  _EP_ON  &kp K_SLEEP   
+      XXX          _BT_SEL_KEYS_           ___ ___ ___   &studio_unlock  &sys_reset    &bootloader  _EP_OFF  _EP_ON  &kp K_SLEEP   
       &kp K_CANCEL _BT_DISC_KEYS_          ___ ___       XXX             XXX           XXX          XXX      XXX     &kp C_RESET   
                    XXX XXX XXX                           XXX             &kp K_CANCEL  XXX 
       >;

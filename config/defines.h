@@ -69,7 +69,16 @@
 #define _PP &kp C_PP
 #define _RT &kp RETURN
 
+// edit
+#define _UNDO &kp C_AC_UNDO
+#define _CUT &kp C_AC_CUT
+#define _COPY &kp C_AC_COPY
+#define _PASTE &kp C_AC_PASTE
+#define _REDO &kp C_AC_REDO
+
+#define PS_BRK    &kp PAUSE_BREAK
+#define PRINT_SCR &kp PAUSE_BREAK
+
 // sys
-#define _PS_BRK &kp PAUSE_BREAK
 #define _EP_OFF &ext_power EP_OFF
 #define _EP_ON  &ext_power EP_ON
