@@ -6,6 +6,7 @@
 , setuptools
 , poetry-core
 , pydantic
+, pyparsing
 , pcpp
 , pyyaml
 , platformdirs
@@ -17,20 +18,15 @@ let
 in
 buildPythonApplication rec {
   pname = "keymap-drawer";
-  version = "0.20.0";
+  version = "0.21.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "caksoylar";
     repo = pname;
-    rev = "ea00f44ac5a2ebe97b8b31f9166791bedf9136e5";
-    hash = "sha256-F9lDUuqHKl2FOUsUszJrRK7/a/a1UJLw+RUg9Bv2zN0=";
+    rev = "855933863fcc6f0db6098a03e679319dbf7f8bf2";
+    hash = "sha256-InddS9NxVrYOufiP7iWQTQ3VBeJgX2UlBA+Gf7ZfFrI=";
   };
-
-  postPatch = ''
-    # nixos-unstable no longer bundles v23 of tree-sitter
-    substituteInPlace pyproject.toml --replace 'tree-sitter (>=0.23.2,<0.24.0)' 'tree-sitter (>=0.23.2,<0.25.0)'
-  '';
 
   build-system = [ poetry-core ];
 
@@ -40,6 +36,7 @@ buildPythonApplication rec {
     pyyaml
     platformdirs
     pydantic-settings
+    pyparsing
     tree-sitter
     tree-sitter-devicetree
   ];
