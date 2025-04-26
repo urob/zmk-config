@@ -26,11 +26,17 @@ manifest:
       url-base: https://github.com/urob
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: gerbeldo
+      url-base: https://github.com/gerbeldo
 
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
+
+    - name: flake-zmk-module
+      remote: gerbeldo
+      revision: main
 
     # ZMK modules
     - name: zmk-adaptive-key
@@ -38,6 +44,7 @@ manifest:
     - name: zmk-auto-layer
       path: modules/zmk/auto-layer
     - name: zmk-helpers
+      remote: gerbeldo
       path: modules/zmk/helpers
     - name: zmk-leader-key
       path: modules/zmk/leader-key
