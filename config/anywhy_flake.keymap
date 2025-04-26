@@ -9,13 +9,7 @@
     )
 
 #include "zmk-helpers/helper.h"
-#include <stdio.h>
 
-static inline void test_helper_inclusion() {
-    printf("Helper included successfully!\n");
-}
-
-test_helper_inclusion();
 #include "base.keymap"
 
 /{ chosen { zmk,physical-layout = &medium_layout; }; };
