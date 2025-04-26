@@ -1,3 +1,6 @@
+#include "zmk-helpers/helper.h"
+#include "zmk-helpers/key-labels/anywhy_flake.h"
+
 #define CONFIG_WIRELESS
 #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                   \
     ZMK_LAYER(                                                                 \
@@ -8,7 +11,6 @@
         &kp LGUI LH RH &smart_mouse                                            \
     )
 
-#include "zmk-helpers/key-labels/anywhy_flake.h"
 #include "base.keymap"
 
 /{ chosen { zmk,physical-layout = &medium_layout; }; };
