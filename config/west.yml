@@ -44,6 +44,7 @@ manifest:
     - name: zmk-auto-layer
       path: modules/zmk/auto-layer
     - name: zmk-helpers
+      remote: gerbeldo
       path: modules/zmk/helpers
     - name: zmk-leader-key
       path: modules/zmk/leader-key
