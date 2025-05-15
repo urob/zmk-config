@@ -157,7 +157,7 @@ ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
 
 // Alt+Tab swapper, requires tri-state module.
 ZMK_TRI_STATE(swapper, bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
-              ignored-key-positions = <LT2>;)
+              ignored-key-positions = <LT2 RT2 RM1 RM2 RM3>;)
 
 // Define mod-morph with a *single* mod trigger for less repetition.
 #define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)                            \
@@ -372,7 +372,6 @@ ZMK_BASE_LAYER(Navigation,
              &to DEF   &trans &trans &trans     &trans    &trans,                    &kp K_APP     &kp END    &kp INS &kp PG_DN &kp C_AC_CUT &trans,
                              &trans &trans &trans,    &trans &trans   &trans
 )
-
 // ZMK_BASE_LAYER(Mouse,
 // &trans  &trans &trans &trans &trans &trans                          &trans U_WH_L U_MS_U U_WH_R &trans    &trans
 //   &trans  &sk LGUI  &sk LALT  &sk LCTRL  &sk LSHFT  &trans          &trans U_MS_L U_MS_D U_MS_R  &trans &trans
