@@ -13,9 +13,6 @@
 /* Global defaults */
 #undef COMBO_TERM 
 #define COMBO_TERM 25
-#define QUICK_TAP_MS 180
-#define TAPPING_TERM_MS 220
-#define PRIOR_IDLE_MS 150
 
 #undef COMBO_HOOK
 #define COMBO_HOOK require-prior-idle-ms = <25>;

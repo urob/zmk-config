@@ -60,11 +60,34 @@ ZMK_COMBO(del,             &del,        RM3 RM4, DEF, COMBO_TERM_FAST, COMBO_IDL
 ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(ldr,             &leader,     RM0 RM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST, LSHIFT, KEYS_L)
 
+// media keys
+// 
 ZMK_COMBO(vol_up,          &vol_up,     RM1 RT2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(vol_dn,          &vol_dn,     RM1 RT2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(trk_next,        &trk_next,   RM4 RT3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(trk_prev,        &trk_prev,   RM0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(play_pause,      &play_pause, RT0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
-// media keys
 
+// GAME mode combos
+// 
+// these are all 2 horizontally adjacent keys on the left hand, so it's
+// important we don't have any conflicting declarations on ALL layers.
+// Note: there are no home row mods in the GAM layer which simplifies things.
+
+// middle row
+ZMK_COMBO(combo_n1, &kp N1, LM5 LM4, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_n2, &kp N2, LM4 LM3, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_n3, &kp N3, LM3 LM2, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_n4, &kp N4, LM2 LM1, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_n5, &kp N5, LM1 LM0, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+// bottom row
+ZMK_COMBO(combo_n6, &kp N6, LB5 LB4, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_n7, &kp N7, LB4 LB3, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_n8, &kp N8, LB3 LB2, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_n9, &kp N9, LB2 LB1, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_n0, &kp N0, LB1 LB0, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+// this leaves the top row free for some conveniences; maybe some common keys from the right side
+// like Y, H, M, I, O

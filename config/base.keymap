@@ -12,6 +12,13 @@
 
 /* behaviours */
 
+#define QUICK_TAP_MS 160
+#define QUICK_TAP_SHORT 120
+#define TAPPING_TERM_MS 190
+#define TAPPING_TERM_SHORT 160
+#define PRIOR_IDLE_MS 150
+#define PRIOR_IDLE_SHORT 120
+
 &sk {
   release-after-ms = <900>;
   quick-release;
@@ -23,8 +30,16 @@
 
 &lt {
   flavor = "balanced";
-  tapping-term-ms = <200>;
+  tapping-term-ms = <TAPPING_TERM_MS>;
   quick-tap-ms = <QUICK_TAP_MS>;
+};
+
+&mt {
+  // flavor = "tap-preferred";                
+  flavor = "balanced";
+  tapping-term-ms = <TAPPING_TERM_MS>;  
+  quick-tap-ms = <QUICK_TAP_MS>;           
+  // hold-trigger-key-positions = <0>;
 };
 
 /* Homerow mods */
@@ -33,7 +48,7 @@
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; \
     flavor = "balanced";                       \
     tapping-term-ms = <TAPPING_TERM_MS>;       \
-    quick-tap-ms = <QUICK_TAP_MS>;             \
+    quick-tap-ms = <QUICK_TAP_SHORT>;          \
     require-prior-idle-ms = <PRIOR_IDLE_MS>;   \
     hold-trigger-on-release;                   \
     hold-trigger-key-positions = <TRIGGER_POS>;)
@@ -46,17 +61,16 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
   MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
   ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
 
-// thumb layer-tap / mod-tap
+/* thumb shift | backspace */
 ZMK_BEHAVIOR(th, hold_tap, 
     flavor = "balanced";
-    tapping-term-ms = <160>; // shorter 
+    tapping-term-ms = <TAPPING_TERM_SHORT>; 
     bindings = <&kp>, <&kp>;
-    // quick-tap-ms = <QUICK_TAP_MS>; // tap-then-tap-and-hold for space / backspace
+    quick-tap-ms = <QUICK_TAP_SHORT>; // tap-then-tap-and-hold for space / backspace
 )
 
 // Sticky shift + leader.
 ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
-
 
 &caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
   /delete-property/ ignore-modifiers;
@@ -67,14 +81,3 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 #include "combos.dtsi" // Must be sourced after HRM-combo hack.
 #include "leader.dtsi"
 #include "mouse.dtsi"
-
-/* Nav cluster */
-
-// Trigger tap-action on all interrupts.
-#define MT_CORE                                                                \
-  flavor = "tap-preferred";                                                    \
-  tapping-term-ms = <TAPPING_TERM_MS>;                                         \
-  quick-tap-ms = <QUICK_TAP_MS>;                                               \
-  hold-trigger-key-positions = <0>;
-
-&mt { MT_CORE };
