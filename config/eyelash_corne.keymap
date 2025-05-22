@@ -106,7 +106,7 @@
       &kp T  &kp TAB   &kp Q  &kp W     &kp E    &kp R         ___         &kp Y      &kp U     &kp I      &kp O    &kp P     &kp F5   
       &kp G  &kp ESC   &kp A  &kp S     &kp D    &kp F     ___ ___ ___     &kp H      &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
       &kp B  &kp LSHFT &kp Z  &kp X     &kp C    &kp V     ___ ___         &kp N      &kp M     &kp COMMA  &kp DOT  &kp SLASH &kp RET
-                              &kp LALT  &kp SPC  &kp LCTRL                 &kp LMETA  &kp BSPC  &to DEF
+                              &gam_num_td  &kp SPC  &kp LCTRL                 &kp LMETA  &kp BSPC  &to DEF
       >;
 
       sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;

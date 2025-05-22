@@ -76,6 +76,13 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
   /delete-property/ ignore-modifiers;
 };
 
+ZMK_BEHAVIOR(gam_num_td, tap_dance,
+  tapping-term-ms = <180>;
+  bindings = <&kp LALT>, <&mo NAV>;
+)
+
+
+
 /* Combos, leader key sequences, mouse emulation */
 
 #include "combos.dtsi" // Must be sourced after HRM-combo hack.
