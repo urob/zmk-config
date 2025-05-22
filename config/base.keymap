@@ -78,7 +78,7 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
 ZMK_BEHAVIOR(gam_num_td, tap_dance,
   tapping-term-ms = <180>;
-  bindings = <&kp LALT>, <&mo NAV>;
+  bindings = <&kp LALT>, <&mo NUM>;
 )
 
 

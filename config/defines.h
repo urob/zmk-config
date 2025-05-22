@@ -1,9 +1,9 @@
 /* LAYERS */
 #define DEF 0
-#define NUM 1
-#define NAV 2
-#define FN 3
-#define GAM 4
+#define GAM 1
+#define NUM 2
+#define NAV 3
+#define FN  4
 #define SYS 5
 
 /* aliases */
