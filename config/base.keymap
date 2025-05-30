@@ -35,10 +35,10 @@
 };
 
 &mt {
-  // flavor = "tap-preferred";                
+  // flavor = "tap-preferred";
   flavor = "balanced";
-  tapping-term-ms = <TAPPING_TERM_MS>;  
-  quick-tap-ms = <QUICK_TAP_MS>;           
+  tapping-term-ms = <TAPPING_TERM_MS>;
+  quick-tap-ms = <QUICK_TAP_MS>;
   // hold-trigger-key-positions = <0>;
 };
 
@@ -62,9 +62,9 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
   ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
 
 /* thumb shift | backspace */
-ZMK_BEHAVIOR(th, hold_tap, 
+ZMK_BEHAVIOR(th, hold_tap,
     flavor = "balanced";
-    tapping-term-ms = <TAPPING_TERM_SHORT>; 
+    tapping-term-ms = <TAPPING_TERM_SHORT>;
     bindings = <&kp>, <&kp>;
     quick-tap-ms = <QUICK_TAP_SHORT>; // tap-then-tap-and-hold for space / backspace
 )
@@ -76,7 +76,12 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
   /delete-property/ ignore-modifiers;
 };
 
-ZMK_BEHAVIOR(gam_num_td, tap_dance,
+ZMK_BEHAVIOR(fn_esc__cmd, tap_dance,
+  tapping-term-ms = <180>;
+  bindings = <FN_ESC>, <&kp LCMD>;
+)
+
+ZMK_BEHAVIOR(alt__num, tap_dance,
   tapping-term-ms = <180>;
   bindings = <&kp LALT>, <&mo NUM>;
 )
