@@ -17,7 +17,7 @@
 // chording of mods. Custom hold-tap instances can be bootstrapped on the go using the
 // 8-argument version of ZMK_COMBO defined in base.keymap.
 
-// need these as valid targets for the home row mod combo function                                      
+// need these as valid targets for the home row mod combo function
 ZMK_MACRO(minus, bindings = <&kp MINUS>;)
 ZMK_MACRO(under, bindings = <&kp UNDERSCORE>;)
 
@@ -34,9 +34,9 @@ ZMK_MACRO(play_pause, bindings = <&kp C_PP>;)
 
 // LEFT HAND
 // home row
-ZMK_COMBO(combo_under,     &under,    LM2 LM1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_R) 
-ZMK_COMBO(combo_minus,     &minus,    LM3 LM2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_R) 
-ZMK_COMBO(combo_capsword, &caps_word, LM4 LM3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT),   KEYS_R) 
+ZMK_COMBO(combo_under,     &under,    LM2 LM1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_R)
+ZMK_COMBO(combo_minus,     &minus,    LM3 LM2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_R)
+ZMK_COMBO(combo_capsword, &caps_word, LM4 LM3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT),   KEYS_R)
 // ZMK_COMBO(combo_numword,   &num_word, LB4 LB3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 ZMK_COMBO(combo_paren_l,   &kp LPAR,  LT3 LT2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
@@ -61,7 +61,7 @@ ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDL
 ZMK_COMBO(ldr,             &leader,     RM0 RM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST, LSHIFT, KEYS_L)
 
 // media keys
-// 
+//
 ZMK_COMBO(vol_up,          &vol_up,     RM1 RT2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(vol_dn,          &vol_dn,     RM1 RT2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(trk_next,        &trk_next,   RM4 RT3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
@@ -69,8 +69,9 @@ ZMK_COMBO(trk_prev,        &trk_prev,   RM0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDL
 ZMK_COMBO(play_pause,      &play_pause, RT0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 
+/*
 // GAME mode combos
-// 
+//
 // these are all 2 horizontally adjacent keys on the left hand, so it's
 // important we don't have any conflicting declarations on ALL layers.
 // Note: there are no home row mods in the GAM layer which simplifies things.
@@ -91,3 +92,4 @@ ZMK_COMBO(combo_n0, &kp N0, LB1 LB0, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 // this leaves the top row free for some conveniences; maybe some common keys from the right side
 // like Y, H, M, I, O
+*/

@@ -86,7 +86,10 @@ ZMK_BEHAVIOR(alt__num, tap_dance,
   bindings = <&kp LALT>, <&mo NUM>;
 )
 
-
+ZMK_BEHAVIOR(f5__num_sl, tap_dance,
+  tapping-term-ms = <180>;
+  bindings = <&kp F5>, <&sl NUM>;
+)
 
 /* Combos, leader key sequences, mouse emulation */
 

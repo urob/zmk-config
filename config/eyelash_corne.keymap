@@ -64,7 +64,7 @@
       // QUERTY, but adjusted for columnar stagger so WASD is in the ESDF position
 
       bindings = <
-      &kp T  &kp TAB   &kp Q  &kp W     &kp E    &kp R         ___         &kp Y      &kp U     &kp I      &kp O    &kp P     &kp F5
+      &kp T  &kp TAB   &kp Q  &kp W     &kp E    &kp R         ___         &kp Y      &kp U     &kp I      &kp O    &kp P     &f5__num_sl
       &kp G  &kp ESC   &kp A  &kp S     &kp D    &kp F     ___ ___ ___     &kp H      &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
       &kp B  &kp LSHFT &kp Z  &kp X     &kp C    &kp V     ___ ___         &kp N      &kp M     &kp COMMA  &kp DOT  &kp SLASH &kp RET
                               &alt__num &kp SPC  &kp LCTRL                 &kp LMETA  &kp BSPC  &to DEF
