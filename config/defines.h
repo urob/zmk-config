@@ -10,17 +10,26 @@
 #define XXX &none
 #define ___ &trans
 
+// #define STICKY_SHIFT &sk
+// #define MO_NAV &mo NAV
+
 /* Global defaults */
-#undef COMBO_TERM 
+#undef COMBO_TERM
 #define COMBO_TERM 25
 
 #undef COMBO_HOOK
 #define COMBO_HOOK require-prior-idle-ms = <25>;
 
+#undef CONFIG_ZMK_MACRO_DEFAULT_WAIT_MS
+#define CONFIG_ZMK_MACRO_DEFAULT_WAIT_MS 5;
+
+#undef CONFIG_ZMK_MACRO_DEFAULT_TAP_MS
+#define CONFIG_ZMK_MACRO_DEFAULT_TAP_MS 12;
+
 #ifdef CONFIG_WIRELESS
   #include <dt-bindings/zmk/bt.h>
   #include <dt-bindings/zmk/outputs.h>
-  #define _CONN_MGMT_KEYS_ &out OUT_TOG    &out OUT_USB    &out OUT_BLE    &bt BT_CLR      &bt BT_CLR_ALL 
+  #define _CONN_MGMT_KEYS_ &out OUT_TOG    &out OUT_USB    &out OUT_BLE    &bt BT_CLR      &bt BT_CLR_ALL
   #define _BT_SEL_KEYS_    &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4
   #define _BT_DISC_KEYS_   &bt BT_DISC 0   &bt BT_DISC 1   &bt BT_DISC 2   &bt BT_DISC 3   &bt BT_DISC 4
   #define _RGB_KEYS_       &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF &rgb_ug RGB_BRI &rgb_ug RGB_BRD
@@ -45,13 +54,15 @@
 #define NUM_SPC &lt NUM SPACE
 #define CTL_TAB &mt LCTRL TAB
 
-#define NAV_KEY &mo NAV 
+// #define NAV_KEY &mo NAV
+//
+// #define NAV_KEY &nav__sticky_shift_td
 #define BS_SFT  &th LSHIFT BACKSPACE
 
 // left outer row keys
 #define GRV_HYP &mt HYPER GRAVE
 #define ESC_MEH &mt MEH ESC
-#define CMP_SFT &mt LSHFT K_APP 
+#define CMP_SFT &mt LSHFT K_APP
 
 // right outer row keys
 #define BSL_HYP  &mt HYPER BACKSLASH

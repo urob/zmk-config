@@ -18,6 +18,12 @@
   >;
 */
 
+
+// aliases
+// (can't add to defines because the tap-dances are defined after inclusion)
+
+#define NAV_KEY &nav__sticky_shift_td
+
 / {
 
   /* encoder behaviours */
@@ -28,21 +34,34 @@
     bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
   };
 
-  // TODO: get this working, if possible
+  macros {
+    /* think we gotta define this using devicetree syntax to include &sk in the macro */
+    smart_period: smart_period {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <5>;
+      bindings = <&macro_tap &kp DOT &kp SPACE>, <&sk LSHFT>;
+    };
+  };
 
-  // ms_wheel_enc: mouse_wheel_encoder {
-  //   compatible = "zmk,behavior-sensor-rotate";
-  //   #sensor-binding-cells = <0>;
-  //   tap-ms = <30>;
-  //   bindings = <&msc WH_U>, <&msc WH_D>;
-  // };
+  /* think we gotta define this using devicetree syntax to reference &smart_period */
+  behaviours {
+    td_nav: tap_dance_0 {
+      compatible = "zmk,behavior-tap-dance";
+      #binding-cells = <0>;
+      tapping-term-ms = <155>; // if this isn't fast it gums up the NAV key.
+      bindings = <&mo_sk NAV LSHFT>, <&smart_period>, <&kp DOT>;
+    };
+  };
 
   /* layout */
 
   keymap {
     compatible = "zmk,keymap";
 
-    /* Gallium keymap */
+    /*************************
+     * DEF: Gallium default keymap
+     *************************/
 
     default_layer {
       display-name = "Base";
@@ -52,11 +71,15 @@
       GRV_HYP &kp B  &kp L  &kp D  &kp C  &kp V       _UP       &kp J   &kp Y  &kp O    &kp U     &kp COMMA  BSL_HYP
       ESC_MEH _HOME_ROW_MODS_LEFT_        &kp G   _L_ _RT _R_   &kp P   _HOME_ROW_MODS_RIGHT_                SLS_MEH
       CMP_SFT &kp X  &kp Q  &kp M  &kp W  &kp Z   _PP _DN       &kp K   &kp F  &kp SQT  &kp SEMI  &kp DOT    RET_SFT
-                   &fn_esc__cmd  NUM_SPC  CTL_TAB                NAV_KEY BS_SFT XXX
+                   &fn_esc__cmd  NUM_SPC  CTL_TAB               &td_nav BS_SFT XXX
       >;
 
       sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
     };
+
+    /*************************
+     * GAM: gaming layer
+     *************************/
 
     gaming_layer {
       display-name = "Gaming";
@@ -73,6 +96,10 @@
       sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
     };
 
+    /*************************
+     * NUM: numbers & symbols
+     *************************/
+
     num_layer {
       display-name = "Num";
 
@@ -85,6 +112,10 @@
 
       sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
     };
+
+    /*************************
+     * NAV: Navigation
+     *************************/
 
     nav_layer {
       display-name = "Nav";
@@ -99,6 +130,10 @@
       sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
     };
 
+    /*************************
+     * FUN: Function keys & extended keys
+     *************************/
+
     function_layer {
       display-name = "Fn";
 
@@ -111,6 +146,10 @@
 
       sensor-bindings = <&rgb_encoder>;
     };
+
+    /*************************
+     * SYS: System - bluetooth, power, etc
+     *************************/
 
     sys_layer {
       display-name = "Sys";
@@ -133,5 +172,6 @@
         then-layer = <SYS>;
       };
     };
+
   };
 };

@@ -66,8 +66,26 @@ ZMK_BEHAVIOR(th, hold_tap,
     flavor = "balanced";
     tapping-term-ms = <TAPPING_TERM_SHORT>;
     bindings = <&kp>, <&kp>;
+    quick-tap-ms = <QUICK_TAP_MS>; // tap-then-tap-and-hold for space / backspace
+)
+
+ZMK_BEHAVIOR(mo_sk, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <TAPPING_TERM_SHORT>;
+    bindings = <&mo>, <&sk>;
     quick-tap-ms = <QUICK_TAP_SHORT>; // tap-then-tap-and-hold for space / backspace
 )
+
+// period, space, capitalize next letter
+// ZMK_BEHAVIOUR(clever_period, macro,
+//   wait-ms = <50>;
+//   tap-ms = <5>;
+//   bindings = <&kp LS(DOT) SPACE>,<&sk LSHFT>;
+// )
+
+//
+// TODO: utilise leader key properly
+//
 
 // Sticky shift + leader.
 ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
@@ -75,6 +93,10 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 &caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
   /delete-property/ ignore-modifiers;
 };
+
+//
+// TAP DANCE macros
+//
 
 ZMK_BEHAVIOR(fn_esc__cmd, tap_dance,
   tapping-term-ms = <180>;
@@ -89,6 +111,16 @@ ZMK_BEHAVIOR(alt__num, tap_dance,
 ZMK_BEHAVIOR(f5__num_sl, tap_dance,
   tapping-term-ms = <180>;
   bindings = <&kp F5>, <&sl NUM>;
+)
+
+ZMK_BEHAVIOR(f5__num_sl, tap_dance,
+  tapping-term-ms = <180>;
+  bindings = <&kp F5>, <&sl NUM>;
+)
+
+ZMK_BEHAVIOR(nav__sticky_shift_td, tap_dance,
+  tapping-term-ms = <180>;
+  bindings = <&mo_sk NAV LSHFT>, <&kp DOT>;
 )
 
 /* Combos, leader key sequences, mouse emulation */
