@@ -4,6 +4,7 @@
 #include <dt-bindings/zmk/ext_power.h>
 #include "eyelash_matrix.h"
 #include "base.keymap"
+#include "defines.h"
 
 /*
   layout:  the block in the middle is

@@ -87,38 +87,45 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 };
 
 /*
+* https://github.com/urob/zmk-auto-layer/tree/main
 &num_word {
   continue-list = <BSPC DEL DOT COMMA>;
 };
 */
 
 //
-// TAP DANCE macros
+// Tap Dance keys
 //
 
+// DEF layer
 ZMK_BEHAVIOR(fn_esc__cmd, tap_dance,
   tapping-term-ms = <180>;
   bindings = <FN_ESC>, <&kp LCMD>;
 )
 
+// GAM layer
+
+// tap: spare
+// tap-hold: Alt
+// tap tap-hold: NUM layer
 ZMK_BEHAVIOR(alt__num, tap_dance,
   tapping-term-ms = <180>;
   bindings = <&kp LALT>, <&mo NUM>;
 )
 
+
+// tap: F5
+// tap tap: sticky NUM
 ZMK_BEHAVIOR(f5__num_sl, tap_dance,
   tapping-term-ms = <180>;
   bindings = <&kp F5>, <&sl NUM>;
 )
 
-ZMK_BEHAVIOR(f5__num_sl, tap_dance,
+// one tap: num-word
+// two taps: exit to DEF
+ZMK_BEHAVIOR(td_rth3, tap_dance,
   tapping-term-ms = <180>;
-  bindings = <&kp F5>, <&sl NUM>;
-)
-
-ZMK_BEHAVIOR(nav__sticky_shift_td, tap_dance,
-  tapping-term-ms = <180>;
-  bindings = <&mo_sk NAV LSHFT>, <&kp DOT>;
+  bindings = <&num_word NAV>, <&to DEF>;
 )
 
 /* Combos, leader key sequences, mouse emulation */

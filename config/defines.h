@@ -55,7 +55,7 @@
 #define FN_ESC  &lt FN ESCAPE
 #define NUM_SPC &lt NUM SPACE
 #define CTL_TAB &mt LCTRL TAB
-#define NUM_WORD &num_word NUM
+#define NUM_WORD &td_rth3
 
 // #define NAV_KEY &mo NAV
 //
