@@ -60,13 +60,13 @@
     default_layer {
       display-name = "Base";
 
+      // TODO: we've got a spare R_TH_3 ..
       bindings = <
-
       GRV_HYP &kp B  &kp L  &kp D  &kp C  &kp V       _UP       &kp J   &kp Y  &kp O    &kp U     &kp COMMA  BSL_HYP
       ESC_MEH _HOME_ROW_MODS_LEFT_        &kp G   _L_ _RT _R_   &kp P   _HOME_ROW_MODS_RIGHT_                SLS_MEH
       CMP_SFT &kp X  &kp Q  &kp M  &kp W  &kp Z   _PP _DN       &kp K   &kp F  &kp SQT  &kp SEMI  &td_dot    RET_SFT
-                   &fn_esc__cmd  NUM_SPC  CTL_TAB               NAV_KEY BS_SFT XXX
-      >;
+                   &fn_esc__cmd  NUM_SPC  CTL_TAB               NAV_KEY BS_SFT NUM_WORD
+       >;
 
       sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
     };
@@ -100,9 +100,10 @@
       bindings = <
       &kp GRAVE  &kp EXCL  &kp AT    &kp HASH  &kp DOLLAR &kp PERCENT          MS_U      &kp CARET &kp AMPS &kp STAR &kp UNDER &kp PLUS &kp PIPE
       &kp ESC    &kp N1    &kp N2    &kp N3    &kp N4     &kp N5        MS_L MS_C MS_R   &kp N6    &kp N7   &kp N8   &kp N9    &kp N0   &kp SLASH
-      XXX        &kp TILDE &kp MINUS &kp EQUAL &kp LBRC   &kp LBKT      ___    MS_D      &kp RBKT  &kp RBRC &kp DQT  &kp COLON &kp DOT  &kp ENTER
-                                     &kp TAB   XXX        ___                            ___       ___      &kp DOT
+      &caps_word &kp TILDE &kp MINUS &kp EQUAL &kp LBRC   &kp LBKT      ___    MS_D      &kp RBKT  &kp RBRC &kp DQT  &kp COLON &kp DOT  &kp ENTER
+                                     &kp TAB   &kp SPC    ___                            ___       ___      &kp DOT
       >;
+
 
       sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
     };

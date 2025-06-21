@@ -1,5 +1,4 @@
 #include <behaviors.dtsi>
-#include <behaviors/num_word.dtsi> // Requires auto-layer module.
 
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/mouse.h>
@@ -76,13 +75,6 @@ ZMK_BEHAVIOR(mo_sk, hold_tap,
     quick-tap-ms = <QUICK_TAP_SHORT>; // tap-then-tap-and-hold for space / backspace
 )
 
-// period, space, capitalize next letter
-// ZMK_BEHAVIOUR(clever_period, macro,
-//   wait-ms = <50>;
-//   tap-ms = <5>;
-//   bindings = <&kp LS(DOT) SPACE>,<&sk LSHFT>;
-// )
-
 //
 // TODO: utilise leader key properly
 //
@@ -93,6 +85,12 @@ ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 &caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
   /delete-property/ ignore-modifiers;
 };
+
+/*
+&num_word {
+  continue-list = <BSPC DEL DOT COMMA>;
+};
+*/
 
 //
 // TAP DANCE macros

@@ -36,8 +36,8 @@ ZMK_MACRO(play_pause, bindings = <&kp C_PP>;)
 // home row
 ZMK_COMBO(combo_under,     &under,    LM2 LM1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_R)
 ZMK_COMBO(combo_minus,     &minus,    LM3 LM2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_R)
-ZMK_COMBO(combo_capsword, &caps_word, LM4 LM3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT),   KEYS_R)
-// ZMK_COMBO(combo_numword,   &num_word, LB4 LB3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_capsword, &caps_word, LM4 LM3, DEF,     COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT), KEYS_R)
+// ZMK_COMBO(combo_numword,   &num_word, LB4 LB3, DEF,  COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 ZMK_COMBO(combo_paren_l,   &kp LPAR,  LT3 LT2, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(combo_paren_r,   &kp RPAR,  LT2 LT1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
