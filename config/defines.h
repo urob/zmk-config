@@ -56,7 +56,7 @@
 
 // #define NAV_KEY &mo NAV
 //
-// #define NAV_KEY &nav__sticky_shift_td
+#define NAV_KEY &mo_sk NAV LSHFT
 #define BS_SFT  &th LSHIFT BACKSPACE
 
 // left outer row keys
