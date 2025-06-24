@@ -36,15 +36,15 @@ _parse_combos:
 # parse build.yaml and filter targets by expression
 _parse_targets $expr:
     #!/usr/bin/env bash
-    attrs="[.board, .shield, .snippet]"
+    attrs="[.board, .shield, .snippet, .\"artifact-name\"]"
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
     echo "$(yq -r "$filter" build.yaml | grep -v "^," | grep -i "${expr/#all/.*}")"
 
 # build firmware for single board & shield combination
-_build_single $board $shield $snippet *west_args:
+_build_single $board $shield $snippet $artifact *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
-    artifact="${shield:+${shield// /+}-}${board}"
+    artifact="${artifact:-${shield:+${shield// /+}-}${board}}"
     build_dir="{{ build / '$artifact' }}"
 
     echo "Building firmware for $artifact..."
@@ -64,8 +64,8 @@ build expr *west_args: _parse_combos
     targets=$(just _parse_targets {{ expr }})
 
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
-    echo "$targets" | while IFS=, read -r board shield snippet; do
-        just _build_single "$board" "$shield" "$snippet" {{ west_args }}
+    echo "$targets" | while IFS=, read -r board shield snippet artifact; do
+        just _build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }}
     done
 
 # clear build cache and artifacts
