@@ -40,7 +40,6 @@ _parse_targets $expr:
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
     echo "$(yq -r "$filter" build.yaml | grep -v "^," | grep -i "${expr/#all/.*}")"
 
-
 # build firmware for single board & shield combination
 _build_single $board $shield $snippet $artifact *west_args:
     #!/usr/bin/env bash
