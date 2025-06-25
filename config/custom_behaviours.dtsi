@@ -1,0 +1,148 @@
+
+/* configuration */
+
+#undef COMBO_TERM
+#define COMBO_TERM 25
+
+#undef COMBO_HOOK
+#define COMBO_HOOK require-prior-idle-ms = <25>;
+
+#undef CONFIG_ZMK_MACRO_DEFAULT_WAIT_MS
+#define CONFIG_ZMK_MACRO_DEFAULT_WAIT_MS 5;
+
+#undef CONFIG_ZMK_MACRO_DEFAULT_TAP_MS
+#define CONFIG_ZMK_MACRO_DEFAULT_TAP_MS 5;
+
+/* locals */
+
+#define QUICK_TAP_MS 160
+#define QUICK_TAP_SHORT 120
+#define TAPPING_TERM_MS 190
+#define TAPPING_TERM_SHORT 160
+#define PRIOR_IDLE_MS 150
+#define PRIOR_IDLE_SHORT 120
+
+/* configure behaviour defaults */
+
+&sk {
+  release-after-ms = <900>;
+  quick-release;
+};
+
+&sl { // Allow sticky mods to chord across sticky layers.
+  ignore-modifiers;
+};
+
+&lt {
+  flavor = "balanced";
+  tapping-term-ms = <TAPPING_TERM_MS>;
+  quick-tap-ms = <QUICK_TAP_MS>;
+};
+
+&mt {
+  // flavor = "tap-preferred";
+  flavor = "balanced";
+  tapping-term-ms = <TAPPING_TERM_MS>;
+  quick-tap-ms = <QUICK_TAP_MS>;
+  // hold-trigger-key-positions = <0>;
+};
+
+/ { // TODO: unused
+    new_sentence: new_sentence {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <5>;
+      tap-ms = <5>;
+      bindings = <&macro_tap &kp DOT &kp SPACE>, <&sk LSHFT>;
+    };
+};
+
+/*
+* Home Row Mods
+* */
+
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
+  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; \
+    flavor = "balanced";                       \
+    tapping-term-ms = <TAPPING_TERM_MS>;       \
+    quick-tap-ms = <QUICK_TAP_SHORT>;          \
+    require-prior-idle-ms = <PRIOR_IDLE_MS>;   \
+    hold-trigger-on-release;                   \
+    hold-trigger-key-positions = <TRIGGER_POS>;)
+
+MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
+MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
+
+// Hack: Make HRM combos tap-only (cf, ZMK issue #544).
+#define ZMK_COMBO_8(NAME, TAP, POS, LAYERS, COMBO_MS, IDLE_MS, HOLD, SIDE)     \
+  MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
+  ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
+
+/* thumb shift | backspace */
+ZMK_BEHAVIOR(th, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <TAPPING_TERM_SHORT>;
+    bindings = <&kp>, <&kp>;
+    quick-tap-ms = <QUICK_TAP_MS>; // tap-then-tap-and-hold for space / backspace
+)
+
+/* auto-shift */
+#define AS(keycode) &as LS(keycode) keycode
+ZMK_BEHAVIOR(as, hold_tap,
+    flavor = "tap-preferred";
+    tapping-term-ms = <120>;
+    bindings = <&kp>, <&kp>;
+)
+
+ZMK_BEHAVIOR(mo_sk, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <TAPPING_TERM_SHORT>;
+    bindings = <&mo>, <&sk>;
+    quick-tap-ms = <QUICK_TAP_SHORT>; // tap-then-tap-and-hold for space / backspace
+)
+
+&caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
+  /delete-property/ ignore-modifiers;
+};
+
+/*
+* https://github.com/urob/zmk-auto-layer/tree/main
+&num_word {
+  continue-list = <BSPC DEL DOT COMMA>;
+};
+*/
+
+//
+// Tap Dance keys
+//
+
+// DEF layer
+ZMK_BEHAVIOR(fn_esc__cmd, tap_dance,
+  tapping-term-ms = <180>;
+  bindings = <&lt FN ESC>, <&kp LCMD>;
+)
+
+// GAM layer
+
+// tap: spare
+// tap-hold: Alt
+// tap tap-hold: NUM layer
+ZMK_BEHAVIOR(alt__num, tap_dance,
+  tapping-term-ms = <180>;
+  bindings = <&kp LALT>, <&mo NUM>;
+)
+
+// tap: F5
+// tap tap: sticky NUM
+ZMK_BEHAVIOR(f5__num_sl, tap_dance,
+  tapping-term-ms = <180>;
+  bindings = <&kp F5>, <&sl NUM>;
+)
+
+// one tap: num-word
+// two taps: exit to DEF
+ZMK_BEHAVIOR(td_rth3, tap_dance,
+  tapping-term-ms = <180>;
+  bindings = <&num_word NUM>, <&to DEF>;
+)
+

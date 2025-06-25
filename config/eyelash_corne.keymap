@@ -1,10 +1,7 @@
-
 #define CONFIG_WIRELESS
 
-#include <dt-bindings/zmk/ext_power.h>
 #include "eyelash_matrix.h"
 #include "base.keymap"
-#include "defines.h"
 
 /*
   layout:  the block in the middle is
@@ -29,26 +26,6 @@
     bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
   };
 
-  macros {
-    /* think we gotta define this using devicetree syntax to include &sk in the macro */
-    smart_period: smart_period {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      wait-ms = <5>;
-      bindings = <&macro_tap &kp DOT &kp SPACE>, <&sk LSHFT>;
-    };
-  };
-
-  /* think we gotta define this using devicetree syntax to reference &smart_period */
-  behaviours {
-    td_dot: tap_dance_0 {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <155>; // if this isn't fast it gums up the NAV key.
-      bindings = <&kp DOT>, <&smart_period>;
-    };
-  };
-
   /* layout */
 
   keymap {
@@ -61,11 +38,10 @@
     default_layer {
       display-name = "Base";
 
-      // TODO: we've got a spare R_TH_3 ..
       bindings = <
-      GRV_HYP &kp B  &kp L  &kp D  &kp C  &kp V       _UP       &kp J   &kp Y  &kp O    &kp U     &kp COMMA  BSL_HYP
+      GRV_HYP &kp B  &kp L  &kp D  &kp C  &kp V       _UP       &kp J   &kp Y  &kp O    &kp U     AS(COMMA)  BSL_HYP
       ESC_MEH _HOME_ROW_MODS_LEFT_        &kp G   _L_ _RT _R_   &kp P   _HOME_ROW_MODS_RIGHT_                SLS_MEH
-      CMP_SFT &kp X  &kp Q  &kp M  &kp W  &kp Z   _PP _DN       &kp K   &kp F  &kp SQT  &kp SEMI  &td_dot    RET_SFT
+      CMP_SFT &kp X  &kp Q  &kp M  &kp W  &kp Z   _PP _DN       &kp K   &kp F  AS(SQT)  AS(SEMI)  AS(DOT)    RET_SFT
                    &fn_esc__cmd  NUM_SPC  CTL_TAB               NAV_KEY BS_SFT NUM_WORD
        >;
 
@@ -105,7 +81,6 @@
                                      &kp TAB   &kp SPC    ___                            ___       ___      &kp DOT
       >;
 
-
       sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
     };
 
@@ -134,10 +109,10 @@
       display-name = "Fn";
 
       bindings = <
-      &kp K_MENU   PRINT_SCR  PS_BRK  &kp INS  &kp DEL  XXX          ___       XXX       XXX     XXX     &kp F11  &kp F12  ___
-      XXX          &kp F1     &kp F2  &kp F3   &kp F4   &kp F5   ___ ___ ___   &kp F6    &kp F7  &kp F8  &kp F9   &kp F10  ___
-      &kp CLEAR    _UNDO      _CUT    _COPY    _PASTE   _REDO    ___ ___       XXX       XXX     XXX     XXX      XXX      ___
-                                      ___      ___      ___                    &mo NAV   ___     ___
+      &kp K_MENU  PRINT_SCR  PS_BRK  &kp INS  &kp DEL  &kp K_CANCEL     ___       XXX       XXX     XXX     &kp F11  &kp F12  ___
+      XXX         &kp F1     &kp F2  &kp F3   &kp F4   &kp F5       ___ ___ ___   &kp F6    &kp F7  &kp F8  &kp F9   &kp F10  ___
+      &kp CLEAR   _UNDO      _CUT    _COPY    _PASTE   _REDO        ___ ___       XXX       XXX     XXX     XXX      XXX      ___
+                                     ___      ___      ___                        &mo NAV   ___     ___
       >;
 
       sensor-bindings = <&rgb_encoder>;
@@ -151,11 +126,15 @@
       display-name = "Sys";
 
       bindings = <
-      &bt BT_CLR   _CONN_MGMT_KEYS_            ___       _RGB_KEYS_                                                  &kp C_POWER
-      XXX          _BT_SEL_KEYS_           ___ ___ ___   &studio_unlock  &sys_reset    &bootloader  _EP_OFF  _EP_ON  &kp K_SLEEP
-      &kp K_CANCEL _BT_DISC_KEYS_          ___ ___       XXX             XXX           XXX          XXX      XXX     &kp C_RESET
-                   XXX XXX XXX                           XXX             &kp K_CANCEL  XXX
+      XXX  CLR_ALL     CLR_CH   BT_OUT    USB_OUT    TOG_OUT        ___       TOG_RGB         FX_PREV       BRI_DN       BRI_UP   FX_NEXT &kp C_POWER
+      XXX  BT_CH0      BT_CH1   BT_CH2    BT_CH3     BT_CH4     ___ ___ ___   &studio_unlock  &sys_reset    &bootloader  _EP_OFF  _EP_ON  &kp K_SLEEP
+      XXX  BT_DISC0    BT_DISC1 BT_DISC2  BT_DISC3   BT_DISC4   ___ ___       XXX             XXX           XXX          XXX      XXX     &kp C_RESET
+                                XXX       XXX        XXX                      XXX             &kp K_CANCEL  XXX
       >;
+
+      /* XXX  BT_CLR_ALL  BT_CLR   BT_OUT    USB_OUT    TOG_OUT        ___       TOG_RGB         FX_PREV       BRI_DN       BRI_UP   FX_NEXT &kp C_POWER */
+      /* XXX  BT_CH0      BT_CH1   BT_CH2    BT_CH3     BT_CH4     ___ ___ ___   &studio_unlock  &sys_reset    &bootloader  _EP_OFF  _EP_ON  &kp K_SLEEP */
+      /* XXX  BT_DISC0    BT_DISC1 BT_DISC2  BT_DISC3   BT_DISC4   ___ ___       XXX             XXX           XXX          XXX      XXX     &kp C_RESET */
 
       sensor-bindings = <&rgb_encoder>;
     };

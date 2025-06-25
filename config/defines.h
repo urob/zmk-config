@@ -1,45 +1,8 @@
-#include <behaviors/num_word.dtsi>
-
-/* LAYERS */
-#define DEF 0
-#define GAM 1
-#define NUM 2
-#define NAV 3
-#define FN  4
-#define SYS 5
+#include "layers.h"
 
 /* aliases */
 #define XXX &none
 #define ___ &trans
-
-// #define STICKY_SHIFT &sk
-// #define MO_NAV &mo NAV
-
-/* Global defaults */
-#undef COMBO_TERM
-#define COMBO_TERM 25
-
-#undef COMBO_HOOK
-#define COMBO_HOOK require-prior-idle-ms = <25>;
-
-#undef CONFIG_ZMK_MACRO_DEFAULT_WAIT_MS
-#define CONFIG_ZMK_MACRO_DEFAULT_WAIT_MS 5;
-
-#undef CONFIG_ZMK_MACRO_DEFAULT_TAP_MS
-#define CONFIG_ZMK_MACRO_DEFAULT_TAP_MS 12;
-
-#ifdef CONFIG_WIRELESS
-  #include <dt-bindings/zmk/bt.h>
-  #include <dt-bindings/zmk/outputs.h>
-  #define _CONN_MGMT_KEYS_ &out OUT_TOG    &out OUT_USB    &out OUT_BLE    &bt BT_CLR      &bt BT_CLR_ALL
-  #define _BT_SEL_KEYS_    &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4
-  #define _BT_DISC_KEYS_   &bt BT_DISC 0   &bt BT_DISC 1   &bt BT_DISC 2   &bt BT_DISC 3   &bt BT_DISC 4
-  #define _RGB_KEYS_       &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF &rgb_ug RGB_BRI &rgb_ug RGB_BRD
-#else
-  #define _BT_SEL_KEYS_    ___ ___ ___ ___ ___
-  #define _BT_MGMT_KEYS_   ___ ___ ___ ___ ___
-  #define _CONN_MGMT_KEYS_ ___ ___ ___ ___ ___
-#endif
 
 /* keycode aliases */
 
@@ -52,9 +15,10 @@
 #define HYPER LC(LS(LG(LALT)))
 
 // thumbs
-#define FN_ESC  &lt FN ESCAPE
-#define NUM_SPC &lt NUM SPACE
-#define CTL_TAB &mt LCTRL TAB
+#define FN_ESC   &lt FN ESCAPE
+#define NUM_SPC  &lt NUM SPACE
+#define CTL_TAB  &mt LCTRL TAB
+// #define RTH3     &td_rth3
 #define NUM_WORD &td_rth3
 
 // #define NAV_KEY &mo NAV
@@ -93,3 +57,33 @@
 // sys
 #define _EP_OFF &ext_power EP_OFF
 #define _EP_ON  &ext_power EP_ON
+
+// BLE / OUTPUT
+// management
+#define TOG_OUT &out OUT_TOG
+#define USB_OUT &out OUT_USB
+#define BT_OUT  &out OUT_BLE
+#define CLR_CH  &bt BT_CLR
+#define CLR_ALL &bt BT_CLR_ALL
+
+
+// channels
+#define BT_CH0 &bt BT_SEL 0
+#define BT_CH1 &bt BT_SEL 1
+#define BT_CH2 &bt BT_SEL 2
+#define BT_CH3 &bt BT_SEL 3
+#define BT_CH4 &bt BT_SEL 4
+
+// disconnect
+#define BT_DISC0 &bt BT_DISC 0
+#define BT_DISC1 &bt BT_DISC 1
+#define BT_DISC2 &bt BT_DISC 2
+#define BT_DISC3 &bt BT_DISC 3
+#define BT_DISC4 &bt BT_DISC 4
+
+// RGB
+#define TOG_RGB &rgb_ug RGB_TOG
+#define BRI_UP  &rgb_ug RGB_BRI // brightness up
+#define BRI_DN  &rgb_ug RGB_BRD // brightness down
+#define FX_NEXT &rgb_ug RGB_EFF // next rgb effect
+#define FX_PREV &rgb_ug RGB_EFR // prev rgb effect

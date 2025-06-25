@@ -3,133 +3,17 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#include <zmk-helpers/helper.h>
+#include <behaviors/num_word.dtsi>
+
+#include "layers.h"
+#include "custom_behaviours.dtsi"
 
 #include "defines.h"
-#include "zmk-helpers/helper.h"
-
-#include <dt-bindings/zmk/ext_power.h>
-
-/* behaviours */
-
-#define QUICK_TAP_MS 160
-#define QUICK_TAP_SHORT 120
-#define TAPPING_TERM_MS 190
-#define TAPPING_TERM_SHORT 160
-#define PRIOR_IDLE_MS 150
-#define PRIOR_IDLE_SHORT 120
-
-&sk {
-  release-after-ms = <900>;
-  quick-release;
-};
-
-&sl { // Allow sticky mods to chord across sticky layers.
-  ignore-modifiers;
-};
-
-&lt {
-  flavor = "balanced";
-  tapping-term-ms = <TAPPING_TERM_MS>;
-  quick-tap-ms = <QUICK_TAP_MS>;
-};
-
-&mt {
-  // flavor = "tap-preferred";
-  flavor = "balanced";
-  tapping-term-ms = <TAPPING_TERM_MS>;
-  quick-tap-ms = <QUICK_TAP_MS>;
-  // hold-trigger-key-positions = <0>;
-};
-
-/* Homerow mods */
-
-#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
-  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; \
-    flavor = "balanced";                       \
-    tapping-term-ms = <TAPPING_TERM_MS>;       \
-    quick-tap-ms = <QUICK_TAP_SHORT>;          \
-    require-prior-idle-ms = <PRIOR_IDLE_MS>;   \
-    hold-trigger-on-release;                   \
-    hold-trigger-key-positions = <TRIGGER_POS>;)
-
-MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
-MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
-
-// Hack: Make HRM combos tap-only (cf, ZMK issue #544).
-#define ZMK_COMBO_8(NAME, TAP, POS, LAYERS, COMBO_MS, IDLE_MS, HOLD, SIDE)     \
-  MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
-  ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
-
-/* thumb shift | backspace */
-ZMK_BEHAVIOR(th, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <TAPPING_TERM_SHORT>;
-    bindings = <&kp>, <&kp>;
-    quick-tap-ms = <QUICK_TAP_MS>; // tap-then-tap-and-hold for space / backspace
-)
-
-ZMK_BEHAVIOR(mo_sk, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <TAPPING_TERM_SHORT>;
-    bindings = <&mo>, <&sk>;
-    quick-tap-ms = <QUICK_TAP_SHORT>; // tap-then-tap-and-hold for space / backspace
-)
-
-//
-// TODO: utilise leader key properly
-//
-
-// Sticky shift + leader.
-ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
-
-&caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
-  /delete-property/ ignore-modifiers;
-};
-
-/*
-* https://github.com/urob/zmk-auto-layer/tree/main
-&num_word {
-  continue-list = <BSPC DEL DOT COMMA>;
-};
-*/
-
-//
-// Tap Dance keys
-//
-
-// DEF layer
-ZMK_BEHAVIOR(fn_esc__cmd, tap_dance,
-  tapping-term-ms = <180>;
-  bindings = <FN_ESC>, <&kp LCMD>;
-)
-
-// GAM layer
-
-// tap: spare
-// tap-hold: Alt
-// tap tap-hold: NUM layer
-ZMK_BEHAVIOR(alt__num, tap_dance,
-  tapping-term-ms = <180>;
-  bindings = <&kp LALT>, <&mo NUM>;
-)
-
-
-// tap: F5
-// tap tap: sticky NUM
-ZMK_BEHAVIOR(f5__num_sl, tap_dance,
-  tapping-term-ms = <180>;
-  bindings = <&kp F5>, <&sl NUM>;
-)
-
-// one tap: num-word
-// two taps: exit to DEF
-ZMK_BEHAVIOR(td_rth3, tap_dance,
-  tapping-term-ms = <180>;
-  bindings = <&num_word NAV>, <&to DEF>;
-)
-
-/* Combos, leader key sequences, mouse emulation */
-
-#include "combos.dtsi" // Must be sourced after HRM-combo hack.
+#include "combos.dtsi"
 #include "leader.dtsi"
 #include "mouse.dtsi"
