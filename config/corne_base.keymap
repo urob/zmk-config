@@ -1,12 +1,13 @@
 #include <behaviors.dtsi>
-#include <behaviors/num_word.dtsi> // requires auto-layer module
+#include <behaviors/num_word.dtsi> // Requires auto-layer module.
 #include <dt-bindings/zmk/keys.h>
 #ifdef CONFIG_WIRELESS
-    #include <dt-bindings/zmk/bt.h>
-    #include <dt-bindings/zmk/outputs.h>
-    #define _BT_SEL_KEYS_ &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
+  #include <dt-bindings/zmk/bt.h>
+  #include <dt-bindings/zmk/outputs.h>
+  #define _BT_SEL_KEYS_                                                        \
+      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR
 #else
-    #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
+  #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
 #endif
 
 #include "zmk-helpers/helper.h"
@@ -18,81 +19,80 @@
 #define FN 2
 #define NUM 3
 #define SYS 4
-// #define MOUSE 5
 #define UC 5
 
 #define XXX &none
 #define ___ &trans
 
-/* Global settings */
+/* Global defaults */
 
 #define QUICK_TAP_MS 175
 
-&sk {  // sticky-key config
-    release-after-ms = <900>;  // release after 0.9s
-    quick-release;             // no double capitalization when rolling keys
+&sk {
+  release-after-ms = <900>;
+  quick-release;
 };
 
-&sl {  // sticky-layer config
-    ignore-modifiers;          // allow chording sticky mods & layers
+&sl { // Allow sticky mods to chord across sticky layers.
+  ignore-modifiers;
 };
 
-&lt {  // layer-tap config
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <QUICK_TAP_MS>;
+&lt {
+  flavor = "balanced";
+  tapping-term-ms = <200>;
+  quick-tap-ms = <QUICK_TAP_MS>;
 };
 
 /* Homerow mods */
 
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5  // left hand
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5 // right hand
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5
 // #ifndef LH2
 //     #define THUMBS LH1 LH0 RH0 RH1                                          // thumbs on 34 keys
 // #else
-       #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                                      // thumbs
+  #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2 // Thumbs on 36+ keys.
 // #endif
 
-#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
   ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
                tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
                require-prior-idle-ms = <150>; hold-trigger-on-release;         \
                hold-trigger-key-positions = <TRIGGER_POS>;)
 
-MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
-MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
+MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
+MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
-// HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
+// Hack: Make HRM combos tap-only (cf, ZMK issue #544).
 #define ZMK_COMBO_8(NAME, TAP, POS, LAYERS, COMBO_MS, IDLE_MS, HOLD, SIDE)     \
-    MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
-    ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
+  MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
+  ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
 
 /* Combos, leader key sequences, mouse emulation */
 
 #include "corne_combos.dtsi"  // must be sources after HRM-combo hack
 // #include "leader.dtsi"
 // #include "mouse.dtsi"
-// #include "extra_keys.h"
 
 /* Nav cluster */
 
-// long-tap action on hold, short-tap action on all interrupts
-// #define MT_CORE \
-//     flavor = "tap-preferred"; \
-//     tapping-term-ms = <220>; \
-//     quick-tap-ms = <220>; \
-//     hold-trigger-key-positions = <0>;
+// Trigger tap-action on all interrupts.
+// #define MT_CORE                                                                \
+//   flavor = "tap-preferred";                                                    \
+//   tapping-term-ms = <220>;                                                     \
+//   quick-tap-ms = <220>;                                                        \
+//   hold-trigger-key-positions = <0>;
 
 // &mt { MT_CORE };
+//
 // ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
 // ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 
-// #define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
-// #define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
-// #define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
-// #define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
-// #define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
-// #define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
+// #define NAV_LEFT  &mt_home 0   LEFT  // Tap: left  | Long-tap: start of line.
+// #define NAV_RIGHT &mt_end 0    RIGHT // Tap: right | Long-tap: end   of line.
+// #define NAV_UP    &mt LC(HOME) UP    // Tap: up    | Long-tap: start of doc.
+// #define NAV_DOWN  &mt LC(END)  DOWN  // Tap: down  | Long-tap: end   of doc.
+// #define NAV_BSPC  &mt LC(BSPC) BSPC  // Tap: bspc  | Long-tap: delete word bwd.
+// #define NAV_DEL   &mt LC(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd.
 
 // Mask CTRL on left/right hold to avoid accidental jumps to start/end of doc.
 // #define MASK_MODS(NAME, MODS, BINDING)                                         \
@@ -118,8 +118,9 @@ ZMK_ADAPTIVE_KEY(
       bindings = <&key_repeat>;
       max-prior-idle-ms = <1200>;
       strict-modifiers;
-    };)&caps_word {  // mods deactivate caps-word, requires PR #1451
-    /delete-property/ ignore-modifiers;
+    };)
+&caps_word { // Mods deactivate caps-word, requires PR #1451. [TODO: rebase]
+  /delete-property/ ignore-modifiers;
 };
 
 // Tap: num-word | double-tap: sticky num-layer | Hold: num-layer.
@@ -138,16 +139,16 @@ ZMK_ADAPTIVE_KEY(
 
 /* Custom behaviors */
 
-// Alt+Tab swapper, requires PR #1366
+// Alt+Tab swapper, requires tri-state module.
 ZMK_TRI_STATE(swapper, bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
               ignored-key-positions = <LT2 RT2 RM1 RM2 RM3>;)
 
-// reuse basic mod-morph scheme
-#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) \
-    ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;                      \
+// Define mod-morph with a *single* mod trigger for less repetition.
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)                            \
+  ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;                      \
                 bindings = <BINDING1>, <BINDING2>;)
 
-// tap: comma | shift + tap: pipe
+// Tap: comma | Shift + tap: semicolon | Ctrl + shift + tap: <.
 SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &kp PIPE)
 // SIMPLE_MORPH(comma_inner_morph, CTL, &kp SEMICOLON, &kp LESS_THAN)
 
@@ -155,52 +156,50 @@ SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &kp PIPE)
 SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &kp GT)
 // SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
 
-// tap: qmark | shift + tap: excl
+// Tap: qmark | Shift + tap: excl.
 // SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
 
-// tap: left/right parenthesis | shft + tap: less-than/greater-than
+// Tap: left/right parenthesis | Shft + tap: less-than/greater-than.
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
-// tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
+// Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
 // ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced";
 //              tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
 // SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
 // ZMK_MACRO(dot_spc, bindings = <&kp DOT &kp SPACE &sk LSHFT>; wait-ms = <0>;
           // tap-ms = <5>;)
 
-// tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
+// Tap: backspace | Lshft + tap: delete | Rshft + tap: shift-delete.
 // ZMK_MOD_MORPH(bs_del, bindings = <&kp BSPC>, <&kp DEL>;
               // mods = <(MOD_LSFT|MOD_RSFT)>; keep-mods = <MOD_RSFT>;)
 
-// tap: copy | double-tap: cut
+// Tap: copy | double-tap: cut.
 // ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(INS)>, <&kp LC(X)>;
 //               tapping-term-ms = <200>;)
-
-// Windows sleep key
-// ZMK_MACRO(win_sleep,
-//     wait-ms = <500>;
-//     tap-ms = <50>;
-//     bindings = <&kp LG(X) &kp U &kp S>;
-// )
 
 // Sticky shift + leader
 // ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
 
-// misc aliases
-#define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
-// #define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
-// #define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
-// #define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
-// #define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
-// #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
-// #define VOL_DOWN    &hmr LCTRL C_VOL_DN
+// Misc aliases. [TODO: clean up]
+#define CANCEL    &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
+// #define DSK_PREV  &hmr LCTRL LG(LC(LEFT)) // Previous desktop.
+// #define DSK_NEXT  &hmr LALT LG(LC(RIGHT)) // Next     desktop.
+// #define PIN_WIN   &kp LG(LC(LS(Q)))       // Pin window across desktops.
+// #define PIN_APP   &kp LG(LC(LS(A)))       // Pin application across desktops.
+// #define DSK_MGR   &kp LA(GRAVE)           // Desktop manager.
+// #define VOL_DOWN  &hmr RSHFT C_VOL_DN
 
 /* Keymap */
 
-ZMK_CONDITIONAL_LAYER(sys, FN NUM, SYS)  // FN + NUM --> SYS
+ZMK_CONDITIONAL_LAYER(sys, FN NUM, SYS) // FN + NUM --> SYS.
 
-ZMK_LAYER(base,
+#ifndef ZMK_BASE_LAYER
+  #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
+      ZMK_LAYER(name, LT RT LM RM LB RB LH RH)
+#endif
+
+ZMK_BASE_LAYER(Base,
 //╭──────┬───────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬────────╮
  &kp ESC       &kp Q         &kp W         &kp E         &kp R         &kp T            &kp Y         &kp U         &kp I         &kp O         &kp P        &kp GRAVE
 //├──────┼───────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┴────────┤
@@ -212,7 +211,7 @@ MAGIC_SHIFT    &kp Z         &kp X         &kp C         &kp V         &kp B    
 //                                     ╰─────────────┴─────────────┴─────────────╯  ╰─────────────┴─────────────┴─────────────╯
 )
 
-ZMK_LAYER(nav,
+ZMK_BASE_LAYER(Nav,
 //╭──────┬───────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬────────╮
     ___      &kp F12       &kp F7        &kp F8        &kp F9        ___              &kp PG_UP     &kp BSPC        XXX         &kp DEL       ___             ___  
 //├──────┼───────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────┤
@@ -224,7 +223,7 @@ ZMK_LAYER(nav,
 //                                     ╰─────────────┴─────────────┴─────────────╯  ╰─────────────┴─────────────┴─────────────╯                        
 )
 
-ZMK_LAYER(fn,
+ZMK_BASE_LAYER(Fn,
 //╭──────┬───────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬────────╮
     ___        ___         &kp LG(N4)    &kp LG(N5)     &kp LG(N6)   ___              ___           &kp F7          &kp F8         &kp F9       &kp F12      ___ 
 //├──────┼───────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────┤
@@ -236,7 +235,7 @@ ZMK_LAYER(fn,
 //                                     ╰─────────────┴─────────────┴─────────────╯  ╰─────────────┴─────────────┴─────────────╯                                     
 )
 
-ZMK_LAYER(num,
+ZMK_BASE_LAYER(Num,
 //╭──────┬───────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬────────╮
     ___     &kp Q         &kp W        &kp COLON      &kp SEMI        XXX              ___            &kp N7        &kp N8        &kp N9     &kp STAR        ___ 
 //├──────┼───────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────┤
@@ -248,7 +247,7 @@ ZMK_LAYER(num,
 //                                     ╰─────────────┴─────────────┴─────────────╯  ╰─────────────┴─────────────┴─────────────╯                                       
 )
 
-ZMK_LAYER(sys,
+ZMK_BASE_LAYER(Sys,
 //╭──────┬───────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬────────╮
     ___                                 _BT_SEL_KEYS_                                 ___                            _BT_SEL_KEYS_                                 
 //├──────┼───────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────┤
@@ -260,19 +259,7 @@ ZMK_LAYER(sys,
 //                                     ╰─────────────┴─────────────┴─────────────╯  ╰─────────────┴─────────────┴─────────────╯                                     
 )
 
-// ZMK_LAYER(mouse,
-// //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-//     X_LT     ___           ___           ___           ___           ___             X_MT     U_WH_L        U_WH_D        U_MS_U         U_WH_U       U_WH_R          X_RT
-// //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-//     X_LM     ___           ___           ___           ___           ___             X_MM     ___           U_MS_L        U_MS_D         U_MS_R       ___             X_RM
-// //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-//     X_LB     ___           ___           ___           ___           ___             X_MB     ___           &mkp MB4      &mkp MCLK      &mkp MB5     ___             X_RB
-// //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-//     X_LH                                               ___           ___             X_MH     &mkp LCLK     &mkp RCLK                                                 X_RH
-// //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
-// )
-
-ZMK_LAYER(uc,
+ZMK_BASE_LAYER(uc,
 //╭──────┬───────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬────────╮
     CANCEL     ___            &kp PIPE     &kp COLON     &kp SEMI     XXX               &kp AT        &kp AMPS     &kp DLLR        &kp STAR     ___          ___               
 //├──────┼───────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────┤
