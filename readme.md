@@ -4,8 +4,8 @@ This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/)
 configuration. It consists of a 34-keys base layout that is re-used for various
 boards, including my Corneish Zen and my Planck.
 
-My configuration builds against `v0.1` of upstream ZMK plus a backport of the
-merged pointer PR. Custom functionality is added through various
+My configuration currently builds against `v0.2` of upstream ZMK.
+Custom functionality is added through various
 [ZMK modules](https://github.com/search?q=topic%3Azmk-module+fork%3Atrue+owner%3Aurob+&type=repositories).
 The state of the entire firmware is pinned in my `west`
 [manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
@@ -15,6 +15,7 @@ The state of the entire firmware is pinned in my `west`
 - ["Timeless" homerow mods](#timeless-homerow-mods)
 - Combos instead of symbol layer
 - Auto-toggle off numbers and mouse layers
+- Magic thumb quadrupling as Repeat/Sticky-shift/Capsword/Shift
 - Leader key sequences for Unicode input and system commands
 - Arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
   document</kbd> on long-press
@@ -22,7 +23,7 @@ The state of the entire firmware is pinned in my `west`
   ↦ !</kbd>
 - Simpler Devicetree syntax using helper macros from
   [zmk-helpers](https://github.com/urob/zmk-helpers)
-- Fully automated, nix-based [local build environment](#local-build-environment)
+- Fully automated, nix-powered [local build environment](#local-build-environment)
 
 ![](draw/keymap.png)
 ([Click here](https://raw.githubusercontent.com/urob/zmk-config/refs/heads/main/draw/base.svg)
@@ -202,11 +203,13 @@ Similarly to Numword, I have a smart-mouse layer (activated by comboing
 and mouse-movements, and replaces the right thumbs with mouse buttons. Pressing
 any other key automatically deactivates the layer.
 
-##### Capsword
+##### Magic Repeat/Shift/Capsword
 
-My right thumb triggers three variations of shift: Tapping yields sticky-shift
-(used to capitalize alphas), holding activates a regular shift, and
-double-tapping (or equivalently shift + tap) activates ZMK's Caps-word behavior.
+My right thumb triggers three variations of shift as well as repeat: Tapping
+after any alpha key yields key-repeat (to reduce SFUs). Tapping after any other
+keycode yields sticky-shift (used to capitalize alphas). Holding activates a
+regular shift, and double-tapping (or equivalently shift + tap) activates ZMK's
+Caps-word behavior.
 
 One minor technical detail: While it would be possible to implement the
 double-tap functionality as a tap-dance, this would add a delay when using
@@ -303,7 +306,7 @@ environment is _completely isolated_ and won't pollute your system.
    # The first time you enter the workspace, you will be prompted to allow direnv
    cd zmk-workspace
 
-   # Allow direnv for the workspace, which will set up the environment
+   # Allow direnv for the workspace, which will set up the environment (this takes a while)
    direnv allow
 
    # Initialize the Zephyr workspace and pull in the ZMK dependencies
@@ -349,9 +352,7 @@ for many shells.)
 
 The build environment packages
 [keymap-drawer](https://github.com/caksoylar/keymap-drawer). `just draw` parses
-`base.keymap` and draws it to `draw/base.svg`. I haven't gotten around to
-tweaking the output yet, so for now this is just a demonstration of how to set
-things up.
+`base.keymap` and draws it to `draw/base.svg`.
 
 #### Hacking the firmware
 
@@ -371,20 +372,16 @@ version of ZMK and all modules specified in `config/west.yml`. Make sure to
 commit and push all local changes you have made to ZMK and the modules before
 running this command, as this will overwrite them.
 
-To upgrade the Zephyr SDK and Python build dependencies, use `just upgrade-sdk`.
+To upgrade the Zephyr SDK and Python build dependencies, use `just upgrade-sdk`. (Use with care --
+Running this will upgrade all Nix packages and may end up breaking the build environment. When in
+doubt, I recommend keeping the environment pinned to `flake.lock`, which is [continuously
+tested](https://github.com/urob/zmk-config/actions/workflows/test-build-env.yml) on all systems.)
 
 ## Bonus: A (moderately) faster Github Actions Workflow
 
 Using the same Nix-based environment, I have set up a drop-in replacement for
 the default ZMK Github Actions build workflow. While mainly a proof-of-concept,
 it does run moderately faster, especially with a cold cache.
-
-By default, the workflow is configured to run "on demand" (head to the Actions
-tab in your fork and click "Run workflow" to trigger it). To enable automatic
-runs, remove the commented lines near the top of
-[`.github/workflows/build-nix.yml`](.github/workflows/build-nix.yml). (You may
-want to comment the corresponding lines of the default `build.yml` to avoid
-running both workflows.)
 
 ## Issues and workarounds
 

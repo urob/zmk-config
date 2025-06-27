@@ -6,6 +6,7 @@
 , setuptools
 , poetry-core
 , pydantic
+, pyparsing
 , pcpp
 , pyyaml
 , platformdirs
@@ -17,14 +18,14 @@ let
 in
 buildPythonApplication rec {
   pname = "keymap-drawer";
-  version = "0.20.0+revert-poetry";
+  version = "0.21.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "caksoylar";
     repo = pname;
-    rev = "a2a3b37c54ddb449428b4597b39c3c28b331a7da";
-    hash = "sha256-GKGjEHQ/GsLhCzjuglDuztAEIpeaz+fHHmNJJcLmQT8=";
+    rev = "855933863fcc6f0db6098a03e679319dbf7f8bf2";
+    hash = "sha256-InddS9NxVrYOufiP7iWQTQ3VBeJgX2UlBA+Gf7ZfFrI=";
   };
 
   build-system = [ poetry-core ];
@@ -35,6 +36,7 @@ buildPythonApplication rec {
     pyyaml
     platformdirs
     pydantic-settings
+    pyparsing
     tree-sitter
     tree-sitter-devicetree
   ];
