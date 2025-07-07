@@ -40,9 +40,9 @@
       display-name = "Base";
 
       bindings = <
-      GRV_HYP &kp B  &kp L  &kp D  &kp C  &kp V       _UP       &kp J   &kp Y  &kp O    &kp U     AS(COMMA)  BSL_HYP
-      ESC_MEH _HOME_ROW_MODS_LEFT_        &kp G   _L_ _RT _R_   &kp P   _HOME_ROW_MODS_RIGHT_                SLS_MEH
-      CMP_SFT &kp X  &kp Q  &kp M  &kp W  &kp Z   _PP _DN       &kp K   &kp F  AS(SQT)  AS(SEMI)  AS(DOT)    RET_SFT
+      GRV_HYP &kp Q  &kp W  &kp E  &kp R  &kp T       _UP       &kp Y   &kp U  &kp I    &kp O     &kp P      BSL_HYP
+      ESC_MEH &kp A  &kp S  &kp D  &kp F  &kp G   _L_ _RT _R_   &kp H   &kp J  &kp K    &kp L     &kp SEMI   SLS_MEH
+      CMP_SFT &kp Z  &kp X  &kp C  &kp V  &kp B   _PP _DN       &kp N   &kp M  &kp COMMA  &kp DOT   &kp SLASH  RET_SFT
                    &fn_esc__cmd  NUM_SPC  CTL_TAB               NAV_KEY BS_SFT NUM_WORD
        >;
 
