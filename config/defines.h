@@ -7,7 +7,7 @@
 /* keycode aliases */
 
 // home row mods
-#define _HOME_ROW_MODS_LEFT_   &hml LMETA A  &hml LALT S   &hml LSHFT D  &hml LCTRL F
+#define _HOME_ROW_MODS_LEFT_   &hml LALT S   &hml LSHFT D  &hml LCTRL F  &hml LMETA G
 #define _HOME_ROW_MODS_RIGHT_  &hmr RCTRL J  &hmr RSHFT K  &hmr LALT L   &hmr LMETA SEMI
 
 // composite mod keys
