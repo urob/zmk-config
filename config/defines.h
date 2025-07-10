@@ -7,8 +7,8 @@
 /* keycode aliases */
 
 // home row mods
-#define _HOME_ROW_MODS_LEFT_   &hml LCTRL N  &hml LALT R   &hml LMETA T  &hml LSHFT S
-#define _HOME_ROW_MODS_RIGHT_  &hmr RSHFT H  &hmr LMETA A  &hmr LALT E   &hmr LCTRL I
+#define _HOME_ROW_MODS_LEFT_   &hml LMETA A  &hml LALT S   &hml LSHFT D  &hml LCTRL F
+#define _HOME_ROW_MODS_RIGHT_  &hmr RCTRL J  &hmr RSHFT K  &hmr LALT L   &hmr LMETA ;
 
 // composite mod keys
 #define MEH   LC(LA(LSHFT))
