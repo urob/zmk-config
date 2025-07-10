@@ -146,3 +146,59 @@ ZMK_BEHAVIOR(td_rth3, tap_dance,
   bindings = <&num_word NUM>, <&to DEF>;
 )
 
+//
+// Custom Macros
+//
+
+ZMK_MACRO(macro_dot_shift,
+    label = "MACRO_DOT_SHIFT",
+    bindings = <&kp DOT &kp SPACE &sk LSHFT>;
+)
+
+ZMK_MACRO(to_mouse,
+    label = "TO_MOUSE",
+    bindings = <&kp LS(RG(D)) &to 5>;
+)
+
+ZMK_MACRO(macro_to_0_click,
+    label = "MACRO_TO_0_CLICK",
+    bindings = <&mkp RCLK &to 0>;
+)
+
+ZMK_MACRO(macro_sel_word,
+    label = "MACRO_SEL_WORD",
+    bindings = <&kp LC(LEFT) &kp LC(LS(RIGHT))>;
+)
+
+ZMK_MACRO(macro_sel_line,
+    label = "MACRO_SEL_LINE",
+    bindings = <&kp HOME &kp LS(END)>;
+)
+
+ZMK_MACRO(macro_win_sleep,
+    label = "MACRO_WIN_SLEEP",
+    wait-ms = <500>,
+    tap-ms = <5>,
+    bindings = <&kp LG(X) &kp U &kp S>;
+)
+
+ZMK_MACRO(macro_swapper,
+    label = "MACRO_SWAPPER",
+    bindings = <&macro_press &kp LALT &macro_tap &kp TAB &macro_release &kp LALT>;
+)
+
+ZMK_MACRO(double_click,
+    label = "DOUBLE_CLICK",
+    bindings = <&mkp RCLK &mkp RCLK>;
+)
+
+ZMK_MACRO(mouse_jiggle,
+    label = "MOUSE_JIGGLE",
+    bindings = <&to 0 &mmv MOVE_UP &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT>;
+)
+
+ZMK_MACRO(macro_copy_path,
+    label = "MACRO_COPY_PATH",
+    bindings = <&kp LC(L) &kp LC(C) &kp ESC>;
+)
+
