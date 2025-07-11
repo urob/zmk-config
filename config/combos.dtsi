@@ -54,11 +54,11 @@ ZMK_COMBO(combo_lbkt,      &kp LBKT,  LB3 LB2, DEF NUM, COMBO_TERM_FAST, COMBO_I
 ZMK_COMBO(combo_rbkt,      &kp RBKT,  LB2 LB1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(combo_brace_r,   &kp RBRC,  LB1 LB0, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
-// vertical 
+// vertical lh
 ZMK_COMBO(combo_lh_tab,       &kp TAB,     LT1 LM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(combo_lh_ent,       &kp ENTER,   LT2 LM2, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 
 
@@ -83,6 +83,16 @@ ZMK_COMBO(vol_dn,          &vol_dn,     RM1 RT2, DEF, COMBO_TERM_FAST, COMBO_IDL
 ZMK_COMBO(trk_next,        &trk_next,   RM4 RT3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(trk_prev,        &trk_prev,   RM0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(play_pause,      &play_pause, RT0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+
+
+// vertical rh
+ZMK_COMBO(combo_rh_tab,       &kp TAB,     RT1 RM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_rh_ent,       &kp ENTER,   RT2 RM2, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+
 
 
 /*
