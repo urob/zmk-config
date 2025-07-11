@@ -54,6 +54,15 @@ ZMK_COMBO(combo_lbkt,      &kp LBKT,  LB3 LB2, DEF NUM, COMBO_TERM_FAST, COMBO_I
 ZMK_COMBO(combo_rbkt,      &kp RBKT,  LB2 LB1, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(combo_brace_r,   &kp RBRC,  LB1 LB0, DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
+// vertical 
+ZMK_COMBO(combo_lh_tab,       &kp TAB,     LT1 LM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_lh_ent,       &kp ENTER,   LT2 LM2, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+
+
+
 
 // RIGHT HAND
 // home row
@@ -62,7 +71,7 @@ ZMK_COMBO(bspc_word_a,     &bs_word_a,  RM1 RM2, DEF, COMBO_TERM_FAST, COMBO_IDL
 ZMK_COMBO(bspc_word_c,     &bs_word_c,  RM2 RM3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_L)
 ZMK_COMBO(del,             &del,        RM3 RM4, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT), KEYS_L)
 
-// lower row
+// bottom row
 ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 // TODO: here
 /* ZMK_COMBO(end_sentence,    &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST) */
