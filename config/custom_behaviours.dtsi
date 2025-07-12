@@ -90,8 +90,10 @@ ZMK_BEHAVIOR(th, hold_tap,
 #define AS(keycode) &as LS(keycode) keycode
 ZMK_BEHAVIOR(as, hold_tap,
     flavor = "tap-preferred";
-    tapping-term-ms = <120>;
+    tapping-term-ms = <TAPPING_TERM_MS>;
     bindings = <&kp>, <&kp>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    require-prior-idle-ms = <PRIOR_IDLE_MS>;
 )
 
 ZMK_BEHAVIOR(mo_sk, hold_tap,
