@@ -46,7 +46,7 @@
                    &fn_esc__cmd  NUM_SPC  CTL_TAB               NAV_KEY BS_SFT NUM_WORD
        >;
 
-      sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+      sensor-bindings = <&inc_dec_kp UP DOWN>;
     };
 
     /*************************
