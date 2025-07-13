@@ -100,8 +100,8 @@ ZMK_COMBO(combo_rh_ent,       &kp ENTER,   RT2 RM2, ALL, COMBO_TERM_FAST, COMBO_
 
 // FLow launcher
 
-ZMK_COMBO(combo_lh_flow,       &flow,     LM1 LH1, ALL, COMBO_TERM_FAST, COMBO_IDLE_SLOW)
-ZMK_COMBO(combo_rh_flow,       &flow,     RM1 RH1, ALL, COMBO_TERM_FAST, COMBO_IDLE_SLOW)
+//ZMK_COMBO(combo_lh_flow,       &flow,     LM1 LH1, ALL, COMBO_TERM_FAST, COMBO_IDLE_SLOW)
+//ZMK_COMBO(combo_rh_flow,       &flow,     RM1 RH1, ALL, COMBO_TERM_FAST, COMBO_IDLE_SLOW)
 
 
 
