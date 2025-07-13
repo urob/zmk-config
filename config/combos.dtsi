@@ -139,6 +139,11 @@ ZMK_COMBO(combo_n0, &kp N0, LB1 LB0, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 // Macros
 
 
+        macro_flow: macro_flow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &kp LS(LA(LC(LG(SPACE))))>;
+            label = "MACRO_FLOW";
 
 
 

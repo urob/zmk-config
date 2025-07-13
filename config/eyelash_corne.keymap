@@ -3,7 +3,6 @@
 #include "eyelash_matrix.h"
 #include "base.keymap"
 #include <dt-bindings/zmk/keys.h>
-#include <behaviors.dtsi>
 
 /*
   layout:  the block in the middle is
