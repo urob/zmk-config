@@ -57,8 +57,11 @@ ZMK_COMBO(combo_brace_r,   &kp RBRC,  LB1 LB0, DEF NUM, COMBO_TERM_FAST, COMBO_I
 // vertical lh
 ZMK_COMBO(combo_lh_tab,       &kp TAB,     LT1 LM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(combo_lh_ent,       &kp ENTER,   LT2 LM2, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(combo_SCRL_UP,    &kp SCRL_UP  LM0 LB0, , ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(combo_SCRL_DOWN,    &kp SCRL_DOWN   LM0 LB0B , ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+ZMK_COMBO(combo_SCRL_UP,    &kp SCRL_UP  LT0 LM0, , ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(combo_SCRL_DOWN,    &kp SCRL_DOWN   LM0 LB0 , ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+
 
 // ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
@@ -95,6 +98,11 @@ ZMK_COMBO(combo_rh_ent,       &kp ENTER,   RT2 RM2, ALL, COMBO_TERM_FAST, COMBO_
 // ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 
+// FLow launcher
+
+ZMK_COMBO(combo_lh_flow,       &flow,     LM1 LH1, ALL, COMBO_TERM_FAST, COMBO_IDLE_SLOW)
+ZMK_COMBO(combo_rh_flow,       &flow,     RM1 RH1, ALL, COMBO_TERM_FAST, COMBO_IDLE_SLOW)
+
 
 
 /*
@@ -121,6 +129,18 @@ ZMK_COMBO(combo_n0, &kp N0, LB1 LB0, GAM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 // this leaves the top row free for some conveniences; maybe some common keys from the right side
 // like Y, H, M, I, O
 */
+
+
+
+
+
+
+
+// Macros
+
+
+
+
 
 
 
