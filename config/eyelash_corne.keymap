@@ -77,7 +77,7 @@
 
       bindings = <
       &kp GRAVE  &kp EXCL  &kp AT    &kp HASH  &kp DOLLAR &kp PERCENT          MS_U      &kp CARET &kp AMPS &kp STAR &kp UNDER &kp PLUS &kp PIPE
-      &kp ESC    &kp N1    &kp N2    &kp N3    &kp N4     &kp N5        MS_L MS_C MS_R   &kp N6    &kp N7   &kp N8   &kp N9    &kp N0   &kp SLASH
+      &kp ESC    hml LGUI N1  &hml LALT N2  &hml LSHFT N3  &hml LCTRL N4  &hml LGUI N5        MS_L MS_C MS_R   &kp N6     &hmr RCTRL N7         &hmr RSHFT N8    &hmr RALT N9   &hmr RGUI N0   &kp SLASH
       &caps_word &kp TILDE &kp MINUS &kp EQUAL &kp LBRC   &kp LBKT      ___    MS_D      &kp RBKT  &kp RBRC &kp DQT  &kp COLON &kp DOT  &kp ENTER
                                      &kp TAB   &kp SPC    ___                            ___       ___      &kp DOT
       >;
