@@ -26,6 +26,8 @@ manifest:
       url-base: https://github.com/urob
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: Nicell
+      url-base: https://github.com/Nicell
 
   projects:
     - name: zmk
@@ -49,6 +51,12 @@ manifest:
       url: https://github.com/a741725193/zmk-new_corne
       revision: main
       path: modules/eyelash_corne
+
+    # bongo cat display 
+    - name: zmk
+      remote: Nicell
+      revision: nice-view-custom-screen
+      import: app/west.yml
 
     # Temporarily overload Zephyr until
     # https://github.com/zmkfirmware/zephyr/pull/40 is merged.
