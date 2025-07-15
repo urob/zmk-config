@@ -95,7 +95,7 @@
       bindings = <
       &kp GRAVE XXX        XXX       XXX        XXX         XXX          WH_U        XXX   &kp HOME &kp PGDN &kp PGUP &kp END   &kp LC(LS(ESC))
       &kp ESC   &hml LGUI LA(LEFT)  &hml LALT LA(RIGHT)  &hml LEFT_SHIFT LC(LS(TAB))  &hml LCTRL LC(TAB)  XXX     WH_L MS_C WH_R    &kp LEFT &hmr RCTRL DOWN &hmr RSHFT UP   &hmr RALT RIGHT &hmr RGUI RET &kp DEL
-      XXX       _UNDO      _CUT      _COPY      _PASTE      _REDO   ___  WH_U        XXX      &kp PG_UP      &kp PG_DOWN    XXX   XXX   &kp LC(LA(DEL)) 
+      XXX       _UNDO      _CUT      _COPY      _PASTE      _REDO   ___  WH_U        XXX      &kp PG_UP      &kp PG_DN    XXX   XXX   &kp LC(LA(DEL)) 
       &mo FN     &kp SPACE   ___                      XXX   &kp BSPC ___
       >;
 
