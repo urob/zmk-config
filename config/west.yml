@@ -30,9 +30,6 @@ manifest:
       url-base: https://github.com/Nicell
 
   projects:
-    - name: zmk
-      remote: zmkfirmware
-      import: app/west.yml
 
     # ZMK modules
     - name: zmk-adaptive-key
@@ -52,7 +49,7 @@ manifest:
       revision: main
       path: modules/eyelash_corne
 
-    # bongo cat display 
+    # bongo cat display
     - name: zmk
       remote: Nicell
       revision: nice-view-custom-screen
