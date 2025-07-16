@@ -102,13 +102,42 @@ ZMK_COMBO(combo_rh_ent,       &kp ENTER,   RT2 RM2, ALL, COMBO_TERM_FAST, COMBO_
 
 // FLow launcher macro
 
-//ZMK_COMBO(combo_lh_flow,       &flow,     LM1 LH1, ALL, COMBO_TERM_FAST, COMBO_IDLE_SLOW)
-//ZMK_COMBO(combo_rh_flow,       &flow,     RM1 RH1, ALL, COMBO_TERM_FAST, COMBO_IDLE_SLOW)
+ZMK_COMBO(combo_lh_flow,       m_flow,     LM1 LH1, ALL, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(combo_rh_flow,       m_flow,     RM1 RH1, ALL, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 
 
 ZMK_MACRO(m_flow, bindings = <&to 0 &kp LS(LA(LC(LG(SPACE))))>;)
 
 
+/*
+
+        macro_flow: macro_flow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &kp LS(LA(LC(LG(SPACE))))>;
+            label = "MACRO_FLOW";
+
+// UROB
+
+// Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
+ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced";
+             tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
+SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
+ZMK_MACRO(dot_spc, bindings = <&kp DOT &kp SPACE &sk LSHFT>; wait-ms = <0>;
+          tap-ms = <5>;)
+
+// Tap: backspace | Lshft + tap: delete | Rshft + tap: shift-delete.
+ZMK_MOD_MORPH(bs_del, bindings = <&kp BSPC>, <&kp DEL>;
+              mods = <(MOD_LSFT|MOD_RSFT)>; keep-mods = <MOD_RSFT>;)
+
+// Tap: copy | double-tap: cut.
+ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(INS)>, <&kp LC(X)>;
+              tapping-term-ms = <200>;)
+
+// Sticky shift + leader.
+ZMK_MACRO(leader_sft, bindings = <&sk LSHFT &leader>;)
+
+*/
 
 
 
