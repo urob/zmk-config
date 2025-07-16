@@ -18,14 +18,24 @@ include:
   # - board: corneish_zen_v2_right
   # - board: glove80_lh
   # - board: glove80_rh
-  - board: eyelash_corne_left
-    shield: nice_view
-  - board: eyelash_corne_right
-    shield: nice_view
   # - board: eyelash_corne_left
   #   shield: nice_view
   #   snippet: studio-rpc-usb-uart
   #   cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
   #   artifact-name: eyelash_corne_studio_left
   # - board: eyelash_corne_left
-  #   shield: settings_reset
+  #   shield: settings_rese
+
+
+
+
+  - board: eyelash_corne_left
+    #shield: nice_view
+    shield: nice_view_adapter nice_view_custom #custom shield
+    #snippet: zmk-usb-logging    # Uncomment to log over USB.
+    artifact-name: corne_left_nice_view
+  - board: eyelash_corne_right
+    #shield: nice_view
+    shield: nice_view_adapter nice_view_custom #custom shield
+    #snippet: zmk-usb-logging    # Uncomment to log over USB.
+    artifact-name: corne_right_nice_view

@@ -26,6 +26,11 @@ manifest:
       url-base: https://github.com/urob
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+
+    - name: dsifry
+      url-base: https://github.com/dsifry
+      # https://github.com/dsifry/nice-view-mod. Bongo Cat, including FURIOUS MODE
+
 #    - name: Nicell
 #      url-base: https://github.com/Nicell
 
@@ -51,6 +56,15 @@ manifest:
       url: https://github.com/a741725193/zmk-new_corne
       revision: main
       path: modules/eyelash_corne
+
+
+      # Display dsifry
+    - name: nice-view-mod
+      remote: dsifry
+      revision: main
+
+
+
 
     # bongo cat display
 #    - name: zmk
