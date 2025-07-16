@@ -26,10 +26,13 @@ manifest:
       url-base: https://github.com/urob
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: Nicell
-      url-base: https://github.com/Nicell
+#    - name: Nicell
+#      url-base: https://github.com/Nicell
 
   projects:
+    - name: zmk
+      remote: zmkfirmware
+      import: app/west.yml
 
     # ZMK modules
     - name: zmk-adaptive-key
@@ -50,10 +53,10 @@ manifest:
       path: modules/eyelash_corne
 
     # bongo cat display
-    - name: zmk
-      remote: Nicell
-      revision: nice-view-custom-screen
-      import: app/west.yml
+#    - name: zmk
+#      remote: Nicell
+#      revision: nice-view-custom-screen
+#      import: app/west.yml
 
     # Temporarily overload Zephyr until
     # https://github.com/zmkfirmware/zephyr/pull/40 is merged.
