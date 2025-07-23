@@ -148,8 +148,8 @@
       display-name = "Swap";
       bindings = <
       &bootloader  &trans      &kp LA(F4)  &trans      &bt BT_PRV  &bt BT_NXT      &kp LC(W)    &kp LG(LC(LA(N1)))  &kp LG(LC(LA(N2)))  &kp LG(LC(LA(N3)))  &kp LG(LC(LA(N4)))  &kp LG(LC(LA(N5)))  &bootloader
-      &kp ESC      &kp LC(LG(N1))  &kp LC(LG(N2))  &kp LC(LG(N3))  &kp LC(LG(N4))  &kp LC(LG(N5))      &kp LC(LS(T))    &kp LC(LG(N6))      &kp LC(LG(N7))      &kp LC(LG(N8))      &kp LC(LG(N9))      &kp LC(LG(N0))      &kp ESC
-      &bt BT_CLR   &kp LC(LG(N0))  &kp LC(LG(N9))  &kp LC(LG(N8))  &bt BT_PRV  &bt BT_NXT      &kp LC(LS(TAB))  &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3        &bt BT_SEL 4        &bt BT_CLR
+      &kp ESC      &kp LC(LG(N1))  &kp LC(LG(N2))  &kp LC(LG(N3))  &kp LC(LG(N4))  &kp LC(LG(N5))      ___    ___    ___    &kp LC(LG(N6))      &kp LC(LG(N7))      &kp LC(LG(N8))      &kp LC(LG(N9))      &kp LC(LG(N0))      &kp ESC
+      &bt BT_CLR   &kp LC(LG(N0))  &kp LC(LG(N9))  &kp LC(LG(N8))  &bt BT_PRV  &bt BT_NXT  ___    &kp LC(LS(TAB))  &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3        &bt BT_SEL 4        &bt BT_CLR
                                &kp N0  &kp LS(LA(LC(LG(F9))))  &lt 10 LA(F4)    &mo 0        &kp LC(TAB)      &as RG(TAB) C_PREV  &as C_MUTE LA(F4)   &as RS(RA(RC(RG(F11)))) C_NEXT
       >;
       sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -163,8 +163,8 @@
       display-name = "L10";
       bindings = <
       &bootloader  &trans                 &kp LA(F15)          &trans              &kp LC(LA(LS(F20)))  &kp F21                  &kp LA(F15)  &trans   &kp RC(RA(F13))  &kp RC(RA(F14))      &kp RC(RA(F15))  &kp RC(RA(F22))  &kp RC(RS(ESC))
-      &kp ESC      &hml LWIN LA(F13)  &hml LALT LA(F14)    &hml LSHFT LC(F13)  &hml LCTRL LC(F22)   &hml LWIN LG(TAB)    &kp LA(F14)  &kp F13  &hmr RCTRL F14   &hmr RSHFT F15       &hmr RALT F22    &to 0            &trans
-      &bt BT_CLR   &bt BT_NXT             &kp LC(LS(LA(F17)))  &trans              &kp LC(LS(V))        &as LS(X) B              &kp LA(F13)  &trans   &kp RS(RA(F17))  &kp RS(RA(F18))      &kp F19          &kp F20          &kp RC(RA(DEL))
+      &kp ESC      &hml LWIN LA(F13)  &hml LALT LA(F14)    &hml LSHFT LC(F13)  &hml LCTRL LC(F22)   &hml LWIN LG(TAB)  ___  ___ &kp LA(F14)  &kp F13  &hmr RCTRL F14   &hmr RSHFT F15       &hmr RALT F22    &to 0            &trans
+      &bt BT_CLR   &bt BT_NXT             &kp LC(LS(LA(F17)))  &trans              &kp LC(LS(V))        &as LS(X) B       ___       &kp LA(F13)  &trans   &kp RS(RA(F17))  &kp RS(RA(F18))      &kp F19          &kp F20          &kp RC(RA(DEL))
                                           &to 0                &kp F21             &kp F21              &key_repeat              &kp LA(F22)  &to 0    &lt 6 RA(F4)    &tap_flip_komorebic
       >;
     };
@@ -177,8 +177,8 @@
       display-name = "Button";
       bindings = <
       &kp CAPS  &kp LS(LG(LC(LA(Q))))  &kp LA(F4)  &kp LG(LC(LA(E)))         &kp LC(F24)              &as N3 LS(LA(LC(LG(T))))          &trans  &trans             &trans              &trans             &trans      &kp LG(LC(LA(P)))    &kp RC(RS(ESC))
-      &trans    &kp LG(LC(LA(T)))      &kp F24     &kp LS(F24)               &kp LG(LC(LA(F)))        &kp LG(LC(LA(G)))                 &trans  &kp LG(LC(LA(H)))  &kp LG(LEFT)  &kp LG(DOWN)       &kp LG(UP)  &kp LG(RIGHT)  &trans
-      &trans    &kp LG(X)       &trans      &kp LG(LC(LA(C)))         &kp LS(LC(V))            &as N3 LS(LA(LC(LG(B))))          &trans  &trans             &trans              &trans             &trans      &trans               &kp RC(RA(DEL))
+      &trans    &kp LG(LC(LA(T)))      &kp F24     &kp LS(F24)               &kp LG(LC(LA(F)))        &kp LG(LC(LA(G)))      ___    ___           &trans  &kp LG(LC(LA(H)))  &kp LG(LEFT)  &kp LG(DOWN)       &kp LG(UP)  &kp LG(RIGHT)  &trans
+      &trans    &kp LG(X)       &trans      &kp LG(LC(LA(C)))         &kp LS(LC(V))            &as N3 LS(LA(LC(LG(B))))    ___      &trans  &trans             &trans              &trans             &trans      &trans               &kp RC(RA(DEL))
                                  &trans      &as LC(LA(LS(M))) C_PREV  &as C_MUTE C_PP  &as LS(LG(LA(LC(F11)))) C_NEXT    &trans  &kp F24            &kp RS(F24)         &kp LG(LC(LA(H)))
       >;
       sensor-bindings = <&inc_dec_kp LC(LS(TAB)) LC(LS(TAB))>;
@@ -192,8 +192,8 @@
       display-name = "Mouse";
       bindings = <
       &bootloader  &kp LS(F10)     &mmv MOVE_UP    &kp RET          &mkp LCLK            &msc SCRL_UP      &mmv MOVE_Y -600  &msc SCRL_LEFT        &msc SCRL_DOWN       &msc SCRL_UP         &msc SCRL_RIGHT     &msc SCRL_LEFT  &trans
-      &kp ESC      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &hmr LCTRL RCLK  &msc SCRL_DOWN    &mmv MOVE_Y 600   &kp HOME              &hmr RCTRL RCLK  &hmr LSHFT LCLK  &hmr RALT MCLK  &to 0           &to 0
-      &bt BT_CLR   &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_RIGHT  &mkp RCLK    &as N5 B          &mmv MOVE_X -600  &as LC(END) LC(HOME)  &kp PG_DN            &kp PG_UP            &trans              &trans          &to 0
+      &kp ESC      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &hmr LCTRL RCLK  &msc SCRL_DOWN  ___ ___  &mmv MOVE_Y 600   &kp HOME              &hmr RCTRL RCLK  &hmr LSHFT LCLK  &hmr RALT MCLK  &to 0           &to 0
+      &bt BT_CLR   &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_RIGHT  &mkp RCLK    &as N5 B     ___     &mmv MOVE_X -600  &as LC(END) LC(HOME)  &kp PG_DN            &kp PG_UP            &trans              &trans          &to 0
                    &to 0           &mkp MCLK        &mkp LCLK            &mkp RCLK         &mmv MOVE_X 600   &mkp LCLK             &mkp RCLK            &kp K_CONFIG
       >;
       sensor-bindings = <&inc_dec_kp UP_ARROW DOWN_ARROW>;
