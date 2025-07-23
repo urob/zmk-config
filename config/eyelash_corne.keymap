@@ -148,7 +148,7 @@
       display-name = "Swap";
       bindings = <
       &bootloader  &trans      &kp LA(F4)  &trans      &bt BT_PRV  &bt BT_NXT      &kp LC(W)    &kp LG(LC(LA(N1)))  &kp LG(LC(LA(N2)))  &kp LG(LC(LA(N3)))  &kp LG(LC(LA(N4)))  &kp LG(LC(LA(N5)))  &bootloader
-      &kp ESC      &kp LC(LG(N1))  &kp LC(LG(N2))  &kp LC(LG(N3))  &kp LC(LG(N4))  &kp LC(LG(N5))      &kp LC(LS(T))    &kp LC(LG(N6))      &kp LC(LG(N7))      &kp LC(LG(N8))      &kp LC(LG(N9))      &kp LC(LG(N0))      &kp C_POWER_OFF
+      &kp ESC      &kp LC(LG(N1))  &kp LC(LG(N2))  &kp LC(LG(N3))  &kp LC(LG(N4))  &kp LC(LG(N5))      &kp LC(LS(T))    &kp LC(LG(N6))      &kp LC(LG(N7))      &kp LC(LG(N8))      &kp LC(LG(N9))      &kp LC(LG(N0))      &kp ESC
       &bt BT_CLR   &kp LC(LG(N0))  &kp LC(LG(N9))  &kp LC(LG(N8))  &bt BT_PRV  &bt BT_NXT      &kp LC(LS(TAB))  &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3        &bt BT_SEL 4        &bt BT_CLR
                                &kp N0  &kp LS(LA(LC(LG(F9))))  &lt 10 LA(F4)    &mo 0        &kp LC(TAB)      &as RG(TAB) C_PREV  &as C_MUTE LA(F4)   &as RS(RA(RC(RG(F11)))) C_NEXT
       >;
