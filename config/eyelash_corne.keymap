@@ -194,7 +194,7 @@
       &bootloader  &kp LS(F10)     &mmv MOVE_UP    &kp RET          &mkp LCLK            &msc SCRL_UP      ___  &msc SCRL_LEFT        &msc SCRL_DOWN       &msc SCRL_UP         &msc SCRL_RIGHT     &msc SCRL_LEFT  &trans
       &kp ESC      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &hmr LCTRL RCLK  &msc SCRL_DOWN  ___ ___  ___   &kp HOME              &hmr RCTRL RCLK  &hmr LSHFT LCLK  &hmr RALT MCLK  &to 0           &to 0
       &bt BT_CLR   &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_RIGHT  &mkp RCLK    &as N5 B     ___     ___  &as LC(END) LC(HOME)  &kp PG_DN            &kp PG_UP            &trans              &trans          &to 0
-                   &to 0           &mkp MCLK        &mkp LCLK            &mkp RCLK         ___   &mkp LCLK             &mkp RCLK            &kp K_CONFIG
+                   &to 0           &mkp MCLK        &mkp LCLK            &mkp RCLK         ___   &mkp LCLK             &mkp RCLK            &mkp MCLK
       >;
       sensor-bindings = <&inc_dec_kp UP_ARROW DOWN_ARROW>;
     };
