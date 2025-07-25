@@ -165,7 +165,7 @@
       &bootloader  &trans                 &kp LA(F15)          &trans              &kp LC(LA(LS(F20)))  &kp F21                  &kp LA(F15)  &trans   &kp RC(RA(F13))  &kp RC(RA(F14))      &kp RC(RA(F15))  &kp RC(RA(F22))  &kp RC(RS(ESC))
       &kp ESC      &hml LWIN LA(F13)  &hml LALT LA(F14)    &hml LSHFT LC(F13)  &hml LCTRL LC(F22)   &hml LWIN LG(TAB)  ___  ___ &kp LA(F14)  &kp F13  &hmr RCTRL F14   &hmr RSHFT F15       &hmr RALT F22    &to 0            &trans
       &bt BT_CLR   &bt BT_NXT             &kp LC(LS(LA(F17)))  &trans              &kp LC(LS(V))        &as LS(X) B       ___       &kp LA(F13)  &trans   &kp RS(RA(F17))  &kp RS(RA(F18))      &kp F19          &kp F20          &kp RC(RA(DEL))
-                                          &to 0                &kp F21             &kp F21              &key_repeat              &kp LA(F22)  &to 0    &lt 6 RA(F4)    &tap_flip_komorebic
+                                          &to 0                &kp F21             &kp F21              &key_repeat              &kp LA(F22)  &to 0    &lt 6 RA(F4)    ___
       >;
     };
 
