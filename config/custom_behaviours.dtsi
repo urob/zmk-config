@@ -148,9 +148,13 @@ ZMK_BEHAVIOR(td_rth3, tap_dance,
   bindings = <&num_word NUM>, <&to DEF>;
 )
 
+
+/* zmk-new_corne converted behaviors
+
 ZMK_BEHAVIOR(tap_flip_komorebic,
      tap_dance,
-   2     tapping-term-ms = <250>;
-   3     bindings = <&kp RS(RA(F17))>,
+        tapping-term-ms = <250>;
+        bindings = <&kp RS(RA(F17))>,
      <&kp RA(RS(F18))>, <&none>;
-   4 )
+    )
+*/
