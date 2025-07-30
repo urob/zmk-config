@@ -16,6 +16,8 @@
 
 ZMK_MACRO(m_flow, bindings = <&to 0 &kp LS(LA(LC(LG(SPACE))))>;)
 
+ZMK_MACRO(macro_dot_shift, bindings = <&kp DOT &kp SPACE &sk LSHFT)
+
 
 // Combos overlapping HRMs are set up as hold-taps themselves to allow for instantaneous
 // chording of mods. Custom hold-tap instances can be bootstrapped on the go using the
