@@ -506,10 +506,10 @@ ZMK_BEHAVIOR(backspace_delete, mod_morph,
 )
 
 // Tap Dance
-ZMK_BEHAVIOR(tap_dot_shift, tap_dance,
-    tapping-term-ms = <250>;
-    bindings = <&kp DOT>, <&macro_dot_shift>;
-)
+/* ZMK_BEHAVIOR(tap_dot_shift, tap_dance, */
+/*     tapping-term-ms = <250>; */
+/*     bindings = <&kp DOT>, <&macro_dot_shift>; */
+/* ) */
 ZMK_BEHAVIOR(tap_paste, tap_dance,
     tapping-term-ms = <250>;
     bindings = <&kp LC(V)>, <&kp LC(LS(V))>;
