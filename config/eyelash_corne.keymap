@@ -37,7 +37,7 @@
      *************************/
 
     default_layer {
-      display-name = "Base";
+      display-name = "BASE";
 
       bindings = <
       GRV_HYP &as LS(F10) Q    &kp W     &as END E          &as LC(LS(Z)) R &kp T       _UP       &kp Y   &kp U  &kp I    &kp O     &kp P      BSL_HYP
@@ -54,7 +54,7 @@
      *************************/
 
     gaming_layer {
-      display-name = "Gaming";
+      display-name = "GAMING";
 
       // QUERTY, but adjusted for columnar stagger so WASD is in the ESDF position
 
@@ -73,7 +73,7 @@
      *************************/
 
     num_layer {
-      display-name = "Num";
+      display-name = "NUM";
 
       bindings = <
       &kp GRAVE  &kp EXCL  &kp AT    &kp HASH  &kp DOLLAR &kp PERCENT          MS_U      &kp CARET &kp AMPS &kp STAR &kp UNDER &kp PLUS &kp PIPE
@@ -90,7 +90,7 @@
      *************************/
 
     nav_layer {
-      display-name = "Nav";
+      display-name = "NAV";
 
       bindings = <
       &kp GRAVE XXX        XXX       XXX        XXX         XXX          WH_U        XXX   &kp HOME &kp PGDN &kp PGUP &kp END   &kp LC(LS(ESC))
@@ -107,7 +107,7 @@
      *************************/
 
     function_layer {
-      display-name = "Fn";
+      display-name = "FN";
 
       bindings = <
       &kp K_MENU  PRINT_SCR  PS_BRK  &kp INS  &kp DEL  &kp K_CANCEL     ___       &to SWAP       &to L10     &to BUTTON     &to MOUSE  &kp F12  ___
@@ -124,7 +124,7 @@
      *************************/
 
     sys_layer {
-      display-name = "Sys";
+      display-name = "SYS";
 
       bindings = <
       XXX  CLR_ALL     CLR_CH   BT_OUT    USB_OUT    TOG_OUT        ___       TOG_RGB         FX_PREV       BRI_DN       BRI_UP   FX_NEXT &kp C_POWER
@@ -145,7 +145,7 @@
      *************************/
 
     swap_layer {
-      display-name = "Swap";
+      display-name = "SWAP";
       bindings = <
       &bootloader  ___      &kp LA(F4)  ___      &bt BT_PRV  &bt BT_NXT      &kp LC(W)    &kp LG(LC(LA(N1)))  &kp LG(LC(LA(N2)))  &kp LG(LC(LA(N3)))  &kp LG(LC(LA(N4)))  &kp LG(LC(LA(N5)))  &bootloader
       &kp ESC      &kp LC(LG(N1))  &kp LC(LG(N2))  &kp LC(LG(N3))  &kp LC(LG(N4))  &kp LC(LG(N5))      ___    ___    ___    &kp LC(LG(N6))      &kp LC(LG(N7))      &kp LC(LG(N8))      &kp LC(LG(N9))      &kp LC(LG(N0))      &kp ESC
@@ -189,7 +189,7 @@
      *************************/
 
     mouse {
-      display-name = "Mouse";
+      display-name = "MOUSE";
       bindings = <
       &bootloader  &kp LS(F10)     &mmv MOVE_UP    &kp RET          &mkp LCLK            &msc SCRL_UP      ___  &msc SCRL_LEFT        &msc SCRL_DOWN       &msc SCRL_UP         &msc SCRL_RIGHT     &msc SCRL_LEFT  ___
       &kp ESC      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &hmr LCTRL RCLK  &msc SCRL_DOWN  ___ ___  ___   &kp HOME              &hmr RCTRL RCLK  &hmr LSHFT LCLK  &hmr RALT MCLK  &to 0           &to 0
