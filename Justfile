@@ -6,33 +6,6 @@ build := absolute_path('.build')
 out := absolute_path('firmware')
 draw := absolute_path('draw')
 
-# parse combos.dtsi and adjust settings to not run out of slots
-_parse_combos:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    cconf="{{ config / 'combos.dtsi' }}"
-    if [[ -f $cconf ]]; then
-        # set MAX_COMBOS_PER_KEY to the most frequent combos count
-        count=$(
-            tail -n +10 $cconf |
-                grep -Eo '[LR][TMBH][0-9]' |
-                sort | uniq -c | sort -nr |
-                awk 'NR==1{print $1}'
-        )
-        sed -Ei "/CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY/s/=.+/=$count/" "{{ config }}"/*.conf
-        echo "Setting MAX_COMBOS_PER_KEY to $count"
-
-        # set MAX_KEYS_PER_COMBO to the most frequent key count
-        count=$(
-            tail -n +10 $cconf |
-                grep -o -n '[LR][TMBH][0-9]' |
-                cut -d : -f 1 | uniq -c | sort -nr |
-                awk 'NR==1{print $1}'
-        )
-        sed -Ei "/CONFIG_ZMK_COMBO_MAX_KEYS_PER_COMBO/s/=.+/=$count/" "{{ config }}"/*.conf
-        echo "Setting MAX_KEYS_PER_COMBO to $count"
-    fi
-
 # parse build.yaml and filter targets by expression
 _parse_targets $expr:
     #!/usr/bin/env bash
@@ -58,7 +31,7 @@ _build_single $board $shield $snippet $artifact *west_args:
     fi
 
 # build firmware for matching targets
-build expr *west_args: _parse_combos
+build expr *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
     targets=$(just _parse_targets {{ expr }})
