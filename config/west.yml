@@ -19,7 +19,7 @@
 manifest:
   defaults:
     remote: urob
-    revision: v0.2 # Pin everything to v0.2
+    revision: v0.3 # Pin everything to v0.3
 
   remotes:
     - name: urob
