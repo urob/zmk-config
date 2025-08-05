@@ -27,6 +27,24 @@
     bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
   };
 
+        /* rgb_encoder: rgb_encoder { */
+        /*     compatible = "zmk,behavior-sensor-rotate"; */
+        /*     label = "RGB_ENCODER"; */
+        /*     #sensor-binding-cells = <0>; */
+        /*     bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>; */
+        /**/
+        /*     tap-ms = <5>; */
+        /* }; */
+
+        scroll_encoder: scroll_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            label = "scroll_encoder";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+
+            tap-ms = <5>;
+        };
+
   /* layout */
 
   keymap {
@@ -46,7 +64,7 @@
                    &fn_esc__cmd  NUM_SPC  CTL_TAB               NAV_KEY BS_SFT NUM_WORD
        >;
 
-      sensor-bindings = <&inc_dec_kp WH_U WH_D>;
+      sensor-bindings = <&scroll_encoder>;
     };
 
     /*************************
