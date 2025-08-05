@@ -480,6 +480,9 @@ ZMK_BEHAVIOR(tap_flip_komorebic,
 
 */
 
+/*
+/*
+
 // Auto Layer
 ZMK_BEHAVIOR(num_word, auto_layer,
     continue-list = <BSPC DEL KP_DOT DOT COMMA KP_PLUS PLUS KP_MINUS MINUS KP_MULTIPLY STAR KP_DIVIDE FSLH EQUAL>;
@@ -510,6 +513,8 @@ ZMK_BEHAVIOR(backspace_delete, mod_morph,
 /*     tapping-term-ms = <250>; */
 /*     bindings = <&kp DOT>, <&macro_dot_shift>; */
 /* ) */
+
+/*
 ZMK_BEHAVIOR(tap_paste, tap_dance,
     tapping-term-ms = <250>;
     bindings = <&kp LC(V)>, <&kp LC(LS(V))>;
@@ -527,6 +532,7 @@ ZMK_BEHAVIOR(tap_copy_cut, tap_dance,
 /*     bindings = <&sk LSHIFT>, <&macro_dot_shift>, <&caps_word>; */
 /* ) */
 
+/*
 // Hold-Taps
 ZMK_BEHAVIOR(smart_num, hold_tap,
     bindings = <&mo>, <&num_word>;
@@ -544,6 +550,8 @@ ZMK_BEHAVIOR(smart_num, hold_tap,
 /*     require-prior-idle-ms = <150>; */
 /*     hold-trigger-on-release; */
 /* ) */
+
+/*
 ZMK_BEHAVIOR(hmr_clk, hold_tap,
     bindings = <&hmr>, <&mkp>;
     tapping-term-ms = <250>;
@@ -586,6 +594,8 @@ ZMK_BEHAVIOR(tap_key_repeat_to, hold_tap,
 /*     flavor = "balanced"; */
 /*     require-prior-idle-ms = <50>; */
 /* ) */
+
+/*
 ZMK_BEHAVIOR(shift_mod, hold_tap,
     bindings = <&kp>, <&kp>;
     tapping-term-ms = <125>;
@@ -613,6 +623,8 @@ ZMK_BEHAVIOR(tap_key_repeat_sk_shift, hold_tap,
 /*     flavor = "tap-preferred"; */
 /*     quick-tap-ms = <200>; */
 /* ) */
+
+/*
 ZMK_BEHAVIOR(mo_num_word, hold_tap,
     bindings = <&num_word>, <&kp>;
     tapping-term-ms = <175>;
@@ -659,6 +671,8 @@ ZMK_BEHAVIOR(tap_repeat_mouse_word, hold_tap,
     require-prior-idle-ms = <150>;
     flavor = "tap-preferred";
 )
+*/
+
 /* ZMK_BEHAVIOR(smart_sk_lt, hold_tap, */
 /*     bindings = <&lt>, <&tap_sk_shift_dot_caps_word_lt>; */
 /*     tapping-term-ms = <500>; */
