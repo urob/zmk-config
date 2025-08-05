@@ -58,9 +58,9 @@
       display-name = "BASE";
 
       bindings = <
-      GRV_HYP &as LS(F10) Q    &kp W     &as END E          &as LC(LS(Z)) R &kp T       _UP       &kp Y   &kp U  &kp I    &kp O     &kp P      BSL_HYP
-      ESC_MEH &kp A  _HOME_ROW_MODS_LEFT_         _L_ _RT _R_   &as HOME H   _HOME_ROW_MODS_RIGHT_                SLS_MEH
-      CMP_SFT &kp Z  &as DEL X  &kp C  &as LC(LA(LS(V))) V  &as N0 B   _PP _DN       &kp N   &as PG_DN M       &as PG_UP COMMA  &kp DOT &kp SLASH  RET_SFT
+      GRV_HYP &as LS(F10) Q    &kp W     &as END E          &as LC(LS(Z)) R &kp T       _UP       &kp Y   &kp U  &kp I    &kp O     &kp P      &as RC(RS(ESC)) MINUS
+      ESC_MEH &kp A  _HOME_ROW_MODS_LEFT_         _L_ _RT _R_   &as HOME H   _HOME_ROW_MODS_RIGHT_                &kp SQT
+      &lt 3 LA(TAB) &kp Z  &as DEL X  &kp C  &as LC(LA(LS(V))) V  &as N0 B   _PP _DN       &kp N   &as PG_DN M       &as PG_UP COMMA  &kp DOT &kp SLASH  &as RC(RA(DEL)) EQUAL
                    &fn_esc__cmd  NUM_SPC  CTL_TAB               NAV_KEY BS_SFT NUM_WORD
        >;
 
