@@ -74,16 +74,15 @@ ZMK_COMBO(combo_SCRL_DOWN,    &msc SCRL_DOWN,   LM0 LB0, ALL, COMBO_TERM_FAST, C
 
 
 
-
 // RIGHT HAND
 // home row
 ZMK_COMBO(ldr,             &leader,     RM0 RM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST, LSHIFT, KEYS_L)
 ZMK_COMBO(bspc_word_a,     &bs_word_a,  RM1 RM2, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LGUI), KEYS_L)
 ZMK_COMBO(bspc_word_c,     &bs_word_c,  RM2 RM3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LG(LALT), KEYS_L)
-ZMK_COMBO(del,             &del,        RM3 RM4, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT), KEYS_L)
+/* ZMK_COMBO(del,             &del,        RM3 RM4, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST, LC(LALT), KEYS_L) */
 
 // bottom row
-ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+/* ZMK_COMBO(combo_ent,       &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST) */
 // TODO: here
 /* ZMK_COMBO(end_sentence,    &kp ENTER,   RB2 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST) */
 
@@ -94,6 +93,8 @@ ZMK_COMBO(vol_dn,          &vol_dn,     RM1 RT2, DEF, COMBO_TERM_FAST, COMBO_IDL
 ZMK_COMBO(trk_next,        &trk_next,   RM4 RT3, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(trk_prev,        &trk_prev,   RM0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 ZMK_COMBO(play_pause,      &play_pause, RT0 RT1, DEF, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+
+
 
 
 

@@ -46,7 +46,7 @@
                    &fn_esc__cmd  NUM_SPC  CTL_TAB               NAV_KEY BS_SFT NUM_WORD
        >;
 
-      sensor-bindings = <&inc_dec_kp UP DOWN>;
+      sensor-bindings = <&inc_dec_kp &msc SCRL_UP &msc SCRL_DOWN>;
     };
 
     /*************************
@@ -174,7 +174,7 @@
      *************************/
 
     button_layer {
-      display-name = "Button";
+      display-name = "BUTTON";
       bindings = <
       &kp CAPS  &kp LS(LG(LC(LA(Q))))  &kp LA(F4)  &kp LG(LC(LA(E)))         &kp LC(F24)              &as N3 LS(LA(LC(LG(T))))          ___  ___             ___              ___             ___      &kp LG(LC(LA(P)))    &kp RC(RS(ESC))
       ___    &kp LG(LC(LA(T)))      &kp F24     &kp LS(F24)               &kp LG(LC(LA(F)))        &kp LG(LC(LA(G)))      ___    ___           ___  &kp LG(LC(LA(H)))  &kp LG(LEFT)  &kp LG(DOWN)       &kp LG(UP)  &kp LG(RIGHT)  ___
@@ -191,9 +191,9 @@
     mouse {
       display-name = "MOUSE";
       bindings = <
-      &bootloader  &kp LS(F10)     &mmv MOVE_UP    &kp RET          &mkp LCLK            &msc SCRL_UP      ___  &msc SCRL_LEFT        &msc SCRL_DOWN       &msc SCRL_UP         &msc SCRL_RIGHT     &msc SCRL_LEFT  ___
-      &kp ESC      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &hmr LCTRL RCLK  &msc SCRL_DOWN  ___ ___  ___   &kp HOME              &hmr RCTRL RCLK  &hmr LSHFT LCLK  &hmr RALT MCLK  &to 0           &to 0
-      &bt BT_CLR   &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_RIGHT  &mkp RCLK    &as N5 B     ___     ___  &as LC(END) LC(HOME)  &kp PG_DN            &kp PG_UP            ___              ___          &to 0
+      &bootloader  &kp LS(F10)     &mmv MOVE_UP    &kp RET          &mkp LCLK            &msc SCRL_UP      &msc SCRL_UP         &msc SCRL_LEFT        &msc SCRL_DOWN       &msc SCRL_UP         &msc SCRL_RIGHT     &msc SCRL_LEFT  ___
+      &kp ESC      &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &hmr LCTRL RCLK  &msc SCRL_DOWN &msc SCRL_LEFT   &to 0    &msc SCRL_RIGHT            &kp HOME              &hmr RCTRL RCLK  &hmr LSHFT LCLK  &hmr RALT MCLK  &to 0           &to 0
+      &bt BT_CLR   &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_RIGHT  &mkp RCLK    &as N5 B     ___    &msc SCRL_DOWN   &as LC(END) LC(HOME)  &kp PG_DN            &kp PG_UP            ___              ___          &to 0
                    &to 0           &mkp MCLK        &mkp LCLK            &mkp RCLK         ___   &mkp LCLK             &mkp RCLK            &mkp MCLK
       >;
       sensor-bindings = <&inc_dec_kp UP_ARROW DOWN_ARROW>;
