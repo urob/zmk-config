@@ -143,11 +143,10 @@
 
     sys_layer {
       display-name = "SYS";
-
       bindings = <
-      XXX  CLR_ALL     CLR_CH   BT_OUT    USB_OUT    TOG_OUT        ___       TOG_RGB         FX_PREV       BRI_DN       BRI_UP   FX_NEXT &kp C_POWER
-      XXX  BT_CH0      BT_CH1   BT_CH2    BT_CH3     BT_CH4     ___ ___ ___   &studio_unlock  &sys_reset    &bootloader  _EP_OFF  _EP_ON  &kp K_SLEEP
-      XXX  BT_DISC0    BT_DISC1 BT_DISC2  BT_DISC3   BT_DISC4   ___ ___       XXX             XXX           XXX          XXX      XXX     &kp C_RESET
+      &bootloader  CLR_ALL     CLR_CH   BT_OUT    USB_OUT    TOG_OUT        ___       TOG_RGB         FX_PREV       BRI_DN       BRI_UP   FX_NEXT &kp C_POWER
+      XXX  BT_CH4      BT_CH3   BT_CH2    BT_CH1     BT_CH0     ___ ___ ___   &studio_unlock  &sys_reset    &bootloader  _EP_OFF  _EP_ON  &kp K_SLEEP
+      CLR_ALL  BT_DISC0    BT_DISC1 BT_DISC2  BT_DISC3   BT_DISC4   ___ ___       XXX             XXX           XXX          XXX      XXX     &kp C_RESET
                                 XXX       XXX        XXX                      XXX             &kp K_CANCEL  XXX
       >;
 
