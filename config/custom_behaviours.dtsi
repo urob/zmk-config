@@ -480,7 +480,6 @@ ZMK_BEHAVIOR(tap_flip_komorebic,
 
 */
 
-/*
 
 // Auto Layer
 ZMK_BEHAVIOR(num_word, auto_layer,
@@ -513,12 +512,11 @@ ZMK_BEHAVIOR(backspace_delete, mod_morph,
 )
 
 // Tap Dance
-/* ZMK_BEHAVIOR(tap_dot_shift, tap_dance, */
-/*     tapping-term-ms = <250>; */
-/*     bindings = <&kp DOT>, <&macro_dot_shift>; */
-/* ) */
+ZMK_BEHAVIOR(tap_dot_shift, tap_dance,
+    tapping-term-ms = <250>;
+    bindings = <&kp DOT>, <&macro_dot_shift>;
+)
 
-/*
 ZMK_BEHAVIOR(tap_paste, tap_dance,
     #binding-cells = <0>;
     tapping-term-ms = <250>;
@@ -636,7 +634,7 @@ ZMK_BEHAVIOR(tap_key_repeat_sk_shift, hold_tap,
 /*     quick-tap-ms = <200>; */
 /* ) */
 
-/* 
+/*
 ZMK_BEHAVIOR(mo_num_word, hold_tap,
     bindings = <&num_word>, <&kp>;
     tapping-term-ms = <175>;
