@@ -480,6 +480,7 @@ ZMK_BEHAVIOR(tap_flip_komorebic,
 
 */
 
+/*
 
 // Auto Layer
 ZMK_BEHAVIOR(num_word, auto_layer,
@@ -527,6 +528,10 @@ ZMK_BEHAVIOR(tap_copy_cut, tap_dance,
     tapping-term-ms = <250>;
     bindings = <&kp LC(C)>, <&kp LC(X)>;
 )
+
+*/
+
+
 /* ZMK_BEHAVIOR(tap_dot_shift_capsword, tap_dance, */
 /*     tapping-term-ms = <250>; */
 /*     bindings = <&as_dot_shift 0 DOT>, <&macro_dot_shift>, <&caps_word>; */
