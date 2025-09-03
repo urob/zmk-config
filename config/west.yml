@@ -46,14 +46,13 @@ manifest:
     - name: zmk-unicode
       path: modules/zmk/unicode
 
-    # Temporarily overload Zephyr until
-    # https://github.com/zmkfirmware/zephyr/pull/40 is merged.
+    # Only source necessary Zephyr modules. Remove this entire section to restore
+    # the default (needed for less common hardware).
     - name: zephyr
+      remote: zmkfirmware
       revision: v3.5.0+zmk-fixes
       clone-depth: 1
       import:
-        # Only enable most commonly used boards. For less common hardware one
-        # may need to enable additional modules.
         name-allowlist:
           - cmsis
           - hal_nordic
