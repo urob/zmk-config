@@ -1,0 +1,51 @@
+#include <physical_layouts.dtsi>
+
+/ {
+    physical_layout0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "Default";
+
+        transform = <&matrix_transform0>;
+
+        keys  //                     w   h    x    y     rot    rx    ry
+            = <&key_physical_attrs 100 100   73  152 (-1000)   123   202>
+            , <&key_physical_attrs 100 100  186   60  (-400)   236   110>
+            , <&key_physical_attrs 100 100  300    0       0     0     0>
+            , <&key_physical_attrs 100 100  400   50       0     0     0>
+            , <&key_physical_attrs 100 100  500   66       0     0     0>
+            , <&key_physical_attrs 100 100  985   66       0     0     0>
+            , <&key_physical_attrs 100 100 1085   50       0     0     0>
+            , <&key_physical_attrs 100 100 1185    0       0     0     0>
+            , <&key_physical_attrs 100 100 1300   60     400  1350   110>
+            , <&key_physical_attrs 100 100 1412  152    1000  1462   202>
+            , <&key_physical_attrs 100 100   90  250 (-1000)   140   300>
+            , <&key_physical_attrs 100 100  192  160  (-400)   242   210>
+            , <&key_physical_attrs 100 100  300  100       0     0     0>
+            , <&key_physical_attrs 100 100  400  150       0     0     0>
+            , <&key_physical_attrs 100 100  500  166       0     0     0>
+            , <&key_physical_attrs 100 100  985  166       0     0     0>
+            , <&key_physical_attrs 100 100 1085  150       0     0     0>
+            , <&key_physical_attrs 100 100 1185  100       0     0     0>
+            , <&key_physical_attrs 100 100 1293  160     400  1343   210>
+            , <&key_physical_attrs 100 100 1395  250    1000  1445   300>
+            , <&key_physical_attrs 100 100    0  323 (-1000)    50   373>
+            , <&key_physical_attrs 100 100  106  349 (-1000)   156   399>
+            , <&key_physical_attrs 100 100  199  260  (-400)   249   310>
+            , <&key_physical_attrs 100 100  300  200       0     0     0>
+            , <&key_physical_attrs 100 100  400  250       0     0     0>
+            , <&key_physical_attrs 100 100  500  266       0     0     0>
+            , <&key_physical_attrs 100 100  985  266       0     0     0>
+            , <&key_physical_attrs 100 100 1085  250       0     0     0>
+            , <&key_physical_attrs 100 100 1185  200       0     0     0>
+            , <&key_physical_attrs 100 100 1287  260     400  1337   310>
+            , <&key_physical_attrs 100 100 1379  349    1000  1429   399>
+            , <&key_physical_attrs 100 100 1485  323    1000  1535   373>
+            , <&key_physical_attrs 100 100  372  371       0     0     0>
+            , <&key_physical_attrs 100 100  483  388    1500   533   438>
+            , <&key_physical_attrs 100 100  585  433    3000   635   483>
+            , <&key_physical_attrs 100 100  900  433 (-3000)   950   483>
+            , <&key_physical_attrs 100 100 1002  388 (-1500)  1052   438>
+            , <&key_physical_attrs 100 100 1113  371       0     0     0>
+            ;
+    };
+};
