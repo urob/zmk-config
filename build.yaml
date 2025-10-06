@@ -13,14 +13,19 @@
 #
 ---
 include:
-#  - board: planck_rev6
-#  - board: corneish_zen_v2_left
-#  - board: corneish_zen_v2_right
-#  - board: glove80_lh
-#  - board: glove80_rh
   - board: seeeduino_xiao_ble
     shield: totem_left
   - board: seeeduino_xiao_ble
     shield: totem_right
   - board: seeeduino_xiao_ble
     shield: settings_reset
+  - board: eyelash_sofle_right
+    shield: nice_view_gem
+    artifact-name: sofle_right
+  - board: eyelash_sofle_left
+    shield: nice_view_gem
+    snippet: studio-rpc-usb-uart
+    artifact-name: sofle_left
+  - board: eyelash_sofle_left
+    shield: settings_reset
+    artifact-name: eyelash_settings_reset

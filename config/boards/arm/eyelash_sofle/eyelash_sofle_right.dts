@@ -1,0 +1,24 @@
+/*
+*
+* Copyright (c) 2021 Darryl deHaan
+* SPDX-License-Identifier: MIT
+*
+*/
+#include "eyelash_sofle.dtsi"
+
+&kscan0 {
+     col-gpios
+        = <&gpio0 22 GPIO_ACTIVE_HIGH>
+         , <&gpio0 29 GPIO_ACTIVE_HIGH>
+         , <&gpio0 3 GPIO_ACTIVE_HIGH>
+         , <&gpio0 28 GPIO_ACTIVE_HIGH>
+         , <&gpio0 30 GPIO_ACTIVE_HIGH>
+         , <&gpio0 21 GPIO_ACTIVE_HIGH>
+         , <&gpio0 23 GPIO_ACTIVE_HIGH>
+         ;
+};
+
+&default_transform {
+    col-offset = <7>;
+};
+

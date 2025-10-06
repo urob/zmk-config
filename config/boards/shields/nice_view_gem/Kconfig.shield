@@ -1,0 +1,2 @@
+config SHIELD_NICE_VIEW_GEM
+    def_bool $(shields_list_contains,nice_view_gem)
