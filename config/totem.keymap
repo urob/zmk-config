@@ -21,7 +21,7 @@
 #define ___ &trans
 #define XXX &none
 
-#define     my_hrm_config \
+#define     MY_HRM_CONFIG \
             compatible = "zmk,behavior-hold-tap"; \
             #binding-cells = <2>; \
             flavor = "balanced"; \
@@ -64,7 +64,14 @@
                 bindings = <&kp RIGHT &kp SEMI &kp LEFT &kp LEFT>;
                 max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
             };
+            
+            ak_e_caps {
+                trigger-keys = <SEMI>;
+                bindings = <&kp BACKSPACE &kp LS(E)>;
+                max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
+            };
         };
+
         ak_a: adaptive_key_a {
             compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
@@ -77,16 +84,22 @@
                 bindings = <&kp LEFT>;
                 max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
             };
+
+            ak_a_caps {
+                trigger-keys = <SEMI>;
+                bindings = <&kp BACKSPACE &kp LS(A)>;
+                max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
+            };
         };
 
-        mt_a: mt_a {
-            my_hrm_config;
+        hmr_a: hmr_a{
+            MY_HRM_CONFIG;
             bindings = <&kp>, <&ak_a>;
             hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
         };
 
-        mt_e: mt_e {
-            my_hrm_config;
+        hmr_e: hmr_e {
+            MY_HRM_CONFIG;
             bindings = <&kp>, <&ak_e>;
             hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
         };
@@ -279,9 +292,9 @@
             display-name = "base";
             bindings = <
 //                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
-                   &kp V        &kp P           &kp G           &kp M            &kp X          &excl_equal  &kp DOT         &kp APOS        &kp SLASH       &lt 4 SEMI
+                   &kp V        &kp P           &kp G           &kp M            &kp X          &excl_equal  &kp SEMI        &kp COMMA       &kp DOT         &lt 4 APOS
 //                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
-                   &hmr LSHFT S &hml LCTRL N    &hml LALT T     &hml LGUI H      &kp K          &kp COMMA    &mt_a RGUI A    &mt_e RALT E    &hmr RCTRL I    &hmr RSHFT C       
+                   &hmr LSHFT S &hml LCTRL N    &hml LALT T     &hml LGUI H      &kp K          &kp SLASH    &hmr_a RGUI A   &hmr_e RALT E   &hmr RCTRL I    &hmr RSHFT C       
 //╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
    &kp TAB         &kp F        &kp W           &kp D           &kp L            &kp J          &kp MINUS    &kp U           &kp O           &kp Y           &kp B       &kp LBKT 
 //╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
