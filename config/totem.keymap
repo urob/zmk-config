@@ -57,6 +57,29 @@
             };
         };
         
+        hml_s: hml_s {
+            MY_HRM_CONFIG;
+            bindings = <&kp>, <&ak_s>;
+            hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+        };
+
+        hml_n: hml_n {
+            MY_HRM_CONFIG;
+            bindings = <&kp>, <&ak_n>;
+            hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+        };
+
+        hml_t: hml_t {
+            MY_HRM_CONFIG;
+            bindings = <&kp>, <&ak_t>;
+            hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+        };
+        
+        hml_h: hml_h {
+            MY_HRM_CONFIG;
+            bindings = <&kp>, <&ak_h>;
+            hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+        };
 
         hmr_a: hmr_a{
             MY_HRM_CONFIG;
@@ -67,6 +90,18 @@
         hmr_e: hmr_e {
             MY_HRM_CONFIG;
             bindings = <&kp>, <&ak_e>;
+            hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
+        };
+        
+        hmr_i: hmr_i {
+            MY_HRM_CONFIG;
+            bindings = <&kp>, <&ak_i>;
+            hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
+        };
+
+        hmr_c: hmr_c {
+            MY_HRM_CONFIG;
+            bindings = <&kp>, <&ak_c>;
             hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
         };
 
@@ -152,7 +187,7 @@
         combo_q {
           timeout-ms = <COMBO_TIMEOUT>;
           key-positions = <0 1>;
-          bindings = <&kp Q>;
+          bindings = <&ak_q>;
         };
         compatible = "zmk,combos";
         combo_apos {
@@ -200,7 +235,7 @@
         combo_z {
             timeout-ms = <COMBO_TIMEOUT>;
             key-positions = <21 22>;
-            bindings = <&kp Z>;
+            bindings = <&ak_z>;
         };
         compatible = "zmk,combos";
         combo_braces {
@@ -258,13 +293,13 @@
             display-name = "base";
             bindings = <
 //                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
-                   &kp V        &kp P           &kp G           &kp M            &kp X          &excl_equal  &kp SEMI        &kp COMMA       &kp DOT         &lt 4 APOS
+                   &ak_v        &ak_p           &ak_g           &ak_m            &ak_x          &excl_equal  &kp SEMI        &kp COMMA       &kp DOT         &lt 4 APOS
 //                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
-                   &hmr LSHFT S &hml LCTRL N    &hml LALT T     &hml LGUI H      &kp K          &kp SLASH    &hmr_a RGUI A   &hmr_e RALT E   &hmr RCTRL I    &hmr RSHFT C       
+                 &hml_s LSHFT 0 &hml_n LCTRL 0  &hml_t LALT 0   &hml_h LGUI 0    &ak_k          &kp SLASH    &hmr_a RGUI 0   &hmr_e RALT 0   &hmr_i RCTRL 0  &hmr_c RSHFT 0       
 //╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
-   &kp TAB         &kp F        &kp W           &kp D           &kp L            &kp J          &kp MINUS    &kp U           &kp O           &kp Y           &kp B       &kp LBKT 
+   &kp TAB         &ak_f        &ak_w           &ak_d           &ak_l            &ak_j          &kp MINUS    &ak_u           &ak_o           &ak_y           &ak_b       &kp LBKT 
 //╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
-                                                &kp ESCAPE      &kp R            &lt 2 UNDER    &lt 2 BSPC   &mt RSHFT SPACE &num_word 1
+                                                &kp ESCAPE      &ak_r            &lt 2 UNDER    &lt 2 BSPC   &mt RSHFT SPACE &num_word 1
 //                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
                  >;
       };
