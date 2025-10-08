@@ -17,6 +17,7 @@
 #define QUICK_TAP_MS 175
 #define COMBO_TIMEOUT 30
 #define MAGIC_PRIOR_IDLE 350
+#define SEMI_CAPS_PRIOR_IDLE 1000
 
 #define ___ &trans
 #define XXX &none
@@ -37,9 +38,12 @@
 
 / {
     behaviors {
+        #include "bernelius/pm_adaptive_keys.dtsi"
+
         num_word {
             continue-list = <LEFT RIGHT UP DOWN N1 N2 N3 N4 N5 N6 N7 N8 N9 N0 BSPC DEL DOT PLUS MINUS STAR SLASH SPACE>;
         };
+
         repeat_shift: repeat_alpha_or_oneshot_shift {
             compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
@@ -52,45 +56,7 @@
                 strict-modifiers;
             };
         };
-
-        ak_e: adaptive_key_e {
-            compatible = "zmk,behavior-adaptive-key";
-            #binding-cells = <0>;
-            bindings = <&kp E>;
-//          
-//          after move_inside behavior below, this adds a semicolon and jumps back in the brackets.
-            add_semi {
-                trigger-keys = <LEFT>;
-                bindings = <&kp RIGHT &kp SEMI &kp LEFT &kp LEFT>;
-                max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
-            };
-            
-            ak_e_caps {
-                trigger-keys = <SEMI>;
-                bindings = <&kp BACKSPACE &kp LS(E)>;
-                max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
-            };
-        };
-
-        ak_a: adaptive_key_a {
-            compatible = "zmk,behavior-adaptive-key";
-            #binding-cells = <0>;
-            bindings = <&kp A>;
-
-//          I like typing closing braces/quotes/etc before filling them.
-//          This behavior moves me inside.
-            move_inside {
-                trigger-keys = <RPAR RBKT RBRC GREATER_THAN APOS DQT>;
-                bindings = <&kp LEFT>;
-                max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
-            };
-
-            ak_a_caps {
-                trigger-keys = <SEMI>;
-                bindings = <&kp BACKSPACE &kp LS(A)>;
-                max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
-            };
-        };
+        
 
         hmr_a: hmr_a{
             MY_HRM_CONFIG;
