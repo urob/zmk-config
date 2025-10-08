@@ -211,12 +211,12 @@
             key-positions = <12 13>;
             bindings = <&brackets>;
         };
-//        compatible = "zmk,combos";
-//        combo_enter {
-//            timeout-ms = <COMBO_TIMEOUT>;
-//            key-positions = <16 17>;
-//            bindings = <&kp ENTER>;
-//        };
+        compatible = "zmk,combos";
+        combo_enter {
+            timeout-ms = <COMBO_TIMEOUT>;
+            key-positions = <16 17>;
+            bindings = <&kp ENTER>;
+        };
         compatible = "zmk,combos";
         combo_z {
             timeout-ms = <COMBO_TIMEOUT>;
