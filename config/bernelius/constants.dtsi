@@ -1,0 +1,7 @@
+#define QUICK_TAP_MS 175
+#define COMBO_TIMEOUT 30
+#define MAGIC_PRIOR_IDLE 350
+#define SEMI_CAPS_PRIOR_IDLE 1000
+
+#define ___ &trans
+#define XXX &none

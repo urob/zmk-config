@@ -1,0 +1,136 @@
+#define     MY_HRM_CONFIG \
+            compatible = "zmk,behavior-hold-tap"; \
+            #binding-cells = <2>; \
+            flavor = "balanced"; \
+            hold-trigger-on-release; \
+            tapping-term-ms = <280>; \
+            require-prior-idle-ms = <90>; \
+            quick-tap-ms = <QUICK_TAP_MS>
+
+num_word {
+    continue-list = <LEFT RIGHT UP DOWN N1 N2 N3 N4 N5 N6 N7 N8 N9 N0 BSPC DEL DOT PLUS MINUS STAR SLASH SPACE>;
+};
+
+repeat_shift: repeat_alpha_or_oneshot_shift {
+    compatible = "zmk,behavior-adaptive-key";
+    #binding-cells = <0>;
+    bindings = <&sk LSHFT>;
+
+    repeat {
+        trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>;
+        bindings = <&key_repeat>;
+        max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
+        strict-modifiers;
+    };
+};
+
+hml_s: hml_s {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&ak_s>;
+    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+};
+
+hml_n: hml_n {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&ak_n>;
+    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+};
+
+hml_t: hml_t {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&ak_t>;
+    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+};
+
+hml_h: hml_h {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&ak_h>;
+    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+};
+
+hmr_a: hmr_a{
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&ak_a>;
+    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
+};
+
+hmr_e: hmr_e {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&ak_e>;
+    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
+};
+
+hmr_i: hmr_i {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&ak_i>;
+    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
+};
+
+hmr_c: hmr_c {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&ak_c>;
+    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
+};
+
+mt: mod_tap {
+    compatible = "zmk,behavior-hold-tap";
+    #binding-cells = <2>;
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&kp>, <&kp>;
+    display-name = "Mod-Tap";
+};
+
+lt: layer_tap {
+    compatible = "zmk,behavior-hold-tap";
+    #binding-cells = <2>;
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&mo>, <&kp>;
+    display-name = "Layer-Tap";
+};
+
+hml: home_row_mod_left {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&kp>;
+    hold-trigger-key-positions = <RIGHT_HAND_KEYS LEFT_LEFT_COLUMN THUMBS>;
+};
+
+hmr: home_row_mod_right {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&kp>;
+    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
+};
+hash_dllr: hash_dollar {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp HASH>, <&kp DOLLAR>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+minus_plus: minus_plus {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp MINUS>, <&kp PLUS>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+excl_equal: exclamation_equal {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp EXCLAMATION>, <&kp EQUAL>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+//      TODO: Fix silly hacky solution
+lbkt: left_bracket_only {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LBKT>, <&kp LBKT>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+rbkt: right_bracket_only {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp RBKT>, <&kp RBKT>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
