@@ -1,0 +1,66 @@
+compatible = "zmk,combos";
+combo_q {
+  timeout-ms = <COMBO_TIMEOUT>;
+  key-positions = <0 1>;
+  bindings = <&ak_q>;
+};
+compatible = "zmk,combos";
+combo_apos {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <1 2>;
+    bindings = <&apos>;
+};
+compatible = "zmk,combos";
+combo_parens {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <2 3>;
+    bindings = <&parens>;
+};
+compatible = "zmk,combos";
+combo_backspace {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <8 9>;
+    bindings = <&kp BACKSPACE>;
+};
+compatible = "zmk,combos";
+combo_escape {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <10 11>;
+    bindings = <&kp ESC>;
+};
+compatible = "zmk,combos";
+combo_quotes {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <11 12>;
+    bindings = <&quotes>;
+};
+compatible = "zmk,combos";
+combo_brackets {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <12 13>;
+    bindings = <&brackets>;
+};
+compatible = "zmk,combos";
+combo_enter {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <16 17>;
+    bindings = <&kp ENTER>;
+};
+compatible = "zmk,combos";
+combo_z {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <21 22>;
+    bindings = <&ak_z>;
+};
+compatible = "zmk,combos";
+combo_braces {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <23 24>;
+    bindings = <&braces>;
+};
+compatible = "zmk,combos";
+combo_tags {
+     timeout-ms = <COMBO_TIMEOUT>;
+   key-positions = <28 29>;
+ bindings = <&tags>;
+};
