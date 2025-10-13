@@ -1,66 +1,66 @@
 compatible = "zmk,combos";
 combo_q {
   timeout-ms = <COMBO_TIMEOUT>;
-  key-positions = <0 1>;
+  key-positions = <LT5 LT4>;
   bindings = <&ak_q>;
 };
 compatible = "zmk,combos";
 combo_apos {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <1 2>;
+    key-positions = <LT4 LT3>;
     bindings = <&apos>;
 };
 compatible = "zmk,combos";
 combo_parens {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <2 3>;
+    key-positions = <LT3 LT2>;
     bindings = <&parens>;
 };
 compatible = "zmk,combos";
 combo_backspace {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <8 9>;
+    key-positions = <RT4 RT5>;
     bindings = <&kp BACKSPACE>;
 };
 compatible = "zmk,combos";
 combo_escape {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <10 11>;
+    key-positions = <LM5 LM4>;
     bindings = <&kp ESC>;
 };
 compatible = "zmk,combos";
 combo_quotes {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <11 12>;
+    key-positions = <LM4 LM3>;
     bindings = <&quotes>;
 };
 compatible = "zmk,combos";
 combo_brackets {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <12 13>;
+    key-positions = <LM3 LM2>;
     bindings = <&brackets>;
 };
 compatible = "zmk,combos";
 combo_enter {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <16 17>;
+    key-positions = <RM2 RM3>;
     bindings = <&kp ENTER>;
 };
 compatible = "zmk,combos";
 combo_z {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <21 22>;
+    key-positions = <LB4 LB3>;
     bindings = <&ak_z>;
 };
 compatible = "zmk,combos";
 combo_braces {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <23 24>;
+    key-positions = <LB3 LB2>;
     bindings = <&braces>;
 };
 compatible = "zmk,combos";
 combo_tags {
-     timeout-ms = <COMBO_TIMEOUT>;
-   key-positions = <28 29>;
- bindings = <&tags>;
+   timeout-ms = <COMBO_TIMEOUT>;
+   key-positions = <LB3 LB4>;
+   bindings = <&tags>;
 };

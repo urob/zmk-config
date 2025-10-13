@@ -1,0 +1,30 @@
+parens: parens {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp LPAR &kp RPAR>;
+};
+brackets: brackets {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &lbkt &rbkt>;
+};
+braces: braces {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp LBRC &kp RBRC>;
+};
+tags: tags {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp LESS_THAN &kp GREATER_THAN>;
+};
+apos: apos {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp APOS &kp APOS>;
+};
+quotes: quotes {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp DOUBLE_QUOTES &kp DOUBLE_QUOTES>;
+};

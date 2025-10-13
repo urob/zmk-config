@@ -1,0 +1,34 @@
+#pragma once
+
+#define LT5 0
+#define LT4 1
+#define LT3 2
+#define LT2 3
+#define LT1 4
+#define RT1 5
+#define RT2 6
+#define RT3 7
+#define RT4 8
+#define RT5 9
+#define LM5 10
+#define LM4 11
+#define LM3 12
+#define LM2 13
+#define LM1 14
+#define RM1 15
+#define RM2 16
+#define RM3 17
+#define RM4 18
+#define RM5 19
+#define LB6 20
+#define LB5 21
+#define LB4 22
+#define LB3 23
+#define LB2 24
+#define LB1 25
+#define RB1 26
+#define RB2 27
+#define RB3 28
+#define RB4 29
+#define RB5 30
+#define RB6 31

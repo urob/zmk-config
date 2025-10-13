@@ -6,12 +6,9 @@
 #define LEFT_LEFT_COLUMN 0 13 26 39
 #define THUMBS 52 53 54 55 56 59 60 61 62 63
 
-// TODO: need to define relative keys to be able to use them in the behaviors
-#define Q_KEYS 14 15
-#define ENTER_KEYS 34 35
-#define Z_KEYS 40 41
-
+#include "eyelash_sofle_layout.h"
 #include "bernelius/constants.dtsi"
+
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
@@ -44,15 +41,23 @@
 */
 / {
     behaviors {
-      #include "bernelius/behaviors.dtsi"      
       #include "bernelius/pm_adaptive_keys.dtsi"
-  };
+      #include "bernelius/behaviors.dtsi"
+    };
 
-  //left-most key on lower row is for an encoder (not currently present on board)
-  #define PROMETHIUM 0
-  #define QWERTY 1
-  #define MIRROR 2
-  #define BLERGB 3
+    combos {
+      #include "bernelius/combos.dtsi"
+    };
+
+    macros {
+        #include "bernelius/macros.dtsi"
+    };
+
+    //left-most key on lower row is for an encoder (not currently present on board)
+    #define PROMETHIUM 0
+    #define QWERTY 1
+    #define MIRROR 2
+    #define BLERGB 3
     keymap {
         compatible = "zmk,keymap";
 
