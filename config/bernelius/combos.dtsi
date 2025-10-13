@@ -49,7 +49,7 @@ combo_enter {
 compatible = "zmk,combos";
 combo_z {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <LB4 LB3>;
+    key-positions = <LB5 LB4>;
     bindings = <&ak_z>;
 };
 compatible = "zmk,combos";
