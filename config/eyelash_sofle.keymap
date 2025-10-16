@@ -6,6 +6,12 @@
 #define LEFT_LEFT_COLUMN 0 13 26 39
 #define THUMBS 52 53 54 55 56 59 60 61 62 63
 
+#define PRO 0
+#define NAV 1
+#define SYM 2
+#define FUN 3
+#define MISC 4
+
 #include "eyelash_sofle_layout.h"
 #include "bernelius/constants.dtsi"
 
@@ -54,6 +60,8 @@
     };
 
     //left-most key on lower row is for an encoder (not currently present on board)
+
+
     #define PROMETHIUM 0
     #define QWERTY 1
     #define MIRROR 2
@@ -67,7 +75,7 @@
 //╭───────0───────┬───────1───────┬───────2───────┬────────3──────┬───────4───────┬───────5───────╮         6         ╭────────7──────┬───────8───────┬───────9───────┬───────10──────┬───────11──────┬───────12──────╮
    &kp ESC         &kp F1          &kp F2          &kp F3          &kp F4          &kp F5            &to QWERTY        &kp F6          &kp F7          &kp F8          &kp F9          &kp F10         ___   
 //├───────13──────┼───────14──────┼───────15──────┼───────16──────┼───────17──────┼───────18──────┤        19         ├───────20──────┼───────21──────┼───────22──────┼───────23──────┼───────24──────┼───────25──────┤
-   &kp TAB         &ak_v           &ak_p           &ak_g           &ak_m           &ak_x             &to PROMETHIUM    &excl_equal     &kp SEMI        &kp COMMA       &kp DOT         &lt 4 APOS      ___ 
+   &kp TAB         &ak_v           &ak_p           &ak_g           &ak_m           &ak_x             &to PRO           &excl_equal     &kp SEMI        &kp COMMA       &kp DOT         &lt 4 APOS      ___ 
 //├───────26──────┼───────27──────┼───────28──────┼───────29──────┼───────30──────┼───────31──────┤        32         ├───────33──────┼───────34──────┼───────35──────┼───────36──────┼───────37──────┼───────38──────┤
    &kp LCTRL       &ak_s           &ak_n           &ak_t           &ak_h           &ak_k             XXX               &kp SLASH       &ak_a           &ak_e           &ak_i           &ak_c           ___
 //├───────39──────┼───────40──────┼───────41──────┼───────42──────┼───────43──────┼───────44──────┤        45         ├───────46──────┼───────47──────┼───────48──────┼───────49──────┼───────50──────┼───────51──────┤

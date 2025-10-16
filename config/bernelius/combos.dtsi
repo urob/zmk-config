@@ -3,12 +3,21 @@ combo_q {
   timeout-ms = <COMBO_TIMEOUT>;
   key-positions = <LT5 LT4>;
   bindings = <&ak_q>;
+  layers = <PRO>;
 };
 compatible = "zmk,combos";
 combo_apos {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <LT4 LT3>;
     bindings = <&apos>;
+};
+  
+compatible = "zmk,combos";
+combo_bt_reset {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LM2 LM3 LM4>;
+    bindings = <&bt BT_CLR_ALL>;
+    layers = <FUN>;
 };
 compatible = "zmk,combos";
 combo_parens {
@@ -57,6 +66,7 @@ combo_z {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <LB5 LB4>;
     bindings = <&ak_z>;
+    layers = <PRO>;
 };
 compatible = "zmk,combos";
 combo_braces {
