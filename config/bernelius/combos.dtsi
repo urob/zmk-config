@@ -17,9 +17,15 @@ combo_parens {
     bindings = <&parens>;
 };
 compatible = "zmk,combos";
+combo_esc_right {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <RT2 RT3>;
+    bindings = <&kp ESCAPE>;
+};
+compatible = "zmk,combos";
 combo_backspace {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <RT4 RT5>;
+    key-positions = <RM3 RM4>;
     bindings = <&kp BACKSPACE>;
 };
 compatible = "zmk,combos";
