@@ -328,8 +328,12 @@ layers:
 combos:
 - p: [14, 15]
   k: '&ak_q'
+  l: [promethium]
 - p: [15, 16]
   k: '&apos'
+- p: [30, 29, 28]
+  k: BT CLR ALL
+  l: [BLE/RGB]
 - p: [16, 17]
   k: '&parens'
 - p: [21, 22]
@@ -346,6 +350,7 @@ combos:
   k: ENTER
 - p: [40, 41]
   k: '&ak_z'
+  l: [promethium]
 - p: [42, 43]
   k: '&braces'
 - p: [42, 41]

@@ -711,50 +711,42 @@ path.combo {
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
 <g class="combo combopos-0">
-<rect rx="6" ry="6" x="98" y="88" width="28" height="26" class="combo"/>
-<text x="112" y="101" class="combo tap">&amp;ak_q</text>
-</g>
-<g class="combo combopos-1">
 <rect rx="6" ry="6" x="154" y="74" width="28" height="26" class="combo"/>
 <text x="168" y="87" class="combo tap">&amp;apos</text>
 </g>
-<g class="combo combopos-2">
+<g class="combo combopos-1">
 <rect rx="6" ry="6" x="210" y="74" width="28" height="26" class="combo"/>
 <text x="224" y="87" class="combo tap">&amp;parens</text>
 </g>
-<g class="combo combopos-3">
+<g class="combo combopos-2">
 <rect rx="6" ry="6" x="686" y="74" width="28" height="26" class="combo"/>
 <text x="700" y="87" class="combo tap">ESCAPE</text>
 </g>
-<g class="combo combopos-4">
+<g class="combo combopos-3">
 <rect rx="6" ry="6" x="742" y="130" width="28" height="26" class="combo"/>
 <text x="756" y="143" class="combo tap"><tspan style="font-size: 78%">BACKSPACE</tspan></text>
 </g>
-<g class="combo combopos-5">
+<g class="combo combopos-4">
 <rect rx="6" ry="6" x="98" y="144" width="28" height="26" class="combo"/>
 <text x="112" y="157" class="combo tap">ESC</text>
 </g>
-<g class="combo combopos-6">
+<g class="combo combopos-5">
 <rect rx="6" ry="6" x="154" y="130" width="28" height="26" class="combo"/>
 <text x="168" y="143" class="combo tap">&amp;quotes</text>
 </g>
-<g class="combo combopos-7">
+<g class="combo combopos-6">
 <rect rx="6" ry="6" x="210" y="130" width="28" height="26" class="combo"/>
 <text x="224" y="143" class="combo tap"><tspan style="font-size: 78%">&amp;brackets</tspan></text>
 </g>
-<g class="combo combopos-8">
+<g class="combo combopos-7">
 <rect rx="6" ry="6" x="686" y="130" width="28" height="26" class="combo"/>
 <text x="700" y="143" class="combo tap">ENTER</text>
 </g>
-<g class="combo combopos-9">
-<rect rx="6" ry="6" x="98" y="200" width="28" height="26" class="combo"/>
-<text x="112" y="213" class="combo tap">&amp;ak_z</text>
-</g>
-<g class="combo combopos-10">
+<g class="combo combopos-8">
 <rect rx="6" ry="6" x="210" y="186" width="28" height="26" class="combo"/>
 <text x="224" y="199" class="combo tap">&amp;braces</text>
 </g>
-<g class="combo combopos-11">
+<g class="combo combopos-9">
 <rect rx="6" ry="6" x="154" y="186" width="28" height="26" class="combo"/>
 <text x="168" y="199" class="combo tap">&amp;tags</text>
 </g>
@@ -1019,50 +1011,42 @@ path.combo {
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
 <g class="combo combopos-0">
-<rect rx="6" ry="6" x="98" y="88" width="28" height="26" class="combo"/>
-<text x="112" y="101" class="combo tap">&amp;ak_q</text>
-</g>
-<g class="combo combopos-1">
 <rect rx="6" ry="6" x="154" y="74" width="28" height="26" class="combo"/>
 <text x="168" y="87" class="combo tap">&amp;apos</text>
 </g>
-<g class="combo combopos-2">
+<g class="combo combopos-1">
 <rect rx="6" ry="6" x="210" y="74" width="28" height="26" class="combo"/>
 <text x="224" y="87" class="combo tap">&amp;parens</text>
 </g>
-<g class="combo combopos-3">
+<g class="combo combopos-2">
 <rect rx="6" ry="6" x="686" y="74" width="28" height="26" class="combo"/>
 <text x="700" y="87" class="combo tap">ESCAPE</text>
 </g>
-<g class="combo combopos-4">
+<g class="combo combopos-3">
 <rect rx="6" ry="6" x="742" y="130" width="28" height="26" class="combo"/>
 <text x="756" y="143" class="combo tap"><tspan style="font-size: 78%">BACKSPACE</tspan></text>
 </g>
-<g class="combo combopos-5">
+<g class="combo combopos-4">
 <rect rx="6" ry="6" x="98" y="144" width="28" height="26" class="combo"/>
 <text x="112" y="157" class="combo tap">ESC</text>
 </g>
-<g class="combo combopos-6">
+<g class="combo combopos-5">
 <rect rx="6" ry="6" x="154" y="130" width="28" height="26" class="combo"/>
 <text x="168" y="143" class="combo tap">&amp;quotes</text>
 </g>
-<g class="combo combopos-7">
+<g class="combo combopos-6">
 <rect rx="6" ry="6" x="210" y="130" width="28" height="26" class="combo"/>
 <text x="224" y="143" class="combo tap"><tspan style="font-size: 78%">&amp;brackets</tspan></text>
 </g>
-<g class="combo combopos-8">
+<g class="combo combopos-7">
 <rect rx="6" ry="6" x="686" y="130" width="28" height="26" class="combo"/>
 <text x="700" y="143" class="combo tap">ENTER</text>
 </g>
-<g class="combo combopos-9">
-<rect rx="6" ry="6" x="98" y="200" width="28" height="26" class="combo"/>
-<text x="112" y="213" class="combo tap">&amp;ak_z</text>
-</g>
-<g class="combo combopos-10">
+<g class="combo combopos-8">
 <rect rx="6" ry="6" x="210" y="186" width="28" height="26" class="combo"/>
 <text x="224" y="199" class="combo tap">&amp;braces</text>
 </g>
-<g class="combo combopos-11">
+<g class="combo combopos-9">
 <rect rx="6" ry="6" x="154" y="186" width="28" height="26" class="combo"/>
 <text x="168" y="199" class="combo tap">&amp;tags</text>
 </g>
@@ -1361,12 +1345,16 @@ path.combo {
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
 <g class="combo combopos-0">
-<rect rx="6" ry="6" x="98" y="88" width="28" height="26" class="combo"/>
-<text x="112" y="101" class="combo tap">&amp;ak_q</text>
-</g>
-<g class="combo combopos-1">
 <rect rx="6" ry="6" x="154" y="74" width="28" height="26" class="combo"/>
 <text x="168" y="87" class="combo tap">&amp;apos</text>
+</g>
+<g class="combo combopos-1">
+<path d="M196,144 l37,1" class="combo"/>
+<path d="M196,144 l-37,1" class="combo"/>
+<rect rx="6" ry="6" x="182" y="131" width="28" height="26" class="combo"/>
+<text x="196" y="144" class="combo tap">
+<tspan x="196" dy="-0.6em">BT</tspan><tspan x="196" dy="1.2em">…</tspan>
+</text>
 </g>
 <g class="combo combopos-2">
 <rect rx="6" ry="6" x="210" y="74" width="28" height="26" class="combo"/>
@@ -1397,14 +1385,10 @@ path.combo {
 <text x="700" y="143" class="combo tap">ENTER</text>
 </g>
 <g class="combo combopos-9">
-<rect rx="6" ry="6" x="98" y="200" width="28" height="26" class="combo"/>
-<text x="112" y="213" class="combo tap">&amp;ak_z</text>
-</g>
-<g class="combo combopos-10">
 <rect rx="6" ry="6" x="210" y="186" width="28" height="26" class="combo"/>
 <text x="224" y="199" class="combo tap">&amp;braces</text>
 </g>
-<g class="combo combopos-11">
+<g class="combo combopos-10">
 <rect rx="6" ry="6" x="154" y="186" width="28" height="26" class="combo"/>
 <text x="168" y="199" class="combo tap">&amp;tags</text>
 </g>
@@ -1669,50 +1653,42 @@ path.combo {
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
 <g class="combo combopos-0">
-<rect rx="6" ry="6" x="98" y="88" width="28" height="26" class="combo"/>
-<text x="112" y="101" class="combo tap">&amp;ak_q</text>
-</g>
-<g class="combo combopos-1">
 <rect rx="6" ry="6" x="154" y="74" width="28" height="26" class="combo"/>
 <text x="168" y="87" class="combo tap">&amp;apos</text>
 </g>
-<g class="combo combopos-2">
+<g class="combo combopos-1">
 <rect rx="6" ry="6" x="210" y="74" width="28" height="26" class="combo"/>
 <text x="224" y="87" class="combo tap">&amp;parens</text>
 </g>
-<g class="combo combopos-3">
+<g class="combo combopos-2">
 <rect rx="6" ry="6" x="686" y="74" width="28" height="26" class="combo"/>
 <text x="700" y="87" class="combo tap">ESCAPE</text>
 </g>
-<g class="combo combopos-4">
+<g class="combo combopos-3">
 <rect rx="6" ry="6" x="742" y="130" width="28" height="26" class="combo"/>
 <text x="756" y="143" class="combo tap"><tspan style="font-size: 78%">BACKSPACE</tspan></text>
 </g>
-<g class="combo combopos-5">
+<g class="combo combopos-4">
 <rect rx="6" ry="6" x="98" y="144" width="28" height="26" class="combo"/>
 <text x="112" y="157" class="combo tap">ESC</text>
 </g>
-<g class="combo combopos-6">
+<g class="combo combopos-5">
 <rect rx="6" ry="6" x="154" y="130" width="28" height="26" class="combo"/>
 <text x="168" y="143" class="combo tap">&amp;quotes</text>
 </g>
-<g class="combo combopos-7">
+<g class="combo combopos-6">
 <rect rx="6" ry="6" x="210" y="130" width="28" height="26" class="combo"/>
 <text x="224" y="143" class="combo tap"><tspan style="font-size: 78%">&amp;brackets</tspan></text>
 </g>
-<g class="combo combopos-8">
+<g class="combo combopos-7">
 <rect rx="6" ry="6" x="686" y="130" width="28" height="26" class="combo"/>
 <text x="700" y="143" class="combo tap">ENTER</text>
 </g>
-<g class="combo combopos-9">
-<rect rx="6" ry="6" x="98" y="200" width="28" height="26" class="combo"/>
-<text x="112" y="213" class="combo tap">&amp;ak_z</text>
-</g>
-<g class="combo combopos-10">
+<g class="combo combopos-8">
 <rect rx="6" ry="6" x="210" y="186" width="28" height="26" class="combo"/>
 <text x="224" y="199" class="combo tap">&amp;braces</text>
 </g>
-<g class="combo combopos-11">
+<g class="combo combopos-9">
 <rect rx="6" ry="6" x="154" y="186" width="28" height="26" class="combo"/>
 <text x="168" y="199" class="combo tap">&amp;tags</text>
 </g>

@@ -10,7 +10,7 @@ layers:
   - ;
   - ','
   - .
-  - {t: '''', h: misc}
+  - '&ak_q'
   - {t: '&ak_s', h: LSHFT}
   - {t: '&ak_n', h: LCTRL}
   - {t: '&ak_t', h: LALT}
@@ -66,7 +66,7 @@ layers:
   - '2'
   - '3'
   - {t: ▽, type: trans}
-  - {t: '-', s: +}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - DOWN
   - {t: ▽, type: trans}
@@ -149,7 +149,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: BT CLR ALL, type: held}
+  - {type: held}
   - {t: base, h: toggle}
   - {t: base, h: toggle}
   - {t: base, h: toggle}
@@ -163,10 +163,10 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - BACKSPACE
-  - DELETE
   - {t: ▽, type: trans}
-  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -237,8 +237,12 @@ layers:
 combos:
 - p: [0, 1]
   k: '&ak_q'
+  l: [base]
 - p: [1, 2]
   k: '&apos'
+- p: [13, 12, 11]
+  k: BT CLR ALL
+  l: [function/bt]
 - p: [2, 3]
   k: '&parens'
 - p: [6, 7]
@@ -255,6 +259,7 @@ combos:
   k: ENTER
 - p: [21, 22]
   k: '&ak_z'
+  l: [base]
 - p: [23, 24]
   k: '&braces'
 - p: [23, 22]
