@@ -1,0 +1,259 @@
+layout: {zmk_keyboard: totem}
+layers:
+  base:
+  - '&ak_v'
+  - '&ak_p'
+  - '&ak_g'
+  - '&ak_m'
+  - '&ak_x'
+  - {t: '!', s: '='}
+  - ;
+  - ','
+  - .
+  - {t: '''', h: misc}
+  - {t: '&ak_s', h: LSHFT}
+  - {t: '&ak_n', h: LCTRL}
+  - {t: '&ak_t', h: LALT}
+  - {t: '&ak_h', h: LGUI}
+  - '&ak_k'
+  - /
+  - {t: '&ak_a', h: RGUI}
+  - {t: '&ak_e', h: RALT}
+  - {t: '&ak_i', h: RCTRL}
+  - {t: '&ak_c', h: RSHFT}
+  - TAB
+  - '&ak_f'
+  - '&ak_w'
+  - '&ak_d'
+  - '&ak_l'
+  - '&ak_j'
+  - '-'
+  - '&ak_u'
+  - '&ak_o'
+  - '&ak_y'
+  - '&ak_b'
+  - {t: '[', h: function/bt}
+  - ESCAPE
+  - '&ak_r'
+  - {t: _, h: symbols}
+  - {t: BSPC, h: symbols}
+  - {t: SPACE, h: RSHFT}
+  - {t: DEL, h: nav}
+  nav:
+  - {t: ▽, type: trans}
+  - '7'
+  - '8'
+  - '9'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - .
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - BSPC
+  - {t: '0', h: LSHFT}
+  - {t: '4', h: LCTRL}
+  - {t: '5', h: LALT}
+  - {t: '6', h: LGUI}
+  - {t: ▽, type: trans}
+  - ','
+  - {t: LEFT, h: RGUI}
+  - {t: UP, h: RALT}
+  - {t: RIGHT, h: RCTRL}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '1'
+  - '2'
+  - '3'
+  - {t: ▽, type: trans}
+  - {t: '-', s: +}
+  - {t: ▽, type: trans}
+  - DOWN
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: base, h: toggle}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - SPACE
+  - {t: base, h: toggle, type: held}
+  symbols:
+  - '`'
+  - '!'
+  - '@'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ''''
+  - ':'
+  - '#'
+  - {t: ^, h: LCTRL}
+  - {t: '|', h: LALT}
+  - {t: $, h: LGUI}
+  - '*'
+  - \
+  - {t: '|', h: RGUI}
+  - {t: '|', h: RALT}
+  - {t: '"', h: RCTRL}
+  - '|'
+  - {t: ▽, type: trans}
+  - '~'
+  - <
+  - '='
+  - '-'
+  - '>'
+  - {t: ▽, type: trans}
+  - ''
+  - ''
+  - '`'
+  - '?'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: BSPC, type: held}
+  - BSPC
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  function/bt:
+  - F12
+  - F7
+  - F8
+  - F9
+  - {t: ▽, type: trans}
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
+  - {t: BT, h: '2'}
+  - {t: BT, h: '3'}
+  - {t: BT, h: '4'}
+  - F11
+  - F4
+  - F5
+  - F6
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - RGUI
+  - RALT
+  - RCTRL
+  - RSHIFT
+  - {t: ▽, type: trans}
+  - F10
+  - F1
+  - F2
+  - F3
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: BT CLR ALL, type: held}
+  - {t: base, h: toggle}
+  - {t: base, h: toggle}
+  - {t: base, h: toggle}
+  - {t: base, h: toggle}
+  - {t: base, h: toggle}
+  - {t: base, h: toggle}
+  misc:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - BACKSPACE
+  - DELETE
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: function/bt, h: toggle}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  clear:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+combos:
+- p: [0, 1]
+  k: '&ak_q'
+- p: [1, 2]
+  k: '&apos'
+- p: [2, 3]
+  k: '&parens'
+- p: [8, 9]
+  k: BACKSPACE
+- p: [10, 11]
+  k: ESC
+- p: [11, 12]
+  k: '&quotes'
+- p: [12, 13]
+  k: '&brackets'
+- p: [16, 17]
+  k: ENTER
+- p: [21, 22]
+  k: '&ak_z'
+- p: [23, 24]
+  k: '&braces'
+- p: [23, 22]
+  k: '&tags'
