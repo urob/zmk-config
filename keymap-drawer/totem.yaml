@@ -27,7 +27,7 @@ layers:
   - '&ak_d'
   - '&ak_l'
   - '&ak_j'
-  - '-'
+  - {t: '-', s: +}
   - '&ak_u'
   - '&ak_o'
   - '&ak_y'
@@ -46,16 +46,16 @@ layers:
   - '9'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - .
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - BSPC
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {t: '0', h: LSHFT}
   - {t: '4', h: LCTRL}
   - {t: '5', h: LALT}
   - {t: '6', h: LGUI}
   - {t: ▽, type: trans}
-  - ','
+  - {t: ▽, type: trans}
   - {t: LEFT, h: RGUI}
   - {t: UP, h: RALT}
   - {t: RIGHT, h: RCTRL}
@@ -241,7 +241,9 @@ combos:
   k: '&apos'
 - p: [2, 3]
   k: '&parens'
-- p: [8, 9]
+- p: [6, 7]
+  k: ESCAPE
+- p: [17, 18]
   k: BACKSPACE
 - p: [10, 11]
   k: ESC

@@ -332,7 +332,9 @@ combos:
   k: '&apos'
 - p: [16, 17]
   k: '&parens'
-- p: [23, 24]
+- p: [21, 22]
+  k: ESCAPE
+- p: [35, 36]
   k: BACKSPACE
 - p: [27, 28]
   k: ESC
