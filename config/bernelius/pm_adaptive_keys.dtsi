@@ -6,6 +6,7 @@ ak_q: adaptive_key_q {
     bindings = <&kp Q>;
     
     ak_q_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(Q)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -18,6 +19,7 @@ ak_v: adaptive_key_v {
     bindings = <&kp V>;
     
     ak_v_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(V)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -30,6 +32,7 @@ ak_p: adaptive_key_p {
     bindings = <&kp P>;
     
     ak_p_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(P)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -42,6 +45,7 @@ ak_g: adaptive_key_g {
     bindings = <&kp G>;
     
     ak_g_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(G)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -54,6 +58,7 @@ ak_m: adaptive_key_m {
     bindings = <&kp M>;
     
     ak_m_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(M)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -66,6 +71,7 @@ ak_x: adaptive_key_x {
     bindings = <&kp X>;
     
     ak_x_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(X)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -78,6 +84,7 @@ ak_s: adaptive_key_s {
     bindings = <&kp S>;
     
     ak_s_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(S)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -90,6 +97,7 @@ ak_n: adaptive_key_n {
     bindings = <&kp N>;
     
     ak_n_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(N)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -102,6 +110,7 @@ ak_t: adaptive_key_t {
     bindings = <&kp T>;
     
     ak_t_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(T)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -114,6 +123,7 @@ ak_h: adaptive_key_h {
     bindings = <&kp H>;
     
     ak_h_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(H)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -126,6 +136,7 @@ ak_k: adaptive_key_k {
     bindings = <&kp K>;
     
     ak_k_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(K)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -148,6 +159,7 @@ ak_a: adaptive_key_a {
     };
 
     ak_a_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(A)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -160,12 +172,14 @@ ak_e: adaptive_key_e {
     bindings = <&kp E>;
 //  after move_inside behavior below, this adds a semicolon and jumps back in the brackets.
     add_semi {
+        strict-modifiers;
         trigger-keys = <LEFT>;
         bindings = <&kp RIGHT &kp SEMI &kp LEFT &kp LEFT>;
         max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
     };
     
     ak_e_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(E)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -178,6 +192,7 @@ ak_i: adaptive_key_i {
     bindings = <&kp I>;
     
     ak_i_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(I)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -190,6 +205,7 @@ ak_c: adaptive_key_c {
     bindings = <&kp C>;
     
     ak_c_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(C)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -202,6 +218,7 @@ ak_z: adaptive_key_z {
     bindings = <&kp Z>;
     
     ak_z_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(Z)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -214,6 +231,7 @@ ak_f: adaptive_key_f {
     bindings = <&kp F>;
     
     ak_f_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(F)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -226,6 +244,7 @@ ak_w: adaptive_key_w {
     bindings = <&kp W>;
     
     ak_w_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(W)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -238,6 +257,7 @@ ak_d: adaptive_key_d {
     bindings = <&kp D>;
     
     ak_d_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(D)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -250,6 +270,7 @@ ak_l: adaptive_key_l {
     bindings = <&kp L>;
     
     ak_l_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(L)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -262,6 +283,7 @@ ak_j: adaptive_key_j {
     bindings = <&kp J>;
     
     ak_j_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(J)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -274,6 +296,7 @@ ak_u: adaptive_key_u {
     bindings = <&kp U>;
     
     ak_u_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(U)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -286,6 +309,7 @@ ak_o: adaptive_key_o {
     bindings = <&kp O>;
     
     ak_o_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(O)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -298,6 +322,7 @@ ak_y: adaptive_key_y {
     bindings = <&kp Y>;
     
     ak_y_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(Y)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -310,6 +335,7 @@ ak_b: adaptive_key_b {
     bindings = <&kp B>;
     
     ak_b_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(B)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
@@ -322,6 +348,7 @@ ak_r: adaptive_key_r {
     bindings = <&kp R>;
     
     ak_r_caps {
+        strict-modifiers;
         trigger-keys = <SEMI>;
         bindings = <&kp BACKSPACE &kp LS(R)>;
         max-prior-idle-ms = <SEMI_CAPS_PRIOR_IDLE>;
