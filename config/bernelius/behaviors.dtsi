@@ -121,7 +121,6 @@ excl_equal: exclamation_equal {
     bindings = <&kp EXCLAMATION>, <&kp EQUAL>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 };
-//      TODO: Fix silly hacky solution
 lbkt: left_bracket_only {
     compatible = "zmk,behavior-mod-morph";
     #binding-cells = <0>;
