@@ -1,70 +1,5 @@
 layout: {zmk_keyboard: eyelash_sofle}
 layers:
-  promethium:
-  - ESC
-  - F1
-  - F2
-  - F3
-  - F4
-  - F5
-  - {t: qwerty, h: toggle}
-  - F6
-  - F7
-  - F8
-  - F9
-  - F10
-  - {t: ▽, type: trans}
-  - TAB
-  - '&ak_v'
-  - '&ak_p'
-  - '&ak_g'
-  - '&ak_m'
-  - '&ak_x'
-  - {t: promethium, h: toggle}
-  - {t: '!', s: '='}
-  - ;
-  - ','
-  - .
-  - {t: '''', h: clear}
-  - {t: ▽, type: trans}
-  - LCTRL
-  - '&ak_s'
-  - '&ak_n'
-  - '&ak_t'
-  - '&ak_h'
-  - '&ak_k'
-  - ''
-  - /
-  - '&ak_a'
-  - '&ak_e'
-  - '&ak_i'
-  - '&ak_c'
-  - {t: ▽, type: trans}
-  - LSHIFT
-  - '&ak_f'
-  - '&ak_w'
-  - '&ak_d'
-  - '&ak_l'
-  - '&ak_j'
-  - ''
-  - '-'
-  - '&ak_u'
-  - '&ak_o'
-  - '&ak_y'
-  - '&ak_b'
-  - '['
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - ESCAPE
-  - '&ak_r'
-  - {t: _, h: mirror}
-  - {t: BLE/RGB, h: toggle}
-  - {t: BSPC, h: mirror}
-  - {t: SPACE, h: RSHFT}
-  - '&num_word 1'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   qwerty:
   - ESC
   - '1'
@@ -72,7 +7,7 @@ layers:
   - '3'
   - '4'
   - '5'
-  - {t: ▽, type: trans}
+  - {t: qwerty, h: toggle}
   - '6'
   - '7'
   - '8'
@@ -85,7 +20,7 @@ layers:
   - E
   - R
   - T
-  - {t: ▽, type: trans}
+  - {t: promethium, h: toggle}
   - Y
   - U
   - I
@@ -98,7 +33,7 @@ layers:
   - D
   - F
   - G
-  - {t: ▽, type: trans}
+  - ''
   - H
   - J
   - K
@@ -111,7 +46,7 @@ layers:
   - C
   - V
   - B
-  - {t: ▽, type: trans}
+  - ''
   - N
   - M
   - ','
@@ -195,6 +130,71 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  promethium:
+  - ESC
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - {t: ▽, type: trans}
+  - F6
+  - F7
+  - F8
+  - F9
+  - F10
+  - {t: ▽, type: trans}
+  - TAB
+  - '&ak_v'
+  - '&ak_p'
+  - '&ak_g'
+  - '&ak_m'
+  - '&ak_x'
+  - {t: ▽, type: trans}
+  - {t: '!', s: '='}
+  - ;
+  - ','
+  - .
+  - {t: '''', h: clear}
+  - {t: ▽, type: trans}
+  - LCTRL
+  - '&ak_s'
+  - '&ak_n'
+  - '&ak_t'
+  - '&ak_h'
+  - '&ak_k'
+  - {t: ▽, type: trans}
+  - /
+  - '&ak_a'
+  - '&ak_e'
+  - '&ak_i'
+  - '&ak_c'
+  - {t: ▽, type: trans}
+  - LSHIFT
+  - '&ak_f'
+  - '&ak_w'
+  - '&ak_d'
+  - '&ak_l'
+  - '&ak_j'
+  - {t: ▽, type: trans}
+  - '-'
+  - '&ak_u'
+  - '&ak_o'
+  - '&ak_y'
+  - '&ak_b'
+  - '['
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ESCAPE
+  - '&ak_r'
+  - {t: _, h: promethium}
+  - {t: ▽, type: trans}
+  - {t: BSPC, h: promethium}
+  - {t: SPACE, h: RSHFT}
+  - '&num_word 1'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   BLE/RGB:
   - {t: ▽, type: trans}
   - {t: BT, h: '0'}
@@ -249,7 +249,7 @@ layers:
   - {t: ▽, type: trans}
   - '&bootloader'
   - {t: ▽, type: trans}
-  - {t: promethium, h: toggle}
+  - {t: qwerty, h: toggle}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -333,7 +333,7 @@ combos:
   k: '&apos'
 - p: [30, 29, 28]
   k: BT CLR ALL
-  l: [BLE/RGB]
+  l: [qwerty]
 - p: [16, 17]
   k: '&parens'
 - p: [21, 22]
