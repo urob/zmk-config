@@ -10,7 +10,7 @@ layers:
   - ;
   - ','
   - .
-  - '&ak_q'
+  - ''''
   - {t: '&ak_s', h: LSHFT}
   - {t: '&ak_n', h: LCTRL}
   - {t: '&ak_t', h: LALT}
