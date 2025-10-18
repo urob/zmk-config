@@ -1,3 +1,7 @@
+/* 
+  LETTER COMBOS, PROMETHIUM LAYER
+  Q, Z
+*/
 compatible = "zmk,combos";
 combo_q {
   timeout-ms = <COMBO_TIMEOUT>;
@@ -6,24 +10,119 @@ combo_q {
   layers = <PRO>;
 };
 compatible = "zmk,combos";
-combo_apos {
+combo_z {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LB5 LB4>;
+    bindings = <&ak_z>;
+    layers = <PRO>;
+};
+
+
+/* 
+  SYMBOL AND SYMBOL MACRO COMBOS, PROMETHIUM AND NAV/NUMBER LAYERS
+  (), [], {}, <> 
+*/
+compatible = "zmk,combos";
+combo_single_apos {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <LT4 LT3>;
-    bindings = <&apos>;
-};
-  
-compatible = "zmk,combos";
-combo_bt_reset {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <LM2 LM3 LM4>;
-    bindings = <&bt BT_CLR_ALL>;
-    layers = <FUN>;
+    bindings = <&kp APOS>;
+    layers = <PRO NAV>;
 };
 compatible = "zmk,combos";
-combo_parens {
+combo_dbl_parens {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <LT3 LT2>;
     bindings = <&parens>;
+    layers = <PRO NAV>;
+};
+compatible = "zmk,combos";
+combo_single_quotes {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LM4 LM3>;
+    bindings = <&kp DOUBLE_QUOTES>;
+    layers = <PRO NAV>;
+};
+compatible = "zmk,combos";
+combo_dbl_brackets {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LM3 LM2>;
+    bindings = <&brackets>;
+    layers = <PRO NAV>;
+};
+compatible = "zmk,combos";
+combo_dbl_tags {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LB4 LB3>;
+    bindings = <&tags>;
+    layers = <PRO NAV>;
+};
+compatible = "zmk,combos";
+combo_dbl_braces {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LB3 LB2>;
+    bindings = <&braces>;
+    layers = <PRO NAV>;
+};
+
+
+/*
+  SINGLE SYMBOL COMBOS, SYMBOL LAYER
+  (, ), [, ], {, }
+*/
+compatible = "zmk,combos";
+combo_left_paren {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LT4 LT3>;
+    bindings = <&kp LEFT_PARENTHESIS>;
+    layers = <SYM>;
+};
+compatible = "zmk,combos";
+combo_right_paren {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LT3 LT2>;
+    bindings = <&kp RIGHT_PARENTHESIS>;
+    layers = <SYM>;
+};
+compatible = "zmk,combos";
+combo_left_bracket {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LM4 LM3>;
+    bindings = <&kp LEFT_BRACKET>;
+    layers = <SYM>;
+};
+compatible = "zmk,combos";
+combo_right_bracket {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LM3 LM2>;
+    bindings = <&kp RIGHT_BRACKET>;
+    layers = <SYM>;
+};
+compatible = "zmk,combos";
+combo_left_brace {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LB4 LB3>;
+    bindings = <&kp LEFT_BRACE>;
+    layers = <SYM>;
+};
+compatible = "zmk,combos";
+combo_right_brace {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LB3 LB2>;
+    bindings = <&kp RIGHT_BRACE>;
+    layers = <SYM>;
+};
+
+
+/* 
+  GLOBAL COMBOS
+  ESCAPE, BACKSPACE, ENTER
+*/
+compatible = "zmk,combos";
+combo_escape {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LM5 LM4>;
+    bindings = <&kp ESC>;
 };
 compatible = "zmk,combos";
 combo_esc_right {
@@ -38,45 +137,20 @@ combo_backspace {
     bindings = <&kp BACKSPACE>;
 };
 compatible = "zmk,combos";
-combo_escape {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <LM5 LM4>;
-    bindings = <&kp ESC>;
-};
-compatible = "zmk,combos";
-combo_quotes {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <LM4 LM3>;
-    bindings = <&quotes>;
-};
-compatible = "zmk,combos";
-combo_brackets {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <LM3 LM2>;
-    bindings = <&brackets>;
-};
-compatible = "zmk,combos";
 combo_enter {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <RM2 RM3>;
-    bindings = <&kp ENTER>;
+    bindings = <&ak_enter>;
 };
+
+/*
+  HIDDEN COMBOS
+  RESET BT
+*/
 compatible = "zmk,combos";
-combo_z {
+combo_bt_reset {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <LB5 LB4>;
-    bindings = <&ak_z>;
-    layers = <PRO>;
-};
-compatible = "zmk,combos";
-combo_braces {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <LB3 LB2>;
-    bindings = <&braces>;
-};
-compatible = "zmk,combos";
-combo_tags {
-   timeout-ms = <COMBO_TIMEOUT>;
-   key-positions = <LB3 LB4>;
-   bindings = <&tags>;
+    key-positions = <LM2 LM3 LM4>;
+    bindings = <&bt BT_CLR_ALL>;
+    layers = <FUN>;
 };

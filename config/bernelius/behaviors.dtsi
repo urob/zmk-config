@@ -24,6 +24,13 @@ repeat_shift: repeat_alpha_or_oneshot_shift {
     };
 };
 
+td_dead_caps: tap_dance_dead_caps {
+    compatible = "zmk,behavior-tap-dance";
+    #binding-cells = <0>;
+    tapping-term-ms = <SLOW_TAP_MS>;
+    bindings = <&dead_colon>, <&caps_word>, <&kp CAPSLOCK>;
+};
+
 hml_s: hml_s {
     MY_HRM_CONFIG;
     bindings = <&kp>, <&ak_s>;
@@ -131,5 +138,11 @@ rbkt: right_bracket_only {
     compatible = "zmk,behavior-mod-morph";
     #binding-cells = <0>;
     bindings = <&kp RBKT>, <&kp RBKT>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+dead_colon: dead_colon {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp DEAD1>, <&kp COLON>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 };
