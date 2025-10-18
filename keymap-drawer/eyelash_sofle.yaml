@@ -329,29 +329,53 @@ combos:
 - p: [14, 15]
   k: '&ak_q'
   l: [promethium]
+- p: [40, 41]
+  k: '&ak_z'
+  l: [promethium]
 - p: [15, 16]
-  k: '&apos'
-- p: [30, 29, 28]
-  k: BT CLR ALL
-  l: [qwerty]
+  k: ''''
+  l: [promethium, qwerty]
 - p: [16, 17]
   k: '&parens'
+  l: [promethium, qwerty]
+- p: [28, 29]
+  k: '"'
+  l: [promethium, qwerty]
+- p: [29, 30]
+  k: '&brackets'
+  l: [promethium, qwerty]
+- p: [41, 42]
+  k: '&tags'
+  l: [promethium, qwerty]
+- p: [42, 43]
+  k: '&braces'
+  l: [promethium, qwerty]
+- p: [15, 16]
+  k: (
+  l: [qwerty]
+- p: [16, 17]
+  k: )
+  l: [qwerty]
+- p: [28, 29]
+  k: '['
+  l: [qwerty]
+- p: [29, 30]
+  k: ']'
+  l: [qwerty]
+- p: [41, 42]
+  k: '{'
+  l: [qwerty]
+- p: [42, 43]
+  k: '}'
+  l: [qwerty]
+- p: [27, 28]
+  k: ESC
 - p: [21, 22]
   k: ESCAPE
 - p: [35, 36]
   k: BACKSPACE
-- p: [27, 28]
-  k: ESC
-- p: [28, 29]
-  k: '&quotes'
-- p: [29, 30]
-  k: '&brackets'
 - p: [34, 35]
-  k: ENTER
-- p: [40, 41]
-  k: '&ak_z'
-  l: [promethium]
-- p: [42, 43]
-  k: '&braces'
-- p: [42, 41]
-  k: '&tags'
+  k: '&ak_enter'
+- p: [30, 29, 28]
+  k: BT CLR ALL
+  l: [qwerty]

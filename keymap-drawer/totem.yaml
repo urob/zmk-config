@@ -7,7 +7,7 @@ layers:
   - '&ak_m'
   - '&ak_x'
   - '&ak_excl'
-  - ;
+  - '&td_dead_caps'
   - ','
   - .
   - ''''
@@ -37,7 +37,7 @@ layers:
   - '&ak_r'
   - {t: _, h: symbols}
   - {t: BSPC, h: symbols}
-  - {t: SPACE, h: RSHFT}
+  - '&ak_space'
   - {t: DEL, h: nav}
   nav:
   - {t: ▽, type: trans}
@@ -83,7 +83,7 @@ layers:
   - '!'
   - '@'
   - '&'
-  - {t: ▽, type: trans}
+  - '%'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -238,29 +238,53 @@ combos:
 - p: [0, 1]
   k: '&ak_q'
   l: [base]
+- p: [21, 22]
+  k: '&ak_z'
+  l: [base]
 - p: [1, 2]
-  k: '&apos'
-- p: [13, 12, 11]
-  k: BT CLR ALL
-  l: [function/bt]
+  k: ''''
+  l: [base, nav]
 - p: [2, 3]
   k: '&parens'
+  l: [base, nav]
+- p: [11, 12]
+  k: '"'
+  l: [base, nav]
+- p: [12, 13]
+  k: '&brackets'
+  l: [base, nav]
+- p: [22, 23]
+  k: '&tags'
+  l: [base, nav]
+- p: [23, 24]
+  k: '&braces'
+  l: [base, nav]
+- p: [1, 2]
+  k: (
+  l: [symbols]
+- p: [2, 3]
+  k: )
+  l: [symbols]
+- p: [11, 12]
+  k: '['
+  l: [symbols]
+- p: [12, 13]
+  k: ']'
+  l: [symbols]
+- p: [22, 23]
+  k: '{'
+  l: [symbols]
+- p: [23, 24]
+  k: '}'
+  l: [symbols]
+- p: [10, 11]
+  k: ESC
 - p: [6, 7]
   k: ESCAPE
 - p: [17, 18]
   k: BACKSPACE
-- p: [10, 11]
-  k: ESC
-- p: [11, 12]
-  k: '&quotes'
-- p: [12, 13]
-  k: '&brackets'
 - p: [16, 17]
-  k: ENTER
-- p: [21, 22]
-  k: '&ak_z'
-  l: [base]
-- p: [23, 24]
-  k: '&braces'
-- p: [23, 22]
-  k: '&tags'
+  k: '&ak_enter'
+- p: [13, 12, 11]
+  k: BT CLR ALL
+  l: [function/bt]
