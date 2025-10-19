@@ -38,6 +38,20 @@ td_dead_caps: tap_dance_dead_caps {
     bindings = <&kp DEAD1>, <&caps_word>, <&kp COLON>;
 };
 
+dead_comma: dead_comma {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&td_dead_comma>, <&kp LESS_THAN>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+td_dead_comma: tap_dance_dead_comma_caps {
+    compatible = "zmk,behavior-tap-dance";
+    #binding-cells = <0>;
+    tapping-term-ms = <SLOW_TAP_MS>;
+    bindings = <&kp DEAD2>, <&caps_word>, <&kp LESS_THAN>;
+};
+
 hml_s: hml_s {
     MY_HRM_CONFIG;
     bindings = <&kp>, <&ak_s>;

@@ -2,10 +2,11 @@
 #define COMBO_TIMEOUT 30
 #define MAGIC_PRIOR_IDLE 350
 #define DEAD1_CAPS_PRIOR_IDLE 1000
+#define DEAD2_CAPS_PRIOR_IDLE 1000
 #define SLOW_TAP_MS 500
 
 #define DEAD1 F21
-#define DEAD2 COMMA
+#define DEAD2 F22
 #define DEAD3 F23
 #define DEAD4 F24
 
