@@ -9,7 +9,7 @@ layers:
   - '&ak_excl'
   - '&ak_semi'
   - '&ak_comma'
-  - .
+  - '&ak_dot'
   - ''''
   - {t: '&ak_s', h: LSHFT}
   - {t: '&ak_n', h: LCTRL}
@@ -163,7 +163,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - '&msc SCRL_UP'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -171,7 +171,7 @@ layers:
   - LCTRL
   - LALT
   - LGUI
-  - '&msc SCRL_UP'
+  - {t: ▽, type: trans}
   - '&msc SCRL_LEFT'
   - '&mmv MOVE_LEFT'
   - '&mmv MOVE_UP'
@@ -179,12 +179,12 @@ layers:
   - '&msc SCRL_RIGHT'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - mouse_slow
   - {t: ▽, type: trans}
-  - '0'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - '&msc SCRL_DOWN'
-  - {t: ▽, type: trans}
-  - '&mkp LCLK'
   - '&mmv MOVE_DOWN'
   - '&mkp RCLK'
   - {t: ▽, type: trans}
@@ -193,7 +193,46 @@ layers:
   - {t: ▽, type: trans}
   - {type: held}
   - {t: ▽, type: trans}
+  - '&mkp LCLK'
   - {t: ▽, type: trans}
+  mouse_slow:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '&msc SCRL_UP'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - LSHIFT
+  - LCTRL
+  - LALT
+  - LGUI
+  - {t: ▽, type: trans}
+  - '&msc SCRL_LEFT'
+  - '&mmv MOVE_LEFT'
+  - '&mmv MOVE_UP'
+  - '&mmv MOVE_RIGHT'
+  - '&msc SCRL_RIGHT'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '&msc SCRL_DOWN'
+  - '&mmv MOVE_DOWN'
+  - '&mkp RCLK'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - '&mkp LCLK'
   - {t: ▽, type: trans}
   clear:
   - {t: ▽, type: trans}
