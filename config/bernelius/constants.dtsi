@@ -5,7 +5,7 @@
 #define SLOW_TAP_MS 500
 
 #define DEAD1 F21
-#define DEAD2 F22
+#define DEAD2 COMMA
 #define DEAD3 F23
 #define DEAD4 F24
 

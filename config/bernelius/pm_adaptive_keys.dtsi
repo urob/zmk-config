@@ -4,7 +4,7 @@ ak_excl: adaptive_key_excl_equal {
     #binding-cells = <0>;
     bindings = <&excl_equal>;
     // dead keys only need to be defined ONCE, not for each behavior.
-    dead-keys = <DEAD1>;
+    dead-keys = <DEAD1 DEAD2>;
     
     ak_excl_equal {
         strict-modifiers;
