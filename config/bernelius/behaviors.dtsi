@@ -24,6 +24,7 @@ repeat_shift: repeat_alpha_or_oneshot_shift {
     };
 };
 
+
 dead_colon: dead_colon {
     compatible = "zmk,behavior-mod-morph";
     #binding-cells = <0>;
@@ -130,6 +131,12 @@ hmr: home_row_mod_right {
     MY_HRM_CONFIG;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
+};
+dot_colon: dot_colon {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp DOT>, <&kp COLON>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
 };
 hash_dllr: hash_dollar {
     compatible = "zmk,behavior-mod-morph";

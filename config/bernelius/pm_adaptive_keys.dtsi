@@ -15,7 +15,7 @@ ak_semi: adaptive_key_semi {
     #binding-cells = <0>;
     bindings = <&kp DEAD1>;
     
-    ak_semi_dead1_colon {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp COLON>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
+    ak_semi_dead1_colon {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp SEMI>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_semi_dead2_caps_word {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&caps_word>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
 };
 
@@ -24,8 +24,18 @@ ak_comma: adaptive_key_comma {
     #binding-cells = <0>;
     bindings = <&kp DEAD2>;
     
-    ak_comma_dead1_lt {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LESS_THAN>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_comma_dead1_lt {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp COMMA>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
     ak_comma_dead2_caps_word {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&caps_word>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
+};
+   
+
+ak_dot: adaptive_key_dot {
+    compatible = "zmk,behavior-adaptive-key";
+    #binding-cells = <0>;
+    bindings = <&dot_colon>;
+    
+    ak_dot_dead1_colon {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp COLON>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_dot_dead2_colon {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp COLON>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
 };
 
 ak_q: adaptive_key_q {
