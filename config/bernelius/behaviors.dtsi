@@ -132,6 +132,14 @@ hmr: home_row_mod_right {
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
 };
+
+slash_qmark: slash_qmark {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp SLASH>, <&kp QMARK>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+  
 dot_colon: dot_colon {
     compatible = "zmk,behavior-mod-morph";
     #binding-cells = <0>;

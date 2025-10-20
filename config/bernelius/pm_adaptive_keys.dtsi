@@ -38,6 +38,14 @@ ak_dot: adaptive_key_dot {
     ak_dot_dead2_colon {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp COLON>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
 };
 
+ak_slash: adaptive_key_slash_qmark {
+    compatible = "zmk,behavior-adaptive-key";
+    #binding-cells = <0>;
+    bindings = <&slash_qmark>;
+    
+    ak_slash_dead1_qmark {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp QMARK>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_slash_dead2_qmark {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp QMARK>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
+};
 ak_q: adaptive_key_q {
     compatible = "zmk,behavior-adaptive-key";
     #binding-cells = <0>;
