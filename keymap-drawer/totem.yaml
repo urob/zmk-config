@@ -16,7 +16,7 @@ layers:
   - {t: '&ak_t', h: LALT}
   - {t: '&ak_h', h: LGUI}
   - '&ak_k'
-  - /
+  - '&ak_slash'
   - {t: '&ak_a', h: RGUI}
   - {t: '&ak_e', h: RALT}
   - {t: '&ak_i', h: RCTRL}
