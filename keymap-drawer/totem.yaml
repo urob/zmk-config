@@ -38,7 +38,7 @@ layers:
   - {t: _, h: mouse}
   - symbols
   - '&ak_space'
-  - nav
+  - {t: DELETE, h: nav}
   nav:
   - {t: ▽, type: trans}
   - '7'
@@ -67,7 +67,7 @@ layers:
   - '3'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - BACKSPACE
   - DOWN
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -106,7 +106,7 @@ layers:
   - '-'
   - '>'
   - {t: ▽, type: trans}
-  - ''
+  - BACKSPACE
   - ''
   - '`'
   - '?'
