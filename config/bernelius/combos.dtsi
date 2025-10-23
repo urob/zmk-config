@@ -137,6 +137,12 @@ combo_backspace {
     bindings = <&kp BACKSPACE>;
 };
 compatible = "zmk,combos";
+combo_del {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <RB3 RB4>;
+    bindings = <&kp DELETE>;
+};
+compatible = "zmk,combos";
 combo_enter {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <RM2 RM3>;

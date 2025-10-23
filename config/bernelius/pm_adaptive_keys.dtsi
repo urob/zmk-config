@@ -23,7 +23,7 @@ ak_comma: adaptive_key_comma {
     compatible = "zmk,behavior-adaptive-key";
     #binding-cells = <0>;
     bindings = <&kp DEAD2>;
-    
+
     ak_comma_dead1_lt {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp COMMA>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
     ak_comma_dead2_caps_word {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&caps_word>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
 };
