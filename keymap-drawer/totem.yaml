@@ -33,12 +33,12 @@ layers:
   - '&ak_y'
   - '&ak_b'
   - {t: '[', h: function/bt}
-  - ESCAPE
+  - CANCEL
   - '&ak_r'
   - {t: _, h: mouse}
-  - {t: BSPC, h: symbols}
+  - symbols
   - '&ak_space'
-  - {t: DEL, h: nav}
+  - nav
   nav:
   - {t: ▽, type: trans}
   - '7'
@@ -72,7 +72,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: base, h: toggle}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -322,6 +322,8 @@ combos:
   k: ESCAPE
 - p: [17, 18]
   k: BACKSPACE
+- p: [28, 29]
+  k: DELETE
 - p: [16, 17]
   k: '&ak_enter'
 - p: [13, 12, 11]

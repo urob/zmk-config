@@ -374,6 +374,8 @@ combos:
   k: ESCAPE
 - p: [35, 36]
   k: BACKSPACE
+- p: [48, 49]
+  k: DELETE
 - p: [34, 35]
   k: '&ak_enter'
 - p: [30, 29, 28]

@@ -450,10 +450,14 @@ path.combo {
 <text x="756" y="143" class="combo tap"><tspan style="font-size: 78%">BACKSPACE</tspan></text>
 </g>
 <g class="combo combopos-15">
+<rect rx="6" ry="6" x="742" y="186" width="28" height="26" class="combo"/>
+<text x="756" y="199" class="combo tap">DELETE</text>
+</g>
+<g class="combo combopos-16">
 <rect rx="6" ry="6" x="686" y="130" width="28" height="26" class="combo"/>
 <text x="700" y="143" class="combo tap"><tspan style="font-size: 78%">&amp;ak_enter</tspan></text>
 </g>
-<g class="combo combopos-16">
+<g class="combo combopos-17">
 <path d="M196,144 l37,1" class="combo"/>
 <path d="M196,144 l-37,1" class="combo"/>
 <rect rx="6" ry="6" x="182" y="131" width="28" height="26" class="combo"/>
@@ -734,6 +738,10 @@ path.combo {
 <text x="756" y="143" class="combo tap"><tspan style="font-size: 78%">BACKSPACE</tspan></text>
 </g>
 <g class="combo combopos-3">
+<rect rx="6" ry="6" x="742" y="186" width="28" height="26" class="combo"/>
+<text x="756" y="199" class="combo tap">DELETE</text>
+</g>
+<g class="combo combopos-4">
 <rect rx="6" ry="6" x="686" y="130" width="28" height="26" class="combo"/>
 <text x="700" y="143" class="combo tap"><tspan style="font-size: 78%">&amp;ak_enter</tspan></text>
 </g>
@@ -1053,6 +1061,10 @@ path.combo {
 <text x="756" y="143" class="combo tap"><tspan style="font-size: 78%">BACKSPACE</tspan></text>
 </g>
 <g class="combo combopos-11">
+<rect rx="6" ry="6" x="742" y="186" width="28" height="26" class="combo"/>
+<text x="756" y="199" class="combo tap">DELETE</text>
+</g>
+<g class="combo combopos-12">
 <rect rx="6" ry="6" x="686" y="130" width="28" height="26" class="combo"/>
 <text x="700" y="143" class="combo tap"><tspan style="font-size: 78%">&amp;ak_enter</tspan></text>
 </g>
@@ -1363,6 +1375,10 @@ path.combo {
 <text x="756" y="143" class="combo tap"><tspan style="font-size: 78%">BACKSPACE</tspan></text>
 </g>
 <g class="combo combopos-3">
+<rect rx="6" ry="6" x="742" y="186" width="28" height="26" class="combo"/>
+<text x="756" y="199" class="combo tap">DELETE</text>
+</g>
+<g class="combo combopos-4">
 <rect rx="6" ry="6" x="686" y="130" width="28" height="26" class="combo"/>
 <text x="700" y="143" class="combo tap"><tspan style="font-size: 78%">&amp;ak_enter</tspan></text>
 </g>
@@ -1639,6 +1655,10 @@ path.combo {
 <text x="756" y="143" class="combo tap"><tspan style="font-size: 78%">BACKSPACE</tspan></text>
 </g>
 <g class="combo combopos-3">
+<rect rx="6" ry="6" x="742" y="186" width="28" height="26" class="combo"/>
+<text x="756" y="199" class="combo tap">DELETE</text>
+</g>
+<g class="combo combopos-4">
 <rect rx="6" ry="6" x="686" y="130" width="28" height="26" class="combo"/>
 <text x="700" y="143" class="combo tap"><tspan style="font-size: 78%">&amp;ak_enter</tspan></text>
 </g>
