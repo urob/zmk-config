@@ -33,7 +33,7 @@ layers:
   - '&ak_y'
   - '&ak_b'
   - {t: '[', h: function/bt}
-  - CANCEL
+  - {t: CANCEL, h: nav}
   - '&ak_r'
   - {t: _, h: mouse}
   - symbols
@@ -56,9 +56,9 @@ layers:
   - {t: '6', h: LGUI}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: LEFT, h: RGUI}
-  - {t: UP, h: RALT}
-  - {t: RIGHT, h: RCTRL}
+  - LEFT
+  - UP
+  - RIGHT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -72,12 +72,12 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - SPACE
-  - {t: base, h: toggle, type: held}
+  - {t: base, h: toggle}
   symbols:
   - '`'
   - '!'
@@ -280,50 +280,40 @@ combos:
 - p: [21, 22]
   k: '&ak_z'
   l: [base]
-- p: [1, 2]
-  k: ''''
-  l: [base, nav]
 - p: [2, 3]
-  k: '&parens'
-  l: [base, nav]
-- p: [11, 12]
-  k: '"'
-  l: [base, nav]
-- p: [12, 13]
-  k: '&brackets'
-  l: [base, nav]
-- p: [22, 23]
-  k: '&tags'
-  l: [base, nav]
-- p: [23, 24]
-  k: '&braces'
-  l: [base, nav]
+  k: ''''
+  l: [base, nav, symbols]
 - p: [1, 2]
   k: (
-  l: [symbols]
-- p: [2, 3]
+  l: [base, nav, symbols]
+- p: [8, 7]
   k: )
-  l: [symbols]
-- p: [11, 12]
-  k: '['
-  l: [symbols]
+  l: [base, nav, symbols]
 - p: [12, 13]
-  k: ']'
-  l: [symbols]
+  k: '"'
+  l: [base, nav, symbols]
+- p: [11, 12]
+  k: {t: '[', s: '['}
+  l: [base, nav, symbols]
+- p: [18, 17]
+  k: {t: ']', s: ']'}
+  l: [base, nav, symbols]
+- p: [23, 24]
+  k: <
+  l: [base, nav, symbols]
+- p: [28, 27]
+  k: '>'
+  l: [base, nav, symbols]
 - p: [22, 23]
   k: '{'
-  l: [symbols]
-- p: [23, 24]
+  l: [base, nav, symbols]
+- p: [29, 28]
   k: '}'
-  l: [symbols]
+  l: [base, nav, symbols]
 - p: [10, 11]
   k: ESC
 - p: [6, 7]
   k: ESCAPE
-- p: [17, 18]
-  k: BACKSPACE
-- p: [28, 29]
-  k: DELETE
 - p: [16, 17]
   k: '&ak_enter'
 - p: [13, 12, 11]
