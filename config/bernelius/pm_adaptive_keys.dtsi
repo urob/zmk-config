@@ -19,6 +19,17 @@ ak_semi: adaptive_key_semi {
     ak_semi_dead2_caps_word {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&caps_word>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
 };
 
+ak_repeat: adaptive_key_repeat {
+    compatible = "zmk,behavior-adaptive-key";
+    #binding-cells = <0>;
+    bindings = <&kp K_CANCEL>;
+    
+    ak_repeat_b_repeat {strict-modifiers; trigger-keys = <B>; bindings = <&kp B>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_repeat_c_repeat {strict-modifiers; trigger-keys = <C>; bindings = <&kp C>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_repeat_s_repeat {strict-modifiers; trigger-keys = <S>; bindings = <&kp S>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_repeat_f_repeat {strict-modifiers; trigger-keys = <F>; bindings = <&kp F>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+};
+
 ak_comma: adaptive_key_comma {
     compatible = "zmk,behavior-adaptive-key";
     #binding-cells = <0>;
