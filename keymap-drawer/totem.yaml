@@ -33,7 +33,7 @@ layers:
   - '&ak_y'
   - '&ak_b'
   - {t: '[', h: function/bt}
-  - {t: CANCEL, h: nav}
+  - '&ak_repeat'
   - '&ak_r'
   - {t: _, h: mouse}
   - symbols
@@ -72,12 +72,12 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - SPACE
-  - {t: base, h: toggle}
+  - {t: base, h: toggle, type: held}
   symbols:
   - '`'
   - '!'

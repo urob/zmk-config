@@ -268,10 +268,8 @@ path.combo {
 </a></g>
 <g transform="translate(241, 236)" class="key keypos-32">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">CANCEL</text>
-<a href="#nav">
-<text x="0" y="24" class="key hold layer-activator">nav</text>
-</a></g>
+<text x="0" y="0" class="key tap"><tspan style="font-size: 70%">&amp;ak_repeat</tspan></text>
+</g>
 <g transform="translate(303, 245) rotate(15.0)" class="key keypos-33">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">&amp;ak_r</text>
@@ -496,8 +494,9 @@ path.combo {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
-<g transform="translate(241, 236)" class="key held keypos-32">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held"/>
+<g transform="translate(241, 236)" class="key trans keypos-32">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
+<text x="0" y="0" class="key trans tap">▽</text>
 </g>
 <g transform="translate(303, 245) rotate(15.0)" class="key trans keypos-33">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
@@ -515,11 +514,11 @@ path.combo {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">SPACE</text>
 </g>
-<g transform="translate(656, 236)" class="key keypos-37">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<g transform="translate(656, 236)" class="key held keypos-37">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key held"/>
 <a href="#base">
-<text x="0" y="0" class="key tap layer-activator">base</text>
-</a><text x="0" y="24" class="key hold">toggle</text>
+<text x="0" y="0" class="key held tap layer-activator">base</text>
+</a><text x="0" y="24" class="key held hold">toggle</text>
 </g>
 <g class="combo combopos-0">
 <rect rx="6" ry="6" x="214" y="29" width="28" height="26" class="combo"/>
