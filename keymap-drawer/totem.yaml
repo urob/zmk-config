@@ -10,7 +10,7 @@ layers:
   - '&ak_semi'
   - '&ak_comma'
   - '&ak_dot'
-  - ''''
+  - BSPC
   - {t: '&ak_s', h: LSHFT}
   - {t: '&ak_n', h: LCTRL}
   - {t: '&ak_t', h: LALT}
@@ -73,7 +73,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - '&key_repeat'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - SPACE
@@ -105,16 +105,16 @@ layers:
   - '='
   - '-'
   - '>'
-  - {t: ▽, type: trans}
+  - +
   - BACKSPACE
-  - ''
+  - ENTER
   - '`'
   - '?'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - BSPC
-  - {t: BSPC, type: held}
+  - {t: base, h: toggle, type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   function/bt:
