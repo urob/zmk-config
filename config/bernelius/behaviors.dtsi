@@ -4,7 +4,7 @@
             flavor = "balanced"; \
             hold-trigger-on-release; \
             tapping-term-ms = <280>; \
-            require-prior-idle-ms = <90>; \
+            require-prior-idle-ms = <120>; \
             quick-tap-ms = <QUICK_TAP_MS>
 
 #define     MY_LT_CONFIG \
@@ -46,6 +46,7 @@ td_dead_caps: tap_dance_dead_caps {
     tapping-term-ms = <SLOW_TAP_MS>;
     bindings = <&kp DEAD1>, <&caps_word>, <&kp COLON>;
 };
+
 
 dead_comma: dead_comma {
     compatible = "zmk,behavior-mod-morph";

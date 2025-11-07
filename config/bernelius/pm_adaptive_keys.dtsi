@@ -15,7 +15,7 @@ ak_semi: adaptive_key_semi {
     #binding-cells = <0>;
     bindings = <&kp DEAD1>;
     
-    ak_semi_dead1_colon {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp SEMI>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
+    ak_semi_dead1_semi {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp SEMI>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_semi_dead2_caps_word {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&caps_word>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
 };
 
@@ -35,7 +35,7 @@ ak_comma: adaptive_key_comma {
     #binding-cells = <0>;
     bindings = <&kp DEAD2>;
 
-    ak_comma_dead1_lt {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp COMMA>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_comma_dead1_comma {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp COMMA>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
     ak_comma_dead2_caps_word {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&caps_word>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
 };
    
@@ -64,7 +64,7 @@ ak_q: adaptive_key_q {
 
     ak_q_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(Q)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_q_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(Q)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
-
+    ak_q_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(Q)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_v: adaptive_key_v {
@@ -74,6 +74,7 @@ ak_v: adaptive_key_v {
     
     ak_v_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(V)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_v_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(V)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_v_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(V)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_p: adaptive_key_p {
@@ -83,6 +84,7 @@ ak_p: adaptive_key_p {
     
     ak_p_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(P)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_p_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(P)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_p_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(P)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_g: adaptive_key_g {
@@ -92,6 +94,7 @@ ak_g: adaptive_key_g {
     
     ak_g_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(G)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_g_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(G)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_g_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(G)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_m: adaptive_key_m {
@@ -101,6 +104,7 @@ ak_m: adaptive_key_m {
     
     ak_m_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(M)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>;};
     ak_m_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(M)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_m_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(M)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_x: adaptive_key_x {
@@ -110,6 +114,7 @@ ak_x: adaptive_key_x {
     
     ak_x_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(X)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_x_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(X)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_x_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(X)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_s: adaptive_key_s {
@@ -119,6 +124,7 @@ ak_s: adaptive_key_s {
     
     ak_s_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(S)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_s_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(S)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_s_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(S)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_n: adaptive_key_n {
@@ -128,8 +134,9 @@ ak_n: adaptive_key_n {
     
     ak_n_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(N)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>;  };
     ak_n_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(N)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>;  };
-
+    ak_n_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(N)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>;  };
 };
+
 ak_t: adaptive_key_t {
     compatible = "zmk,behavior-adaptive-key";
     #binding-cells = <0>;
@@ -137,6 +144,7 @@ ak_t: adaptive_key_t {
     
     ak_t_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(T)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_t_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(T)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_t_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(T)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_h: adaptive_key_h {
@@ -146,6 +154,7 @@ ak_h: adaptive_key_h {
     
     ak_h_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(H)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_h_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(H)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_h_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(H)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_k: adaptive_key_k {
@@ -155,6 +164,7 @@ ak_k: adaptive_key_k {
     
     ak_k_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(K)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_k_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(K)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_k_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(K)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 
@@ -169,6 +179,7 @@ ak_a: adaptive_key_a {
     move_inside {trigger-keys = <RPAR RBKT RBRC GREATER_THAN APOS DQT>; bindings = <&kp LEFT>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_a_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(A)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_a_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(A)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_a_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(A)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_e: adaptive_key_e {
@@ -179,6 +190,7 @@ ak_e: adaptive_key_e {
     add_semi {strict-modifiers; trigger-keys = <LEFT>; bindings = <&kp RIGHT &kp SEMI &kp LEFT &kp LEFT>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_e_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(E)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_e_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(E)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_e_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(E)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_i: adaptive_key_i {
@@ -188,6 +200,7 @@ ak_i: adaptive_key_i {
     
     ak_i_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(I)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_i_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(I)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_i_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(I)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_c: adaptive_key_c {
@@ -197,6 +210,7 @@ ak_c: adaptive_key_c {
     
     ak_c_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(C)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_c_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(C)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_c_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(C)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_z: adaptive_key_z {
@@ -206,6 +220,7 @@ ak_z: adaptive_key_z {
     
     ak_z_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(Z)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_z_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(Z)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_z_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(Z)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
     
 ak_f: adaptive_key_f {
@@ -215,6 +230,7 @@ ak_f: adaptive_key_f {
     
     ak_f_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(F)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_f_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(F)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_f_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(F)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_w: adaptive_key_w {
@@ -224,6 +240,7 @@ ak_w: adaptive_key_w {
     
     ak_w_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(W)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_w_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(W)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_w_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(W)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_d: adaptive_key_d {
@@ -233,6 +250,7 @@ ak_d: adaptive_key_d {
     
     ak_d_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(D)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_d_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(D)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_d_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(D)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_l: adaptive_key_l {
@@ -242,6 +260,7 @@ ak_l: adaptive_key_l {
     
     ak_l_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(L)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_l_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(L)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_l_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(L)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_j: adaptive_key_j {
@@ -251,6 +270,7 @@ ak_j: adaptive_key_j {
     
     ak_j_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(J)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_j_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(J)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_j_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(J)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_u: adaptive_key_u {
@@ -260,6 +280,7 @@ ak_u: adaptive_key_u {
     
     ak_u_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(U)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_u_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(U)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_u_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(U)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_o: adaptive_key_o {
@@ -269,6 +290,7 @@ ak_o: adaptive_key_o {
     
     ak_o_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(O)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_o_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(O)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_o_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(O)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_y: adaptive_key_y {
@@ -278,6 +300,7 @@ ak_y: adaptive_key_y {
     
     ak_y_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(Y)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_y_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(Y)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_y_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(Y)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_b: adaptive_key_b {
@@ -287,6 +310,7 @@ ak_b: adaptive_key_b {
     
     ak_b_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(B)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_b_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(B)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_b_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(B)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_r: adaptive_key_r {
@@ -296,6 +320,7 @@ ak_r: adaptive_key_r {
     
     ak_r_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(R)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_r_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(R)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
+    ak_r_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(R)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
 };
 
 ak_space: adaptive_key_space {
@@ -305,9 +330,9 @@ ak_space: adaptive_key_space {
     
     ak_space_semi {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp SEMI &kp SPACE>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_space_comma {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp COMMA &kp SPACE>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
-    ak_space_period_shift {strict-modifiers; trigger-keys = <DOT>; bindings = <&kp SPACE &sk LSHIFT>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
-    ak_space_qmark_shift {strict-modifiers; trigger-keys = <QMARK>; bindings = <&kp SPACE &sk LSHIFT>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
-    ak_space_excl_shift {strict-modifiers; trigger-keys = <EXCL>; bindings = <&kp SPACE &sk LSHIFT>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_space_period_shift {strict-modifiers; trigger-keys = <DOT>; bindings = <&kp SPACE &kp DEAD3>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_space_qmark_shift {strict-modifiers; trigger-keys = <QMARK>; bindings = <&kp SPACE &kp DEAD3>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_space_excl_shift {strict-modifiers; trigger-keys = <EXCL>; bindings = <&kp SPACE &kp DEAD3>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
 };
 
 ak_enter: adaptive_key_enter {
@@ -317,7 +342,7 @@ ak_enter: adaptive_key_enter {
     
     ak_enter_semi {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp SEMI &kp ENTER>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_enter_comma {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp COMMA &kp ENTER>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
-    ak_enter_period_shift {strict-modifiers; trigger-keys = <DOT>; bindings = <&kp ENTER &sk LSHIFT>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
-    ak_enter_qmark_shift {strict-modifiers; trigger-keys = <QMARK>; bindings = <&kp ENTER &sk LSHIFT>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
-    ak_enter_excl_shift {strict-modifiers; trigger-keys = <EXCL>; bindings = <&kp ENTER &sk LSHIFT>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_enter_period_shift {strict-modifiers; trigger-keys = <DOT>; bindings = <&kp ENTER &kp DEAD3>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_enter_qmark_shift {strict-modifiers; trigger-keys = <QMARK>; bindings = <&kp ENTER &kp DEAD3>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_enter_excl_shift {strict-modifiers; trigger-keys = <EXCL>; bindings = <&kp ENTER &kp DEAD3>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
 };
