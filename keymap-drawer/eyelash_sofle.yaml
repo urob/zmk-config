@@ -326,23 +326,17 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
 combos:
-- p: [14, 15]
+- p: [40, 41]
   k: '&ak_q'
   l: [promethium]
-- p: [40, 41]
+- p: [14, 15]
   k: '&ak_z'
   l: [promethium]
-- p: [16, 17]
-  k: ''''
-  l: [promethium, qwerty, qwerty]
 - p: [15, 16]
   k: (
   l: [promethium, qwerty, qwerty]
 - p: [23, 22]
   k: )
-  l: [promethium, qwerty, qwerty]
-- p: [29, 30]
-  k: '"'
   l: [promethium, qwerty, qwerty]
 - p: [28, 29]
   k: {t: '[', s: '['}

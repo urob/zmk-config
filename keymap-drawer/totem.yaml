@@ -1,7 +1,7 @@
 layout: {zmk_keyboard: totem}
 layers:
   base:
-  - '&ak_v'
+  - '&ak_f'
   - '&ak_p'
   - '&ak_g'
   - '&ak_m'
@@ -22,7 +22,7 @@ layers:
   - {t: '&ak_i', h: RCTRL}
   - {t: '&ak_c', h: RSHFT}
   - TAB
-  - '&ak_f'
+  - '&ak_v'
   - '&ak_w'
   - '&ak_d'
   - '&ak_l'
@@ -274,23 +274,17 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
 combos:
-- p: [0, 1]
+- p: [21, 22]
   k: '&ak_q'
   l: [base]
-- p: [21, 22]
+- p: [0, 1]
   k: '&ak_z'
   l: [base]
-- p: [2, 3]
-  k: ''''
-  l: [base, nav, symbols]
 - p: [1, 2]
   k: (
   l: [base, nav, symbols]
 - p: [8, 7]
   k: )
-  l: [base, nav, symbols]
-- p: [12, 13]
-  k: '"'
   l: [base, nav, symbols]
 - p: [11, 12]
   k: {t: '[', s: '['}
