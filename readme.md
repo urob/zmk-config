@@ -26,10 +26,7 @@ be made for the sake of ergonomics.
 
 I use urob's [adaptive-key](https://github.com/urob/adaptive-key) quite
 extensively in combination with dead keys (F21, F22, F23, F24) to produce some
-tweaked logic. It works reasonably well. The only problem currently is that
-pressing and holding a key and then tapping a dead key will produce an endless
-stream of keystrokes until tapping another key. I haven't found a way to fix
-this yet.
+tweaked logic.
 
 ## Special keys
 
