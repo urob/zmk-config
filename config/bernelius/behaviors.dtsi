@@ -62,6 +62,24 @@ td_dead_comma: tap_dance_dead_comma_caps {
     bindings = <&kp DEAD2>, <&caps_word>, <&kp LESS_THAN>;
 };
 
+hmr_enter: hmr_enter {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&ak_enter>;
+    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+};
+
+hmr_rbkt: hmr_rbkt {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&rbkt>;
+    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMBS>;
+};
+
+hml_lbkt: hml_lbkt {
+    MY_HRM_CONFIG;
+    bindings = <&kp>, <&lbkt>;
+    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMBS>;
+};
+
 hml_s: hml_s {
     MY_HRM_CONFIG;
     bindings = <&kp>, <&ak_s>;

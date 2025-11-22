@@ -32,3 +32,9 @@
 #define RB4 29
 #define RB5 30
 #define RB6 31
+#define LH3 32
+#define LH2 33
+#define LH1 34
+#define RH1 35
+#define RH2 36
+#define RH3 37
