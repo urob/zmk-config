@@ -112,7 +112,7 @@ combo_right_brace {
 */
 compatible = "zmk,combos";
 combo_esc_right {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <RT2 RT3>;
     bindings = <&kp ESCAPE>;
 };

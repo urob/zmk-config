@@ -5,7 +5,7 @@ ak_excl: adaptive_key_excl_equal {
     bindings = <&excl_equal>;
     // dead keys only need to be defined once, not for each behavior.
     dead-keys = <DEAD1 DEAD2 DEAD3 DEAD4>;
-    
+
     ak_dead1_excl_equal {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp EQUAL>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_dead2_excl_equal {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp EQUAL>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
 };
@@ -14,7 +14,7 @@ ak_semi: adaptive_key_semi {
     compatible = "zmk,behavior-adaptive-key";
     #binding-cells = <0>;
     bindings = <&kp DEAD1>;
-    
+
     ak_semi_dead1_semi {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp SEMI>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_semi_dead2_caps_word {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&caps_word>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
 };
@@ -28,6 +28,16 @@ ak_repeat: adaptive_key_repeat {
     ak_repeat_c_repeat {strict-modifiers; trigger-keys = <C>; bindings = <&kp C &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_repeat_s_repeat {strict-modifiers; trigger-keys = <S>; bindings = <&kp S &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_repeat_f_repeat {strict-modifiers; trigger-keys = <F>; bindings = <&kp F &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_repeat_bspc_repeat {strict-modifiers; trigger-keys = <BACKSPACE>; bindings = <&kp BACKSPACE>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+};
+
+ak_minus: adaptive_key_minus {
+    compatible = "zmk,behavior-adaptive-key";
+    #binding-cells = <0>;
+    bindings = <&minus_plus>;
+
+    ak_minus_dead1_plus {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp PLUS>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
+    ak_minus_dead2_plus {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp PLUS>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
 };
 
 ak_comma: adaptive_key_comma {

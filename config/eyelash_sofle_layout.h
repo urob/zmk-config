@@ -41,3 +41,15 @@
 #define RB4 49
 #define RB5 50
 #define RB6 51
+
+#define LH5 52
+#define LH4 53
+#define LH3 54
+#define LH2 55
+#define LH1 56
+
+#define RH1 59
+#define RH2 60
+#define RH3 61
+#define RH4 62
+#define RH5 63
