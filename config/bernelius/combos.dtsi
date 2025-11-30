@@ -35,14 +35,14 @@ combo_single_apos {
 
 compatible = "zmk,combos";
 combo_left_paren {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <LT4 LT3>;
     bindings = <&kp LEFT_PARENTHESIS>;
     layers = <PRO NAV SYM>;
 };
 compatible = "zmk,combos";
 combo_right_paren {
-    timeout-ms =<COMBO_TIMEOUT>;
+    timeout-ms =<COMBO_TIMEOUT_FAST>;
     key-positions = <RT4 RT3>;
     bindings = <&kp RIGHT_PARENTHESIS>;
     layers = <PRO NAV SYM>;
@@ -51,7 +51,7 @@ combo_right_paren {
 /*
 compatible = "zmk,combos";
 combo_single_dbl_quotes {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <LM3 LM2>;
     bindings = <&kp DOUBLE_QUOTES>;
     layers = <PRO NAV SYM>;
@@ -60,14 +60,14 @@ combo_single_dbl_quotes {
 
 compatible = "zmk,combos";
 combo_left_bracket {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <LM4 LM3>;
     bindings = <&hml_lbkt LC(LALT) 0>;
     layers = <PRO NAV SYM>;
 };
 compatible = "zmk,combos";
 combo_right_bracket {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <RM4 RM3>;
     bindings = <&hmr_rbkt RC(RALT) 0>;
     layers = <PRO NAV SYM>;
@@ -76,14 +76,14 @@ combo_right_bracket {
 /*
 compatible = "zmk,combos";
 combo_less_than {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <LB3 LB2>;
     bindings = <&kp LESS_THAN>;
     layers = <PRO NAV SYM>;
 };
 compatible = "zmk,combos";
 combo_greater_than {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <RB3 RB2>;
     bindings = <&kp GREATER_THAN>;
     layers = <PRO NAV SYM>;
@@ -92,14 +92,14 @@ combo_greater_than {
 
 compatible = "zmk,combos";
 combo_left_brace {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <LB4 LB3>;
     bindings = <&kp LEFT_BRACE>;
     layers = <PRO NAV SYM>;
 };
 compatible = "zmk,combos";
 combo_right_brace {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <RB4 RB3>;
     bindings = <&kp RIGHT_BRACE>;
     layers = <PRO NAV SYM>;
@@ -116,18 +116,21 @@ combo_esc_right {
     key-positions = <RT2 RT3>;
     bindings = <&kp ESCAPE>;
 };
+
+/*
 compatible = "zmk,combos";
 combo_enter {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <RM2 RM3>;
     bindings = <&hmr_enter RA(RGUI) 0>;
 };
+*/
 
 compatible = "zmk,combos";
 combo_enter_sym_layer_doubler {
-    timeout-ms = <COMBO_TIMEOUT>;
+    timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <RH1 RB3>;
-    bindings = <&kp BACKSPACE>;
+    bindings = <&kp ENTER>;
     layers = <PRO>;
 };
 
