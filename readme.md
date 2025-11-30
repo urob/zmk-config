@@ -60,13 +60,9 @@ Left thumb 3 is a key-repeat for the pinky alphas, except V.
   often in English. However, it leaves us with another problem with ssr (ex:
   classroom, crossroads) and ccr (ex: accrue, accredit), which now require two
   presses of the left thumb on two different keys.
-- This is solved by sending a special dead key after the key-repeat, which the s
-  and c keys can interpret and produce r instead.
-  - s, key-repeat, s -> ssr
-  - s, key-repeat, c -> ssr (yes, a third problem emerges)
-  - Because of the above I have opted to disable the behavior for c, so I try to
-    think of synonyms for accrue and accredit whenever I need to type them.
-
+- This is solved by sending a special dead key after the key-repeat, which can 
+  be consumed by another key repeat, producing r. 
+  Thus, s repeat repeat produces ssr, and c repeat repeat produces ccr.
 - The key also cancels caps_word when not used as a repeat key.
 
 ![keymap](keymap-drawer/totem.svg)

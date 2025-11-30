@@ -33,6 +33,11 @@ repeat_shift: repeat_alpha_or_oneshot_shift {
 };
 
 
+lt_sl: layer_tap_sticky_layer {
+    MY_LT_CONFIG;
+    bindings = <&mo>, <&sl>;
+};
+
 dead_colon: dead_colon {
     compatible = "zmk,behavior-mod-morph";
     #binding-cells = <0>;

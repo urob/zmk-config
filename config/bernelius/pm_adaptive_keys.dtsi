@@ -28,6 +28,7 @@ ak_repeat: adaptive_key_repeat {
     ak_repeat_c_repeat {strict-modifiers; trigger-keys = <C>; bindings = <&kp C &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_repeat_s_repeat {strict-modifiers; trigger-keys = <S>; bindings = <&kp S &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_repeat_f_repeat {strict-modifiers; trigger-keys = <F>; bindings = <&kp F &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_repeat_r_instead {strict-modifiers; trigger-keys = <DEAD4>; bindings = <&kp R>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_repeat_bspc_repeat {strict-modifiers; trigger-keys = <BACKSPACE>; bindings = <&kp BACKSPACE>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
 };
 
@@ -135,7 +136,6 @@ ak_s: adaptive_key_s {
     ak_s_dead1_caps {strict-modifiers; trigger-keys = <DEAD1>; bindings = <&kp LS(S)>; max-prior-idle-ms = <DEAD1_CAPS_PRIOR_IDLE>; };
     ak_s_dead2_caps {strict-modifiers; trigger-keys = <DEAD2>; bindings = <&kp LS(S)>; max-prior-idle-ms = <DEAD2_CAPS_PRIOR_IDLE>; };
     ak_s_dead3_caps {strict-modifiers; trigger-keys = <DEAD3>; bindings = <&kp LS(S)>; max-prior-idle-ms = <DEAD3_CAPS_PRIOR_IDLE>; };
-    ak_s_dead4_r {strict-modifiers; trigger-keys = <DEAD4>; bindings = <&kp R>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
 };
 
 ak_n: adaptive_key_n {
