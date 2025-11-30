@@ -36,7 +36,7 @@ layers:
   - '&ak_repeat'
   - '&ak_r'
   - {t: _, h: mouse}
-  - {t: TAB, h: symbols}
+  - {t: symbols, h: symbols}
   - '&ak_space'
   - {t: DELETE, h: nav}
   nav:

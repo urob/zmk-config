@@ -281,8 +281,9 @@ path.combo {
 </a></g>
 <g transform="translate(536, 270) rotate(-30.0)" class="key keypos-35">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">TAB</text>
 <a href="#symbols">
+<text x="0" y="0" class="key tap layer-activator">symbols</text>
+</a><a href="#symbols">
 <text x="0" y="24" class="key hold layer-activator">symbols</text>
 </a></g>
 <g transform="translate(594, 245) rotate(-15.0)" class="key keypos-36">
