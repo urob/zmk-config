@@ -2,13 +2,12 @@
 
 This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/)
 configuration. It consists of a 34-keys base layout that is re-used for various
-boards, including my Corneish Zen and my Planck.
+boards of different sizes, including a Corneish Zen, Glove80 and Planck.
 
-My configuration currently builds against `v0.3` of upstream ZMK.
-Custom functionality is added through various
-[ZMK modules](https://github.com/search?q=topic%3Azmk-module+fork%3Atrue+owner%3Aurob+&type=repositories).
-The state of the entire firmware is pinned in my `west`
-[manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
+The configuration currently builds against `v0.3` of upstream ZMK, extended by various [ZMK
+modules](https://github.com/search?q=topic%3Azmk-module+fork%3Atrue+owner%3Aurob+&type=repositories).
+All build dependencies are pinned in this [`west`
+manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
 
 ## Highlights
 
@@ -17,10 +16,9 @@ The state of the entire firmware is pinned in my `west`
 - Auto-toggle off numbers and mouse layers
 - Magic thumb quadrupling as Repeat/Sticky-shift/Capsword/Shift
 - Leader key sequences for Unicode input and system commands
-- Arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of
-  document</kbd> on long-press
-- Shifted actions that make sense: <kbd>, ↦ ;</kbd>, <kbd>. ↦ :</kbd> and <kbd>?
-  ↦ !</kbd>
+- Arrow-cluster doubles as <kbd>home</kbd>, <kbd>end</kbd>, <kbd>begin/end of document</kbd> on
+  long-press
+- Shifted actions that make sense: <kbd>, ↦ ;</kbd>, <kbd>. ↦ :</kbd> and <kbd>? ↦ !</kbd>
 - Simpler Devicetree syntax using helper macros from
   [zmk-helpers](https://github.com/urob/zmk-helpers)
 - Fully automated, nix-powered [local build environment](#local-build-environment)
@@ -32,38 +30,36 @@ for a breakdown by layer - powered by
 
 ## Timeless homerow mods
 
-[Homerow mods](https://precondition.github.io/home-row-mods) (aka "HRMs") can be
-a game changer -- at least in theory. In practice, they require some finicky
-timing: In its most naive implementation, in order to produce a "mod", they must
-be held _longer_ than `tapping-term-ms`. In order to produce a "tap", they must
-be held _less_ than `tapping-term-ms`. This requires very consistent typing
-speeds that, alas, I do not possess. Hence my quest for a "timer-less" HRM
-setup.
+[Homerow mods](https://precondition.github.io/home-row-mods) (aka "HRMs") can be a game changer --
+at least in theory. In practice, they require some finicky timing: In its most naive implementation,
+in order to produce a "mod", they must be held _longer_ than `tapping-term-ms`. In order to produce
+a "tap", they must be held _less_ than `tapping-term-ms`. This requires very consistent typing
+speeds that, alas, I do not possess. Hence my quest for a "timer-less" HRM setup.
 
-After months of tweaking, I eventually ended up with a HRM setup that is
-essentially timer-less, resulting in virtually no misfires.[^1] Yet it provides
-a fluent typing experience with mostly no delays.
+After months of tweaking, I eventually ended up with an HRM setup that is essentially timer-less,
+resulting in virtually no misfires.[^1] Yet it provides a fluent typing experience with mostly no
+delays.
 
-Let's suppose for a moment we set `tapping-term-ms` to something ridiculously
-large, say 5 seconds. This makes the configuration timer-less of sorts. But it
-has two problems: (1) To activate a mod we will have to hold the HRM keys for
-what feels like eternity. (2) During regular typing, there are delays between
-the press of a key and the time it appears on the screen.[^2] Enter two of my
-favorite ZMK features:
+One way to make HRMs effectively timer-less is to set `tapping-term-ms` to an extremely large value,
+say 5 seconds. This removes the need for quick timing decisions, but it introduces two issues: (1)
+To trigger a mod, you'd need to hold the HRM keys for what feels like an eternity. (2) During normal
+typing, there's a noticeable delay between pressing a key and seeing it appear on the screen.[^2] To
+address these, I use positive and negative exceptions that short-circuit the tapping term in most
+scenarios.
 
-- To address the first problem, I use ZMK's `balanced` flavor, which produces a
-  "hold" if another key is both pressed and released within the tapping-term.
-  Because that is exactly what I normally do with HRMs, there is virtually never
-  a need to wait past my long tapping term (see below for two exceptions).
+- Specifically, to address the activation delay, I use ZMK's `balanced` flavor, which produces a
+  "hold" if another key is both pressed and released within the tapping-term. Because that's exactly
+  what I normally do with HRMs, there's virtually never a need to wait past my long tapping term (see
+  below for two exceptions).
 - To address the typing delay, I use ZMK's `require-prior-idle-ms` property,
-  which immediately resolves a HRM as "tap" when it is pressed shortly _after_
+  which immediately resolves an HRM as a "tap" when it's pressed shortly _after_
   another key has been tapped. This all but completely eliminates the delay.
 
 This is great but there are still a few rough edges:
 
 - When rolling keys, I sometimes unintentionally end up with "nested" key
-  sequences: `key-1` down, `key-2` down and up, `key-1` up. Because of the
-  `balanced` flavor, this would falsely register `key-1` as a mod. As a remedy,
+  sequences: `key1` down, `key2` down and up, `key1` up. Because of the
+  `balanced` flavor, this would falsely register `key1` as a mod. As a remedy,
   I use ZMK's "positional hold-tap" feature to force HRMs to always resolve as
   "tap" when the _next_ key is on the same side of the keyboard. Problem solved.
 - ... or at least almost. By default, positional-hold-tap performs the
@@ -414,9 +410,7 @@ remaining issues:
     insensitive to the precise timings. One may say that there is still the
     `require-prior-idle` timeout. However, with both a large tapping-term and
     positional-hold-taps, the behavior is _not_ actually sensitive to the
-    `require-prior-idle` timing: All it does is reduce the delay in typing;
-    i.e., variations in typing speed won't affect _what_ is being typed but
-    merely _how fast_ it appears on the screen.
+    `require-prior-idle` timing: All it does is reduce the delay in typing.
 
 [^2]:
     The delay is determined by how quickly a key is released and is not directly
@@ -427,7 +421,7 @@ remaining issues:
     E.g, if your WPM is 70 or larger, then the default of 150ms (=10500/70)
     should work well. The rule of thumb is based on an average character length
     of 4.7 for English words. Taking into account 1 extra tap for `space`, this
-    yields a minimum `require-prior-idle-ms` of (60 _ 1000) / (5.7 _ x) ≈ 10500
+    yields a minimum `require-prior-idle-ms` of (60 \* 1000) / (5.7 \* x) ≈ 10500
     / x milliseconds. The approximation errs on the safe side, as in practice
     home row taps tend to be faster than average.
 
