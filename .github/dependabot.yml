@@ -1,6 +1,12 @@
 version: 2
 updates:
-  - directory: /
-    package-ecosystem: github-actions
+  - package-ecosystem: "github-actions"
+    directory: ".github/workflows"
     schedule:
-      interval: weekly
+      interval: "monthly"
+    cooldown:
+      default-days: 14
+    groups:
+      actions:
+        patterns:
+          - "*"
