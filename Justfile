@@ -91,7 +91,7 @@ test $testpath *FLAGS:
     if [[ "{{ FLAGS }}" != *"--no-build"* ]]; then
         echo "Running $testcase..."
         rm -rf "$build_dir"
-        west build -s zmk/app -d "$build_dir" -b native_posix_64 -- \
+        west build -s zmk/app -d "$build_dir" -b native_sim/native/64 -- \
             -DCONFIG_ASSERT=y -DZMK_CONFIG="$config_dir"
     fi
 
