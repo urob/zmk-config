@@ -30,6 +30,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
+      revision: 040238a97dfb55ad84867c007944809425f1befe # main-2025/12/17
       import: app/west.yml
 
     # ZMK modules
@@ -37,6 +38,7 @@ manifest:
       path: modules/zmk/adaptive-key
     - name: zmk-auto-layer
       path: modules/zmk/auto-layer
+      revision: next # Upgrades for zephyr-4.1.
     - name: zmk-helpers
       path: modules/zmk/helpers
     - name: zmk-leader-key
@@ -50,7 +52,7 @@ manifest:
     # the default (needed for less common hardware).
     - name: zephyr
       remote: zmkfirmware
-      revision: v3.5.0+zmk-fixes
+      revision: v4.1.0+zmk-fixes
       clone-depth: 1
       import:
         name-allowlist:
@@ -58,7 +60,7 @@ manifest:
           - hal_nordic
           - hal_rpi_pico
           - hal_stm32
-          - lvgl
+          - mbedtls
           - tinycrypt
 
   self:
