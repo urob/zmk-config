@@ -9,6 +9,7 @@ combo_q {
   bindings = <&ak_q>;
   layers = <PRO>;
 };
+
 compatible = "zmk,combos";
 combo_z {
     timeout-ms = <COMBO_TIMEOUT>;
@@ -16,6 +17,8 @@ combo_z {
     bindings = <&ak_z>;
     layers = <PRO>;
 };
+
+
 
 
 /* 
@@ -97,6 +100,7 @@ combo_left_brace {
     bindings = <&kp LEFT_BRACE>;
     layers = <PRO NAV SYM>;
 };
+
 compatible = "zmk,combos";
 combo_right_brace {
     timeout-ms = <COMBO_TIMEOUT_FAST>;
@@ -110,34 +114,26 @@ combo_right_brace {
   GLOBAL COMBO
   ESCAPE, BACKSPACE, ENTER
 */
+
 compatible = "zmk,combos";
-combo_esc_right {
-    timeout-ms = <COMBO_TIMEOUT_FAST>;
-    key-positions = <RT2 RT3>;
+combo_esc {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <LT2 LT3>;
     bindings = <&kp ESCAPE>;
 };
 
-/*
 compatible = "zmk,combos";
 combo_enter {
     timeout-ms = <COMBO_TIMEOUT_FAST>;
-    key-positions = <RM2 RM3>;
-    bindings = <&hmr_enter RA(RGUI) 0>;
-};
-*/
-
-compatible = "zmk,combos";
-combo_enter_sym_layer_doubler {
-    timeout-ms = <COMBO_TIMEOUT_FAST>;
-    key-positions = <RH1 RB3>;
+    key-positions = <RT2 RT3>;
     bindings = <&kp ENTER>;
-    layers = <PRO>;
 };
 
 /*
   HIDDEN COMBOS
   RESET BT
 */
+
 compatible = "zmk,combos";
 combo_bt_reset {
     timeout-ms = <COMBO_TIMEOUT>;
