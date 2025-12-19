@@ -350,11 +350,10 @@ combos:
 - p: [49, 48]
   k: '}'
   l: [promethium, qwerty, qwerty]
-- p: [21, 22]
+- p: [17, 16]
   k: ESCAPE
-- p: [59, 48]
+- p: [21, 22]
   k: ENTER
-  l: [promethium]
 - p: [30, 29, 28]
   k: BT CLR ALL
   l: [qwerty]

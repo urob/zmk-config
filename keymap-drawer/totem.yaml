@@ -6,11 +6,11 @@ layers:
   - '&ak_g'
   - '&ak_m'
   - '&ak_x'
-  - '&ak_excl'
+  - BSPC
   - '&ak_semi'
   - '&ak_comma'
   - '&ak_dot'
-  - BSPC
+  - '&ak_excl'
   - {t: '&ak_s', h: LGUI}
   - {t: '&ak_n', h: LALT}
   - {t: '&ak_t', h: LSHFT}
@@ -67,7 +67,7 @@ layers:
   - '3'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - BACKSPACE
+  - {t: ▽, type: trans}
   - DOWN
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -84,7 +84,7 @@ layers:
   - '@'
   - '&'
   - '%'
-  - '='
+  - {t: ▽, type: trans}
   - ;
   - ','
   - ''''
@@ -106,7 +106,7 @@ layers:
   - '-'
   - '>'
   - +
-  - BACKSPACE
+  - {t: ▽, type: trans}
   - ENTER
   - '`'
   - '?'
@@ -298,11 +298,10 @@ combos:
 - p: [29, 28]
   k: '}'
   l: [base, nav, symbols]
-- p: [6, 7]
+- p: [3, 2]
   k: ESCAPE
-- p: [35, 28]
+- p: [6, 7]
   k: ENTER
-  l: [base]
 - p: [13, 12, 11]
   k: BT CLR ALL
   l: [function/bt]
