@@ -15,15 +15,15 @@
 #include "zmk-helpers/unicode-chars/german.dtsi"
 
 #define DEF 0
-#define DEFALT 1
+#define DFA 1 // DEF Alt
 #define NAV 2
 #define FN 3
 #define NUM 4
 #define SYS 5
-#define MOUSEL 6
-#define MOUSER 7
-#define MOUSELALT 8
-#define MOUSERALT 9
+#define MSL 6 // Mouse Left
+#define MSR 7 // Mouse Right
+#define MLA 8 // Mouse Left Alt
+#define MRA 9 // Mouse Right Alt
 
 #define XXX &none
 #define ___ &trans
@@ -194,17 +194,17 @@ ZMK_TAP_DANCE(num_dance, bindings = <&num_word NUM>, <&sl NUM>;
 
 // Smart-mouse for left layer, requires tri-state module.
 ZMK_TRI_STATE(
-    smart_mouse_left, bindings = <&tog MOUSEL>, <&none>, <&tog MOUSEL>;
+    smart_mouse_left, bindings = <&tog MSL>, <&none>, <&tog MSL>;
     ignored-key-positions =
       <LT4 LT3 LT2 LT1 LM4 LM3 LM2 LM1 LM0 LB3 LB2 LB1 LH1 LH0>;
-    ignored-layers = <MOUSEL NAV FN>;)
+    ignored-layers = <MSL NAV FN>;)
 
 // Smart-mouse for left layer, requires tri-state module.
 ZMK_TRI_STATE(
-    smart_mouse_right, bindings = <&tog MOUSER>, <&none>, <&tog MOUSER>;
+    smart_mouse_right, bindings = <&tog MSR>, <&none>, <&tog MSR>;
     ignored-key-positions =
       <RT4 RT2 RT1 RM4 RM3 RM2 RM1 RM0 LB3 LB2 LB1 RH1 RH0>;
-    ignored-layers = <MOUSER NAV FN>;)
+    ignored-layers = <MSR NAV FN>;)
 
 /* ======================== */
 /* === Custom behaviors === */
@@ -292,8 +292,8 @@ ZMK_MACRO(dot_spc, bindings = <&kp DOT &kp SPACE &sk LSHFT>; wait-ms = <0>;
 ZMK_MACRO(dev_pers, bindings = <&bt BT_SEL 1>, <&to DEF>; wait-ms = <0>;
           tap-ms = <5>;)
 
-// Macro to switch to bluetooth device 3 and automatically switch to DEFALT layer
-ZMK_MACRO(dev_work, bindings = <&bt BT_SEL 3>, <&to DEFALT>; wait-ms = <0>;
+// Macro to switch to bluetooth device 3 and automatically switch to DFA layer
+ZMK_MACRO(dev_work, bindings = <&bt BT_SEL 3>, <&to DFA>; wait-ms = <0>;
           tap-ms = <5>;)
 
 // Tap: backspace | Lshft + tap: delete | Rshft + tap: shift-delete.

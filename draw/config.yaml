@@ -143,8 +143,8 @@ parse_config:
     "&magic_shift_tap": $$mdi:apple-keyboard-shift$$
     "&num_word 0": $$mdi:dialpad$$
 
-    "&to MOUSEL": $$mdi:mouse$$
-    "&to MOUSER": $$mdi:mouse$$
+    "&to MSL": $$mdi:mouse$$
+    "&to MSR": $$mdi:mouse$$
     "&to 0": ""
 
     "&eqgt": =>

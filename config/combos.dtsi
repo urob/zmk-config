@@ -21,63 +21,63 @@
 /* === Horizontal combos - left hand === */
 /* ===================================== */
 
-ZMK_COMBO(defalt, &to DEFALT,  LB4 RB4,     DEF NAV NUM MOUSER, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(defaltc, &to DEF,  LB4 RB4,     DEFALT, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(defalt,     &to DFA,          LB4 RB4, DEF NAV NUM         MSR,         COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(defaltc,    &to DEF,          LB4 RB4,             DFA,                 COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 
 /* === Left top row === */
-ZMK_COMBO(sshfl, &magic_shift_tap, LT4 LT0, DEF NAV NUM DEFALT, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(prcnt, &kp PRCNT,    LT2 LT0,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(dllr,  &kp DLLR,     LT2 LT1,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(hash,  &kp HASH,     LT3 LT1,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(at,    &kp AT,       LT3 LT2,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(grave, &kp GRAVE,    LT4 LT3,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(sshfl,      &magic_shift_tap, LT4 LT0, DEF NAV NUM DFA,                 COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(prcnt,      &kp PRCNT,        LT2 LT0, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(dllr,       &kp DLLR,         LT2 LT1, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(hash,       &kp HASH,         LT3 LT1, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(at,         &kp AT,           LT3 LT2, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(grave,      &kp GRAVE,        LT4 LT3, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 /* === Left middle row === */
-ZMK_COMBO(mousel, &to MOUSEL,  LM4 LM0,     DEF NAV NUM MOUSER, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(mouselc,&to DEF,     LM4 LM0,     MOUSEL,      COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(mouselalt, &to MOUSELALT,  LM4 LM0,     DEFALT MOUSERALT, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(mouselcalt,&to DEFALT,     LM4 LM0,     MOUSELALT,      COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(tab,   &hml LS(LALT)TAB, LM4 LM3, DEF NAV NUM DEFALT, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(plus,  &kp PLUS,     LM2 LM1,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(minus, &kp MINUS,    LM3 LM2,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(equal, &kp EQUAL,    LM3 LM1,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(mousel,     &to MSL,          LM4 LM0, DEF NAV NUM         MSR,         COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(mouselc,    &to DEF,          LM4 LM0,                 MSL,             COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(mouselalt,  &to MLA,          LM4 LM0,             DFA             MRA, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(mouselcalt, &to DFA,          LM4 LM0,                         MLA,     COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(tab,        &hml LS(LALT)TAB, LM4 LM3, DEF NAV NUM DFA,                 COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(plus,       &kp PLUS,         LM2 LM1, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(minus,      &kp MINUS,        LM3 LM2, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(equal,      &kp EQUAL,        LM3 LM1, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 /* === Left bottom row === */
-ZMK_COMBO(snuml, &num_word NUM 0,LB4 LB0,   DEF NAV NUM MOUSEL MOUSER DEFALT, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(cut,   &kp LC(X),    LB3 LB1,     DEF NAV NUM MOUSEL MOUSER DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(copy,  &kp LC(INS),  LB3 LB2,     DEF NAV NUM MOUSEL MOUSER DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(paste, &kp LS(INS),  LB2 LB1,     DEF NAV NUM MOUSEL MOUSER DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(snuml,      &num_word NUM 0,  LB4 LB0, DEF NAV NUM DFA MSL MSR,         COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(cut,        &kp LC(X),        LB3 LB1, DEF NAV NUM DFA MSL MSR,         COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(copy,       &kp LC(INS),      LB3 LB2, DEF NAV NUM DFA MSL MSR,         COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(paste,      &kp LS(INS),      LB2 LB1, DEF NAV NUM DFA MSL MSR,         COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 /* ====================================== */
 /* === Horizontal combos - right hand === */
 /* ====================================== */
 
 /* === Right top row === */
-ZMK_COMBO(sshfr, &magic_shift_tap, RT4 RT0, DEF NAV NUM DEFALT, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(pipe,  &kp PIPE,     RT4 RT3,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(under, &kp UNDER,    RT3 RT2,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(star,  &kp STAR,     RT3 RT1,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(amps,  &kp AMPS,     RT2 RT1,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(caret, &kp CARET,    RT2 RT0,     DEF NAV NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(sshfr,      &magic_shift_tap, RT4 RT0, DEF NAV NUM DFA,                 COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(pipe,       &kp PIPE,         RT4 RT3, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(under,      &kp UNDER,        RT3 RT2, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(star,       &kp STAR,         RT3 RT1, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(amps,       &kp AMPS,         RT2 RT1, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(caret,      &kp CARET,        RT2 RT0, DEF NAV NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 /* === Right middle row === */
-ZMK_COMBO(eqgt,  &eqgt,        RM1 RM3,     DEF     NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(pigt,  &pigt,        RM1 RM4,     DEF     NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(mouser,&to MOUSER,   RM4 RM0,     DEF NAV NUM MOUSEL, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(mouserc,&to DEF,     RM4 RM0,     MOUSER,             COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-// ZMK_COMBO(mouseralt,&to MOUSERALT, RM4 RM0, DEFALT MOUSELALT,   COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-// ZMK_COMBO(mousercalt,&to DEFALT,   RM4 RM0, MOUSERALT,          COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(fslh,  &qslash,      RM3 RM4,     DEF     NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(lpar,  &lpar_lt,     RM1 RM2,     DEF     NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LCTRL),    KEYS_L)
-ZMK_COMBO(rpar,  &rpar_gt,     RM2 RM3,     DEF     NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LALT),     KEYS_L)
-ZMK_COMBO(lt,    &kp LT,       RM1 RM2,         NAV,            COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(gt,    &kp GT,       RM2 RM3,         NAV,            COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(eqgt,       &eqgt,            RM1 RM3, DEF     NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(pigt,       &pigt,            RM1 RM4, DEF     NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(mouser,     &to MSR,          RM4 RM0, DEF NAV NUM     MSL,             COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(mouserc,    &to DEF,          RM4 RM0,                     MSR,         COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+// ZMK_COMBO(mouseralt,&to MRA,  RM4 RM0, DFA MLA,   COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+// ZMK_COMBO(mousercalt,&to DFA, RM4 RM0, MRA,       COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(fslh,       &qslash,          RM3 RM4, DEF     NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(lpar,       &lpar_lt,         RM1 RM2, DEF     NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LCTRL), KEYS_L)
+ZMK_COMBO(rpar,       &rpar_gt,         RM2 RM3, DEF     NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LALT),  KEYS_L)
+ZMK_COMBO(lt,         &kp LT,           RM1 RM2,     NAV,                         COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(gt,         &kp GT,           RM2 RM3,     NAV,                         COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 /* === Right bottom row === */
 // TODO not working when mouse layer active
-ZMK_COMBO(snumr, &num_word NUM 0,RB4 RB0,   DEF NAV NUM MOUSEL MOUSER DEFALT, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(mngt,  &mngt,        RB1 RB3,     DEF     NUM DEFALT,     COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(lbkt,  &kp LBKT,     RB1 RB2,     DEF     NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(rbkt,  &kp RBKT,     RB2 RB3,     DEF     NUM DEFALT, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(lbrc,  &kp LBRC,     RB1 RB2,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(rbrc,  &kp RBRC,     RB2 RB3,         NAV    , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(snumr,      &num_word NUM 0,  RB4 RB0, DEF NAV NUM DFA MSL MSR,         COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(mngt,       &mngt,            RB1 RB3, DEF     NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(lbkt,       &kp LBKT,         RB1 RB2, DEF     NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(rbkt,       &kp RBKT,         RB2 RB3, DEF     NUM DFA,                 COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(lbrc,       &kp LBRC,         RB1 RB2,     NAV,                         COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(rbrc,       &kp RBRC,         RB2 RB3,     NAV,                         COMBO_TERM_FAST, COMBO_IDLE_FAST)
