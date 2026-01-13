@@ -1,67 +1,94 @@
 // Settings tuned for 3840 x 2160 display resolution
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 600 // 600
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 20  // 10
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1000  // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // 10
+
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 800     // higher base cursor speed [600]
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 16      // slightly faster scroll steps [10]
 
 #include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
+// --- Mouse move ---
+// &mmv is ZMK's two-axis mouse-move behavior used by MOVE_* bindings.
+// These settings control acceleration curve, ramp-up time, and repeat rate.
 // Based on @caksoylar's config, defaults in comments
 &mmv {
-  acceleration-exponent = <1>;          // 1
-  time-to-max-speed-ms = <80>;         // 300
-  trigger-period-ms = <16>;
-  // time-to-max-speed-ms = <500>;         // 300
-  delay-ms = <0>;                       // 0
+  acceleration-exponent = <1>;          // keep acceleration curve enabled [1]
+  time-to-max-speed-ms = <80>;          // reach max speed quickly (snappy) [300]
+  trigger-period-ms = <16>;             // emit movement every 16 ms (~60 Hz)
+  // time-to-max-speed-ms = <500>;      // alternate slower ramp experiment (commented out)
+  delay-ms = <0>;                       // no delay before movement starts [0]
 };
 
+// --- Mouse scroll ---
+// &msc is ZMK's two-axis mouse-scroll behavior used by SCRL_* bindings.
+// Scroll is kept linear (no acceleration) with a fast ramp to max speed.
 &msc {
-  acceleration-exponent = <0>;          // 0
-  time-to-max-speed-ms = <40>;         // 300
-  trigger-period-ms = <16>;
-  // time-to-max-speed-ms = <300>;         // 300
-  delay-ms = <0>;                       // 0
+  acceleration-exponent = <0>;           // linear scrolling (no acceleration) [0]
+  time-to-max-speed-ms = <40>;           // very fast ramp to max scroll speed [300]
+  trigger-period-ms = <16>;              // emit scroll every 16 ms (~60 Hz)
+  // time-to-max-speed-ms = <300>;       // 300
+  delay-ms = <0>;                        // no delay before scrolling starts [0]
 };
 
+// --- Input processing for mouse move ---
+// Applies different XY scaling depending on the active layer.
+// - NAV layer: "warp" mode (faster cursor movement)
+// - FN  layer: "precision" mode (slower, more controlled movement)
 &mmv_input_listener {
   warp {
-    layers = <NAV>;
-    input-processors = <&zip_xy_scaler 3 1>;
+    layers = <NAV>;                             // active on NAV layer
+    input-processors = <&zip_xy_scaler 3 1>;    // scale X faster than Y
   };
   precision {
-    layers = <FN>;
-    // input-processors = <&zip_xy_scaler 1 2>;
-    input-processors = <&zip_xy_scaler 1 4>;
+    layers = <FN>;                              // active on FN layer
+    // input-processors = <&zip_xy_scaler 1 2>; // previous, less precise option
+    input-processors = <&zip_xy_scaler 1 4>;    // stronger precision scaling
   };
 };
 
+// --- Custom input processor: scroll scaler ---
+// Scales vertical and horizontal scroll wheel events independently.
+// Fractional remainders are preserved for smoother scrolling.
 / {
   zip_scroll_scaler: zip_scroll_scaler {
     compatible = "zmk,input-processor-scaler";
-    #input-processor-cells = <2>;
-    type = <INPUT_EV_REL>;
-    codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
-    track-remainders;
+    #input-processor-cells = <2>;         // takes two scale parameters (X, Y)
+    type = <INPUT_EV_REL>;                // relative input events
+    codes = <INPUT_REL_WHEEL              // vertical scroll
+             INPUT_REL_HWHEEL>;           // horizontal scroll
+    track-remainders;                     // preserve fractional deltas
   };
 };
 
+
+// --- Input processing for mouse scroll ---
+// Layer-based scroll scaling similar to mouse movement.
+// - NAV layer: faster "warp" scrolling
+// - FN  layer: slower, more precise scrolling
 &msc_input_listener {
   warp {
-    layers = <NAV>;
-    input-processors = <&zip_scroll_scaler 2 1>;
+    layers = <NAV>;                              // active on NAV layer
+    input-processors = <&zip_scroll_scaler 2 1>; // faster primary scroll axis
   };
   precision {
-    layers = <FN>;
-    input-processors = <&zip_scroll_scaler 1 2>;
+    layers = <FN>;                               // active on FN layer
+    input-processors = <&zip_scroll_scaler 1 2>; // slower / controlled scroll
   };
 };
 
+
+// --- Keymap convenience macros ---
+// Short aliases for MOVE_* and SCRL_* bindings to keep keymaps readable.
+
+// Mouse movement
 #define U_MS_U &mmv MOVE_UP
 #define U_MS_D &mmv MOVE_DOWN
 #define U_MS_L &mmv MOVE_LEFT
 #define U_MS_R &mmv MOVE_RIGHT
+
+// Mouse scrolling
 #define U_WH_U &msc SCRL_UP
 #define U_WH_D &msc SCRL_DOWN
 #define U_WH_L &msc SCRL_LEFT

@@ -15,12 +15,15 @@
 #include "zmk-helpers/unicode-chars/german.dtsi"
 
 #define DEF 0
-#define NAV 1
-#define FN 2
-#define NUM 3
-#define SYS 4
-#define MOUSEL 5
-#define MOUSER 6
+#define DEFALT 1
+#define NAV 2
+#define FN 3
+#define NUM 4
+#define SYS 5
+#define MOUSEL 6
+#define MOUSER 7
+#define MOUSELALT 8
+#define MOUSERALT 9
 
 #define XXX &none
 #define ___ &trans
@@ -31,18 +34,33 @@
 
 #define QUICK_TAP_MS 175
 
+// A sticky key stays pressed until another key is pressed.
+// It is often used for 'sticky shift'. By using a sticky shift,
+// you don't have to hold the shift key to write a capital.
 &sk {
-  release-after-ms = <900>;
-  quick-release;
+  release-after-ms = <900>; // release after 900 ms if not used.
+  quick-release; // release immediately after it modifies a key
 };
 
-&sl { // Allow sticky mods to chord across sticky layers.
-  ignore-modifiers;
+// A sticky layer stays pressed until another key is pressed.
+// By using a sticky layer, you don't have to hold the layer key to access a layer.
+// Instead, tap the sticky layer key to activate the layer until the next keypress.
+&sl {
+  ignore-modifiers; // allow sticky mods to chord across sticky layers.
 };
 
+// A hold-tap behavior is defined using a "hold" behavior and a "tap" behavior.
+// When the key is held, then it will output the hold behavior,
+// and when it is tapped it will output the tap behavior.
 &lt {
+  // "balanced" flavor will trigger the hold behavior when the tapping-term-ms has
+  // expired or another key is pressed and released while the hold-tap is held.
   flavor = "balanced";
+
+  // if you release the key within 200 ms, it is considered a tap.
   tapping-term-ms = <200>;
+
+  // if a second tap happens within 175 ms, it is always treated as a tap (never a hold).
   quick-tap-ms = <QUICK_TAP_MS>;
 };
 
@@ -54,23 +72,57 @@
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
 #define THUMBS LH1 LH0 RH0 RH1
 
-#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
-  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
-               tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
-               require-prior-idle-ms = <150>; hold-trigger-on-release;         \
+/* Macro to define a home-row mod (HRM) with consistent,
+ * carefully tuned hold-tap behavior.
+ *
+ * NAME        - Name of the behavior
+ * HOLD        - Binding when the key is held (usually a modifier)
+ * TAP         - Binding when the key is tapped (usually a character)
+ * TRIGGER_POS - Keys that are allowed to trigger the hold
+ */
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                \
+  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>;                                \
+               /* Balanced decision strategy for HRMs */                      \
+               flavor = "balanced";                                           \
+                                                                              \
+               /* This value defines how long a key must be pressed to        \
+                * trigger the "hold" behavior.                                \
+                */                                                            \
+               tapping-term-ms = <280>;                                       \
+                                                                              \
+               /* If you press a tapped hold-tap again within quick-tap-ms    \
+                * milliseconds of the first press, it will always trigger     \
+                * the tap behavior. This is useful for keys like backspace,   \
+                * where a quick tap-then-hold can be used to hold it down to  \
+                * delete long parts of text.                                  \
+                */                                                            \
+               quick-tap-ms = <QUICK_TAP_MS>;                                 \
+                                                                              \
+               /* The key must have been idle for required ms before          \
+                * it is allowed to become a hold. This prevents               \
+                * accidental modifier activation during fast typing.          \
+                */                                                            \
+               /* require-prior-idle-ms = <150>; */                           \
+               require-prior-idle-ms = <100>;                                 \
+                                                                              \
+               /* Decide tap vs hold on key release rather than               \
+                * on key press, which makes rolls more forgiving.             \
+                */                                                            \
+               hold-trigger-on-release;                                       \
+                                                                              \
+               /* Pressing any key not listed in hold-trigger-key-positions   \
+                * before tapping-term-ms expires, it will produce a tap.      \
+                */                                                            \
                hold-trigger-key-positions = <TRIGGER_POS>;)
-
-MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
-MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
 // Hack: Make HRM combos tap-only (cf, ZMK issue #544).
 #define ZMK_COMBO_8(NAME, TAP, POS, LAYERS, COMBO_MS, IDLE_MS, HOLD, SIDE)     \
   MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
   ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
 
-/* ===================================================== */
+/* =============================== */
 /* === Combos, mouse emulation === */
-/* ===================================================== */
+/* =============================== */
 
 #include "combos.dtsi" // Must be sourced after HRM-combo hack.
 #include "mouse.dtsi"
@@ -172,6 +224,7 @@ ZMK_TRI_STATE(swapper, bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
 // used to force comma to be used when gui is pressed
 // SIMPLE_MORPH(comma_gui_morph, GUI, &comma_morph, &kp COMMA)
 
+// TODO is it needed?
 // Set up to strip other modifiers when GUI is pressed to avoid : being fired
 ZMK_MOD_MORPH(comma_gui_morph,
   /* trigger whenever LGUI or RGUI is down */
@@ -182,12 +235,15 @@ ZMK_MOD_MORPH(comma_gui_morph,
   bindings  = <&comma_morph>, <&kp DOT>;
 )
 
+// TODO remove CTR + Shift
+// Tap: , | Shift + tap: ; | CTL + Shift + tap: <
 SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
-/* SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph) */
 SIMPLE_MORPH(comma_inner_morph, CTL, &kp SEMICOLON, &kp LESS_THAN)
 
 // Tap: dot | Shift + tap: colon | Ctrl + shift + tap: >.
+/* SIMPLE_MORPH(dot_gui_morph, GUI, &dot_morph, &kp DOT) */
 
+// TODO is it needed?
 /* SIMPLE_MORPH(dot_gui_morph, GUI, &dot_morph, &kp DOT) */
 ZMK_MOD_MORPH(dot_gui_morph,
   /* trigger whenever LGUI or RGUI is down */
@@ -198,8 +254,9 @@ ZMK_MOD_MORPH(dot_gui_morph,
   bindings  = <&dot_morph>, <&kp DOT>;
 )
 
+// TODO remove CTR + Shift
+// Tap: . | Shift + tap: : | CTL + Shift + tap: >
 SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph)
-/* SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph) */
 SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
 
 // Tap: qmark | Shift + tap: excl.
@@ -208,22 +265,35 @@ SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
 // Tap: forward slash | Shift + tap: back slash
 SIMPLE_MORPH(qslash, SFT, &kp FSLH, &kp BSLH)
 
-// Tap: left/right parenthesis | Shft + tap: less-than/greater-than.
+// Tap: left parenthesis ( | Shft + tap: less-than <
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
+
+// Tap: right parenthesis ) | Shft + tap: greater-than >
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
 // Macro that types `=>`
 ZMK_BEHAVIOR(eqgt, macro, bindings = <&kp EQUAL &kp GREATER_THAN>;)
+
 // Macro that types `->`
 ZMK_BEHAVIOR(mngt, macro, bindings = <&kp MINUS &kp GREATER_THAN>;)
 
-// // Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: nav layer.
+// Macro that types `|>`
+ZMK_BEHAVIOR(pigt, macro, bindings = <&kp PIPE &kp GREATER_THAN>;)
+
 // Tap: space | Shift + tap: dot -> space -> sticky shift | Hold: leader key.
 // ZMK_HOLD_TAP(lt_spc, bindings = <&mo>, <&spc_morph>; flavor = "balanced";
 ZMK_HOLD_TAP(lt_spc, bindings = <&kp>, <&spc_morph>; flavor = "balanced";
              tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;)
 SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
 ZMK_MACRO(dot_spc, bindings = <&kp DOT &kp SPACE &sk LSHFT>; wait-ms = <0>;
+          tap-ms = <5>;)
+
+// Macro to switch to bluetooth device 1 and automatically switch to DEF layer
+ZMK_MACRO(dev_pers, bindings = <&bt BT_SEL 1>, <&to DEF>; wait-ms = <0>;
+          tap-ms = <5>;)
+
+// Macro to switch to bluetooth device 3 and automatically switch to DEFALT layer
+ZMK_MACRO(dev_work, bindings = <&bt BT_SEL 3>, <&to DEFALT>; wait-ms = <0>;
           tap-ms = <5>;)
 
 // Tap: backspace | Lshft + tap: delete | Rshft + tap: shift-delete.
@@ -271,7 +341,21 @@ ZMK_BASE_LAYER(Base,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp Z         &kp X         &kp C         &kp V         &kp B       ,   &kp N         &kp M         &comma_gui_morph  &dot_gui_morph &qexcl ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
-                                              &hml LGUI CAPS &lt FN BSPC,  &lt NAV RET   &lt_spc LGUI 0
+                                              &hml LGUI CAPS &lt FN BSPC,  &lt NAV RET   &hml LGUI SPACE
+//                                              &hml LGUI CAPS &lt FN BSPC,  &lt NAV RET   &lt_spc LGUI 0
+//                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
+)
+
+ZMK_BASE_LAYER(Basealt,
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &kp Q         &kp W         &kp E         &kp R         &kp T       ,   &kp Y         &kp U         &kp I         &kp O         &kp P,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &hml LGUI A   &hml LALT S   &hml LSHFT D  &hml LCTRL F  &kp G       ,   &kp H         &hmr LCTRL J  &hmr RSHFT K  &hmr LALT L   &hmr LGUI SQT ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp Z         &kp X         &kp C         &kp V         &kp B       ,   &kp N         &kp M         &comma_gui_morph  &dot_gui_morph &qexcl ,
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
+                                              &hml RALT CAPS &lt FN BSPC,  &lt NAV RET   &hml RALT SPACE
+//                                              &hml RALT CAPS &lt FN BSPC,  &lt NAV RET   &lt_spc RALT 0
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
 )
 
@@ -339,7 +423,8 @@ ZMK_BASE_LAYER(Num,
 
 ZMK_BASE_LAYER(Sys,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                               _BT_SEL_KEYS_                            ,   ___           ___           ___           ___           ___         ,
+//                               _BT_SEL_KEYS_                            ,   ___           ___           ___           ___           ___         ,
+    &bt BT_SEL 0  &dev_pers     &bt BT_SEL 2  &dev_work     &bt BT_CLR  ,   ___           ___           ___           ___           ___         ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     ___           ___           ___           ___           &bootloader ,   &bootloader   ___           ___           ___           ___         ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
@@ -362,6 +447,30 @@ ZMK_BASE_LAYER(Mousel,
 )
 
 ZMK_BASE_LAYER(Mouser,
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    ___           ___           ___           ___           ___         ,   ___           &kp PG_UP     &kp PG_DN     ___           U_WH_U      ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           ___           ___           ___           ___         ,   U_MS_L        U_MS_D        U_MS_U        U_MS_R        U_WH_D      ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           ___           ___           ___           ___         ,   ___           ___           ___           ___           ___         ,
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
+                                              ___           ___         ,   &mkp LCLK     &mkp RCLK
+//                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
+)
+
+ZMK_BASE_LAYER(Mouselalt,
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    U_WH_U        &kp PG_UP     U_MS_U        &kp PG_DN     ___         ,   ___           ___           ___           ___           ___         ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    U_WH_D        U_MS_L        U_MS_D        U_MS_R        U_MS_L      ,   ___           ___           ___           ___           ___         ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    ___           &kp X         &kp C         &kp V         ___         ,   ___           ___           ___           ___           ___         ,
+//╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
+                                              &mkp RCLK     &mkp LCLK   ,   ___           ___
+//                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
+)
+
+ZMK_BASE_LAYER(Mouseralt,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
     ___           ___           ___           ___           ___         ,   ___           &kp PG_UP     &kp PG_DN     ___           U_WH_U      ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
