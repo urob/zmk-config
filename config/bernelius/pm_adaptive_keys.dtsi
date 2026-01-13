@@ -28,6 +28,9 @@ ak_repeat: adaptive_key_repeat {
     ak_repeat_c_repeat {strict-modifiers; trigger-keys = <C>; bindings = <&kp C &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_repeat_s_repeat {strict-modifiers; trigger-keys = <S>; bindings = <&kp S &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_repeat_f_repeat {strict-modifiers; trigger-keys = <F>; bindings = <&kp F &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_repeat_z_repeat {strict-modifiers; trigger-keys = <Z>; bindings = <&kp Z &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_repeat_q_repeat {strict-modifiers; trigger-keys = <Q>; bindings = <&kp Q &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
+    ak_repeat_excl_repeat {strict-modifiers; trigger-keys = <EXCLAMATION>; bindings = <&kp EXCLAMATION &kp DEAD4>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_repeat_r_instead {strict-modifiers; trigger-keys = <DEAD4>; bindings = <&kp R>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
     ak_repeat_bspc_repeat {strict-modifiers; trigger-keys = <BACKSPACE>; bindings = <&kp BACKSPACE>; max-prior-idle-ms = <MAGIC_PRIOR_IDLE>; };
 };

@@ -65,15 +65,15 @@ compatible = "zmk,combos";
 combo_left_bracket {
     timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <LM4 LM3>;
-    bindings = <&hml_lbkt LC(LALT) 0>;
-    layers = <PRO NAV SYM>;
+    bindings = <&hml_lbkt LS(LALT) 0>;
+    layers = <PRO SYM>;
 };
 compatible = "zmk,combos";
 combo_right_bracket {
     timeout-ms = <COMBO_TIMEOUT_FAST>;
     key-positions = <RM4 RM3>;
-    bindings = <&hmr_rbkt RC(RALT) 0>;
-    layers = <PRO NAV SYM>;
+    bindings = <&hmr_rbkt RS(RALT) 0>;
+    layers = <PRO SYM>;
 };
 
 /*
