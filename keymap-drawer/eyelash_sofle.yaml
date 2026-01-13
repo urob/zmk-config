@@ -339,11 +339,11 @@ combos:
   k: )
   l: [promethium, qwerty, qwerty]
 - p: [28, 29]
-  k: {t: '[', h: Ctl+LALT, s: '['}
-  l: [promethium, qwerty, qwerty]
+  k: {t: '[', h: Sft+LALT, s: '['}
+  l: [promethium, qwerty]
 - p: [36, 35]
-  k: {t: ']', h: Ctl+RALT, s: ']'}
-  l: [promethium, qwerty, qwerty]
+  k: {t: ']', h: Sft+RALT, s: ']'}
+  l: [promethium, qwerty]
 - p: [41, 42]
   k: '{'
   l: [promethium, qwerty, qwerty]

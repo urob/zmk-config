@@ -287,11 +287,11 @@ combos:
   k: )
   l: [base, nav, symbols]
 - p: [11, 12]
-  k: {t: '[', h: Ctl+LALT, s: '['}
-  l: [base, nav, symbols]
+  k: {t: '[', h: Sft+LALT, s: '['}
+  l: [base, symbols]
 - p: [18, 17]
-  k: {t: ']', h: Ctl+RALT, s: ']'}
-  l: [base, nav, symbols]
+  k: {t: ']', h: Sft+RALT, s: ']'}
+  l: [base, symbols]
 - p: [22, 23]
   k: '{'
   l: [base, nav, symbols]
