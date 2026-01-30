@@ -163,7 +163,7 @@ while also making them easy to remember. Specifically:
 - parenthesis, braces, brackets are set up symmetrically as horizontal combos
   with `<`, `>`, `{` and `}` being accessed from the Navigation layer (or when
   combined with `Shift`)
-- left-hand side combos for `tap`, `esc`, `cut` (on <kbd>X</kbd> +
+- left-hand side combos for `tab`, `esc`, `cut` (on <kbd>X</kbd> +
   <kbd>D</kbd>), `copy` and `paste` that go well with right-handed mouse usage
 
 ## Smart layers and other gimmicks
