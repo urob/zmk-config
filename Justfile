@@ -4,7 +4,6 @@ default:
 config := absolute_path('config')
 build := absolute_path('.build')
 out := absolute_path('firmware')
-
 build_matrix := "build.yaml"
 
 # parse build.yaml and filter targets by expression
@@ -12,7 +11,7 @@ _parse_targets $expr: _check_yq_version
     #!/usr/bin/env bash
     attrs="[.board, .shield, .snippet, .\"artifact-name\", .\"cmake-args\"]"
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
-    echo "$(yq -r "$filter" {{build_matrix}} | grep -v "^," | grep -i "${expr/#all/.*}")"
+    echo "$(yq -r "$filter" {{ build_matrix }} | grep -v "^," | grep -i "${expr/#all/.*}")"
 
 # build firmware for single board & shield combination
 _build_single $board $shield $snippet $artifact cmake_args *west_args:
@@ -35,7 +34,7 @@ _build_single $board $shield $snippet $artifact cmake_args *west_args:
 build expr *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
-    targets=$(just build_matrix={{build_matrix}} _parse_targets {{ expr }})
+    targets=$(just build_matrix={{ build_matrix }} _parse_targets {{ expr }})
 
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
     echo "$targets" | while IFS=, read -r board shield snippet artifact cmake_args; do
@@ -94,9 +93,10 @@ init:
     west zephyr-export
 
 # List build targets. The sed chain removes version and build variants,
+
 # and prints the shield (if given) or otherwise the board name.
 list:
-    @just build_matrix={{build_matrix}} _parse_targets all \
+    @just build_matrix={{ build_matrix }} _parse_targets all \
         | sed 's|[@/][^,]*,|,|' \
         | sed 's|\([^,]*\),\([^,]\+\),.*|\2|' \
         | sed 's|\([^,]*\),,.*|\1|' \
@@ -119,6 +119,16 @@ _check_yq_version:
         echo "This script requires python-yq, but PATH contains golang-yq" >&2
         echo "Please install python-yq or use the included nix shell" >&2
         exit 1
+    fi
+
+flash $board:
+    #!/usr/bin/env bash
+    if [[ -z $board ]]; then
+        echo "No board specified. Aborting..." >&2
+        exit 1
+    fi
+    if [[ $board == "totem" ]]; then
+        scripts/cp-firmware-totem
     fi
 
 [no-cd]

@@ -30,7 +30,7 @@ fi
 if [[ -b $device ]]; then
     udisksctl mount -b "$device" 2> /dev/null
     if [[ -d $destination ]]; then
-        cp "$file" "$destination"
+        cp "firmware/$file" "$destination"
         sync
         echo "$file copied."
     else
@@ -40,5 +40,4 @@ else
     echo "ERROR: device with UUID $uuid not found."
     echo "Cannot copy $file."
 fi
-
 
