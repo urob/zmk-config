@@ -23,20 +23,20 @@ layers:
   - {t: '&ak_c', h: RGUI}
   - TAB
   - '&ak_v'
-  - '&ak_w'
+  - {t: '&ak_w', h: sym_right}
   - '&ak_d'
   - '&ak_l'
   - '&ak_j'
   - '&ak_minus'
   - '&ak_u'
   - '&ak_o'
-  - '&ak_y'
+  - {t: '&ak_y', h: sym_left}
   - '&ak_b'
-  - {t: '[', h: function/bt}
+  - {t: ENTER, h: function/bt}
   - '&ak_repeat'
   - '&ak_r'
   - {t: _, h: mouse}
-  - {t: symbols, h: symbols}
+  - ''
   - '&ak_space'
   - {t: DELETE, h: nav}
   nav:
@@ -44,7 +44,7 @@ layers:
   - '7'
   - '8'
   - '9'
-  - {t: ▽, type: trans}
+  - ENTER
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -54,10 +54,10 @@ layers:
   - {t: '4', h: LALT}
   - {t: '5', h: LSHFT}
   - {t: '6', h: LCTRL}
-  - {t: ▽, type: trans}
+  - UP
   - {t: ▽, type: trans}
   - LEFT
-  - UP
+  - ''
   - RIGHT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -65,10 +65,10 @@ layers:
   - '1'
   - '2'
   - '3'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - DOWN
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ''
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -88,7 +88,7 @@ layers:
   - ;
   - ','
   - ''''
-  - ':'
+  - '='
   - {t: '#', h: LGUI}
   - {t: ^, h: LALT}
   - {t: '|', h: LSHFT}
@@ -114,7 +114,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - BSPC
-  - {t: base, h: toggle, type: held}
+  - {t: base, h: toggle}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   function/bt:
@@ -271,6 +271,84 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  sym_left:
+  - '`'
+  - '!'
+  - '@'
+  - '&'
+  - '%'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: '#', h: LGUI}
+  - {t: ^, h: LALT}
+  - {t: '|', h: LSHFT}
+  - {t: $, h: LCTRL}
+  - '*'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '~'
+  - <
+  - '='
+  - '-'
+  - '>'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - BSPC
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  sym_right:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ;
+  - ','
+  - ''''
+  - '='
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - \
+  - {t: '|', h: RCTRL}
+  - {t: '|', h: RSHFT}
+  - {t: '"', h: RALT}
+  - {t: '|', h: RGUI}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - +
+  - {t: ▽, type: trans}
+  - ENTER
+  - '`'
+  - '?'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: base, h: toggle}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
 combos:
