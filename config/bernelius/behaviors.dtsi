@@ -43,6 +43,11 @@ lt_w: layer_tap_w {
     bindings = <&mo>, <&ak_w>;
 };
 
+lt_dot: layer_tap_dot {
+    MY_LT_CONFIG;
+    bindings = <&mo>, <&ak_dot>;
+};
+
 lt_y: layer_tap_y {
     MY_LT_CONFIG;
     bindings = <&mo>, <&ak_y>;
