@@ -9,7 +9,7 @@ layers:
   - BSPC
   - '&ak_semi'
   - '&ak_comma'
-  - '&ak_dot'
+  - {t: '&ak_dot', h: nav}
   - '&ak_excl'
   - {t: '&ak_s', h: LGUI}
   - {t: '&ak_n', h: LALT}
@@ -19,7 +19,7 @@ layers:
   - '&ak_slash'
   - {t: '&ak_a', h: RCTRL}
   - {t: '&ak_e', h: RSHFT}
-  - {t: '&ak_i', h: RALT}
+  - {t: '&ak_i', h: LALT}
   - {t: '&ak_c', h: RGUI}
   - TAB
   - '&ak_v'
@@ -36,9 +36,9 @@ layers:
   - '&ak_repeat'
   - '&ak_r'
   - {t: _, h: mouse}
-  - ''
+  - '&ak_enter'
   - '&ak_space'
-  - {t: DELETE, h: nav}
+  - {t: DELETE, h: RALT}
   nav:
   - {t: ▽, type: trans}
   - '7'
@@ -48,7 +48,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - {t: '0', h: LGUI}
   - {t: '4', h: LALT}
@@ -57,8 +57,8 @@ layers:
   - UP
   - {t: ▽, type: trans}
   - LEFT
-  - ''
   - RIGHT
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -77,7 +77,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - SPACE
-  - {t: base, h: toggle, type: held}
+  - {t: base, h: toggle}
   symbols:
   - '`'
   - '!'
