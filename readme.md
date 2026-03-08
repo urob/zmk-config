@@ -344,6 +344,8 @@ provides
 [completion scripts](https://github.com/casey/just?tab=readme-ov-file#shell-completion-scripts)
 for many shells.)
 
+To add custom shields place the files you would put in `boards/shields` in `zmk/app/boards/shields` and add the board+shield to the `build.yaml`. Then compile your firmware as stated above with `just build <shieldname>`.
+
 #### Drawing the keymap
 
 The build environment packages
