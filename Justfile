@@ -4,6 +4,7 @@ default:
 config := absolute_path('config')
 build := absolute_path('.build')
 out := absolute_path('firmware')
+draw := absolute_path('draw')
 build_matrix := "build.yaml"
 
 # parse build.yaml and filter targets by expression
