@@ -1,3 +1,5 @@
+# this Justfile requires python-yq, not golang-yq
+# the latter will fail with an error about `combinations` (used in `_parse_targets`)
 default:
     @just --list --unsorted
 
