@@ -14,12 +14,12 @@ default_build_matrix := "build.yaml"
 [arg("matrix-file", short="f", long="matrix-file")]
 _parse_targets $expr matrix-file=default_build_matrix:
     #!/usr/bin/env bash
-    attrs="[.board, .shield, .snippet, .\"artifact-name\"]"
+    attrs="[.board, .shield, .snippet, .\"artifact-name\", .\"cmake-args\"]"
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
     echo "$(yq -r "$filter" {{matrix-file}} | grep -v "^," | grep -i "${expr/#all/.*}")"
 
 # build firmware for single board & shield combination
-_build_single $board $shield $snippet $artifact *west_args:
+_build_single $board $shield $snippet $artifact cmake_args *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
     artifact="${artifact:-${shield:+${shield// /+}-}${board}}"
@@ -27,7 +27,7 @@ _build_single $board $shield $snippet $artifact *west_args:
 
     echo "Building firmware for $artifact..."
     west build -s zmk/app -d "$build_dir" -b $board {{ west_args }} ${snippet:+-S "$snippet"} -- \
-        -DZMK_CONFIG="{{ config }}" ${shield:+-DSHIELD="$shield"}
+        -DZMK_CONFIG="{{ config }}" ${shield:+-DSHIELD="$shield"} {{ cmake_args }}
 
     if [[ -f "$build_dir/zephyr/zmk.uf2" ]]; then
         mkdir -p "{{ out }}" && cp "$build_dir/zephyr/zmk.uf2" "{{ out }}/$artifact.uf2"
@@ -43,8 +43,8 @@ build expr matrix-file=default_build_matrix *west_args:
     targets=$(just _parse_targets --matrix-file={{ matrix-file }} {{ expr }})
 
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
-    echo "$targets" | while IFS=, read -r board shield snippet artifact; do
-        just _build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }}
+    echo "$targets" | while IFS=, read -r board shield snippet artifact cmake_args; do
+        just _build_single "$board" "$shield" "$snippet" "$artifact" "$cmake_args" {{ west_args }}
     done
 
 # clear build cache and artifacts
@@ -76,7 +76,7 @@ init:
 # list build targets
 [arg("matrix-file", short="f", long="matrix-file")]
 list matrix-file=default_build_matrix:
-    @just _parse_targets --matrix-file={{matrix-file}} all | sed 's/,*$//' | sort | column
+    @just _parse_targets --matrix-file={{matrix-file}} all | sed 's/,*,[^,]*$//' | sort | column
 
 # update west
 update:
