@@ -22,7 +22,7 @@ _parse_targets $expr matrix-file=default_build_matrix:
 _build_single $board $shield $snippet $artifact cmake_args *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
-    artifact="${artifact:-${shield:+${shield// /+}-}${board}}"
+    artifact="${artifact:-${shield:+${shield// /+}-}${board%%/*}}"
     build_dir="{{ build / '$artifact' }}"
 
     echo "Building firmware for $artifact..."
