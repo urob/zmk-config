@@ -8,8 +8,8 @@ on:
 
 jobs:
   build:
-    uses: urob/zmk-actions/.github/workflows/build-user-config.yml@zephyr-4.1
+    uses: urob/zmk-actions/.github/workflows/build-user-config.yml@main
     with:
-      # Set to 'gnuarmemb' 'zephyr' or 'zephyr-full' (from fastest to
-      # most compatible). ZMK Studio requires 'zephyr-full'.
+      # Set to 'gnuarmemb' (fastest), 'zephyr' or, 'zephyr-full' (most
+      # compatible). ZMK Studio requires 'zephyr-full'.
       toolchain: zephyr
