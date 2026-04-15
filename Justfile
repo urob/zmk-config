@@ -8,15 +8,14 @@ build := absolute_path('.build')
 out := absolute_path('firmware')
 draw := absolute_path('draw')
 
-default_build_matrix := "build.yaml"
+build_matrix := "build.yaml"
 
 # parse build.yaml and filter targets by expression
-[arg("matrix-file", short="f", long="matrix-file")]
-_parse_targets $expr matrix-file=default_build_matrix:
+_parse_targets $expr:
     #!/usr/bin/env bash
     attrs="[.board, .shield, .snippet, .\"artifact-name\", .\"cmake-args\"]"
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
-    echo "$(yq -r "$filter" {{matrix-file}} | grep -v "^," | grep -i "${expr/#all/.*}")"
+    echo "$(yq -r "$filter" {{build_matrix}} | grep -v "^," | grep -i "${expr/#all/.*}")"
 
 # build firmware for single board & shield combination
 _build_single $board $shield $snippet $artifact cmake_args *west_args:
@@ -36,11 +35,10 @@ _build_single $board $shield $snippet $artifact cmake_args *west_args:
     fi
 
 # build firmware for matching targets
-[arg("matrix-file", short="f", long="matrix-file")]
-build expr matrix-file=default_build_matrix *west_args:
+build expr *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
-    targets=$(just _parse_targets --matrix-file={{ matrix-file }} {{ expr }})
+    targets=$(just build_matrix={{build_matrix}} _parse_targets {{ expr }})
 
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
     echo "$targets" | while IFS=, read -r board shield snippet artifact cmake_args; do
@@ -74,9 +72,8 @@ init:
     west zephyr-export
 
 # list build targets
-[arg("matrix-file", short="f", long="matrix-file")]
-list matrix-file=default_build_matrix:
-    @just _parse_targets --matrix-file={{matrix-file}} all | sed 's/,*,[^,]*$//' | sort | column
+list:
+    @just build_matrix={{build_matrix}} _parse_targets all | sed 's/,*,[^,]*$//' | sort | column
 
 # update west
 update:
