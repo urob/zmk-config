@@ -1,5 +1,3 @@
-# this Justfile requires python-yq, not golang-yq
-# the latter will fail with an error about `combinations` (used in `_parse_targets`)
 default:
     @just --list --unsorted
 
@@ -11,7 +9,7 @@ draw := absolute_path('draw')
 build_matrix := "build.yaml"
 
 # parse build.yaml and filter targets by expression
-_parse_targets $expr:
+_parse_targets $expr: _check_yq_version
     #!/usr/bin/env bash
     attrs="[.board, .shield, .snippet, .\"artifact-name\", .\"cmake-args\"]"
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
@@ -58,7 +56,7 @@ clean-nix:
     nix-collect-garbage --delete-old
 
 # parse & plot keymap
-draw:
+draw: _check_yq_version
     #!/usr/bin/env bash
     set -euo pipefail
     keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/base.keymap" --virtual-layers Combos >"{{ draw }}/base.yaml"
@@ -82,6 +80,16 @@ update:
 # upgrade zephyr-sdk and python dependencies
 upgrade-sdk:
     nix flake update --flake .
+
+# warn user if they are using golang-yq and not python-yq
+[no-exit-message]
+_check_yq_version:
+    #!/usr/bin/env bash
+    if yq --help 2>&1 | grep -qi 'eval'; then
+        echo "This script requires python-yq, but PATH contains golang-yq" >&2
+        echo "Please install python-yq or use the included nix shell" >&2
+        exit 1
+    fi
 
 [no-cd]
 test $testpath *FLAGS:
