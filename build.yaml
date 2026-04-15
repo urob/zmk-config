@@ -16,5 +16,5 @@ include:
   - board: planck@6.0.0//zmk
   - board: corneish_zen_left@2.0.0//zmk
   - board: corneish_zen_right@2.0.0//zmk
-  - board: glove80_lh/nrf52840
-  - board: glove80_rh/nrf52840
+  - board: glove80_lh
+  - board: glove80_rh
