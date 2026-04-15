@@ -19,7 +19,7 @@
 manifest:
   defaults:
     remote: urob
-    revision: v0.3 # Pin everything to v0.3
+    revision: main # Pin everything to v0.3
 
   remotes:
     - name: urob
@@ -30,7 +30,6 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: 8a44ef109ae301ce084b32dd5fe25200da9e402f # main (2026/04/14)
       import: app/west.yml
 
     # ZMK modules
@@ -38,7 +37,6 @@ manifest:
       path: modules/zmk/adaptive-key
     - name: zmk-auto-layer
       path: modules/zmk/auto-layer
-      revision: main # Upgrades for zephyr-4.1.
     - name: zmk-helpers
       path: modules/zmk/helpers
     - name: zmk-leader-key
