@@ -69,9 +69,15 @@ init:
     west update --fetch-opt=--filter=blob:none
     west zephyr-export
 
-# list build targets
+# List build targets. The sed chain removes version and build variants,
+# and prints the shield (if given) or otherwise the board name.
 list:
-    @just build_matrix={{build_matrix}} _parse_targets all | sed 's/,*,[^,]*$//' | sort | column
+    @just build_matrix={{build_matrix}} _parse_targets all \
+        | sed 's|[@/][^,]*,|,|' \
+        | sed 's|\([^,]*\),\([^,]\+\),.*|\2|' \
+        | sed 's|\([^,]*\),,.*|\1|' \
+        | sort \
+        | column
 
 # update west
 update:
