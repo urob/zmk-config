@@ -7,7 +7,7 @@
     zephyr.flake = false;
 
     # Zephyr sdk and toolchain.
-    zephyr-nix.url = "github:urob/zephyr-nix/dev";
+    zephyr-nix.url = "github:urob/zephyr-nix";
     zephyr-nix.inputs.zephyr.follows = "zephyr";
     zephyr-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -26,7 +26,7 @@
           packages =
             [
               zephyr.pythonEnv
-              (zephyr.sdk-0_17.override {targets = ["arm-zephyr-eabi"];})
+              (zephyr.sdk-0_16.override {targets = ["arm-zephyr-eabi"];})
 
               pkgs.cmake
               pkgs.dtc
