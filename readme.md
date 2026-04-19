@@ -23,9 +23,9 @@ manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
   [zmk-helpers](https://github.com/urob/zmk-helpers)
 - Fully automated, nix-powered [local build environment](#local-build-environment)
 
-![](draw/keymap.png)
+<img src="./draw/overview.svg" alt="Keymap layout" width="100%" /><br />
 ([Click here](https://raw.githubusercontent.com/urob/zmk-config/refs/heads/main/draw/base.svg)
-for a breakdown by layer - powered by
+for a breakdown by layer – powered by
 [keymap-drawer](https://github.com/caksoylar/keymap-drawer).)
 
 ## Timeless homerow mods
