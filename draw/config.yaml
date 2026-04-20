@@ -176,34 +176,27 @@ draw_config:
   append_colon_to_layer_header: false
   dark_mode: false
   footer_text: "urob/zmk-config"
-  key_rx: 2
-  key_ry: 2
-  arc_radius: 2
-  small_pad: 4
-  legend_rel_y: 1
-  outer_pad_w: 10
-  outer_pad_h: 10
-
   glyph_tap_size: 15
   glyph_hold_size: 12
   glyph_shifted_size: 10
+  legend_rel_y: 1
+  outer_pad_w: 10
+  outer_pad_h: 10
+  small_pad: 4
 
   svg_extra_style: |
     svg.keymap {
-        --color-bg:                   #f4efed;
-        --color-key:                  #ece7e3;
-        --color-key-border:           #123046;
-        --color-key-border-muted:     #c8c3bf;
-        --color-combo-dendron:        #8a8f93;
-        --color-text:                 #112f45;
-        --color-sub:                  #5a5f63;
+        --color-bg:      #7c6f64;
+        --color-key:     #fbf1c7;
+        --color-text:    #3c3836;
+        --color-ghost:   #928374;
+        --color-dendron: #d5c4a1;
+        --color-held:    #bdae93;
 
-        --color-fn:  #6b8aa3;
-        --color-nav: #d09b6a;
-        --color-num: #b66a3c;
-        --color-sys: #9a6b86;
-
-        --color-key-combo-ghost: color-mix(in srgb, var(--color-key) 60%, var(--color-bg) 40%);
+        --color-fn:      #458588;
+        --color-nav:     #d79921;
+        --color-num:     #d65d0e;
+        --color-sys:     #689d6a;
 
         fill: var(--color-text);
         background-color: var(--color-bg);
@@ -217,13 +210,12 @@ draw_config:
     text.shifted                    { font-weight: 400; font-size: 11px; }
     text.combo, text.left, text.right, text.tl, text.tr, text.bl, text.br { font-size: 10px; }
 
-    rect.key                        { fill: var(--color-key); stroke: var(--color-key-border); }
-    rect.combo, rect.combo-separate { fill: var(--color-key); stroke: var(--color-key-border); stroke-width: 0.75; }
-    rect.held, rect.combo.held      { fill: var(--color-key); }
-    .layer-Combos rect.key          { fill: var(--color-key-combo-ghost); stroke: var(--color-key-border-muted); stroke-width: 0.75; opacity: 0.35; }
+    rect.key, rect.combo, rect.combo-separate { fill: var(--color-key); stroke-width: 0; }
+    rect.held, rect.combo.held                { fill: var(--color-held); }
+    .layer-Combos rect.key                    { fill: var(--color-ghost); }
 
-    text.label, text.footer         { fill: var(--color-sub); stroke: var(--color-bg); }
-    path.combo                      { stroke: var(--color-combo-dendron); stroke-width: 2; stroke-dasharray: 2, 3; opacity: 0.45; }
+    text.label, text.footer         { fill: var(--color-key); stroke: var(--color-bg); }
+    path.combo                      { stroke: var(--color-dendron); stroke-width: 2; stroke-dasharray: 2, 3; opacity: 0.45; }
 
     text.tl, use.tl { fill: var(--color-fn); }
     text.tr, use.tr { fill: var(--color-nav); }
@@ -238,18 +230,16 @@ draw_config:
 
     @media (prefers-color-scheme: dark) {
         svg.keymap {
-            --color-bg:               #4c5963;
-            --color-key:              #2a343d;
-            --color-key-border:       #66727c;
-            --color-key-border-muted: #2a343d; /* Hide ghost key borders. */
-            --color-combo-dendron:    #8a949c;
+            --color-bg:      #a89984;
+            --color-key:     #282828;
+            --color-text:    #ebdbb2;
+            --color-ghost:   #928374;
+            --color-dendron: #504945;
+            --color-held:    #665c54;
 
-            --color-text: #e6edf2;
-            --color-sub:  #c1ccd2;
-
-            --color-fn:  #8fa9bd;
-            --color-nav: #e6c07b;
-            --color-num: #d19363;
-            --color-sys: #b68fa6;
+            --color-fn:      #458588;
+            --color-nav:     #fabd2f;
+            --color-num:     #d65d0e;
+            --color-sys:     #689d6a;
         }
     }
