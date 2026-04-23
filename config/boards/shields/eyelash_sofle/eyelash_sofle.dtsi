@@ -159,3 +159,8 @@ nice_view_spi: &spi0 {
     pinctrl-names = "default", "sleep";
     cs-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
 };
+
+/* Enable HV regulator for radio */
+&reg0 {
+    status = "okay";
+};

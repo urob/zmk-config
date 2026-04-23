@@ -55,3 +55,22 @@ config LED_PWM
 endif # ZMK_BACKLIGHT
 
 endif
+
+# Storage settings for BLE bonding
+config SETTINGS
+    default y
+
+config NVS
+    default y
+
+config FLASH
+    default y
+
+config FLASH_PAGE_LAYOUT
+    default y
+
+config FLASH_MAP
+    default y
+
+config USE_DT_CODE_PARTITION
+    default y

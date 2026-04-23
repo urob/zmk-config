@@ -28,6 +28,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: m165437
       url-base: https://github.com/M165437
+    - name: bernelius
+      url-base: https://github.com/bernelius
 
   projects:
     - name: zmk
@@ -54,8 +56,8 @@ manifest:
     - name: zmk-unicode
       path: modules/zmk/unicode
       revision: 1a6dbc797a46c4a61c3c71a7a9d013a5d5aee49e # main (4/19/2026)
-    - name: nice-view-gem
-      remote: m165437
+    - name: nice-view-gem-z4
+      remote: bernelius
       revision: main
 
     # Only source necessary Zephyr modules. Remove this entire section to restore
