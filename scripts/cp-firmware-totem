@@ -22,9 +22,9 @@ for i in "${rightlist[@]}"; do
     fi
 done
 if (( right )); then
-    file="totem_right-seeeduino_xiao_ble.uf2"
+    file="totem_right-xiao_ble.uf2"
 else
-    file="totem_left-seeeduino_xiao_ble.uf2"
+    file="totem_left-xiao_ble.uf2"
 fi
 
 if [[ -b $device ]]; then

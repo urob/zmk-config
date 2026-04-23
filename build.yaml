@@ -13,11 +13,11 @@
 #
 ---
 include:
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble
     shield: totem_left
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble
     shield: totem_right
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble
     shield: settings_reset
   - board: eyelash_sofle_right
     shield: nice_view_gem
