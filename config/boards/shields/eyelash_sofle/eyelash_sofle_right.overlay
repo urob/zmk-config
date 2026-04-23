@@ -1,9 +1,10 @@
 /*
-*
-* Copyright (c) 2021 Darryl deHaan
-* SPDX-License-Identifier: MIT
-*
-*/
+ *
+ * Copyright (c) 2021 Darryl deHaan
+ * SPDX-License-Identifier: MIT
+ *
+ */
+
 #include "eyelash_sofle.dtsi"
 
 &kscan0 {
@@ -21,4 +22,3 @@
 &default_transform {
     col-offset = <7>;
 };
-

@@ -2,8 +2,8 @@ file_format: "1"
 id: eyelash_sofle
 name: Eyelash Sofle
 url: https://github.com/a741725193/zmk-sofle
-type: board
-arch: arm
+type: shield
+requires: [nice_nano]
 features:
   - keys
   - display

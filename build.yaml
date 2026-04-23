@@ -19,13 +19,13 @@ include:
     shield: totem_right
   - board: xiao_ble
     shield: settings_reset
-  - board: eyelash_sofle_right
-    shield: nice_view_gem
+  - board: nice_nano
+    shield: eyelash_sofle_right
     artifact-name: sofle_right
-  - board: eyelash_sofle_left
-    shield: nice_view_gem
+  - board: nice_nano
+    shield: eyelash_sofle_left
     snippet: studio-rpc-usb-uart
     artifact-name: sofle_left
-  - board: eyelash_sofle_left
+  - board: nice_nano
     shield: settings_reset
     artifact-name: eyelash_settings_reset
