@@ -21,7 +21,8 @@ manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
 - Shifted actions that make sense: <kbd>, ↦ ;</kbd>, <kbd>. ↦ :</kbd> and <kbd>? ↦ !</kbd>
 - Simpler Devicetree syntax using helper macros from
   [zmk-helpers](https://github.com/urob/zmk-helpers)
-- Fully automated, nix-powered [local build environment](#local-build-environment)
+- Fully automated, nix-powered [local build environment](#local-build-environment), includes
+  `dts-format` and `keymap-drawer`
 
 <img src="./draw/overview.svg" alt="Keymap layout" width="100%" /><br />
 ([Click here](https://raw.githubusercontent.com/urob/zmk-config/refs/heads/main/draw/base.svg)
@@ -349,6 +350,24 @@ for many shells.)
 The build environment packages
 [keymap-drawer](https://github.com/caksoylar/keymap-drawer). `just draw` parses
 `base.keymap` and draws it to `draw/base.svg`.
+
+#### Devicetree formatter (experimental)
+
+The build environment also packages a (patched and wrapped) version of 
+[`dts-linter`](https://github.com/kylebonnici/dts-linter). Usage:
+```sh
+dts-format [--fix] [filelist]
+```
+If no `filelist` is provided, `dts-format` will format all `dts`, `dtsi`, `overlay` and `keymap` 
+files *anywhere* below the current working directory -- Don't run this at the repo root unless you 
+want to format the entire zmk and zephyr base!.
+
+By default, `dts-format` will print a diff. Use the `--fix` flag to apply all changes directly to
+the source files.
+
+**Warning**: The formatter currently **breaks files** with
+preprocessor macros spanning multiple lines
+([#9](`https://github.com/kylebonnici/dts-linter/issues/9)), so use with care!
 
 #### Hacking the firmware
 

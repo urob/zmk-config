@@ -10,9 +10,12 @@
     zephyr-nix.url = "github:urob/zephyr-nix";
     zephyr-nix.inputs.zephyr.follows = "zephyr";
     zephyr-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Devicetree linter; use my fork for nix-package and ZMK-specific tweaks.
+    dts-linter.url = "github:urob/dts-linter/zmk";
   };
 
-  outputs = { nixpkgs, zephyr-nix, ... }: let
+  outputs = { nixpkgs, zephyr-nix, dts-linter, ... }: let
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
@@ -21,6 +24,9 @@
         pkgs = nixpkgs.legacyPackages.${system};
         zephyr = zephyr-nix.packages.${system};
         keymap_drawer = pkgs.python3Packages.callPackage ./nix/keymap-drawer.nix {};
+        dts-format = pkgs.callPackage ./nix/dts-format.nix {
+          dts-linter = dts-linter.packages.${system}.default;
+        };
       in {
         default = pkgs.mkShellNoCC {
           packages =
@@ -37,6 +43,7 @@
               pkgs.yq # Make sure yq resolves to python-yq.
 
               keymap_drawer
+              dts-format
 
               # -- Used by just_recipes and west_commands. Most systems already have them. --
               # pkgs.gawk
