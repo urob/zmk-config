@@ -144,7 +144,7 @@ parse_config:
     "&num_word 0": $$mdi:dialpad$$
 
     "&to MSL": $$mdi:mouse$$
-    "&to MSR": $$mdi:mouse$$
+    "&to MOUSER": $$mdi:mouse$$
     "&to 0": ""
 
     "&eqgt": =>
