@@ -7,7 +7,7 @@
     zephyr.flake = false;
 
     # Zephyr sdk and toolchain.
-    zephyr-nix.url = "github:urob/zephyr-nix";
+    zephyr-nix.url = "github:nix-community/zephyr-nix";
     zephyr-nix.inputs.zephyr.follows = "zephyr";
     zephyr-nix.inputs.nixpkgs.follows = "nixpkgs";
 
