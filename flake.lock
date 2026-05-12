@@ -2,21 +2,40 @@
   "nodes": {
     "dts-linter": {
       "inputs": {
+        "dts-lsp-src": "dts-lsp-src",
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1777056627,
-        "narHash": "sha256-aZ4zBjjiu2S1dR0LWY9JeAvjnoUIMzZ63zTIaNKaWLY=",
+        "lastModified": 1778604011,
+        "narHash": "sha256-5dwVNweMfQPI/0kaLX18QqJ+cfwIpvOhlErUO693UrA=",
         "owner": "urob",
         "repo": "dts-linter",
-        "rev": "6221c5107bdad8ef3d3b6d1d94807d207e4c5e2e",
+        "rev": "81e2bc2adf8fcb9126a48cd7e955e22b470ccf95",
         "type": "github"
       },
       "original": {
         "owner": "urob",
         "ref": "zmk",
         "repo": "dts-linter",
+        "type": "github"
+      }
+    },
+    "dts-lsp-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778598002,
+        "narHash": "sha256-ldB8EN59+1LNskeZAPYg83q99fMgK/iPEiW1KQpblxI=",
+        "owner": "urob",
+        "repo": "dts-lsp",
+        "rev": "c1fe01b819e3171f98660c21f8c5f58a413279d6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "urob",
+        "repo": "dts-lsp",
         "type": "github"
       }
     },
@@ -61,27 +80,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1776548001,
-        "narHash": "sha256-ZSK0NL4a1BwVbbTBoSnWgbJy9HeZFXLYQizjb2DPF24=",
+        "lastModified": 1778443072,
+        "narHash": "sha256-zi7/fsqM/kFdNuED//4WOCUtezGtKKqRNORjMvfwjnA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b12141ef619e0a9c1c84dc8c684040326f27cdcc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1776169885,
-        "narHash": "sha256-l/iNYDZ4bGOAFQY2q8y5OAfBBtrDAaPuRQqWaFHVRXM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4bd9165a9165d7b5e33ae57f3eecbcb28fb231c9",
+        "rev": "da5ad661ba4e5ef59ba743f0d112cbc30e474f32",
         "type": "github"
       },
       "original": {
@@ -115,7 +118,7 @@
     "root": {
       "inputs": {
         "dts-linter": "dts-linter",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "zephyr": "zephyr",
         "zephyr-nix": "zephyr-nix"
       }
@@ -143,11 +146,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776489725,
-        "narHash": "sha256-9MhAOHQeMxxMHq1Rej4Hqtb8KPT1z+1Y7WlV/N4EcwY=",
+        "lastModified": 1773542919,
+        "narHash": "sha256-SOg353SBOisynxIfBjZucT8lXwERH4GJkkaACkwSj/A=",
         "owner": "pyproject-nix",
         "repo": "uv-python.nix",
-        "rev": "bf8f911a7bd2b93bbcd92ef9082f226ca16ca8fe",
+        "rev": "2d87c20a2cbf2bb96d1edd08127ed6af9968de7b",
         "type": "github"
       },
       "original": {

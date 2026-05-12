@@ -370,10 +370,6 @@ number of spaces per indentation level (default is `4`).
 
 To protect manually aligned keymap blocks, guard them by `// dts-format off` and `// dts-format on` comments.
 
-**Warning**: The formatter currently **breaks files** with
-preprocessor macros spanning multiple lines
-([#9](https://github.com/kylebonnici/dts-linter/issues/9)), so use with care!
-
 #### Hacking the firmware
 
 To make changes to the ZMK source or any of the modules, simply edit the files

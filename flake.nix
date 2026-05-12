@@ -13,6 +13,7 @@
 
     # Devicetree linter; use my fork for nix-package and ZMK-specific tweaks.
     dts-linter.url = "github:urob/dts-linter/zmk";
+    dts-linter.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { nixpkgs, zephyr-nix, dts-linter, ... }: let
@@ -25,7 +26,7 @@
         zephyr = zephyr-nix.packages.${system};
         keymap_drawer = pkgs.python3Packages.callPackage ./nix/keymap-drawer.nix {};
         dts-format = pkgs.callPackage ./nix/dts-format.nix {
-          dts-linter = dts-linter.packages.${system}.default;
+          dts-linter = dts-linter.packages.${system}.dev;
         };
       in {
         default = pkgs.mkShellNoCC {
