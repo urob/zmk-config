@@ -345,6 +345,9 @@ provides
 [completion scripts](https://github.com/casey/just?tab=readme-ov-file#shell-completion-scripts)
 for many shells.)
 
+To add custom shields `$SCHIELD_NAME` clone its files to a directory `$DIR` or create a new one based of [the unified zmk config template](https://github.com/zmkfirmware/unified-zmk-config-template/) and clone it to `$DIR`.
+To build this custom shield use `west build -p -s zmk/app -b $BOARD_NAME -- -DZMK_EXTRA_MODULES="$ABSOLUTE_PATH_TO_$DIR" -DSHIELD=$SHIELD_NAME` where `$BOARD_NAME` is the name of the MCU-board that your shield is extending. E.g. for building the shield `endgame`, which is based on a `nice_nano_v2` board, with the files lying in `/home/user/my-endgame-directory` the command would be `west build -p -s zmk/app -b nice_nano_v2 -- -DZMK_EXTRA_MODULES="/home/user/my-endgame-directory" -DSHIELD=endgame`.
+
 #### Drawing the keymap
 
 The build environment packages
