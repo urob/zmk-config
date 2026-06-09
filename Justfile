@@ -37,7 +37,7 @@ _build_single $board $shield $snippet $artifact cmake_args *west_args:
 _flash_single $board $shield $artifact:
     #!/usr/bin/env bash
     set -euo pipefail
-    artifact="${artifact:-${shield:+${shield// /+}-}${board%%/*}}"
+    artifact="${artifact:-${shield:+${shield// /+}-}${board//\//_}}"
     build_dir="{{ build / '$artifact' }}"
 
     echo "Flashing firmware for $artifact..."
@@ -100,7 +100,7 @@ draw: _check_yq_version
     sed -i '/<text.*class="label"/d' "{{ draw }}/overview.svg"
 
 # flash firmware for matching targets
-flash expr:
+flash expr: (build expr)
     #!/usr/bin/env bash
     set -euo pipefail
     targets=$(just build_matrix={{build_matrix}} _parse_targets {{ expr }})
