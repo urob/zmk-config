@@ -9,11 +9,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781982736,
-        "narHash": "sha256-AO9QqjvZlodeYbEYbkqaZ/cWiZNW6YLXG/uXiPaKtAE=",
+        "lastModified": 1781984319,
+        "narHash": "sha256-Szrj9f0190pcrLjD8IWpo0zAhvkC28nvyY14GVL/vWw=",
         "owner": "urob",
         "repo": "dts-linter",
-        "rev": "f57bb4bc22888ca10d640280a59187d06a2148cc",
+        "rev": "286d1ad08d495c036d8075429d2f7b5d818ac505",
         "type": "github"
       },
       "original": {
@@ -26,15 +26,15 @@
     "dts-lsp-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1778598002,
-        "narHash": "sha256-ldB8EN59+1LNskeZAPYg83q99fMgK/iPEiW1KQpblxI=",
-        "owner": "urob",
+        "lastModified": 1781627080,
+        "narHash": "sha256-jxVOdequqa4dPfYr7n9L37EIZ24ENCQrpryaGq+ZlBs=",
+        "owner": "kylebonnici",
         "repo": "dts-lsp",
-        "rev": "c1fe01b819e3171f98660c21f8c5f58a413279d6",
+        "rev": "7e8d7d34fbfa7fc599a3ed9feefdf99cb00f6104",
         "type": "github"
       },
       "original": {
-        "owner": "urob",
+        "owner": "kylebonnici",
         "repo": "dts-lsp",
         "type": "github"
       }
