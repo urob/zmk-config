@@ -9,11 +9,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778604011,
-        "narHash": "sha256-5dwVNweMfQPI/0kaLX18QqJ+cfwIpvOhlErUO693UrA=",
+        "lastModified": 1781982736,
+        "narHash": "sha256-AO9QqjvZlodeYbEYbkqaZ/cWiZNW6YLXG/uXiPaKtAE=",
         "owner": "urob",
         "repo": "dts-linter",
-        "rev": "81e2bc2adf8fcb9126a48cd7e955e22b470ccf95",
+        "rev": "f57bb4bc22888ca10d640280a59187d06a2148cc",
         "type": "github"
       },
       "original": {
