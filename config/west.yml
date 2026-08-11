@@ -56,8 +56,8 @@ manifest:
     # Only source necessary Zephyr modules. Remove this entire section to restore
     # the default (needed for less common hardware).
     - name: zephyr
-      remote: zmkfirmware
-      revision: 58a5874a446ace2893a196848282d271a551e512 # v4.1.0+zmk-fixes
+      url: https://github.com/carrefinho/zephyr
+      revision: 5991cca15ff39a2fb18689d5ec204a6b01ed3db7 # v4.1.0+zmk-fixes+3370-prep-pipeline
       clone-depth: 1
       import:
         name-allowlist:
