@@ -4,9 +4,9 @@ This is my personal [ZMK firmware](https://github.com/zmkfirmware/zmk/)
 configuration. It consists of a 34-keys base layout that is re-used for various
 boards of different sizes, including a Corneish Zen, Glove80 and Planck.
 
-The configuration currently builds against `v0.3` of upstream ZMK, extended by various [ZMK
+The configuration builds against the latest upstream ZMK, extended by various [ZMK
 modules](https://github.com/search?q=topic%3Azmk-module+fork%3Atrue+owner%3Aurob+&type=repositories).
-All build dependencies are pinned in this [`west`
+To prevent unintentional breakages, all build dependencies are fully pinned in this [`west`
 manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
 
 ## Highlights
