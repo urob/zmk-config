@@ -6,7 +6,8 @@ boards of different sizes, including a Corneish Zen, Glove80 and Planck.
 
 The configuration builds against the latest upstream ZMK, extended by various [ZMK
 modules](https://github.com/search?q=topic%3Azmk-module+fork%3Atrue+owner%3Aurob+&type=repositories).
-To prevent unintentional breakages, all build dependencies are fully pinned in this [`west`
+To prevent unintentional breakages, I use [pin-west](https://github.com/urob/pin-west) to fully lock
+all build dependencies in [my west
 manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
 
 ## Highlights
@@ -23,6 +24,8 @@ manifest](https://github.com/urob/zmk-config/blob/main/config/west.yml).
   [zmk-helpers](https://github.com/urob/zmk-helpers)
 - Fully automated, nix-powered [local build environment](#local-build-environment), includes
   `dts-format` and `keymap-drawer`
+- Dependency locking using [pin-west](https://github.com/urob/pin-west) (use `pin-west bump` to
+  update)
 
 <img src="./draw/overview.svg" alt="Keymap layout" width="100%" /><br />
 ([Click here](https://raw.githubusercontent.com/urob/zmk-config/refs/heads/main/draw/base.svg)
