@@ -30,28 +30,28 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: 0331b7d16e80954b807917f9323e59ffc1e3b626 # main (4/19/2026)
+      revision: 6e2ef41e022d555b10f116e395832913f71717b3 # main (2026-08-18)
       import: app/west.yml
 
     # ZMK modules
     - name: zmk-adaptive-key
       path: modules/zmk/adaptive-key
-      revision: 18cc2795a64ccb394d1a7b7d591a5bfe3f25924b # main (4/19/2026)
+      revision: e5b335a7b1076cb122582f5a892b118b02a3be34 # main (2026-08-18)
     - name: zmk-auto-layer
       path: modules/zmk/auto-layer
-      revision: dfa7c695ffde41ef8064245453595d50e198ae1d # main (4/19/2026)
+      revision: 62c201934711369d50a28df12e1d055d05cb6460 # main (2026-08-18)
     - name: zmk-helpers
       path: modules/zmk/helpers
-      revision: 0b9e9d1dd9e86f70b4c8c2b0fab55c4f90c9d2e3 # main (4/19/2026)
+      revision: bc114546392b4615ac90a99140eaf21dde31209d # main (2026-08-18)
     - name: zmk-leader-key
       path: modules/zmk/leader-key
-      revision: 749f7faf65cc4105c82fbe64cfaa7e09a8a63605 # main (4/19/2026)
+      revision: e894d9afa5164b7fff641db4194fc3d4d6e84bbb # main (2026-08-18)
     - name: zmk-tri-state
       path: modules/zmk/tri-state
-      revision: 2007896c6d5bfb519e8babccf8633841c5647d8b # main (4/19/2026)
+      revision: 269b13eb3f5491292b627ac3892589af32de3e17 # main (2026-08-18)
     - name: zmk-unicode
       path: modules/zmk/unicode
-      revision: 1a6dbc797a46c4a61c3c71a7a9d013a5d5aee49e # main (4/19/2026)
+      revision: a1e3d3eed54dea800b5342a251eb3b83eee3b5ec # main (2026-08-18)
 
     # Only source necessary Zephyr modules. Remove this entire section to restore
     # the default (needed for less common hardware).
