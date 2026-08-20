@@ -15,8 +15,8 @@
 # $ west update
 # $ west zephyr-export
 #
-# This mainifest is maintained using pin-west. Run `uvx pin-west bump` to
-# update all packages.
+# This mainifest is maintained using pin-west. Run `pin-west bump` to update
+# all packages.
 ---
 manifest:
   defaults:
@@ -54,8 +54,8 @@ manifest:
       path: modules/zmk/unicode
       revision: a1e3d3eed54dea800b5342a251eb3b83eee3b5ec # main (2026-08-18)
 
-    # Only source necessary Zephyr modules. Remove this entire section to restore
-    # the default (needed for less common hardware).
+    # Avoid downloading GBs of unused Zephyr modules. Remove this section to
+    # restore the default (needed for less common hardware).
     - name: zephyr
       remote: zmkfirmware
       revision: 10ba6d0cb38bc3d258775d27982f707599320085 # v4.1.0+zmk-fixes (2026-08-18)
@@ -65,7 +65,8 @@ manifest:
           - cmsis
           - hal_nordic
           - hal_rpi_pico
-          - hal_stm32
+          - hal_stm32  # imported independently by ZMK
+          - lvgl  # imported independently by ZMK
           - mbedtls
           - tinycrypt
 
