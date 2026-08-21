@@ -29,7 +29,11 @@ pkgs.writeShellScriptBin "dts-format" ''
   [ "$use_tabs" -eq 0 ] && base_args+=(--insertSpaces)
 
   if [ "''${#files[@]}" -gt 0 ]; then
-    exec ${dts-linter}/bin/dts-linter "''${base_args[@]}" "''${extra_args[@]}" --file "''${files[@]}"
+    file_args=()
+    for file in "''${files[@]}"; do
+      file_args+=(--file "$file")
+    done
+    exec ${dts-linter}/bin/dts-linter "''${base_args[@]}" "''${extra_args[@]}" "''${file_args[@]}"
   else
     exec ${dts-linter}/bin/dts-linter "''${base_args[@]}" "''${extra_args[@]}" \
       --filetypes dts,dtsi,overlay,keymap
