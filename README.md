@@ -386,12 +386,12 @@ additional remotes to work with or consider making them the default in
 
 #### Updating the build environment
 
-To update the ZMK dependencies, use `just update`. This will pull in the latest
+To update the ZMK dependencies, use `just sync`. This will pull in the latest
 version of ZMK and all modules specified in `config/west.yml`. Make sure to
 commit and push all local changes you have made to ZMK and the modules before
 running this command, as this will overwrite them.
 
-To upgrade the Zephyr SDK and Python build dependencies, use `just upgrade-sdk`. (Use with care --
+To upgrade the Zephyr SDK and Python build dependencies, use `just bump-nix`. (Use with care --
 Running this will upgrade all Nix packages and may end up breaking the build environment. When in
 doubt, I recommend keeping the environment pinned to `flake.lock`, which is [continuously
 tested](https://github.com/urob/zmk-config/actions/workflows/test-build-env.yml) on all systems.)
