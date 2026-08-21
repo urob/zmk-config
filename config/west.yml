@@ -31,7 +31,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: 6e2ef41e022d555b10f116e395832913f71717b3 # main (2026-08-18)
+      revision: 641514a97db345f499dd50b0360e594270f008fe # main (2026-08-21)
       import: app/west.yml
 
     # ZMK modules
@@ -43,7 +43,7 @@ manifest:
       revision: 62c201934711369d50a28df12e1d055d05cb6460 # main (2026-08-18)
     - name: zmk-helpers
       path: modules/zmk/helpers
-      revision: bc114546392b4615ac90a99140eaf21dde31209d # main (2026-08-18)
+      revision: 95edb8f15ef1d1bd8332810555f8cf5837fbdd27 # main (2026-08-21)
     - name: zmk-leader-key
       path: modules/zmk/leader-key
       revision: e894d9afa5164b7fff641db4194fc3d4d6e84bbb # main (2026-08-18)
