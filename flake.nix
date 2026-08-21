@@ -14,19 +14,26 @@
     # Devicetree linter; use my fork for nix-package and ZMK-specific tweaks.
     dts-linter.url = "github:urob/dts-linter/zmk";
     dts-linter.inputs.nixpkgs.follows = "nixpkgs";
+
+    # West manifest locking; skipping the flake to build its package.nix with
+    # our own nixpkgs and python package set.
+    pin-west.url = "github:urob/pin-west";
+    pin-west.flake = false;
   };
 
-  outputs = { nixpkgs, zephyr-nix, dts-linter, ... }: let
+  outputs = inputs @ { nixpkgs, ... }: let
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
     devShells = forAllSystems (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
-        zephyr = zephyr-nix.packages.${system};
-        keymap_drawer = pkgs.python3Packages.callPackage ./nix/keymap-drawer.nix {};
+        zephyr = inputs.zephyr-nix.packages.${system};
+        keymap-drawer = pkgs.python3Packages.callPackage ./nix/keymap-drawer.nix {};
+        pin-west = pkgs.python3Packages.callPackage "${inputs.pin-west}/package.nix" {};
         dts-format = pkgs.callPackage ./nix/dts-format.nix {
-          dts-linter = dts-linter.packages.${system}.dev;
+          # dts-linter = inputs.dts-linter.packages.${system}.dev;  # Use latest dts-lsp
+          dts-linter = inputs.dts-linter.packages.${system}.default;  # Use dts-lsp bundled with dts-linter
         };
       in {
         default = pkgs.mkShellNoCC {
@@ -43,8 +50,9 @@
               pkgs.just
               pkgs.yq # Make sure yq resolves to python-yq.
 
-              keymap_drawer
               dts-format
+              keymap-drawer
+              pin-west
 
               # -- Used by just_recipes and west_commands. Most systems already have them. --
               # pkgs.gawk
