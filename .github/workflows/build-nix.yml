@@ -5,6 +5,10 @@ on:
     paths:
       - config/**
       - build.yaml
+  pull_request:
+    paths:
+      - config/**
+      - build.yaml
 
 jobs:
   build:
