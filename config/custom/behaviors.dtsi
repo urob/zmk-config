@@ -1,0 +1,27 @@
+/* Personal behaviors, layered on top of urob's base.keymap. */
+
+#define SYM (MOUSE + 1) // Appended after urob's last layer.
+
+// Disable urob's combos (symbols live on the Sym layer instead).
+/ { /delete-node/ combos; };
+
+// Navigation macros - 5x down/up.
+ZMK_MACRO(nav_5_down, bindings = <&kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN>;
+          wait-ms = <5>; tap-ms = <3>;)
+ZMK_MACRO(nav_5_up, bindings = <&kp UP &kp UP &kp UP &kp UP &kp UP>;
+          wait-ms = <5>; tap-ms = <3>;)
+
+// Tap: up/down | Alt + tap: 5x up/down.
+SIMPLE_MORPH(qnav_down, ALT, &kp DOWN, &nav_5_down)
+SIMPLE_MORPH(qnav_up, ALT, &kp UP, &nav_5_up)
+
+// Key toggle for Alt+GUI.
+ZMK_MACRO(kt_la_gui, bindings = <&kt LALT &kt LGUI>; wait-ms = <0>; tap-ms = <5>;)
+
+// Window swapper: Alt+Tab.
+ZMK_TRI_STATE(window_swapper, bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+              ignored-key-positions = <LT2>;)
+
+// App tab swapper: Alt+Cmd+Right.
+ZMK_TRI_STATE(tab_swapper, bindings = <&kt_la_gui>, <&kp RIGHT>, <&kt_la_gui>;
+              ignored-key-positions = <LB2 LB3 LB4>;)
