@@ -52,7 +52,7 @@ manifest:
       revision: c08969627245adeddbcdb6dfc1a4c167c04160e2 # main (2026-10-19)
     - name: zmk-unicode
       path: modules/zmk/unicode
-      revision: 6ce21267e497e20ff9e05da16d4eefcdd3e89190 # main (2026-10-19)
+      revision: a1ee16236de5f912a57cd4fe619b0d63b94ea9e5 # main (2026-11-09)
 
     # Avoid downloading GBs of unused Zephyr modules. Remove this section to
     # restore the default (needed for less common hardware).
